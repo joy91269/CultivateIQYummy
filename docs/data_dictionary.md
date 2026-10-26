@@ -48,8 +48,7 @@ One row per (text, product) pair.
 | `created_utc`, `date`, `week_start` | Unix time, UTC date, Monday of the ISO week |
 | `product` | `avocado`, `lettuce`, `onion`, `cucumber` |
 | `n_products_mentioned` | Number of study products in the same text |
-| `description` | First 280 characters of the text (whitespace normalised) |
-| `text` | Full text (post: title + body; comment: body) |
+| `text` | The post or comment itself (post: title + body; comment: body), as written |
 | `event_types` | All market-event types whose keywords occur (`|`-separated) or `none` |
 | `primary_event_type` | First match in the order food_safety_recall > weather_event > supply_shortage > price_change > marketing_promotion > demand_change; `other` when none |
 | `geo_city`, `geo_state`, `geo_source` | Geography when available and how it was obtained |

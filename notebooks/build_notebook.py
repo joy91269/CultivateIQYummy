@@ -265,7 +265,7 @@ for prod in PRODUCTS:
                      "max_abs_z": max(abs(v) for v in hits.values()),
                      "distinctive_words": distinctive_words(wk["text"], corpus),
                      "documented_event": "; ".join(ev_match["event_id"] + " " + ev_match["event_name"]),
-                     "top_text": " | ".join(top["description"].str.slice(0, 140)),
+                     "top_text": " | ".join(top["text"].astype(str).str.replace(r"\s+", " ", regex=True).str.slice(0, 140)),
                      "top_url": " ".join(top["url"])})
 unusual = pd.DataFrame(rows).sort_values(["product", "week_start"])
 unusual.to_csv(TAB / "unusual_weeks.csv", index=False)

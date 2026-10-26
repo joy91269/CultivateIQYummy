@@ -26,7 +26,7 @@ from datetime import datetime, timedelta, timezone
 import pandas as pd
 
 from build_keywords import EventTagger
-from common import PROCESSED, RAW, ProductMatcher, jsonl_files, load_yaml, read_jsonl
+from common import PROCESSED, RAW, ProductMatcher, jsonl_files, load_yaml, read_jsonl, study_period
 
 REDDIT = RAW / "reddit"
 
@@ -111,6 +111,9 @@ def clean(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
 
     df = df.sort_values(["created_utc", "obs_key"])
     drop(df.duplicated("obs_key"), "same record downloaded twice (same Reddit id)")
+    start, end = study_period()
+    drop((df["created_utc"] < start.timestamp()) | (df["created_utc"] >= end.timestamp()),
+         "outside the study period (e.g. later comments on 2024 threads)")
     author = df["author"].fillna("").str.lower()
     drop(author.isin(KNOWN_BOTS) | author.str.endswith("bot") | author.str.endswith("_bot")
          | df["text"].str.contains(BOT_TEXT), "bot accounts / automated messages")
@@ -151,7 +154,6 @@ def build() -> None:
                      or (states[0] if len(states) == 1 else ""))
         geo_source = ("city subreddit" if geo else "regional retailer subreddit" if r.subreddit in RETAILER_STATE
                       else "state named in text" if len(states) == 1 else "")
-        desc = re.sub(r"\s+", " ", r.text).strip()
         for prod in products:
             out.append({
                 "obs_id": f"{r.obs_key}_{prod}", "record_id": r.obs_key, "source": "reddit",
@@ -159,7 +161,7 @@ def build() -> None:
                 "subreddit": r.subreddit, "subreddit_group": r.subreddit_group, "thread_id": r.thread_id,
                 "created_utc": int(r.created_utc), "date": when.date().isoformat(), "week_start": week_start(when),
                 "product": prod, "n_products_mentioned": len(products),
-                "description": desc[:280] + ("..." if len(desc) > 280 else ""), "text": r.text,
+                "text": r.text,
                 "event_types": "|".join(types) if types else "none", "primary_event_type": tagger.primary(types),
                 "geo_city": geo["market"] if geo else "", "geo_state": geo_state, "geo_source": geo_source,
                 "ams_market": geo["market"] if geo else "",
