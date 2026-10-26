@@ -82,10 +82,12 @@ md(r"""
 ## 1. Labelled sample
 
 The sample was drawn by `labeling/make_label_sample.py`: a stratified batch of posts (product × keyword stratum, one
-text per thread), then keyword-enriched batches of posts and comments so that the rare price and supply classes are
-represented. Two AI annotators labelled every row independently with `labeling/codebook.md` (annotator 2 never saw
-annotator 1's labels). A team member then decided every row where they disagreed plus a random sample of rows where
-they agreed. `label` is the human decision where a person reviewed the row and the agreed AI label elsewhere.
+text per thread), then keyword-enriched batches of posts and comments so that the rare price, supply and demand
+classes are represented. Two AI annotators labelled every row independently with `labeling/codebook.md` (annotator 2
+never saw annotator 1's labels). A team member then decided every row where they disagreed plus a random sample of
+rows where they agreed (two rounds), and took a second look at every reviewed row where demand was one of the
+choices. `label` is the human decision where a person reviewed the row and the agreed AI label elsewhere; the full
+procedure is at the end of the codebook.
 """)
 
 code(r"""
@@ -102,6 +104,11 @@ check = lab[lab["reviewed"] & lab["ai_agree"]]
 if len(check):
     ok = (check["human_label"] == check["label_ai1"]).mean()
     print(f"Random check of {len(check)} rows where the AI annotators agreed: the reviewer kept the AI label for {ok:.1%}.")
+re2 = lab[lab["rechecked"]]
+if len(re2):
+    print(f"Second look at demand vs. other: {len(re2)} rows, {(re2['first_pass_label'] != re2['human_label']).sum()} "
+          f"changed:"); display(pd.crosstab(re2["first_pass_label"], re2["human_label"], rownames=["first look"],
+                                            colnames=["second look"]))
 dis = lab[lab["reviewed"] & ~lab["ai_agree"]]
 if len(dis):
     print(f"Disagreements decided by the reviewer: {len(dis)}; reviewer sided with annotator 1 in "

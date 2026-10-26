@@ -37,9 +37,11 @@ FINAL_MODEL_FILE = ROOT / "outputs/tables/selected_model.json"
 def load_labelled() -> pd.DataFrame:
     lab = pd.read_csv(LABELS_CSV)
     lab = lab[lab["label"].isin(LABELS)].copy()
-    ev = pd.read_csv(EVENTS, usecols=["obs_id", "thread_id", "event_types", "text", "product"], low_memory=False)
+    # texts come from the sample file itself, so the labelled set does not depend on later rebuilds of the dataset
+    # (two labelled comments were posted after 2024 and are not in the final event dataset)
+    smp = pd.read_csv(ROOT / "labeling/label_sample.csv", usecols=["obs_id", "thread_id", "event_types", "text", "product"])
     lab = lab.drop(columns=[c for c in ["thread_id", "event_types", "text", "product"] if c in lab]).merge(
-        ev, on="obs_id", how="inner")
+        smp, on="obs_id", how="inner")
     lab["input"] = [model_input(p, t) for p, t in zip(lab["product"], lab["text"])]
     return lab.reset_index(drop=True)
 
