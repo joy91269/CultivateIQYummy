@@ -88,10 +88,16 @@ def first_crossing(series: pd.Series, start, end, thr: float = 2.0, direction: s
     return hit.index[0] if len(hit) else pd.NaT
 
 
-def price_impact(log_index: pd.Series, start, end, pre_weeks: int = 8) -> dict:
+def price_impact(log_index: pd.Series, start, end, pre_weeks: int = 8, exclude=()) -> dict:
     """Change of the price index during [start, end] relative to the `pre_weeks` weeks before the event, plus
-    the same calendar-window change in the other study years (seasonality control)."""
+    the same calendar-window change in the other study years (seasonality control). Other-year windows that overlap
+    a documented event in `exclude` [(start, end), ...] are not used as comparisons, so one event cannot distort the
+    seasonal baseline of another."""
     start, end = pd.Timestamp(start), pd.Timestamp(end)
+    pre_td = pd.Timedelta(weeks=pre_weeks)
+
+    def overlaps(s0, s1):
+        return any(s0 - pre_td <= pd.Timestamp(e1) and s1 >= pd.Timestamp(e0) for e0, e1 in exclude)
 
     def window_change(s0, s1):
         pre = log_index[(log_index.index >= s0 - pd.Timedelta(weeks=pre_weeks)) & (log_index.index < s0)]
@@ -105,7 +111,8 @@ def price_impact(log_index: pd.Series, start, end, pre_weeks: int = 8) -> dict:
     other = []
     for dy in (-2, -1, 1, 2):
         s0, s1 = start + pd.DateOffset(years=dy), end + pd.DateOffset(years=dy)
-        if s0 - pd.Timedelta(weeks=pre_weeks) >= log_index.index.min() and s1 <= log_index.index.max():
+        if (s0 - pre_td >= log_index.index.min() and s1 <= log_index.index.max()
+                and not overlaps(s0, s1)):
             other.append(window_change(s0, s1)[0])
     seasonal = np.nanmean(other) if other else np.nan
     return {"mean_change_pct": 100 * (np.exp(mean_chg) - 1), "peak_change_pct": 100 * (np.exp(peak_chg) - 1),
@@ -114,14 +121,16 @@ def price_impact(log_index: pd.Series, start, end, pre_weeks: int = 8) -> dict:
             "n_comparison_years": len(other)}
 
 
-def placebo_percentile(log_index: pd.Series, start, end, pre_weeks: int = 8, exclude=()) -> dict:
+def placebo_percentile(log_index: pd.Series, start, end, pre_weeks: int = 8, exclude=(),
+                       stat: str = "mean_change_pct") -> dict:
     """Where the event's mean change of a log series (price index or shipments) falls among all windows of the
     same length, measured the same way
     (mean during the window vs. the `pre_weeks` before it), that start in other weeks of the study period and do not
     overlap a documented event window in `exclude` [(start, end), ...]. A percentile of 95 means the event-window
-    change is larger than 95% of ordinary windows of that length."""
+    change is larger than 95% of ordinary windows of that length. `stat`: "mean_change_pct" (raw change) or
+    "seasonally_adjusted_pct" (change minus the same calendar window in the other years)."""
     start, end = pd.Timestamp(start), pd.Timestamp(end)
-    ev = price_impact(log_index, start, end, pre_weeks)["mean_change_pct"]
+    ev = price_impact(log_index, start, end, pre_weeks, exclude)[stat]
     length, pre = end - start, pd.Timedelta(weeks=pre_weeks)
     changes = []
     for s0 in log_index.index:
@@ -130,7 +139,7 @@ def placebo_percentile(log_index: pd.Series, start, end, pre_weeks: int = 8, exc
             continue
         if any(s0 - pre <= pd.Timestamp(e1) and s1 >= pd.Timestamp(e0) for e0, e1 in exclude):
             continue
-        changes.append(price_impact(log_index, s0, s1, pre_weeks)["mean_change_pct"])
+        changes.append(price_impact(log_index, s0, s1, pre_weeks, exclude)[stat])
     changes = np.array([c for c in changes if np.isfinite(c)])
     pct = 100 * (changes < ev).mean() if len(changes) and np.isfinite(ev) else np.nan
     return {"placebo_windows": len(changes), "percentile": pct}

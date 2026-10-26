@@ -82,7 +82,8 @@ def main() -> None:
     n0 = len(mv)
     mv = mv.drop_duplicates(key).sort_values(["product", "ship_date"]).reset_index(drop=True)
     mv["import"] = mv["import/Export"].astype(str).str.startswith("I")
-    mv = mv[(mv["ship_date"] >= start) & (mv["ship_date"] < end)]
+    t0, t1 = pd.Timestamp(start.date()), pd.Timestamp(end.date())
+    mv = mv[(mv["ship_date"] >= t0) & (mv["ship_date"] < t1)]
     PROCESSED.mkdir(parents=True, exist_ok=True)
     mv.drop(columns=["import/Export"]).to_csv(PROCESSED / "ams_movement_daily.csv.gz", index=False,
                                              compression="gzip")

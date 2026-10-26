@@ -1,0 +1,16 @@
+step,records_removed
+raw records (incl. re-downloads),76535
+same record downloaded twice (same Reddit id),3
+bot accounts / automated messages,96
+moderator / admin notices,42
+deleted or removed text,0
+NSFW posts,65
+crossposts (copies of a post in another subreddit),154
+"self-promotion, referral codes, paid promotion",63
+link farms (3+ URLs),313
+too short to carry information (<15 characters),675
+same author repeating the same text 3+ times,112
+duplicate text (copy of an earlier record),720
+records whose only product match was an excluded phrase,0
+FINAL cleaned records,74292
+FINAL observations (record x product),79306

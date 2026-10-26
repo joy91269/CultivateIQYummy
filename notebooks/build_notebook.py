@@ -401,20 +401,32 @@ display(timing)
 md(r"""
 ## 8. Price impact relative to the pre-event baseline
 
-Change of the pooled price index during the event window relative to its mean over the 8 weeks before the event
+**Response window.** Produce takes days to weeks to move from field or border to a terminal market, and stock in
+transit is sold first, so prices and recorded shipments respond with a lag. For every event we therefore measure
+over a *response window*: the documented event dates plus `RESPONSE_WEEKS` = 2 weeks after the end. The same rule
+is used for all events, for the placebo windows and for shipments.
+
+Change of the pooled price index during the response window relative to its mean over the 8 weeks before the event
 (mean and peak change), and the same calendar-window change in the other study years as a seasonality control
-(`seasonally_adjusted_pct` = event-year change minus the average other-year change, in log points).
+(`seasonally_adjusted_pct` = event-year change minus the average other-year change, in log points). Other-year
+windows that overlap another documented event of the product are not used as comparisons.
 Per-market ranges show how uniform the move was across the 10 terminal markets.
 """)
 
 code(r"""
+RESPONSE_WEEKS = 2
+events_ref["response_end"] = events_ref["end_date"] + pd.Timedelta(weeks=RESPONSE_WEEKS)
+def event_windows(prod):   # documented response windows of a product (kept out of seasonal and placebo baselines)
+    return [(r.start_date, r.response_end) for r in events_ref.itertuples() if r.product == prod]
+
 impact = []
 for e in events_ref.itertuples():
     li = nat[nat["product"] == e.product].set_index("week_start")["log_index"]
-    r = S.price_impact(li, e.start_date, e.end_date)
+    r = S.price_impact(li, e.start_date, e.response_end, exclude=event_windows(e.product))
     mk = []
     for mkt, gm in widx[(widx["product"] == e.product) & (widx["market"] != "ALL")].groupby("market"):
-        mk.append(S.price_impact(gm.set_index("week_start")["log_index"], e.start_date, e.end_date)["mean_change_pct"])
+        mk.append(S.price_impact(gm.set_index("week_start")["log_index"], e.start_date, e.response_end,
+                                 exclude=event_windows(e.product))["mean_change_pct"])
     mk = [m for m in mk if pd.notna(m)]
     impact.append({"event_id": e.event_id, "product": e.product, "event": e.event_name,
                    **{k: round(v, 1) if isinstance(v, float) else v for k, v in r.items()},
@@ -431,12 +443,14 @@ Economics tells supply shocks from demand shifts by how price and quantity move 
 the price while less product reaches the market; a **demand shift** moves price and quantity in the same direction.
 We first read each event from the market data alone, then ask whether the online talk tells the same story.
 
-**Market reading.**
-* *Did the price move unusually?* The event-window price change (section 8) is compared with the change in every
-  other window of the same length in 2022–2024, measured the same way and not overlapping a documented event of the
-  product. Percentile ≥ 90: unusual rise; ≤ 10: unusual fall.
-* *Did quantity fall or rise?* Weekly national shipments, mean during the event vs. the 8 weeks before, minus the
-  same calendar change in the other years (seasonal adjustment). Below −5%: fell; above +5%: rose.
+**Market reading.** For the price index and for weekly national shipments we take the seasonally adjusted change
+over the response window (section 8: mean during the window vs. the 8 weeks before, minus the same calendar change
+in the other years). To judge whether a change is large we compare it with the same statistic for every other window
+of the same length in 2022–2024 that does not overlap a documented event of the product (a placebo distribution),
+and report its percentile.
+
+* Price: percentile ≥ 90 = unusual rise, ≤ 10 = unusual fall.
+* Shipments: percentile ≤ 25 = fell, ≥ 75 = rose, otherwise flat.
 
 | Price | Shipments | Market reading |
 |---|---|---|
@@ -446,8 +460,8 @@ We first read each event from the market data alone, then ask whether the online
 | unusual fall | rose | **supply increase** |
 | no unusual move | any | no clear price effect |
 
-**Online reading.** Weekly counts of texts the classifier labels *supply* and *demand* during the event vs. the 8
-weeks before, as a rate ratio with a 95% Poisson interval. A kind of talk "rose" when its interval is above 1 and it
+**Online reading.** Weekly counts of texts the classifier labels *supply* and *demand* during the event dates
+(online talk reacts at once, so no response lag) vs. the 8 weeks before, as a rate ratio with a 95% Poisson interval. A kind of talk "rose" when its interval is above 1 and it
 rose more than background (*other*) talk about the product. Supply talk rising (at least as much as demand talk) →
 *supply*; demand talk rising more → *demand*. Note that by our codebook, reports of recalls and products pulled from
 shelves count as supply talk; people avoiding a product count as demand talk.
@@ -466,14 +480,15 @@ verdict = []
 for e in events_ref.itertuples():
     s0, s1 = wk(e.start_date), wk(e.end_date)
     w_dur, w_pre = (s1 - s0).days // 7 + 1, 8
-    others = [(r.start_date, r.end_date) for r in events_ref.itertuples() if r.product == e.product]
-    # market reading
+    others = event_windows(e.product)
+    # market reading (response window)
     li = nat[nat["product"] == e.product].set_index("week_start")["log_index"]
-    p_pct = S.placebo_percentile(li, e.start_date, e.end_date, exclude=others)["percentile"]
-    q = S.price_impact(ship_log[e.product], e.start_date, e.end_date)
-    q_adj = q["seasonally_adjusted_pct"]
+    sa = "seasonally_adjusted_pct"
+    p_pct = S.placebo_percentile(li, e.start_date, e.response_end, exclude=others, stat=sa)["percentile"]
+    q = S.price_impact(ship_log[e.product], e.start_date, e.response_end, exclude=others)
+    q_pct = S.placebo_percentile(ship_log[e.product], e.start_date, e.response_end, exclude=others, stat=sa)["percentile"]
     p_up, p_down = p_pct >= 90, p_pct <= 10
-    q_dir = "fell" if q_adj < -5 else "rose" if q_adj > 5 else "flat"
+    q_dir = "fell" if q_pct <= 25 else "rose" if q_pct >= 75 else "flat"
     market = ("supply shock" if p_up and q_dir == "fell" else "demand increase" if p_up else
               "supply increase" if p_down and q_dir == "rose" else "demand decrease" if p_down else
               "no clear price effect")
@@ -489,9 +504,10 @@ for e in events_ref.itertuples():
              "no" if market != "no clear price effect" and online in ("supply", "demand") else "-")
     imp = impact.set_index("event_id").loc[e.event_id]
     verdict.append({"event_id": e.event_id, "product": e.product, "event": e.event_name,
-                    "price_change_pct": imp["mean_change_pct"], "price_percentile": round(p_pct),
-                    "shipments_change_pct": round(q["mean_change_pct"], 1),
-                    "shipments_seasonally_adjusted_pct": round(q_adj, 1), "shipments": q_dir,
+                    "price_change_pct": imp["mean_change_pct"], "price_seasonally_adjusted_pct": imp[sa],
+                    "price_percentile": round(p_pct), "shipments_change_pct": round(q["mean_change_pct"], 1),
+                    "shipments_seasonally_adjusted_pct": round(q[sa], 1), "shipments_percentile": round(q_pct),
+                    "shipments": q_dir,
                     "market_reading": market,
                     "supply_talk_rate_ratio": fmt(rr["supply"]), "demand_talk_rate_ratio": fmt(rr["demand"]),
                     "price_talk_rate_ratio": fmt(rr["price"]), "other_talk_rate_ratio": fmt(rr["other"]),
