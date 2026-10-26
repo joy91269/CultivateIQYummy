@@ -94,10 +94,23 @@ def evaluate() -> None:
     preds["embed_lr"] = oof
 
     print("fine-tuned DistilRoBERTa ...", flush=True)
+    # each fold takes ~25 min on a 2-core CPU, so finished folds are cached; the folder name records the label set
+    # (number of texts and of each label) so that new labels never reuse old folds
+    sig = f"n{len(y)}_" + "_".join(f"{l}{(y == l).sum()}" for l in LABELS)
+    fold_dir = CACHE / f"ft_cv_{sig}"
+    fold_dir.mkdir(parents=True, exist_ok=True)
     oof = np.empty(len(lab), dtype=object)
     for k, (tr, te) in enumerate(folds):
-        tok, model = finetune_fit(lab["input"].iloc[tr].tolist(), y[tr].tolist(), str(CACHE / f"ft_fold{k}"))
+        path = fold_dir / f"fold{k}.csv"
+        if path.exists():
+            done = pd.read_csv(path)
+            if set(done["obs_id"]) == set(lab["obs_id"].iloc[te]):
+                oof[te] = lab["obs_id"].iloc[te].map(dict(zip(done["obs_id"], done["pred"]))).to_numpy()
+                print(f"  fold {k + 1}/{len(folds)} cached", flush=True)
+                continue
+        tok, model = finetune_fit(lab["input"].iloc[tr].tolist(), y[tr].tolist())
         oof[te], _ = finetune_predict(tok, model, lab["input"].iloc[te].tolist())
+        pd.DataFrame({"obs_id": lab["obs_id"].iloc[te], "pred": oof[te]}).to_csv(path, index=False)
         print(f"  fold {k + 1}/{len(folds)} done", flush=True)
     preds["finetune"] = oof
 
@@ -116,18 +129,43 @@ def evaluate() -> None:
     print("selected:", best)
 
 
+def predict_in_chunks(ids: list[str], inputs: list[str], score, cache_path, chunk: int = 5000) -> np.ndarray:
+    """Class probabilities for every input, computed chunk by chunk and cached so an interrupted run resumes.
+    Delete the cache file after changing the labels or the model."""
+    have = pd.read_csv(cache_path).set_index("obs_id") if cache_path.exists() else pd.DataFrame(columns=LABELS)
+    todo = [i for i, o in enumerate(ids) if o not in have.index]
+    for start in range(0, len(todo), chunk):
+        idx = todo[start:start + chunk]
+        p = score([inputs[i] for i in idx])
+        part = pd.DataFrame(p, columns=LABELS, index=pd.Index([ids[i] for i in idx], name="obs_id"))
+        part.round(5).to_csv(cache_path, mode="a", header=not cache_path.exists())
+        have = pd.concat([have, part])
+        print(f"predict: {min(start + chunk, len(todo))}/{len(todo)}", flush=True)
+    return have.loc[ids, LABELS].to_numpy(dtype=float)
+
+
 def predict() -> None:
     lab = load_labelled()
     best = json.loads(FINAL_MODEL_FILE.read_text())["selected_model"]
     ev = pd.read_csv(EVENTS, usecols=["obs_id", "product", "text", "event_types"], low_memory=False)
     inputs = [model_input(p, t) for p, t in zip(ev["product"], ev["text"])]
-    if best == "finetune":
-        tok, model = finetune_fit(lab["input"].tolist(), lab["label"].tolist(), str(CACHE / "ft_final"))
-        pred, prob = finetune_predict(tok, model, inputs)
-    elif best == "embed_lr":
-        clf = embed_lr_fit(embed(lab["input"].tolist()), lab["label"].to_numpy())
-        prob = clf.predict_proba(embed(inputs))
-        prob = prob[:, [list(clf.classes_).index(l) for l in LABELS]]
+    if best in ("finetune", "embed_lr"):
+        if best == "finetune":
+            model_dir = CACHE / "ft_final"
+            from transformers import AutoModelForSequenceClassification, AutoTokenizer
+            if (model_dir / "config.json").exists():
+                tok, model = AutoTokenizer.from_pretrained(model_dir), \
+                    AutoModelForSequenceClassification.from_pretrained(model_dir).eval()
+            else:
+                tok, model = finetune_fit(lab["input"].tolist(), lab["label"].tolist())
+                tok.save_pretrained(model_dir)
+                model.save_pretrained(model_dir)
+            score = lambda xs: finetune_predict(tok, model, xs)[1]
+        else:
+            clf = embed_lr_fit(cached_embeddings(lab), lab["label"].to_numpy())
+            cols = [list(clf.classes_).index(l) for l in LABELS]
+            score = lambda xs: clf.predict_proba(embed(xs))[:, cols]
+        prob = predict_in_chunks(ev["obs_id"].tolist(), inputs, score, CACHE / f"predict_probs_{best}.csv")
         pred = np.array(LABELS)[prob.argmax(1)]
     elif best == "zeroshot":
         pred, prob = zeroshot_predict(inputs), np.full((len(inputs), len(LABELS)), np.nan)
