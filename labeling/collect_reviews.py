@@ -3,7 +3,8 @@
 Input
     labeling/label_sample.csv  sample with label_ai1/reason_ai1 (annotator 1), label_ai2/reason_ai2 (annotator 2,
                                labelled independently without seeing annotator 1) and needs_review
-    labeling/reviews.json      export of the review page's store: {"<obs_id>": {"label": ..., "note": ...}, ...}
+    labeling/reviews.json      export of the review page's store: {"<obs_id>": {"label": ..., "note": ..., "recheck": ...}}
+    labeling/reviews_first_pass.json  the same export before the reviewer's second look at demand vs other
 Output
     labeling/labels.csv        final `label` and where it came from (`label_source`):
                                "human review"            a person decided (all disagreements + random agreements)
@@ -31,6 +32,10 @@ def main() -> None:
     s["reviewed"] = s["obs_id"].isin(rev)
     s["human_label"] = s["obs_id"].map(lambda o: rev.get(o, {}).get("label"))
     s["note"] = s["obs_id"].map(lambda o: rev.get(o, {}).get("note", ""))
+    first_path = ROOT / "labeling/reviews_first_pass.json"
+    first = json.loads(first_path.read_text()) if first_path.exists() else {}
+    s["rechecked"] = s["obs_id"].map(lambda o: bool(rev.get(o, {}).get("recheck")))
+    s["first_pass_label"] = s["obs_id"].map(lambda o: first.get(o, {}).get("label"))
     s["label"] = s["human_label"].where(s["reviewed"], s["label_ai1"])
     s["label_source"] = "AI agreement"
     s.loc[s["reviewed"], "label_source"] = "human review"
@@ -38,7 +43,7 @@ def main() -> None:
     if (~s["label"].isin(LABELS)).any():
         raise SystemExit("unknown label found")
     cols = ["obs_id", "batch", "product", "record_type", "subreddit", "date", "thread_id", "url", "label_ai1",
-            "reason_ai1", "label_ai2", "reason_ai2", "ai_agree", "needs_review", "reviewed", "human_label", "label",
+            "reason_ai1", "label_ai2", "reason_ai2", "ai_agree", "review_round", "needs_review", "reviewed", "first_pass_label", "rechecked", "human_label", "label",
             "label_source", "note"]
     s[cols].to_csv(ROOT / "labeling/labels.csv", index=False)
     print(f"{len(s)} rows; AI annotators agree on {s['ai_agree'].mean():.1%}; {s['reviewed'].sum()} reviewed by a person")

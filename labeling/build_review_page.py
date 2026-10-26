@@ -54,6 +54,8 @@ h1 { font-size: 1.25rem; margin: 0; text-wrap: balance; letter-spacing: -0.01em 
 .count { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums }
 select, input[type=text] { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line);
   border-radius: 6px; padding: 6px 8px }
+.guide { display: grid; gap: 6px; font-size: 0.9rem; background: var(--demand-bg); border-left: 3px solid var(--demand);
+  border-radius: 6px; padding: 10px 12px }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 14px; min-width: 0 }
 .meta { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 0.85rem; color: var(--muted); align-items: center }
 .meta .mono { font-family: var(--mono) }
@@ -104,6 +106,7 @@ a { color: var(--accent) }
       <label class="count" for="filter">Show</label>
       <select id="filter">
         <option value="todo">To review (not done yet)</option>
+        <option value="recheck">Second look: demand or other</option>
         <option value="queue">All texts to review</option>
         <option value="all">All texts, including ones not flagged</option>
         <option value="changed">Where my label differs from both AIs</option>
@@ -125,6 +128,13 @@ a { color: var(--accent) }
       <span class="mono" id="pos"></span>
       <a id="link" href="#" target="_blank" rel="noopener">Open on Reddit</a>
     </div>
+    <div class="guide" id="guide" hidden><b>Second look: demand or other?</b>
+      <span><b>Demand</b>: the text is about people buying, eating or wanting <i>this</i> product more or less. The
+      product is the star of a recipe or meal idea ("what do I do with 10 lb of avocados", a cucumber-salad recipe),
+      stocking up, cravings, a trend, a deal or free-guac promotion without a price, avoiding it after a scare.</span>
+      <span><b>Other</b>: the product is just there. One ingredient among several, cooking or storage tips, home
+      gardening, jokes, complaints about a restaurant meal, a product that is only onion- or avocado-flavoured.</span>
+      <span>Still unsure? Choose other.</span></div>
     <div class="text" id="text"></div>
     <div class="ai" id="ai"></div>
     <div class="labels" role="group" aria-label="Label">
@@ -178,8 +188,9 @@ function rebuildOrder(keepId) {
   const f = $("filter").value;
   order = ITEMS.map((_, i) => i).filter((i) => {
     const it = ITEMS[i], r = reviews[it.obs_id];
-    if (f === "todo") return it.needs_review && (!r || it.obs_id === keepId);
-    if (f === "queue") return it.needs_review;
+    if (f === "todo") return pending(it) || it.obs_id === keepId && (it.needs_review || it.recheck);
+    if (f === "recheck") return it.recheck;
+    if (f === "queue") return it.needs_review || it.recheck;
     if (f === "changed") return r && r.label !== it.label_ai1 && r.label !== it.label_ai2;
     if (f === "all") return true;
     return it.product === f;
@@ -187,9 +198,15 @@ function rebuildOrder(keepId) {
   cur = Math.max(0, keepId ? order.findIndex((i) => ITEMS[i].obs_id === keepId) : 0);
 }
 
+// a flagged text is pending until reviewed; a text picked for a second look is pending until looked at again
+function pending(it) {
+  const r = reviews[it.obs_id];
+  return (it.needs_review && !r) || (it.recheck && !(r && r.recheck));
+}
+
 function render() {
-  const queue = ITEMS.filter((it) => it.needs_review);
-  const done = queue.filter((it) => reviews[it.obs_id]).length;
+  const queue = ITEMS.filter((it) => it.needs_review || it.recheck);
+  const done = queue.filter((it) => !pending(it)).length;
   $("count").textContent = `${done} / ${queue.length} reviewed`;
   $("meter").style.width = `${(100 * done / Math.max(1, queue.length)).toFixed(1)}%`;
   if (!order.length) {
@@ -207,6 +224,7 @@ function render() {
   $("date").textContent = it.date;
   $("pos").textContent = `${cur + 1} of ${order.length}`;
   $("link").href = it.url;
+  $("guide").hidden = !it.recheck;
   $("text").innerHTML = highlight(it.text, it.product);
   $("text").scrollTop = 0;
   const agree = it.label_ai1 === it.label_ai2;
@@ -234,6 +252,7 @@ async function choose(label) {
   if (!it) return;
   const body = {label, note: $("note").value.trim(), ai1: it.label_ai1, ai2: it.label_ai2, product: it.product,
     at: Date.now()};
+  if (it.recheck) body.recheck = true;
   reviews[it.obs_id] = body;
   $("status").textContent = "Saving…";
   if (db && canWrite) {
@@ -286,7 +305,10 @@ render();
   if (may === false) { canWrite = false; showNotice("You can view these labels but not change them."); }
   db.collection("reviews").limit(1000).onSnapshot((snap) => {
     const next = {};
-    for (const d of snap.docs) { const v = d.data(); if (v && v.label) next[d.id] = {label: v.label, note: v.note || ""}; }
+    for (const d of snap.docs) {
+      const v = d.data();
+      if (v && v.label) next[d.id] = {label: v.label, note: v.note || "", recheck: !!v.recheck};
+    }
     reviews = next;
     rebuildOrder(current);
     render();
@@ -299,7 +321,15 @@ render();
 def main() -> None:
     s = pd.read_csv(ROOT / "labeling/label_sample.csv")
     cols = ["obs_id", "product", "record_type", "subreddit", "date", "url", "text", "label_ai1", "reason_ai1",
-            "label_ai2", "reason_ai2", "needs_review"]
+            "label_ai2", "reason_ai2", "needs_review", "recheck"]
+    # second look at demand vs other: every reviewed text where demand was one of the choices (labels.csv)
+    labels_csv = ROOT / "labeling/labels.csv"
+    re_ids = set()
+    if labels_csv.exists():
+        lab = pd.read_csv(labels_csv)
+        rev = lab[lab["reviewed"]]
+        re_ids = set(rev.loc[rev[["label_ai1", "label_ai2", "human_label"]].eq("demand").any(axis=1), "obs_id"])
+    s["recheck"] = s["obs_id"].isin(re_ids)
     s["text"] = s["text"].astype(str).str.slice(0, 2500)
     for c in ["reason_ai1", "reason_ai2"]:
         s[c] = s[c].fillna("")
