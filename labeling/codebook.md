@@ -40,8 +40,17 @@ describes what the text says about the market for *that* product.
    texts, never annotator 1's labels) labelled every row independently (`label_ai2`). Both annotators come from the
    same model family, so their errors may be correlated; this is why agreed labels are also spot-checked by a
    person. Agreement between the two is reported as Cohen's kappa.
-4. **Human review.** A team member decided every row where the two annotators disagreed, plus a random check of
-   rows where they agreed (up to 10 per agreed label; `needs_review`, chosen by `labeling/merge_annotations.py`).
-   The random check estimates how often an agreed AI label is wrong.
-5. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
+4. **Human review, round 1** (first 577 texts). A team member decided every row where the two annotators disagreed
+   (45), plus a random check of rows where they agreed (10 per agreed label, 40; `needs_review`, chosen by
+   `labeling/merge_annotations.py`). The random check estimates how often an agreed AI label is wrong: 1 of 40
+   was changed.
+5. **Batch 4 and round 2.** The first model comparison showed too few demand examples, so 217 more texts were drawn
+   (demand-enriched; `make_label_sample.py ... --tag 2`) and labelled by both annotators the same way
+   (95.9% agreement). The reviewer decided the 9 disagreements and a random check of 3 agreements per label
+   (1 of 12 changed).
+6. **Second look at demand vs. other.** The reviewer asked to revisit the demand/other boundary after the rule for
+   product-centred recipes was clarified. Every reviewed text where demand was one of the choices (45) was shown
+   again with a short decision guide; 22 labels changed (21 other → demand, 1 price → demand). The first-pass
+   decisions are kept in `labeling/reviews_first_pass.json` and in the `first_pass_label` column.
+7. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
    reviewed the row and the agreed AI label elsewhere; `label_source` records which.
