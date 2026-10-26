@@ -6,12 +6,16 @@ Input
     labeling/annotations/annotator2_*.jsonl
 Output (written back to labeling/label_sample.csv)
     label_ai1, reason_ai1, label_ai2, reason_ai2, needs_review
-needs_review = every disagreement + a random check of agreements (up to 10 per agreed label).
+needs_review = every disagreement + a random check of agreements. Rows are reviewed in rounds: rows that already
+have a needs_review flag keep it (they may already be reviewed); only rows added since get a new flag.
+    round 1 (first 577 rows): up to 10 random agreements per agreed label
+    round 2 (batch 4, 217 rows): up to 3 random agreements per agreed label
 
-Usage: python labeling/merge_annotations.py
+Usage: python labeling/merge_annotations.py [--check-per-label N]
 """
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -35,6 +39,12 @@ def read(prefix: str) -> pd.DataFrame:
 
 def main(check_per_label: int = 10, seed: int = 2026) -> None:
     s = pd.read_csv(ROOT / "labeling/label_sample.csv")
+    prev = s["needs_review"] if "needs_review" in s else pd.Series(pd.NA, index=s.index)
+    new = prev.isna()
+    if "review_round" not in s:
+        s["review_round"] = pd.NA
+    s.loc[new, "review_round"] = int(pd.to_numeric(s["review_round"], errors="coerce").max(skipna=True) + 1) \
+        if s["review_round"].notna().any() else 1
     a1, a2 = read("annotator1"), read("annotator2")
     s["label_ai1"], s["reason_ai1"] = s["obs_id"].map(a1["label"]), s["obs_id"].map(a1["reason"])
     s["label_ai2"], s["reason_ai2"] = s["obs_id"].map(a2["label"]), s["obs_id"].map(a2["reason"])
@@ -42,15 +52,19 @@ def main(check_per_label: int = 10, seed: int = 2026) -> None:
     if missing.any():
         raise SystemExit(f"{missing.sum()} rows lack an annotation")
     agree = s["label_ai1"] == s["label_ai2"]
-    check = (s[agree].groupby("label_ai1", group_keys=False)
+    check = (s[agree & new].groupby("label_ai1", group_keys=False)
              .apply(lambda g: g.sample(min(check_per_label, len(g)), random_state=seed)).index)
-    s["needs_review"] = ~agree
+    s["needs_review"] = prev.astype("boolean")
+    s.loc[new, "needs_review"] = ~agree[new]
     s.loc[check, "needs_review"] = True
+    s["needs_review"] = s["needs_review"].astype(bool)
     s.to_csv(ROOT / "labeling/label_sample.csv", index=False)
-    print(f"{len(s)} rows; agreement {agree.mean():.1%}; {(~agree).sum()} disagreements + {len(check)} random "
-          f"agreements = {s['needs_review'].sum()} rows to review")
+    print(f"{len(s)} rows; agreement {agree.mean():.1%}; new rows: {new.sum()}, agreement {agree[new].mean():.1%}, "
+          f"{(~agree & new).sum()} disagreements + {len(check)} random agreements to review")
     print(pd.crosstab(s["label_ai1"], s["label_ai2"], rownames=["annotator 1"], colnames=["annotator 2"]))
 
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--check-per-label", type=int, default=10)
+    main(ap.parse_args().check_per_label)

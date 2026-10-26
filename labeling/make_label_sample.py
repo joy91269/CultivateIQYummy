@@ -101,8 +101,8 @@ def main() -> None:
     batch["batch"] = (f"{args.record_type}s" + ("_enriched" if args.quota else "")
                       + (f"_{args.subreddit}" if args.subreddit else ""))
     print(batch.groupby(["product", "kw_group"]).size().to_string())
-    sample = pd.concat([old, batch[COLS]], ignore_index=True)
-    sample[COLS].to_csv(OUT, index=False)
+    sample = pd.concat([old, batch[COLS]], ignore_index=True)   # keeps columns added by later steps
+    sample.to_csv(OUT, index=False)
     print(f"{len(batch)} new rows, {len(sample)} total -> labeling/label_sample.csv")
 
 
