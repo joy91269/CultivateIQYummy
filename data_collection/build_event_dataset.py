@@ -26,7 +26,7 @@ from datetime import datetime, timedelta, timezone
 import pandas as pd
 
 from build_keywords import EventTagger
-from common import PROCESSED, RAW, ProductMatcher, load_yaml, read_jsonl
+from common import PROCESSED, RAW, ProductMatcher, jsonl_files, load_yaml, read_jsonl
 
 REDDIT = RAW / "reddit"
 
@@ -65,13 +65,19 @@ def norm_text(t: str) -> str:
 def load_raw() -> pd.DataFrame:
     sources = load_yaml("sources.yaml")
     group_of = {s: g for g, members in sources["post_subreddits"].items() for s in members}
+    title_subs = set(sources.get("title_search_subreddits", []))
+    group_of.update({s: "news" for s in title_subs})
+    # the archive returns some subreddit names in a different case (e.g. "salads"); use the configured spelling
+    canon = {s.lower(): s for s in list(group_of) + list(sources.get("geo_subreddits", {}))}
     rows = []
-    for path in sorted((REDDIT / "posts").glob("*.jsonl")):
+    for path in jsonl_files(REDDIT / "posts"):
         for p in read_jsonl(path):
+            p["subreddit"] = canon.get(p["subreddit"].lower(), p["subreddit"])
             title, body = p.get("title") or "", p.get("selftext") or ""
             if body.strip() in ("[removed]", "[deleted]"):
                 body = ""
-            rows.append({"obs_key": f"p_{p['id']}", "record_type": "post", "collection_method": "subreddit_listing",
+            method = "title_search" if p["subreddit"] in title_subs else "subreddit_listing"
+            rows.append({"obs_key": f"p_{p['id']}", "record_type": "post", "collection_method": method,
                          "subreddit": p["subreddit"], "subreddit_group": group_of.get(p["subreddit"], "other"),
                          "thread_id": p["id"], "created_utc": p["created_utc"], "author": p.get("author"),
                          "title": title, "text": f"{title}\n{body}".strip(), "score": p.get("score"),
@@ -79,10 +85,10 @@ def load_raw() -> pd.DataFrame:
                          "crosspost": bool(p.get("crosspost_parent")), "over_18": bool(p.get("over_18")),
                          "url": f"https://www.reddit.com/comments/{p['id']}"})
     for folder, method in (("comments", "comment_tree"), ("comments_geo", "city_fulltext_search")):
-        for path in sorted((REDDIT / folder).glob("*.jsonl")):
+        for path in jsonl_files(REDDIT / folder):
             for c in read_jsonl(path):
                 post_id = (c.get("link_id") or "").replace("t3_", "")
-                sub = c["subreddit"]
+                sub = canon.get(c["subreddit"].lower(), c["subreddit"])
                 rows.append({"obs_key": f"c_{c['id']}", "record_type": "comment", "collection_method": method,
                              "subreddit": sub,
                              "subreddit_group": "city" if folder == "comments_geo" else group_of.get(sub, "other"),
@@ -168,6 +174,11 @@ def build() -> None:
     events.to_csv(PROCESSED / "event_dataset.csv", index=False)
     log.to_csv(PROCESSED / "filter_log.csv", index=False)
     write_summary(events)
+    # weekly total number of posts in the fully listed subreddits: denominator for normalised volume
+    counts = [pd.read_csv(p) for p in sorted((REDDIT / "post_counts").glob("*.csv"))]
+    if counts:
+        pc = pd.concat(counts)
+        pc.to_csv(PROCESSED / "weekly_post_counts.csv", index=False)
     print(log.to_string(index=False))
 
 

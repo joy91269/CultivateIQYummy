@@ -2,9 +2,10 @@
 
 Usage (from the repository root):
     python data_collection/collect_reddit.py posts   # page through all posts of the subreddits in config/sources.yaml
-    python data_collection/collect_reddit.py trees   # download comment trees of matched posts, keep product comments
+    python data_collection/collect_reddit.py titles  # title keyword search in subreddits too large to page (r/news)
+    python data_collection/collect_reddit.py trees   # download comment trees of product posts, keep product comments
     python data_collection/collect_reddit.py geo     # full-text comment search in city subreddits (rate limited, slow)
-    python data_collection/collect_reddit.py all     # the three steps in order
+    python data_collection/collect_reddit.py all     # all steps in order
 
 Every step is resumable: progress is stored in data/raw/reddit/_state/, so an interrupted run continues
 where it stopped. Outputs (JSON Lines, one record per line):
@@ -44,11 +45,14 @@ def log(msg: str) -> None:
 
 
 # --------------------------------------------------------------------------------------------- posts
-def collect_posts(session: requests.Session, cfg: dict, matcher: ProductMatcher, groups: list[str] | None) -> None:
+def collect_posts(session: requests.Session, cfg: dict, matcher: ProductMatcher, groups: list[str] | None,
+                  only: list[str] | None = None) -> None:
     start, end = study_period()
     base = cfg["arctic_shift"]["base_url"] + "/api/posts/search"
     pause = cfg["arctic_shift"]["request_pause_s"]
     subs = [s for g, members in cfg["post_subreddits"].items() if not groups or g in groups for s in members]
+    if only:
+        subs = [s for s in subs if s in only]
     for sub in subs:
         state_path = STATE / f"posts_{sub}.json"
         st = load_state(state_path) or {"last_ts": int(start.timestamp()) - 1, "edge_ids": [], "done": False,
@@ -114,17 +118,20 @@ def flatten_tree(nodes: list, depth: int = 0):
             yield from flatten_tree(replies.get("data", {}).get("children", []), depth + 1)
 
 
-def collect_trees(session: requests.Session, cfg: dict, matcher: ProductMatcher) -> None:
+def collect_trees(session: requests.Session, cfg: dict, matcher: ProductMatcher, shard: str = "0/1") -> None:
     base = cfg["arctic_shift"]["base_url"] + "/api/comments/tree"
     pause = cfg["arctic_shift"]["request_pause_s"]
     min_c = cfg["arctic_shift"]["min_comments_for_tree"]
     keep = ["id", "created_utc", "body", "author", "score", "link_id", "parent_id", "subreddit", "distinguished"]
-    for path in sorted((OUT / "posts").glob("*.jsonl")):
+    k, n = (int(x) for x in shard.split("/"))
+    for path in sorted((OUT / "posts").glob("*.jsonl"))[k::n]:
         sub = path.stem
         state_path = STATE / f"trees_{sub}.json"
         st = load_state(state_path) or {"done_ids": []}
         done = set(st["done_ids"])
-        posts = [p for p in read_jsonl(path) if (p.get("num_comments") or 0) >= min_c and p["id"] not in done]
+        # only threads that are ABOUT a product (product named in the title) and have a discussion
+        posts = [p for p in read_jsonl(path) if (p.get("num_comments") or 0) >= min_c and p["id"] not in done
+                 and matcher.match(p.get("title"))]
         if not posts:
             continue
         log(f"trees r/{sub}: {len(posts)} posts to fetch")
@@ -144,6 +151,46 @@ def collect_trees(session: requests.Session, cfg: dict, matcher: ProductMatcher)
                 save_state(state_path, st)
                 log(f"  r/{sub}: {i + 1}/{len(posts)} trees")
             time.sleep(pause)
+
+
+# --------------------------------------------------------------------------------------------- title search
+def collect_titles(session: requests.Session, cfg: dict, matcher: ProductMatcher) -> None:
+    """Title keyword search (one query per product term and year) for subreddits too large to page through."""
+    start, end = study_period()
+    base = cfg["arctic_shift"]["base_url"] + "/api/posts/search"
+    terms = [t for spec in load_yaml("products.yaml")["products"].values() for t in spec["title_terms"]]
+    years = list(range(start.year, end.year if (end.month, end.day) == (1, 1) else end.year + 1))
+    for sub in cfg.get("title_search_subreddits", []):
+        state_path = STATE / f"titles_{sub}.json"
+        st = load_state(state_path) or {"done": [], "n_matched": 0}
+        for term in terms:
+            for year in years:
+                key = f"{term}|{year}"
+                if key in st["done"]:
+                    continue
+                after, before = int(datetime(year, 1, 1, tzinfo=timezone.utc).timestamp()) - 1, \
+                    int(datetime(year + 1, 1, 1, tzinfo=timezone.utc).timestamp())
+                seen: set[str] = set()
+                while True:
+                    params = {"subreddit": sub, "title": term, "after": after, "before": before, "limit": 100,
+                              "sort": "asc", "fields": POST_FIELDS}
+                    data = http_get_json(session, base, params, max_tries=60, min_wait=10)["data"] or []
+                    new = [p for p in data if p["id"] not in seen]
+                    rows = []
+                    for p in new:
+                        seen.add(p["id"])
+                        prods = matcher.match(f"{p.get('title') or ''}\n{p.get('selftext') or ''}")
+                        if prods:
+                            p["products"] = prods
+                            rows.append(p)
+                    append_jsonl(OUT / "posts" / f"{sub}.jsonl", rows)
+                    st["n_matched"] += len(rows)
+                    if len(data) < 100 or not new:
+                        break
+                    after = max(p["created_utc"] for p in data) - 1
+                st["done"].append(key)
+                save_state(state_path, st)
+                log(f"titles r/{sub} '{term}' {year}: {len(seen)} posts")
 
 
 # --------------------------------------------------------------------------------------------- geo
@@ -210,19 +257,25 @@ def collect_geo(session: requests.Session, cfg: dict, matcher: ProductMatcher) -
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("step", choices=["posts", "trees", "geo", "all"])
+    ap.add_argument("step", choices=["posts", "titles", "trees", "geo", "all"])
     ap.add_argument("--group", nargs="*", default=None,
                     help="posts step only: restrict to these subreddit groups from config/sources.yaml "
                          "(lets several groups be collected in parallel processes)")
+    ap.add_argument("--subs", nargs="*", default=None,
+                    help="posts step only: restrict to these subreddits (disjoint lists can run in parallel)")
+    ap.add_argument("--shard", default="0/1",
+                    help="trees step only: k/n processes every n-th subreddit file starting at k (parallel runs)")
     args = ap.parse_args()
     cfg = load_yaml("sources.yaml")
     matcher = ProductMatcher()
     session = requests.Session()
     session.headers["User-Agent"] = USER_AGENT
     if args.step in ("posts", "all"):
-        collect_posts(session, cfg, matcher, args.group)
+        collect_posts(session, cfg, matcher, args.group, args.subs)
+    if args.step in ("titles", "all"):
+        collect_titles(session, cfg, matcher)
     if args.step in ("trees", "all"):
-        collect_trees(session, cfg, matcher)
+        collect_trees(session, cfg, matcher, args.shard)
     if args.step in ("geo", "all"):
         collect_geo(session, cfg, matcher)
 

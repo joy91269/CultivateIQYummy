@@ -5,6 +5,7 @@ All paths are resolved relative to the repository root, so the scripts can be ru
 """
 from __future__ import annotations
 
+import gzip
 import json
 import re
 import time
@@ -97,10 +98,20 @@ def append_jsonl(path: Path, rows: list[dict]) -> None:
 
 
 def read_jsonl(path: Path) -> list[dict]:
+    """Read a JSON Lines file; falls back to the gzipped snapshot `<path>.gz` committed to the repository."""
+    if not path.exists() and Path(str(path) + ".gz").exists():
+        path = Path(str(path) + ".gz")
     if not path.exists():
         return []
-    with open(path, encoding="utf-8") as f:
+    opener = gzip.open if path.suffix == ".gz" else open
+    with opener(path, "rt", encoding="utf-8") as f:
         return [json.loads(line) for line in f if line.strip()]
+
+
+def jsonl_files(folder: Path) -> list[Path]:
+    """All `<name>.jsonl` files in a folder, including those present only as `<name>.jsonl.gz`."""
+    stems = {p.name.removesuffix(".gz") for p in folder.glob("*.jsonl*")}
+    return [folder / s for s in sorted(stems)]
 
 
 def load_state(path: Path) -> dict:

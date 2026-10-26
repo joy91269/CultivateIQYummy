@@ -36,10 +36,11 @@ def weekly_signals(obs: pd.DataFrame, post_counts: pd.DataFrame, start: str, end
     return pd.concat(rows, ignore_index=True)
 
 
-def trailing_z(x: pd.Series, window: int = 8, min_periods: int = 6) -> pd.Series:
-    """z-score of each week against the mean and std of the previous `window` weeks (current week excluded)."""
+def trailing_z(x: pd.Series, window: int = 8, min_periods: int = 6, min_sd: float = 0.0) -> pd.Series:
+    """z-score of each week against the mean and std of the previous `window` weeks (current week excluded).
+    `min_sd` floors the baseline std so that a few unusually flat weeks cannot turn a small change into a huge z."""
     base = x.shift(1).rolling(window, min_periods=min_periods)
-    sd = base.std().replace(0, np.nan)
+    sd = base.std().clip(lower=min_sd).replace(0, np.nan)
     return (x - base.mean()) / sd
 
 
@@ -49,10 +50,11 @@ def classify_change(z: pd.Series, thr: float = 2.0) -> pd.Series:
 
 def add_anomalies(sig: pd.DataFrame, window: int = 8, thr: float = 2.0) -> pd.DataFrame:
     sig = sig.sort_values(["product", "week_start"]).copy()
-    cols = {"volume": np.log1p, "sentiment": lambda s: s, "n_price": np.log1p, "n_supply": np.log1p,
-            "n_demand": np.log1p}
-    for col, f in cols.items():
-        z = sig.groupby("product")[col].transform(lambda s, f=f: trailing_z(f(s), window))
+    # series -> (transform, std floor). Counts are on the log scale (floor 0.2 = about 20%); sentiment in raw units.
+    cols = {"volume": (np.log1p, 0.2), "sentiment": (lambda s: s, 0.05), "n_price": (np.log1p, 0.2),
+            "n_supply": (np.log1p, 0.2), "n_demand": (np.log1p, 0.2)}
+    for col, (f, floor) in cols.items():
+        z = sig.groupby("product")[col].transform(lambda s, f=f, floor=floor: trailing_z(f(s), window, min_sd=floor))
         sig[f"z_{col}"] = z
         sig[f"change_{col}"] = classify_change(z.fillna(0), thr)
     return sig
@@ -62,7 +64,7 @@ def price_anomalies(idx: pd.DataFrame, window: int = 8, thr: float = 2.0) -> pd.
     idx = idx.sort_values(["product", "market", "week_start"]).copy()
     g = idx.groupby(["product", "market"])["log_index"]
     idx["dlog_price"] = g.diff()
-    idx["z_price"] = g.transform(lambda s: trailing_z(s, window))
+    idx["z_price"] = g.transform(lambda s: trailing_z(s, window, min_sd=0.03))   # log points (~3%)
     idx["change_price"] = classify_change(idx["z_price"].fillna(0), thr)
     return idx
 

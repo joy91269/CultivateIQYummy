@@ -14,7 +14,8 @@
 
 arctic_shift:
   base_url: https://arctic-shift.photon-reddit.com
-  min_comments_for_tree: 3        # only download comment trees for matched posts with >= this many comments
+  min_comments_for_tree: 3        # only download comment trees for posts that name a product in the title
+                                  # and have >= this many comments
   request_pause_s: 0.6            # pause between cheap listing requests (be polite to a free service)
 
 post_subreddits:
@@ -54,10 +55,14 @@ post_subreddits:
     - farming
     - Homesteading
     - produce
-  # economy and news (price coverage, recalls, policy shocks)
+  # economy (price coverage, policy shocks)
   news:
     - Economics
-    - news
+
+# r/news is too large to page through (~250k posts a year) and product headlines are rare, so here we use the
+# Arctic Shift title keyword search instead (one query per product term and year; terms in config/products.yaml)
+title_search_subreddits:
+  - news
 
 geo_subreddits:
   # city subreddit -> USDA AMS terminal market (report prefix) in the same city

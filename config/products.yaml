@@ -3,9 +3,9 @@
 #   regex           - case-insensitive pattern used to decide whether a post/comment mentions the product
 #   exclude_regex   - patterns that create false matches (removed before matching)
 #   fts_query       - keyword used with the Arctic Shift comment full-text search (Postgres FTS, stemmed)
-#   trends_term     - Google Trends search term
+#   title_terms     - exact words for the Arctic Shift post-title search (not stemmed)
 #   ams             - how the product appears in USDA AMS Terminal Market reports
-#   known_events    - documented market events used to validate the signals (see config/events_reference.csv)
+# Reference market events used to validate the signals are listed in config/events_reference.csv
 
 study_period:
   start: "2022-01-01"
@@ -17,7 +17,7 @@ products:
     regex: '\bavocados?\b|\bguac(amole)?\b|\bhass\b'
     exclude_regex: '\bhass(le|les|led)\b'
     fts_query: avocado OR guacamole
-    trends_term: avocado
+    title_terms: [avocado, avocados, guacamole]
     ams:
       report_group: fruit          # FV010 reports
       commodities: ["Avocados"]
@@ -26,7 +26,7 @@ products:
     regex: '\blettuces?\b|\bromaine\b'
     exclude_regex: '\blettuce (in|on) (my|your|his|her) (head|teeth)\b'
     fts_query: lettuce OR romaine
-    trends_term: lettuce
+    title_terms: [lettuce, romaine]
     ams:
       report_group: vegetables     # FV020 reports
       commodities: ["Lettuce, Iceberg", "Lettuce, Romaine"]
@@ -35,7 +35,7 @@ products:
     regex: '\bonions?\b'
     exclude_regex: '\bthe onion\b|theonion\.com|\.onion\b|onion (router|link|site|address|routing)s?\b'
     fts_query: onion
-    trends_term: onion
+    title_terms: [onion, onions]
     ams:
       report_group: onions_potatoes  # FV030 reports
       commodities: ["Onions, Dry"]
@@ -44,7 +44,7 @@ products:
     regex: '\bcucumbers?\b|\bcukes?\b'
     exclude_regex: '\bcool as a cucumber\b'
     fts_query: cucumber
-    trends_term: cucumber
+    title_terms: [cucumber, cucumbers]
     ams:
       report_group: vegetables
       commodities: ["Cucumbers"]

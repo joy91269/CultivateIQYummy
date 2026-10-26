@@ -78,55 +78,61 @@ def embed_lr_fit(X: np.ndarray, y: np.ndarray):
 FT_MODEL = "distilroberta-base"
 
 
-def finetune_fit(train_inputs: list[str], train_labels: list[str], out_dir: str, epochs: int = 4):
+def finetune_fit(train_inputs: list[str], train_labels: list[str], out_dir: str | None = None, epochs: int = 4,
+                 batch_size: int = 16, lr: float = 4e-5, max_length: int = 192):
+    """Fine-tune DistilRoBERTa with a plain PyTorch loop: AdamW, linear warm-up/decay, class-weighted loss.
+    (`out_dir` is unused and kept for interface compatibility.)"""
     import torch
-    from torch.utils.data import Dataset
-    from transformers import (AutoModelForSequenceClassification, AutoTokenizer, Trainer, TrainingArguments,
-                              set_seed)
-    set_seed(SEED)
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer
+    torch.manual_seed(SEED)
+    rng = np.random.default_rng(SEED)
     tok = AutoTokenizer.from_pretrained(FT_MODEL)
     model = AutoModelForSequenceClassification.from_pretrained(
         FT_MODEL, num_labels=len(LABELS), id2label=dict(enumerate(LABELS)), label2id={l: i for i, l in enumerate(LABELS)})
-    enc = tok(train_inputs, truncation=True, max_length=192)
-    y = [LABELS.index(l) for l in train_labels]
+    y = np.array([LABELS.index(l) for l in train_labels])
     counts = np.bincount(y, minlength=len(LABELS))
     weights = torch.tensor(len(y) / (len(LABELS) * np.maximum(counts, 1)), dtype=torch.float)
-
-    class DS(Dataset):
-        def __len__(self):
-            return len(y)
-
-        def __getitem__(self, i):
-            item = {k: enc[k][i] for k in enc}
-            item["labels"] = y[i]
-            return item
-
-    class WeightedTrainer(Trainer):   # class-weighted loss for the imbalanced classes
-        def compute_loss(self, model, inputs, return_outputs=False, **kwargs):
-            labels = inputs.pop("labels")
-            outputs = model(**inputs)
-            loss = torch.nn.functional.cross_entropy(outputs.logits, labels, weight=weights.to(outputs.logits.device))
-            return (loss, outputs) if return_outputs else loss
-
-    args = TrainingArguments(output_dir=out_dir, num_train_epochs=epochs, per_device_train_batch_size=16,
-                             learning_rate=4e-5, weight_decay=0.01, warmup_ratio=0.1, logging_steps=20,
-                             save_strategy="no", report_to=[], seed=SEED, use_cpu=True)
-    from transformers import DataCollatorWithPadding
-    trainer = WeightedTrainer(model=model, args=args, train_dataset=DS(),
-                              data_collator=DataCollatorWithPadding(tok))
-    trainer.train()
+    opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.01)
+    steps = epochs * int(np.ceil(len(y) / batch_size))
+    warm = max(1, int(0.1 * steps))
+    sched = torch.optim.lr_scheduler.LambdaLR(
+        opt, lambda s: (s + 1) / warm if s < warm else max(0.0, (steps - s) / max(1, steps - warm)))
+    model.train()
+    for _ in range(epochs):
+        for b in np.array_split(rng.permutation(len(y)), int(np.ceil(len(y) / batch_size))):
+            enc = tok([train_inputs[i] for i in b], truncation=True, max_length=max_length, padding=True,
+                      return_tensors="pt")
+            logits = model(**enc).logits
+            loss = torch.nn.functional.cross_entropy(logits, torch.tensor(y[b]), weight=weights)
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            opt.step()
+            sched.step()
+            opt.zero_grad()
+    model.eval()
     return tok, model
 
 
-def finetune_predict(tok, model, inputs: list[str], batch_size: int = 64) -> tuple[np.ndarray, np.ndarray]:
+def predict_proba_sorted(tok, model, inputs: list[str], max_length: int, batch_size: int = 32) -> np.ndarray:
+    """Softmax probabilities, batching texts of similar length together (much less padding on CPU)."""
     import torch
     model.eval()
-    probs = []
-    with torch.no_grad():
+    order = np.argsort([len(t) for t in inputs])
+    out = None
+    with torch.inference_mode():
         for i in range(0, len(inputs), batch_size):
-            enc = tok(inputs[i:i + batch_size], truncation=True, max_length=192, padding=True, return_tensors="pt")
-            probs.append(torch.softmax(model(**enc).logits, dim=-1).numpy())
-    p = np.vstack(probs)
+            idx = order[i:i + batch_size]
+            enc = tok([inputs[j] for j in idx], truncation=True, max_length=max_length, padding=True,
+                      return_tensors="pt")
+            p = torch.softmax(model(**enc).logits, dim=-1).numpy()
+            if out is None:
+                out = np.zeros((len(inputs), p.shape[1]))
+            out[idx] = p
+    return out
+
+
+def finetune_predict(tok, model, inputs: list[str], batch_size: int = 32) -> tuple[np.ndarray, np.ndarray]:
+    p = predict_proba_sorted(tok, model, inputs, max_length=192, batch_size=batch_size)
     return np.array(LABELS)[p.argmax(1)], p
 
 
@@ -159,24 +165,23 @@ def metrics(y_true, y_pred, groups=None, n_boot: int = 1000) -> dict:
 
 # ------------------------------------------------------------------------------------------- sentiment
 SENT_MODEL = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+_SENT = None
 
 
-def sentiment_scores(texts: list[str], batch_size: int = 64) -> np.ndarray:
+def sentiment_scores(texts: list[str], batch_size: int = 32) -> np.ndarray:
     """Returns P(positive) - P(negative) in [-1, 1] for each text."""
-    import torch
     from transformers import AutoModelForSequenceClassification, AutoTokenizer
-    tok = AutoTokenizer.from_pretrained(SENT_MODEL)
-    model = AutoModelForSequenceClassification.from_pretrained(SENT_MODEL).eval()
+    global _SENT
+    if _SENT is None:   # load once per process
+        _SENT = (AutoTokenizer.from_pretrained(SENT_MODEL),
+                 AutoModelForSequenceClassification.from_pretrained(SENT_MODEL).eval())
+    tok, model = _SENT
     id2 = {i: l.lower() for i, l in model.config.id2label.items()}
-    pos, neg = [k for k, v in id2.items() if v.startswith("pos")][0], [k for k, v in id2.items() if v.startswith("neg")][0]
-    out = []
-    with torch.no_grad():
-        for i in range(0, len(texts), batch_size):
-            enc = tok([" ".join(str(t).split())[:600] for t in texts[i:i + batch_size]], truncation=True,
-                      max_length=128, padding=True, return_tensors="pt")
-            p = torch.softmax(model(**enc).logits, dim=-1).numpy()
-            out.append(p[:, pos] - p[:, neg])
-    return np.concatenate(out)
+    pos = [k for k, v in id2.items() if v.startswith("pos")][0]
+    neg = [k for k, v in id2.items() if v.startswith("neg")][0]
+    p = predict_proba_sorted(tok, model, [" ".join(str(t).split())[:600] for t in texts], max_length=128,
+                             batch_size=batch_size)
+    return p[:, pos] - p[:, neg]
 
 
 def set_threads(n: int | None = None) -> None:

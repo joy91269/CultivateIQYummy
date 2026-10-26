@@ -23,12 +23,25 @@ describes what the text says about the market for *that* product.
 4. **Gardening.** Home-garden yield problems (blight, pests, weather) → **supply** only when they describe crop
    conditions in general or a bad season; routine growing tips → **other**.
 5. **Promotions.** A sale with a price → **price**; a promotion or menu campaign without a price → **demand**.
-6. When in doubt between a signal and **other**, choose **other**. Use the `notes` column for hard cases.
+6. **Restaurant meals.** The price of a whole meal that merely contains the product (a $15 burrito bowl with
+   lettuce) → **other**; the price of the product itself or of a product-specific add-on (the extra charge for
+   guacamole) → **price**; a restaurant running out of the product → **supply**; complaints about portion
+   sizes in general → **other**.
+7. When in doubt between a signal and **other**, choose **other**. Use the `notes` column for hard cases.
 
 ## Procedure used in this project
 
-1. `labeling/make_label_sample.py` drew a stratified sample (product × keyword-candidate), one text per thread.
-2. A first-pass label was proposed for every row by an AI assistant (Claude) following this codebook.
-3. A team member reviewed every row in the review page, accepting or correcting the proposed label.
-   The column `label` holds the final human-reviewed label; `proposed_label` holds the first pass, so the
-   agreement between the two is reported as well.
+1. `labeling/make_label_sample.py` drew a stratified sample of posts (product × keyword candidate), then
+   keyword-enriched batches of posts and comments so that the rare price and supply classes are represented;
+   one text per thread.
+2. **Annotator 1** (Claude Opus, the AI assistant that built this pipeline) labelled every row following this
+   codebook (`label_ai1`, with a short reason).
+3. **Annotator 2** (Claude Sonnet, a different model, run in a separate session that saw only this codebook and the
+   texts, never annotator 1's labels) labelled every row independently (`label_ai2`). Both annotators come from the
+   same model family, so their errors may be correlated; this is why agreed labels are also spot-checked by a
+   person. Agreement between the two is reported as Cohen's kappa.
+4. **Human review.** A team member decided every row where the two annotators disagreed, plus a random check of
+   rows where they agreed (up to 10 per agreed label; `needs_review`, chosen by `labeling/merge_annotations.py`).
+   The random check estimates how often an agreed AI label is wrong.
+5. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
+   reviewed the row and the agreed AI label elsewhere; `label_source` records which.
