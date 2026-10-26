@@ -1,0 +1,131 @@
+{
+  "products": {
+    "avocado": [
+      "\\bavocados?\\b|\\bguac(amole)?\\b|\\bhass\\b"
+    ],
+    "lettuce": [
+      "\\blettuces?\\b|\\bromaine\\b"
+    ],
+    "onion": [
+      "\\bonions?\\b"
+    ],
+    "cucumber": [
+      "\\bcucumbers?\\b|\\bcukes?\\b"
+    ]
+  },
+  "event_types": {
+    "price_change": [
+      "prices?",
+      "priced",
+      "pricey",
+      "overpriced",
+      "expensive",
+      "cheap(er|est)?",
+      "afford(able|ability)?",
+      "costs?",
+      "costing",
+      "inflation",
+      "price (hike|increase|jump|spike|gouging)s?",
+      "sticker shock",
+      "skyrocket(ed|ing)?",
+      "\\$ ?\\d+(\\.\\d\\d)?",
+      "per (lb|pound|each|bag|head|box)",
+      "went up",
+      "gone up",
+      "doubled",
+      "tripled"
+    ],
+    "demand_change": [
+      "trend(s|ing|y)?",
+      "viral",
+      "tiktok",
+      "recipes?",
+      "craving",
+      "obsessed",
+      "stock(ed|ing)? up",
+      "bought",
+      "buying",
+      "(popular|popularity)",
+      "demand",
+      "salad trend",
+      "meal prep",
+      "super ?bowl",
+      "diet",
+      "keto"
+    ],
+    "supply_shortage": [
+      "shortages?",
+      "out of stock",
+      "sold out",
+      "empty shel(f|ves)",
+      "(can't|cannot|couldn't|could not) find",
+      "(no|none) in stock",
+      "unavailable",
+      "scarce",
+      "supply",
+      "supplies",
+      "supplier",
+      "supply chain",
+      "imports?",
+      "import ban",
+      "suspend(ed|s)?",
+      "harvest",
+      "crops?",
+      "yields?",
+      "growers?",
+      "virus",
+      "insv",
+      "blight",
+      "disease",
+      "pests?",
+      "labor",
+      "truck(ing|ers?)?",
+      "ports?",
+      "border",
+      "tariffs?"
+    ],
+    "weather_event": [
+      "freeze",
+      "frost",
+      "cold snap",
+      "heat ?wave",
+      "drought",
+      "flood(s|ing|ed)?",
+      "hurricane",
+      "storms?",
+      "atmospheric river",
+      "wildfires?",
+      "hail",
+      "el ni[n\u00f1]o",
+      "la ni[n\u00f1]a"
+    ],
+    "food_safety_recall": [
+      "recall(s|ed)?",
+      "e\\.? ?coli",
+      "salmonella",
+      "listeria",
+      "outbreak",
+      "contaminat(ed|ion)",
+      "food poisoning",
+      "fda",
+      "cdc",
+      "got sick"
+    ],
+    "marketing_promotion": [
+      "sale",
+      "on sale",
+      "discount(ed)?",
+      "deals?",
+      "coupons?",
+      "bogo",
+      "promo(tion)?s?",
+      "campaign",
+      "ad(vert(isement)?)?s?",
+      "commercial",
+      "sponsored",
+      "limited time",
+      "new menu",
+      "extra for guac"
+    ]
+  }
+}

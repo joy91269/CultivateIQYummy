@@ -1,0 +1,50 @@
+# Products studied in this project.
+# Each product has:
+#   regex           - case-insensitive pattern used to decide whether a post/comment mentions the product
+#   exclude_regex   - patterns that create false matches (removed before matching)
+#   fts_query       - keyword used with the Arctic Shift comment full-text search (Postgres FTS, stemmed)
+#   trends_term     - Google Trends search term
+#   ams             - how the product appears in USDA AMS Terminal Market reports
+#   known_events    - documented market events used to validate the signals (see config/events_reference.csv)
+
+study_period:
+  start: "2022-01-01"
+  end: "2025-01-01"   # exclusive
+
+products:
+  avocado:
+    display: Avocados
+    regex: '\bavocados?\b|\bguac(amole)?\b|\bhass\b'
+    exclude_regex: '\bhass(le|les|led)\b'
+    fts_query: avocado OR guacamole
+    trends_term: avocado
+    ams:
+      report_group: fruit          # FV010 reports
+      commodities: ["Avocados"]
+  lettuce:
+    display: Lettuce (iceberg / romaine)
+    regex: '\blettuces?\b|\bromaine\b'
+    exclude_regex: '\blettuce (in|on) (my|your|his|her) (head|teeth)\b'
+    fts_query: lettuce OR romaine
+    trends_term: lettuce
+    ams:
+      report_group: vegetables     # FV020 reports
+      commodities: ["Lettuce, Iceberg", "Lettuce, Romaine"]
+  onion:
+    display: Onions
+    regex: '\bonions?\b'
+    exclude_regex: '\bthe onion\b|theonion\.com|\.onion\b|onion (router|link|site|address|routing)s?\b'
+    fts_query: onion
+    trends_term: onion
+    ams:
+      report_group: onions_potatoes  # FV030 reports
+      commodities: ["Onions, Dry"]
+  cucumber:
+    display: Cucumbers
+    regex: '\bcucumbers?\b|\bcukes?\b'
+    exclude_regex: '\bcool as a cucumber\b'
+    fts_query: cucumber
+    trends_term: cucumber
+    ams:
+      report_group: vegetables
+      commodities: ["Cucumbers"]

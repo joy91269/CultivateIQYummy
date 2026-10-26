@@ -1,0 +1,72 @@
+# Online sources collected by data_collection/collect_reddit.py
+#
+# Reddit is accessed through the Arctic Shift archive API (https://github.com/ArthurHeitmann/arctic_shift),
+# a public successor of Pushshift. Arctic Shift only allows keyword search inside one subreddit at a time and
+# rate-limits keyword queries heavily, so we use two complementary strategies:
+#
+# 1. post_subreddits: page through EVERY post in the subreddit for the study period (cheap, unfiltered queries)
+#    and keep the posts whose title/selftext mention a product. This also gives the total number of posts per
+#    week, which we use as a denominator to normalise discussion volume.
+#    For matched posts with comments we download the comment tree and keep comments that mention the product.
+#
+# 2. geo_subreddits: city subreddits matched to the USDA AMS terminal market in the same city. Here we use the
+#    (slow, rate-limited) comment full-text search so that we get geographically attributable comments.
+
+arctic_shift:
+  base_url: https://arctic-shift.photon-reddit.com
+  min_comments_for_tree: 3        # only download comment trees for matched posts with >= this many comments
+  request_pause_s: 0.6            # pause between cheap listing requests (be polite to a free service)
+
+post_subreddits:
+  # grocery shoppers / home cooks / budget food (consumer demand and price perception)
+  consumer:
+    - Cooking
+    - EatCheapAndHealthy
+    - Frugal
+    - budgetfood
+    - MealPrepSunday
+    - AskCulinary
+    - HelloFresh
+    - Salads
+    - avocado
+    - GroceryStores
+    - inflation
+  # retailers (prices, shortages, promotions as seen in stores)
+  retail:
+    - traderjoes
+    - Costco
+    - aldi
+    - wholefoods
+    - kroger
+    - Wegmans
+    - HEB
+    - Publix
+  # restaurants / food service (supply problems seen by operators)
+  foodservice:
+    - KitchenConfidential
+    - fastfood
+    - McDonalds
+    - Chipotle
+  # growers and agriculture (crop conditions, weather, labour)
+  growers:
+    - vegetablegardening
+    - agriculture
+    - farming
+    - Homesteading
+    - produce
+  # economy and news (price coverage, recalls, policy shocks)
+  news:
+    - Economics
+    - news
+
+geo_subreddits:
+  # city subreddit -> USDA AMS terminal market (report prefix) in the same city
+  LosAngeles:   {market: Los Angeles,  state: CA}
+  chicago:      {market: Chicago,      state: IL}
+  nyc:          {market: New York,     state: NY}
+  boston:       {market: Boston,       state: MA}
+  Atlanta:      {market: Atlanta,      state: GA}
+  philadelphia: {market: Philadelphia, state: PA}
+  Detroit:      {market: Detroit,      state: MI}
+  Miami:        {market: Miami,        state: FL}
+  baltimore:    {market: Baltimore,    state: MD}

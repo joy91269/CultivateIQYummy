@@ -1,0 +1,21 @@
+# USDA AMS Specialty Crops terminal market reports used as the price benchmark.
+# Numbers are MyMarketNews (MARS API) report slug IDs, listed on https://mymarketnews.ams.usda.gov/public_data
+# (Market Type = Terminal). Each city publishes three daily reports:
+#   fruit            = <prefix>_FV010  (avocados)
+#   vegetables       = <prefix>_FV020  (lettuce, cucumbers)
+#   onions_potatoes  = <prefix>_FV030  (dry onions)
+
+mars_api: https://marsapi.ams.usda.gov/services/v1.2/reports
+section: Report Details
+
+markets:
+  Atlanta:      {state: GA, fruit: 2277, vegetables: 2278, onions_potatoes: 2279}
+  Baltimore:    {state: MD, fruit: 2281, vegetables: 2282, onions_potatoes: 2283}
+  Boston:       {state: MA, fruit: 2285, vegetables: 2286, onions_potatoes: 2287}
+  Chicago:      {state: IL, fruit: 2290, vegetables: 2291, onions_potatoes: 2292}
+  Columbia:     {state: SC, fruit: 2294, vegetables: 2295, onions_potatoes: 2296}
+  Detroit:      {state: MI, fruit: 2302, vegetables: 2303, onions_potatoes: 2304}
+  Los Angeles:  {state: CA, fruit: 2306, vegetables: 2307, onions_potatoes: 2308}
+  Miami:        {state: FL, fruit: 2310, vegetables: 2311, onions_potatoes: 2312}
+  New York:     {state: NY, fruit: 2314, vegetables: 2315, onions_potatoes: 2316}
+  Philadelphia: {state: PA, fruit: 2318, vegetables: 2319, onions_potatoes: 2320}

@@ -1,0 +1,129 @@
+# Market-event keyword dictionary (Task 1).
+# Each event type is a list of terms. Terms are matched case-insensitively as whole words/phrases.
+# A term may contain a simple regex (e.g. "shortages?"). The dictionary is expanded and written to
+# data/processed/keyword_dictionary.csv by data_collection/build_keywords.py.
+#
+# Event types follow the challenge document:
+#   price_change, demand_change (consumer trend / demand), supply_shortage, weather_event,
+#   food_safety_recall, marketing_promotion (marketing campaigns, promotions), other
+
+event_types:
+  price_change:
+    description: Posts about prices, price changes, affordability, sticker shock or price comparisons.
+    terms:
+      - prices?
+      - priced
+      - pricey
+      - overpriced
+      - expensive
+      - cheap(er|est)?
+      - afford(able|ability)?
+      - costs?
+      - costing
+      - inflation
+      - price (hike|increase|jump|spike|gouging)s?
+      - sticker shock
+      - skyrocket(ed|ing)?
+      - "\\$ ?\\d+(\\.\\d\\d)?"
+      - per (lb|pound|each|bag|head|box)
+      - went up
+      - gone up
+      - doubled
+      - tripled
+  demand_change:
+    description: Posts about consumer interest, buying behaviour, recipes, diet or food trends, stocking up.
+    terms:
+      - trend(s|ing|y)?
+      - viral
+      - tiktok
+      - recipes?
+      - craving
+      - obsessed
+      - stock(ed|ing)? up
+      - bought
+      - buying
+      - (popular|popularity)
+      - demand
+      - salad trend
+      - meal prep
+      - super ?bowl
+      - diet
+      - keto
+  supply_shortage:
+    description: Posts about shortages, availability, crop conditions, imports, labour or transport disruptions.
+    terms:
+      - shortages?
+      - out of stock
+      - sold out
+      - empty shel(f|ves)
+      - (can't|cannot|couldn't|could not) find
+      - (no|none) in stock
+      - unavailable
+      - scarce
+      - supply
+      - supplies
+      - supplier
+      - supply chain
+      - imports?
+      - import ban
+      - suspend(ed|s)?
+      - harvest
+      - crops?
+      - yields?
+      - growers?
+      - virus
+      - insv
+      - blight
+      - disease
+      - pests?
+      - labor
+      - truck(ing|ers?)?
+      - ports?
+      - border
+      - tariffs?
+  weather_event:
+    description: Posts about weather events that affect production or transport.
+    terms:
+      - freeze
+      - frost
+      - cold snap
+      - heat ?wave
+      - drought
+      - flood(s|ing|ed)?
+      - hurricane
+      - storms?
+      - atmospheric river
+      - wildfires?
+      - hail
+      - el ni[nñ]o
+      - la ni[nñ]a
+  food_safety_recall:
+    description: Posts about recalls, outbreaks, contamination or food-borne illness.
+    terms:
+      - recall(s|ed)?
+      - e\.? ?coli
+      - salmonella
+      - listeria
+      - outbreak
+      - contaminat(ed|ion)
+      - food poisoning
+      - fda
+      - cdc
+      - got sick
+  marketing_promotion:
+    description: Posts about promotions, discounts, coupons, advertising or marketing campaigns.
+    terms:
+      - sale
+      - on sale
+      - discount(ed)?
+      - deals?
+      - coupons?
+      - bogo
+      - promo(tion)?s?
+      - campaign
+      - ad(vert(isement)?)?s?
+      - commercial
+      - sponsored
+      - limited time
+      - new menu
+      - extra for guac
