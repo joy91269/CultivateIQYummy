@@ -19,3 +19,34 @@ markets:
   Miami:        {state: FL, fruit: 2310, vegetables: 2311, onions_potatoes: 2312}
   New York:     {state: NY, fruit: 2314, vegetables: 2315, onions_potatoes: 2316}
   Philadelphia: {state: PA, fruit: 2318, vegetables: 2319, onions_potatoes: 2320}
+
+# Daily movement (shipment) reports: volume of each commodity shipped from US shipping districts and imported
+# through ports of entry, by truck, air and boat, in pounds ("1 lb units"). Every Market News office publishes one
+# for its districts; summing all of them gives national weekly shipments, our measure of the quantity reaching
+# the market (used to tell supply shocks from demand shifts). Slug IDs from the MARS report list (Market Type =
+# Movement); some offices stopped reporting during the study period.
+movement_reports:
+  Thomasville GA: 2717
+  Atlanta GA: 2718
+  Inwood WV: 2762
+  Benton Harbor MI: 2768
+  Boston MA: 2774
+  Chicago IL: 2780
+  Columbia SC: 2793
+  Dallas TX: 2799
+  Fresno CA: 2899
+  Idaho Falls ID: 2925
+  Miami FL: 3031
+  Orlando FL: 3105
+  Philadelphia PA: 3114
+  El Centro CA: 3119
+  McAllen TX: 3123
+  Nogales AZ: 3125
+  Phoenix AZ: 3127
+  Raleigh NC: 3165
+  Onley VA: 3170
+  Seattle WA: 3181
+  Washington DC: 3283
+  Yakima WA: 3332
+  San Francisco CA: 3520
+  National rail: 3282

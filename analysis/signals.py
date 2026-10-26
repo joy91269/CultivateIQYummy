@@ -112,3 +112,33 @@ def price_impact(log_index: pd.Series, start, end, pre_weeks: int = 8) -> dict:
             "same_window_other_years_pct": 100 * (np.exp(seasonal) - 1) if other else np.nan,
             "seasonally_adjusted_pct": 100 * (np.exp(mean_chg - seasonal) - 1) if other else np.nan,
             "n_comparison_years": len(other)}
+
+
+def placebo_percentile(log_index: pd.Series, start, end, pre_weeks: int = 8, exclude=()) -> dict:
+    """Where the event's mean change of a log series (price index or shipments) falls among all windows of the
+    same length, measured the same way
+    (mean during the window vs. the `pre_weeks` before it), that start in other weeks of the study period and do not
+    overlap a documented event window in `exclude` [(start, end), ...]. A percentile of 95 means the event-window
+    change is larger than 95% of ordinary windows of that length."""
+    start, end = pd.Timestamp(start), pd.Timestamp(end)
+    ev = price_impact(log_index, start, end, pre_weeks)["mean_change_pct"]
+    length, pre = end - start, pd.Timedelta(weeks=pre_weeks)
+    changes = []
+    for s0 in log_index.index:
+        s1 = s0 + length
+        if s0 - pre < log_index.index.min() or s1 > log_index.index.max():
+            continue
+        if any(s0 - pre <= pd.Timestamp(e1) and s1 >= pd.Timestamp(e0) for e0, e1 in exclude):
+            continue
+        changes.append(price_impact(log_index, s0, s1, pre_weeks)["mean_change_pct"])
+    changes = np.array([c for c in changes if np.isfinite(c)])
+    pct = 100 * (changes < ev).mean() if len(changes) and np.isfinite(ev) else np.nan
+    return {"placebo_windows": len(changes), "percentile": pct}
+
+
+def rate_ratio(n_during: int, weeks_during: int, n_before: int, weeks_before: int) -> tuple[float, float, float]:
+    """Weekly-rate ratio during/before with a 95% Poisson CI (0.5 added to both counts)."""
+    a, b = n_during + 0.5, n_before + 0.5
+    rr = (a / weeks_during) / (b / weeks_before)
+    se = np.sqrt(1 / a + 1 / b)
+    return rr, rr * np.exp(-1.96 * se), rr * np.exp(1.96 * se)

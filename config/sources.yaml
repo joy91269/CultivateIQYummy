@@ -9,8 +9,10 @@
 #    week, which we use as a denominator to normalise discussion volume.
 #    For matched posts with comments we download the comment tree and keep comments that mention the product.
 #
-# 2. geo_subreddits: city subreddits matched to the USDA AMS terminal market in the same city. Here we use the
-#    (slow, rate-limited) comment full-text search so that we get geographically attributable comments.
+# 2. geo_subreddits: city subreddits matched to the USDA AMS terminal market in the same city, paged the same way
+#    (step `geo`). Their posts carry a location; they are kept out of the volume denominator because they are
+#    large general-interest communities. (A comment full-text search was tried first but the archive's keyword
+#    rate limit made it impractically slow.)
 
 arctic_shift:
   base_url: https://arctic-shift.photon-reddit.com

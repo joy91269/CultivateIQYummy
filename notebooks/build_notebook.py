@@ -304,6 +304,33 @@ fig.tight_layout(); fig.savefig(FIG / "price_indices.png", dpi=200); plt.show()
 """)
 
 md(r"""
+**Shipments.** To tell supply from demand we also need the *quantity* reaching the market. AMS movement reports
+give the pounds of each commodity shipped from US production districts and imported through ports of entry
+(`data_collection/collect_ams_movement.py`). We sum them per product and week.
+""")
+
+code(r"""
+ship = pd.read_csv("data/processed/ams_shipments_weekly.csv", parse_dates=["week_start"])
+ship = ship[(ship["week_start"] >= "2022-01-03") & (ship["week_start"] <= "2024-12-23")]   # whole weeks only
+ship["log_lb"] = np.log(ship["total_lb"].where(ship["total_lb"] > 0))
+ship_log = {p: g.set_index("week_start")["log_lb"] for p, g in ship.groupby("product")}
+print(ship.groupby("product")[["domestic_lb", "import_lb"]].sum().div(1e9).round(2).rename(
+    columns=lambda c: c.replace("_lb", " (billion lb, 2022-2024)")))
+
+fig, axes = plt.subplots(4, 1, figsize=(10, 7.5), sharex=True)
+for ax, prod in zip(axes, PRODUCTS):
+    g = ship[ship["product"] == prod]
+    ax.stackplot(g["week_start"], g["domestic_lb"] / 1e6, g["import_lb"] / 1e6, colors=["#7fa98f", "#d2b07a"],
+                 labels=["US shipments", "imports"], lw=0)
+    ax.set_ylabel(f"{prod}\nmillion lb / week")
+    shade(ax, prod)
+axes[0].legend(frameon=False, loc="upper left", fontsize=8)
+axes[-1].xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
+fig.suptitle("Weekly shipments reaching US markets (USDA AMS movement reports)", y=0.995)
+fig.tight_layout(); fig.savefig(FIG / "shipments.png", dpi=200); plt.show()
+""")
+
+md(r"""
 ## 7. Timing: does the online signal lead or lag the price?
 
 **Series-level.** For each product we correlate a weekly signal (its deviation from the previous 8 weeks, z-score)
@@ -400,43 +427,78 @@ display(impact)
 md(r"""
 ## 9. Supply shock or demand shift?
 
-Evidence used for each event: direction of the price move, and how the **mix** of online signals changed during
-the event compared with the 8 weeks before (share of supply posts, share of demand posts, mean sentiment).
+Economics tells supply shocks from demand shifts by how price and quantity move together: a **supply shock** raises
+the price while less product reaches the market; a **demand shift** moves price and quantity in the same direction.
+We first read each event from the market data alone, then ask whether the online talk tells the same story.
 
-* **Supply shock**: price rises while the share of supply talk (shortages, crop, imports, recalls) rises.
-* **Demand increase**: price rises with more demand talk (buying, trends) and no rise in supply talk.
-* **Demand decrease**: price falls (or does not rise) while talk turns to avoiding the product or sentiment drops.
+**Market reading.**
+* *Did the price move unusually?* The event-window price change (section 8) is compared with the change in every
+  other window of the same length in 2022–2024, measured the same way and not overlapping a documented event of the
+  product. Percentile ≥ 90: unusual rise; ≤ 10: unusual fall.
+* *Did quantity fall or rise?* Weekly national shipments, mean during the event vs. the 8 weeks before, minus the
+  same calendar change in the other years (seasonal adjustment). Below −5%: fell; above +5%: rose.
+
+| Price | Shipments | Market reading |
+|---|---|---|
+| unusual rise | fell | **supply shock** |
+| unusual rise | flat or rose | **demand increase** |
+| unusual fall | fell or flat | **demand decrease** |
+| unusual fall | rose | **supply increase** |
+| no unusual move | any | no clear price effect |
+
+**Online reading.** Weekly counts of texts the classifier labels *supply* and *demand* during the event vs. the 8
+weeks before, as a rate ratio with a 95% Poisson interval. A kind of talk "rose" when its interval is above 1 and it
+rose more than background (*other*) talk about the product. Supply talk rising (at least as much as demand talk) →
+*supply*; demand talk rising more → *demand*. Note that by our codebook, reports of recalls and products pulled from
+shelves count as supply talk; people avoiding a product count as demand talk.
 """)
 
 code(r"""
-def window_stats(prod, s0, s1):
+def counts(prod, s0, s1):
     g = obs[(obs["product"] == prod) & (obs["week_start"] >= s0) & (obs["week_start"] <= s1)]
-    n = len(g)
-    return {"n": n, **{f"share_{l}": (g["pred_label"] == l).mean() if n else np.nan for l in LABELS},
-            "sentiment": g["sentiment"].mean() if n else np.nan}
+    return {l: int((g["pred_label"] == l).sum()) for l in LABELS} | {"n": len(g), "sentiment": g["sentiment"].mean()}
 
+def wk(d):   # Monday of the week containing d
+    d = pd.Timestamp(d); return d - pd.Timedelta(days=d.weekday())
+
+fmt = lambda t: f"{t[0]:.2f} ({t[1]:.2f}-{t[2]:.2f})"
 verdict = []
 for e in events_ref.itertuples():
-    pre = window_stats(e.product, e.start_date - pd.Timedelta(weeks=8), e.start_date - pd.Timedelta(days=1))
-    dur = window_stats(e.product, e.start_date, e.end_date)
+    s0, s1 = wk(e.start_date), wk(e.end_date)
+    w_dur, w_pre = (s1 - s0).days // 7 + 1, 8
+    others = [(r.start_date, r.end_date) for r in events_ref.itertuples() if r.product == e.product]
+    # market reading
+    li = nat[nat["product"] == e.product].set_index("week_start")["log_index"]
+    p_pct = S.placebo_percentile(li, e.start_date, e.end_date, exclude=others)["percentile"]
+    q = S.price_impact(ship_log[e.product], e.start_date, e.end_date)
+    q_adj = q["seasonally_adjusted_pct"]
+    p_up, p_down = p_pct >= 90, p_pct <= 10
+    q_dir = "fell" if q_adj < -5 else "rose" if q_adj > 5 else "flat"
+    market = ("supply shock" if p_up and q_dir == "fell" else "demand increase" if p_up else
+              "supply increase" if p_down and q_dir == "rose" else "demand decrease" if p_down else
+              "no clear price effect")
+    # online reading
+    pre = counts(e.product, s0 - pd.Timedelta(weeks=w_pre), s0 - pd.Timedelta(days=1))
+    dur = counts(e.product, s0, s1)
+    rr = {l: S.rate_ratio(dur[l], w_dur, pre[l], w_pre) for l in LABELS}
+    rose = {l: rr[l][1] > 1 and rr[l][0] > rr["other"][0] for l in ["supply", "demand"]}
+    online = ("supply" if rose["supply"] and (not rose["demand"] or rr["supply"][0] >= rr["demand"][0]) else
+              "demand" if rose["demand"] else "no rise in supply or demand talk")
+    agree = ("yes" if (market.startswith("supply") and online == "supply")
+                      or (market.startswith("demand") and online == "demand") else
+             "no" if market != "no clear price effect" and online in ("supply", "demand") else "-")
     imp = impact.set_index("event_id").loc[e.event_id]
-    dprice = imp["seasonally_adjusted_pct"] if pd.notna(imp["seasonally_adjusted_pct"]) else imp["mean_change_pct"]
-    d_sup = dur["share_supply"] - pre["share_supply"]
-    d_dem = dur["share_demand"] - pre["share_demand"]
-    d_sent = dur["sentiment"] - pre["sentiment"]
-    if dprice > 5 and d_sup > 0.02:
-        call = "supply shock"
-    elif dprice > 5 and d_dem > 0.02:
-        call = "demand increase"
-    elif dprice < -5 or (dprice <= 5 and (d_dem < -0.02 or d_sent < -0.05)):
-        call = "demand decrease"
-    else:
-        call = "no clear market effect"
     verdict.append({"event_id": e.event_id, "product": e.product, "event": e.event_name,
-                    "price_change_pct": round(dprice, 1), "posts_before": pre["n"], "posts_during": dur["n"],
-                    "supply_share_change_pp": round(100 * d_sup, 1), "demand_share_change_pp": round(100 * d_dem, 1),
-                    "price_share_change_pp": round(100 * (dur["share_price"] - pre["share_price"]), 1),
-                    "sentiment_change": round(d_sent, 3), "evidence_says": call, "hypothesis": e.hypothesis})
+                    "price_change_pct": imp["mean_change_pct"], "price_percentile": round(p_pct),
+                    "shipments_change_pct": round(q["mean_change_pct"], 1),
+                    "shipments_seasonally_adjusted_pct": round(q_adj, 1), "shipments": q_dir,
+                    "market_reading": market,
+                    "supply_talk_rate_ratio": fmt(rr["supply"]), "demand_talk_rate_ratio": fmt(rr["demand"]),
+                    "price_talk_rate_ratio": fmt(rr["price"]), "other_talk_rate_ratio": fmt(rr["other"]),
+                    "supply_talk_before_during": f"{pre['supply']} / {dur['supply']}",
+                    "demand_talk_before_during": f"{pre['demand']} / {dur['demand']}",
+                    "weeks_before_during": f"{w_pre} / {w_dur}",
+                    "online_reading": online, "readings_agree": agree, "expected": e.hypothesis})
 verdict = pd.DataFrame(verdict)
 verdict.to_csv(TAB / "event_supply_vs_demand.csv", index=False)
 display(verdict)

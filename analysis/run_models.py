@@ -44,6 +44,36 @@ def load_labelled() -> pd.DataFrame:
     return lab.reset_index(drop=True)
 
 
+def cached_zeroshot(lab: pd.DataFrame) -> np.ndarray:
+    """Zero-shot labels do not depend on the training labels, so they are cached by obs_id."""
+    path = CACHE / "zeroshot_predictions.csv"
+    CACHE.mkdir(parents=True, exist_ok=True)
+    have = dict(pd.read_csv(path).itertuples(index=False)) if path.exists() else {}
+    todo = lab[~lab["obs_id"].isin(have)]
+    if len(todo):
+        have.update(zip(todo["obs_id"], zeroshot_predict(todo["input"].tolist())))
+        pd.DataFrame({"obs_id": list(have), "zeroshot": list(have.values())}).to_csv(path, index=False)
+    return lab["obs_id"].map(have).to_numpy()
+
+
+def cached_embeddings(lab: pd.DataFrame) -> np.ndarray:
+    path, ids_path = CACHE / "embeddings.npy", CACHE / "embeddings_ids.csv"
+    CACHE.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        X, ids = np.load(path), pd.read_csv(ids_path)["obs_id"].tolist()
+    else:
+        X, ids = np.zeros((0, 768)), []
+    pos = {o: i for i, o in enumerate(ids)}
+    todo = lab[~lab["obs_id"].isin(pos)]
+    if len(todo):
+        X = np.vstack([X, embed(todo["input"].tolist())])
+        ids = ids + todo["obs_id"].tolist()
+        np.save(path, X)
+        pd.DataFrame({"obs_id": ids}).to_csv(ids_path, index=False)
+        pos = {o: i for i, o in enumerate(ids)}
+    return X[[pos[o] for o in lab["obs_id"]]]
+
+
 def evaluate() -> None:
     lab = load_labelled()
     y, groups = lab["label"].to_numpy(), lab["thread_id"].astype(str).to_numpy()
@@ -52,10 +82,10 @@ def evaluate() -> None:
 
     preds["keyword"] = keyword_predict(lab["event_types"])
     print("zero-shot ...", flush=True)
-    preds["zeroshot"] = zeroshot_predict(lab["input"].tolist())
+    preds["zeroshot"] = cached_zeroshot(lab)
 
     print("embeddings + logistic regression ...", flush=True)
-    X = embed(lab["input"].tolist())
+    X = cached_embeddings(lab)
     oof = np.empty(len(lab), dtype=object)
     for tr, te in folds:
         oof[te] = embed_lr_fit(X[tr], y[tr]).predict(X[te])

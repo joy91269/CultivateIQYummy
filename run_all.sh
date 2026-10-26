@@ -10,8 +10,10 @@ if [[ "${1:-}" != "--analysis" ]]; then
   python data_collection/build_keywords.py
   python data_collection/collect_reddit.py posts     # resumable; ~3 h
   python data_collection/collect_reddit.py titles    # r/news title search (rate limited)
+  python data_collection/collect_reddit.py geo       # posts of the 9 city subreddits (geography); ~1 h
   python data_collection/collect_reddit.py trees     # comment trees of product posts; ~2 h
   python data_collection/collect_ams.py              # needs MARS_API_KEY in .env; ~10 min
+  python data_collection/collect_ams_movement.py     # shipments; same key; ~1 h
   python data_collection/build_event_dataset.py
   # Task 2: models (the hand-reviewed labels are in labeling/labels.csv)
   python -m analysis.run_models all                  # ~4 h on CPU
