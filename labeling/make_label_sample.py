@@ -16,6 +16,10 @@ Batches used in this project (see the `batch` column):
     python labeling/make_label_sample.py --record-type comment --quota price:15,supply:15,demand:5,none:5 --near --append
     python labeling/make_label_sample.py --record-type post --quota price:12,supply:12 --append --seed 7
     python labeling/make_label_sample.py --record-type post --subreddit news --per-product 12 --append
+    python labeling/make_label_sample.py --record-type comment --quota price:8,supply:8,demand:16,none:4 --near \
+        --append --seed 11 --tag 2
+    python labeling/make_label_sample.py --record-type post --quota demand:14,supply:6,price:6 --append --seed 13 --tag 2
+The last two batches (tag 2) were added after the first model comparison showed too few demand examples.
 Output: labeling/label_sample.csv
 """
 from __future__ import annotations
@@ -63,6 +67,7 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=2026)
     ap.add_argument("--append", action="store_true")
     ap.add_argument("--subreddit", default=None, help="restrict the batch to one subreddit (e.g. news)")
+    ap.add_argument("--tag", default="", help="suffix for the batch name, e.g. 2 -> posts_enriched2")
     ap.add_argument("--near", action="store_true",
                     help="with --quota: a price/supply/demand keyword must occur within 80 characters of the product")
     args = ap.parse_args()
