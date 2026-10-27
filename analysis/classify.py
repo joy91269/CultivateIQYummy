@@ -216,3 +216,27 @@ def sentiment_scores(texts: list[str], batch_size: int = 32) -> np.ndarray:
 def set_threads(n: int | None = None) -> None:
     import torch
     torch.set_num_threads(n or os.cpu_count() or 1)
+
+
+# ------------------------------------------------------------------------------------------- prior shift
+def prior_adjust(prob: np.ndarray, train_prior: np.ndarray, n_iter: int = 200, tol: float = 1e-8):
+    """Adjust class probabilities to the label mix of a new population (Saerens, Latinne & Decaestecker 2002).
+
+    The classifier learned the label mix of the labelled sample, which was enriched with market keywords, so it
+    expects more price/supply/demand texts than the full dataset contains. EM re-estimates the population label
+    shares `pi` from the unlabelled texts and rescales each text's probabilities by pi / train_prior. Assumes that
+    within each label the texts look alike in the sample and in the population (label shift).
+    Returns (adjusted probabilities, estimated population shares)."""
+    train_prior = np.asarray(train_prior, dtype=float)
+    pi = train_prior.copy()
+    for _ in range(n_iter):
+        adj = prob * (pi / train_prior)
+        adj /= adj.sum(1, keepdims=True)
+        new = adj.mean(0)
+        if np.abs(new - pi).max() < tol:
+            pi = new
+            break
+        pi = new
+    adj = prob * (pi / train_prior)
+    adj /= adj.sum(1, keepdims=True)
+    return adj, pi

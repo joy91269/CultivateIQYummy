@@ -21,7 +21,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from analysis.classify import (EMBED_MODELS, LABELS, embed, embed_lr_fit, finetune_fit, finetune_predict, grouped_folds,
+from analysis.classify import (EMBED_MODELS, LABELS, embed, prior_adjust, embed_lr_fit, finetune_fit, finetune_predict, grouped_folds,
                                keyword_predict, metrics, model_input, sentiment_scores, set_threads,
                                zeroshot_predict)
 
@@ -180,6 +180,16 @@ def embed_all(ids: list[str], inputs: list[str], key: str, chunk: int = 5000) ->
     return np.vstack(parts)
 
 
+def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """95% Wilson interval for a proportion k/n."""
+    if n == 0:
+        return np.nan, np.nan
+    p = k / n
+    c = (p + z * z / (2 * n)) / (1 + z * z / n)
+    h = z * np.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / (1 + z * z / n)
+    return c - h, c + h
+
+
 def predict() -> None:
     lab = load_labelled()
     best = json.loads(FINAL_MODEL_FILE.read_text())["selected_model"]
@@ -210,9 +220,33 @@ def predict() -> None:
         pred, prob = zeroshot_predict(inputs), np.full((len(inputs), len(LABELS)), np.nan)
     else:
         pred, prob = keyword_predict(ev["event_types"]), np.full((len(inputs), len(LABELS)), np.nan)
-    out = pd.DataFrame({"obs_id": ev["obs_id"], "pred_label": pred, "model": best})
+    out = pd.DataFrame({"obs_id": ev["obs_id"], "product": ev["product"], "pred_label": pred, "model": best})
+    for i, l in enumerate(LABELS):
+        out[f"p_{l}_raw"] = prob[:, i].round(4)
+    if not np.isnan(prob).all():
+        # the labelled sample is enriched with market talk, so the classifier expects more price/supply/demand
+        # than the full dataset holds: re-estimate each product's label shares by EM and rescale the probabilities
+        rows = []
+        adj = np.zeros_like(prob)
+        for prod in sorted(ev["product"].unique()):
+            m = (ev["product"] == prod).to_numpy()
+            tr = lab.loc[lab["product"] == prod, "label"].value_counts(normalize=True).reindex(LABELS).fillna(0)
+            adj[m], pi = prior_adjust(prob[m], tr.to_numpy().clip(1e-3))
+            rnd = lab[(lab["product"] == prod) & (lab["batch"] == "random")]
+            for i, l in enumerate(LABELS):
+                k, n = int((rnd["label"] == l).sum()), len(rnd)
+                lo, hi = wilson(k, n)
+                rows.append({"product": prod, "label": l, "share_in_labelled_sample": round(tr[l], 4),
+                             "mean_probability_before_adjustment": round(prob[m, i].mean(), 4),
+                             "estimated_share_after_adjustment": round(pi[i], 4),
+                             "random_sample_share": round(k / n, 4) if n else np.nan,
+                             "random_sample_ci95": f"{lo:.3f}-{hi:.3f}" if n else "", "random_sample_n": n})
+        pd.DataFrame(rows).to_csv(TABLES / "label_prevalence.csv", index=False)
+        print(pd.DataFrame(rows).to_string(index=False))
+        prob = adj
     for i, l in enumerate(LABELS):
         out[f"p_{l}"] = prob[:, i].round(4)
+    out["pred_label"] = np.array(LABELS)[prob.argmax(1)] if not np.isnan(prob).all() else out["pred_label"]
     # rows of the labelled sample keep their human label for the analysis
     out = out.merge(lab[["obs_id", "label"]].rename(columns={"label": "human_label"}), on="obs_id", how="left")
     if CLASSIFIED.exists():   # keep an existing sentiment column

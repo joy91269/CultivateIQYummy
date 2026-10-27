@@ -156,6 +156,10 @@ ax.set_xticks(range(4), LABELS); ax.set_yticks(range(4), LABELS)
 ax.set_xlabel("predicted"); ax.set_ylabel("human label")
 ax.set_title(f"{names[selected]}: out-of-fold confusion matrix", fontsize=9)
 fig.tight_layout(); fig.savefig(FIG / "confusion_matrix.png", dpi=200); plt.show()
+rnd = oof.merge(lab[["obs_id", "batch"]], on="obs_id")
+rnd = rnd[rnd["batch"] == "random"]
+print(f"On the {len(rnd)} texts drawn by simple random sampling (closest to the real mix of texts), the selected "
+      f"model is right for {(rnd['label'] == rnd[selected]).mean():.1%} (out of fold).")
 print("Accuracy by product (selected model, out of fold):")
 display(oof.merge(lab[["obs_id", "product"]], on="obs_id").assign(ok=lambda d: d["label"] == d[selected])
         .groupby("product")["ok"].mean().round(3))
@@ -173,6 +177,14 @@ class weights, so its probabilities are calibrated: in cross-validation the summ
 class counts (section 2, `expected_*_vs_true`). Weekly counts are therefore **expected counts**, the sum of the
 class probabilities over that week's texts (probabilistic classify-and-count).
 
+**Correcting for the enriched sample.** Calibration holds for texts like the labelled ones, but the labelled sample
+was enriched with market keywords: 19% of it is price/supply/demand, while a simple random sample of 160 texts
+(batch `random`) finds about 10%. The classifier therefore expects too much market talk in the full dataset. For each
+product we re-estimate the label shares in the full dataset by EM (Saerens et al., 2002) and rescale the
+probabilities accordingly (`analysis.classify.prior_adjust`). The table below compares the estimates with the random
+sample. Week-to-week comparisons (z-scores, rate ratios, correlations) are hardly affected by this correction; the
+overall shares are.
+
 Sentiment is `P(positive) − P(negative)` from `cardiffnlp/twitter-roberta-base-sentiment-latest`.
 """)
 
@@ -187,6 +199,9 @@ for l in LABELS:
     obs.loc[has_human, f"p_{l}"] = (obs.loc[has_human, "human_label"] == l).astype(float)
 print(f"{has_human.sum()} observations carry their human label")
 print(f"{len(obs):,} observations, {obs['record_id'].nunique():,} Reddit records, {obs['thread_id'].nunique():,} threads")
+prev = pd.read_csv(TAB / "label_prevalence.csv")
+display(prev.pivot(index="product", columns="label", values=["mean_probability_before_adjustment",
+                   "estimated_share_after_adjustment", "random_sample_share"]).round(3))
 dist = pd.crosstab(obs["product"], obs["pred_label"]).reindex(columns=LABELS)
 expected = obs.groupby("product")[[f"p_{l}" for l in LABELS]].sum().round(0).astype(int)
 expected.columns = LABELS
