@@ -57,5 +57,16 @@ describes what the text says about the market for *that* product.
    keyword strata), which measures how common each label really is, and 164 enriched for supply and demand. Both
    annotators labelled them (96.0% agreement, kappa 0.82); the reviewer decided the 13 disagreements and a random
    check of 3 agreements per label.
-8. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
+8. **Batch 6: silver labels (round 4).** 1,883 more texts (628 random, 1,255 enriched) were labelled by Claude Opus and
+   Claude Sonnet sub-agents working in parallel (97.1% agreement, kappa 0.88). The 1,828 texts they agree on are
+   silver labels, used only to train; the 55 disagreements are dropped. The reviewer checked 40 random silver labels
+   and changed 3 (92.5% correct). Models are evaluated on gold labels only.
+9. **Annotators from another model family.** OpenAI Codex and ChatGPT labelled all 1,118 gold texts blind
+   (`labeling/codex_task/TASK.md`; outputs in `labeling/codex_task/` and `labeling/chatgpt_task/`).
+   `labeling/third_annotator.py` computes agreement. Where Codex and ChatGPT agreed with each other but not with our
+   label (73 texts), the reviewer decided blind between the two labels, shown as option A and B in random order
+   (`labeling/adjudication.json`); the decision replaces the label (47 kept our label, 26 took the other family's).
+10. **Second human annotator.** A collaborator labels 160 texts blind on a separate page
+    (`labeling/build_collab_page.py`), for human-human agreement.
+11. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
    reviewed the row and the agreed AI label elsewhere; `label_source` records which.

@@ -1,0 +1,440 @@
+{
+ "c_hr4xlmz_onion": {
+  "label": "demand",
+  "note": "",
+  "ours": "demand",
+  "third": "other"
+ },
+ "c_hy66b6x_avocado": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_hyqzylw_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_i25va2l_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_i2em22k_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_i4k3juv_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "demand",
+  "third": "other"
+ },
+ "c_i5ibe0v_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_i7varnd_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_i86bs5m_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_ibuyn7u_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_idop3bm_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_ievspvd_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_iip9dmd_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_imfisr8_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_ipo5nn8_onion": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_iqbya2i_avocado": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_ixw4nfx_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_iyfmc7r_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "c_j3ywv6n_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_j5cngoy_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_j61yufc_onion": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_jieyfz1_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_jkewm47_avocado": {
+  "label": "price",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "c_jn4eoni_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_josh1ey_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_jqphxdw_lettuce": {
+  "label": "supply",
+  "note": "",
+  "ours": "other",
+  "third": "supply"
+ },
+ "c_jrfsajm_onion": {
+  "label": "price",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "c_juib1ij_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "supply"
+ },
+ "c_jzh9nvs_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_jzrqib4_lettuce": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_k1cw2p7_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_k2gaao8_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_k2mhxfr_onion": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_k2vncpe_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_k48dfg3_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_k7vdf0m_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_kh4n0zz_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_korhekp_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "c_kvgpfg6_onion": {
+  "label": "price",
+  "note": "",
+  "ours": "demand",
+  "third": "price"
+ },
+ "c_kvqxnjr_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "demand",
+  "third": "other"
+ },
+ "c_lc1p9hz_avocado": {
+  "label": "supply",
+  "note": "",
+  "ours": "other",
+  "third": "supply"
+ },
+ "c_lhxnq7z_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "price",
+  "third": "other"
+ },
+ "c_lifevm0_avocado": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_loy1p2c_avocado": {
+  "label": "price",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "c_lt0d47h_onion": {
+  "label": "supply",
+  "note": "",
+  "ours": "supply",
+  "third": "price"
+ },
+ "c_lycte37_avocado": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_lzdkik2_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "c_m36fp4f_onion": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_105pgxt_lettuce": {
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_13vh284_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "p_15579ur_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "p_15avrtv_avocado": {
+  "label": "price",
+  "note": "",
+  "ours": "supply",
+  "third": "price"
+ },
+ "p_15hcxaj_lettuce": {
+  "label": "supply",
+  "note": "",
+  "ours": "price",
+  "third": "supply"
+ },
+ "p_16sv4r1_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "p_16xn1h1_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "p_17d8llb_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_17m66ps_avocado": {
+  "label": "demand",
+  "note": "",
+  "ours": "demand",
+  "third": "other"
+ },
+ "p_1b2ke6w_avocado": {
+  "label": "demand",
+  "note": "",
+  "ours": "price",
+  "third": "demand"
+ },
+ "p_1bfif0u_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_1c0n744_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_1cg6em9_cucumber": {
+  "label": "demand",
+  "note": "",
+  "ours": "demand",
+  "third": "price"
+ },
+ "p_1d47t6y_onion": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_1dum265_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_1e81lrj_lettuce": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "supply"
+ },
+ "p_1efcfkb_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "demand",
+  "third": "other"
+ },
+ "p_1h4xoe1_onion": {
+  "label": "price",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "p_s482pm_cucumber": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_uzli2g_avocado": {
+  "label": "demand",
+  "note": "",
+  "ours": "demand",
+  "third": "price"
+ },
+ "p_wfpbug_lettuce": {
+  "label": "price",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "p_xjlac4_onion": {
+  "label": "price",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "p_xumkg3_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "demand"
+ },
+ "p_yazol2_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ },
+ "p_yxpmc5_avocado": {
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "third": "price"
+ }
+}

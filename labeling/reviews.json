@@ -19,6 +19,11 @@
   "note": "",
   "recheck": false
  },
+ "c_hx2fvgw_avocado": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "c_hyjs3zy_onion": {
   "label": "price",
   "note": "",
@@ -74,6 +79,11 @@
   "note": "",
   "recheck": true
  },
+ "c_ieg6y23_avocado": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
+ },
  "c_ifnu9pr_cucumber": {
   "label": "other",
   "note": "",
@@ -104,8 +114,18 @@
   "note": "",
   "recheck": false
  },
+ "c_iqa378a_onion": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
+ },
  "c_iqbya2i_avocado": {
   "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "c_irslorf_onion": {
+  "label": "price",
   "note": "",
   "recheck": false
  },
@@ -121,6 +141,11 @@
  },
  "c_it1x3bf_avocado": {
   "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "c_iu93src_avocado": {
+  "label": "price",
   "note": "",
   "recheck": false
  },
@@ -144,6 +169,11 @@
   "note": "",
   "recheck": false
  },
+ "c_j7qfk04_avocado": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
  "c_j943pf7_onion": {
   "label": "demand",
   "note": "",
@@ -151,6 +181,11 @@
  },
  "c_jarfxll_onion": {
   "label": "price",
+  "note": "",
+  "recheck": false
+ },
+ "c_jctplin_avocado": {
+  "label": "supply",
   "note": "",
   "recheck": false
  },
@@ -163,6 +198,21 @@
   "label": "demand",
   "note": "",
   "recheck": true
+ },
+ "c_jiqj44i_cucumber": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
+ },
+ "c_jjgypj1_avocado": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
+ "c_jlrdz6k_lettuce": {
+  "label": "other",
+  "note": "",
+  "recheck": false
  },
  "c_jn4eoni_avocado": {
   "label": "other",
@@ -179,8 +229,18 @@
   "note": "",
   "recheck": false
  },
+ "c_jv1yxuh_cucumber": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "c_jwtc0i9_avocado": {
   "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "c_jy1ekpy_lettuce": {
+  "label": "other",
   "note": "",
   "recheck": false
  },
@@ -199,6 +259,11 @@
   "note": "",
   "recheck": false
  },
+ "c_kr7nhwn_cucumber": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
  "c_kvgpfg6_onion": {
   "label": "demand",
   "note": "",
@@ -214,6 +279,16 @@
   "note": "",
   "recheck": true
  },
+ "c_l378sla_onion": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "c_l3rw0up_avocado": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
+ },
  "c_l71vqiq_onion": {
   "label": "supply",
   "note": "",
@@ -226,6 +301,11 @@
  },
  "c_lap424u_onion": {
   "label": "price",
+  "note": "",
+  "recheck": false
+ },
+ "c_lbusfhf_avocado": {
+  "label": "supply",
   "note": "",
   "recheck": false
  },
@@ -254,8 +334,18 @@
   "note": "",
   "recheck": true
  },
+ "c_lhcnvy8_avocado": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
  "c_lhxnq7z_avocado": {
   "label": "price",
+  "note": "",
+  "recheck": false
+ },
+ "c_ljxp30x_cucumber": {
+  "label": "supply",
   "note": "",
   "recheck": false
  },
@@ -329,6 +419,16 @@
   "note": "",
   "recheck": false
  },
+ "c_m4q7797_avocado": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "p_1043rcf_avocado": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
  "p_105kbmp_avocado": {
   "label": "price",
   "note": "",
@@ -359,6 +459,11 @@
   "note": "",
   "recheck": true
  },
+ "p_11hmeyf_lettuce": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "p_125zlkq_cucumber": {
   "label": "other",
   "note": "",
@@ -368,6 +473,11 @@
   "label": "demand",
   "note": "",
   "recheck": true
+ },
+ "p_14zadev_cucumber": {
+  "label": "other",
+  "note": "",
+  "recheck": false
  },
  "p_157s9ip_cucumber": {
   "label": "demand",
@@ -399,6 +509,11 @@
   "note": "",
   "recheck": false
  },
+ "p_16219m9_avocado": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
+ },
  "p_16w10ll_lettuce": {
   "label": "other",
   "note": "",
@@ -414,15 +529,35 @@
   "note": "",
   "recheck": false
  },
+ "p_1788f81_lettuce": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "p_17c1p23_avocado": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
  "p_17m66ps_avocado": {
   "label": "demand",
   "note": "",
   "recheck": true
  },
+ "p_17pwlb0_avocado": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "p_17rvjk0_avocado": {
   "label": "demand",
   "note": "",
   "recheck": true
+ },
+ "p_18yi5vt_lettuce": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
  },
  "p_195azx0_onion": {
   "label": "other",
@@ -433,6 +568,11 @@
   "label": "other",
   "note": "",
   "recheck": true
+ },
+ "p_196wwqq_lettuce": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
  },
  "p_197rv6l_onion": {
   "label": "other",
@@ -479,6 +619,11 @@
   "note": "",
   "recheck": false
  },
+ "p_1bwzplr_onion": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
  "p_1c9z8ea_lettuce": {
   "label": "supply",
   "note": "",
@@ -499,6 +644,11 @@
   "note": "",
   "recheck": false
  },
+ "p_1cxlfzz_avocado": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
+ },
  "p_1d47t6y_onion": {
   "label": "other",
   "note": "",
@@ -509,8 +659,23 @@
   "note": "",
   "recheck": false
  },
+ "p_1d8z8yd_cucumber": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
  "p_1dpz7tr_lettuce": {
   "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "p_1dzmzrj_avocado": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "p_1e9m1ml_avocado": {
+  "label": "price",
   "note": "",
   "recheck": false
  },
@@ -554,6 +719,11 @@
   "note": "",
   "recheck": false
  },
+ "p_1g889b2_avocado": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "p_1gbtrhq_lettuce": {
   "label": "other",
   "note": "",
@@ -564,8 +734,23 @@
   "note": "",
   "recheck": true
  },
+ "p_ryvmiu_avocado": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
  "p_s02dje_cucumber": {
   "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "p_s21n9x_onion": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "p_snuemn_cucumber": {
+  "label": "other",
   "note": "",
   "recheck": false
  },
@@ -590,12 +775,17 @@
   "recheck": true
  },
  "p_tswydc_onion": {
-  "label": "demand",
+  "label": "other",
   "note": "",
   "recheck": true
  },
  "p_txkgr6_cucumber": {
   "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "p_u564cr_cucumber": {
+  "label": "demand",
   "note": "",
   "recheck": false
  },
@@ -619,8 +809,18 @@
   "note": "",
   "recheck": false
  },
+ "p_vod7wi_cucumber": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "p_wnrwaj_avocado": {
   "label": "price",
+  "note": "",
+  "recheck": false
+ },
+ "p_wuyibd_lettuce": {
+  "label": "supply",
   "note": "",
   "recheck": false
  },
