@@ -2,7 +2,7 @@
 
 Inputs
     labeling/collab.json        export of the collaborator page's store: {"<person>_<obs_id>": {"obs_id", "label", "by"}}
-    labeling/collab_sample.csv  the 160 texts shown (set: adjudicated / silver check / earlier review)
+    labeling/collab_sample.csv  the 80 texts shown (set: adjudicated / silver check / earlier review)
     labeling/labels.csv, labeling/adjudication.json   the first reviewer's decisions
 Output
     outputs/tables/human_agreement.csv   percent agreement and Cohen's kappa per person and per set
