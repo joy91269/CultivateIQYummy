@@ -345,6 +345,41 @@ display(unusual.sort_values("max_abs_z", ascending=False).head(25)[
 """)
 
 md(r"""
+**Which spikes point to real events?** Many weeks are unusual in some series (five series, two directions), so a
+single unusual week means little. About 12% of product-weeks lie within two weeks of a documented event; if a kind
+of spike carried no information, about 12% of its weeks would too. For each series and threshold we count the
+weeks at or above it (|z| for sentiment), how many lie near a documented event, and test that share against the
+base rate (one-sided binomial test).
+""")
+
+code(r"""
+from scipy.stats import binomtest
+sw = sig[(sig["week_start"] >= "2022-01-03") & (sig["week_start"] <= "2024-12-23")].copy()   # whole weeks only
+def near_event(prod, w):
+    m = events_ref[(events_ref["product"] == prod) & (events_ref["start_date"] - pd.Timedelta(weeks=2) <= w)
+                   & (events_ref["end_date"] + pd.Timedelta(weeks=2) >= w)]
+    return ", ".join(m["event_id"])
+sw["near_event"] = [near_event(p, w) for p, w in zip(sw["product"], sw["week_start"])]
+base = (sw["near_event"] != "").mean()
+rows = []
+for name, col in zcols.items():
+    for thr in (2, 3, 4):
+        x = sw[col].abs() if name == "sentiment" else sw[col]
+        hit = sw[x >= thr]
+        k = int((hit["near_event"] != "").sum())
+        found = sorted({e for v in hit["near_event"] if v for e in v.split(", ")})
+        rows.append({"series": name, "z_at_least": thr, "weeks": len(hit), "near_documented_event": k,
+                     "share": round(k / len(hit), 2) if len(hit) else np.nan,
+                     "p_vs_base_rate": round(binomtest(k, len(hit), base, alternative="greater").pvalue, 4)
+                     if len(hit) else np.nan,
+                     "events_found": ", ".join(found)})
+spikes = pd.DataFrame(rows)
+spikes.to_csv(TAB / "spike_event_enrichment.csv", index=False)
+print(f"{len(sw)} product-weeks; {base:.1%} lie within 2 weeks of a documented event (the base rate)")
+display(spikes)
+""")
+
+md(r"""
 ## 6. USDA AMS terminal market prices
 
 `analysis/prices.py` turns ~457,000 reported price lines into a fixed-composition weekly price index per product

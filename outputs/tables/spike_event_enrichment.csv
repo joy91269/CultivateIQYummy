@@ -1,0 +1,16 @@
+series,z_at_least,weeks,near_documented_event,share,p_vs_base_rate,events_found
+volume,2,40,6,0.15,0.2893,"E1, E2, E5, E7, E8"
+volume,3,18,4,0.22,0.1352,"E1, E2, E7"
+volume,4,8,2,0.25,0.2238,"E2, E7"
+price,2,58,7,0.12,0.4792,"E1, E2, E3, E7, E8"
+price,3,18,4,0.22,0.1352,"E2, E3, E7, E8"
+price,4,9,1,0.11,0.6573,"E2, E8"
+supply,2,48,10,0.21,0.038,"E1, E2, E3, E5, E6, E7, E8"
+supply,3,23,8,0.35,0.0026,"E1, E2, E3, E5, E6, E7, E8"
+supply,4,13,6,0.46,0.0017,"E1, E3, E5, E6, E7, E8"
+demand,2,46,6,0.13,0.4137,"E1, E2, E3, E7"
+demand,3,14,3,0.21,0.2019,"E1, E2, E7"
+demand,4,4,0,0.0,1.0,
+sentiment,2,60,11,0.18,0.0684,"E2, E3, E4, E5, E6, E7, E8"
+sentiment,3,16,4,0.25,0.096,"E2, E3, E4, E6, E7"
+sentiment,4,3,1,0.33,0.3002,E6

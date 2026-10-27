@@ -1,0 +1,9 @@
+event_id,product,event,mean_change_pct,peak_change_pct,same_window_other_years_pct,seasonally_adjusted_pct,n_comparison_years,market_range_pct,overlaps_with
+E1,avocado,US suspends Mexican avocado imports,17.1,22.8,1.5,15.4,2,12 to 33,
+E2,lettuce,INSV lettuce shortage in California,99.4,199.6,2.9,93.9,2,75 to 118,E8
+E3,cucumber,Salmonella outbreak linked to cucumbers,2.7,7.7,6.0,-3.1,2,-9 to 9,E4
+E4,cucumber,Viral cucumber salad trend,20.6,54.2,16.7,3.4,2,-2 to 30,E3
+E5,onion,McDonald's E. coli outbreak traced to slivered onions,-3.6,-4.7,-6.5,3.2,2,-8 to 1,
+E6,cucumber,SunFed cucumber recall (Salmonella Typhimurium),-12.7,-18.7,-6.3,-6.8,2,-25 to 22,
+E7,avocado,USDA pauses avocado inspections in Michoacan,25.4,29.9,19.3,5.1,2,5 to 45,
+E8,lettuce,Wendy's romaine E. coli outbreak,36.6,50.1,-8.1,48.7,2,27 to 48,E2

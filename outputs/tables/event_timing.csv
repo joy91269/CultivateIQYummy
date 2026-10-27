@@ -1,0 +1,9 @@
+event_id,product,event,event_start,first_price_move_week,price_direction,first_volume_signal_week,volume_lead_days,first_supply_signal_week,supply_lead_days,first_price_signal_week,price_lead_days,first_demand_signal_week,demand_lead_days
+E1,avocado,US suspends Mexican avocado imports,2022-02-12,2022-02-14,up,2022-02-07,7.0,2022-02-07,7.0,2022-02-07,7.0,2022-02-07,7.0
+E2,lettuce,INSV lettuce shortage in California,2022-09-15,2022-08-22,up,2022-09-19,-28.0,2022-08-22,0.0,2022-08-22,0.0,2022-10-10,-49.0
+E3,cucumber,Salmonella outbreak linked to cucumbers,2024-06-01,2024-05-13,down,2024-05-06,7.0,2024-06-03,-21.0,2024-05-20,-7.0,2024-06-24,-42.0
+E4,cucumber,Viral cucumber salad trend,2024-07-15,2024-08-12,down,,,2024-11-25,-105.0,,,2024-06-24,49.0
+E5,onion,McDonald's E. coli outbreak traced to slivered onions,2024-10-22,,,2024-12-16,,2024-10-21,,2024-10-07,,,
+E6,cucumber,SunFed cucumber recall (Salmonella Typhimurium),2024-11-27,2024-11-11,down,,,2024-11-25,-14.0,,,2024-11-04,7.0
+E7,avocado,USDA pauses avocado inspections in Michoacan,2024-06-14,2024-06-03,up,2024-07-01,-28.0,2024-06-17,-14.0,2024-06-17,-14.0,2024-06-24,-21.0
+E8,lettuce,Wendy's romaine E. coli outbreak,2022-08-19,2022-08-15,up,2022-09-19,-35.0,2022-08-22,-7.0,2022-08-22,-7.0,2022-10-10,-56.0
