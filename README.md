@@ -11,8 +11,8 @@ compare them with **USDA AMS terminal market wholesale prices**, 2022–2024.
 | Period | 1 January 2022 – 31 December 2024 |
 | Online data | Reddit posts and comments from 29 topical subreddits (consumers, grocery retailers, food service, growers, economy) and 9 city subreddits, plus r/news headlines, via the public Arctic Shift archive API: 1.5 M posts scanned, 92,424 texts kept |
 | Market benchmark | USDA AMS Specialty Crops terminal market reports, 10 cities, and AMS daily movement (shipment) reports (MyMarketNews MARS API) |
-| Labels | 2,946 texts labelled price / supply / demand / other, one per Reddit thread (`labeling/`): 1,118 **gold** labels (two Claude annotators, every disagreement and a random check of agreements decided by a person, a blind check by OpenAI Codex and ChatGPT with blind adjudication; used for training and all accuracy figures) and 1,828 **silver** labels (the two Claude annotators agree; training only) |
-| Classifier | gte-modernbert-base sentence embeddings + logistic regression trained on gold + silver labels; macro-F1 0.67 (95% CI 0.63–0.72), accuracy 0.86 on the gold labels in thread-grouped 5-fold CV (keyword rules, zero-shot BART, fine-tuned DistilRoBERTa and three sentence encoders with and without silver labels compared) |
+| Labels | 2,946 texts labelled price / supply / demand / other, one per Reddit thread (`labeling/`): 1,458 **gold** labels (two Claude annotators; every disagreement and a check of agreements decided by a person; a blind check by OpenAI Codex and ChatGPT with blind adjudication; 340 of them moved up from silver after a person or ChatGPT confirmed them; used for training and all accuracy figures) and 1,488 **silver** labels (the two Claude annotators agree; not used by the final model) |
+| Classifier | all-mpnet-base-v2 sentence embeddings + logistic regression trained on the gold labels; macro-F1 0.72 (95% CI 0.69–0.75), accuracy 0.82 in thread-grouped 5-fold CV (keyword rules, zero-shot BART, fine-tuned DistilRoBERTa and three sentence encoders with and without silver labels compared) |
 | Validation events | 8 documented events with dates and news sources (`config/events_reference.csv`) |
 
 ## Results at a glance
@@ -124,7 +124,9 @@ Notes
   was drawn, `labeling/codebook.md` how it was labelled (including the AI annotation and human review procedure),
   and `labeling/annotations/` holds the labels and reasons of all four AI annotators (two Claude models; OpenAI Codex
   and ChatGPT, whose task is in `labeling/codex_task/`). `labeling/adjudication.json` holds the blind A/B decisions,
-  and `labeling/build_collab_page.py` / `collect_collab.py` the second human annotator's sample and agreement.
+  `labeling/select_upgrade.py` and `labeling/crosscheck2/` the silver texts moved up to gold and ChatGPT's blind
+  labels for them, and `labeling/build_collab_page.py` / `collect_collab.py` the second human annotator's sample and
+  agreement.
 - Model steps cache their intermediate results in `.cache/` (not committed) and resume after an interruption.
 - If model downloads from Hugging Face fail behind a restrictive proxy, set `HF_HUB_DISABLE_XET=1`.
 
