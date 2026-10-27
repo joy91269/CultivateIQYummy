@@ -6,9 +6,12 @@ pick one. Reviews are saved to the page's shared store (collection `reviews`, on
 per obs_id) and exported back with labeling/collect_reviews.py into labeling/labels.csv.
 
 Usage: python labeling/build_review_page.py   ->  labeling/review_page.html
+       python labeling/build_review_page.py --upgrade   (review round 4: only the silver texts picked by
+       labeling/select_upgrade.py that no person has seen yet; confirm or correct the agreed label)
 """
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -354,7 +357,7 @@ render();
 """
 
 
-def main() -> None:
+def main(upgrade: bool = False) -> None:
     s = pd.read_csv(ROOT / "labeling/label_sample.csv")
     cols = ["obs_id", "product", "record_type", "subreddit", "date", "url", "text", "label_ai1", "reason_ai1",
             "label_ai2", "reason_ai2", "needs_review", "recheck", "adjudicate", "final_label", "codex_label",
@@ -395,12 +398,22 @@ def main() -> None:
     for c in ["reason_ai1", "reason_ai2"]:
         s[c] = s[c].fillna("")
     s["needs_review"] = s["needs_review"].astype(bool)
+    title = "Produce signal labels"
+    if upgrade:
+        # round 4: silver texts to become gold; only those no person has decided yet, in random order
+        seen = set(json.loads((ROOT / "labeling/reviews.json").read_text()))
+        s = s[s["upgrade"].fillna(False).astype(bool) & ~s["obs_id"].isin(seen)].sample(frac=1, random_state=47)
+        s["needs_review"], s["recheck"], s["adjudicate"] = True, False, False
+        title = "Silver to gold: confirm or correct the agreed label"
     items = s[cols].to_dict(orient="records")
-    html = TEMPLATE.replace("__ITEMS__", json.dumps(items, ensure_ascii=False).replace("</", "<\\/"))
+    html = TEMPLATE.replace("<h1>Produce signal labels</h1>", f"<h1>{title}</h1>")
+    html = html.replace("__ITEMS__", json.dumps(items, ensure_ascii=False).replace("</", "<\\/"))
     out = ROOT / "labeling/review_page.html"
     out.write_text(html, encoding="utf-8")
     print(f"{len(items)} items -> {out.relative_to(ROOT)} ({out.stat().st_size / 1e3:.0f} kB)")
 
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--upgrade", action="store_true", help="only the silver texts picked to become gold")
+    main(ap.parse_args().upgrade)

@@ -10,6 +10,8 @@ Output
     labeling/labels.csv        final `label` and where it came from (`label_source`):
                                "human review"            a person decided (all disagreements + random agreements)
                                "AI agreement"            both AI annotators agreed and the row was not drawn for review
+                               "human review (silver text upgraded to gold)"  a person confirmed or corrected the
+                                                         agreed label of a silver text (round 4)
                                "AI annotator 1 (unreviewed disagreement)"  only if a flagged row was not reviewed
 
 Usage: python labeling/collect_reviews.py
@@ -51,13 +53,20 @@ def main() -> None:
     s.loc[s["adjudicated"], "label_source"] = "human adjudication (cross-family disagreement)"
     if "tier" not in s:
         s["tier"] = "gold"
+    # silver texts picked to become gold (labeling/select_upgrade.py) become gold once a person has decided them
+    if "upgrade" not in s:
+        s["upgrade"] = False
+    s["upgrade"] = s["upgrade"].fillna(False).astype(bool)
+    up = s["tier"].eq("silver") & s["upgrade"] & s["reviewed"]
+    s.loc[up, "tier"] = "gold"
+    s.loc[up, "label_source"] = "human review (silver text upgraded to gold)"
     # silver rows where the AI annotators disagree are not used at all
     drop = (s["tier"] == "silver") & ~s["reviewed"] & ~s["ai_agree"]
     s.loc[drop, "label"] = pd.NA
     s.loc[drop, "label_source"] = "dropped (silver, AI annotators disagree)"
     if (~s["label"].isin(LABELS) & ~drop).any():
         raise SystemExit("unknown label found")
-    cols = ["obs_id", "batch", "tier", "product", "record_type", "subreddit", "date", "thread_id", "url", "label_ai1",
+    cols = ["obs_id", "batch", "tier", "upgrade", "product", "record_type", "subreddit", "date", "thread_id", "url", "label_ai1",
             "reason_ai1", "label_ai2", "reason_ai2", "ai_agree", "review_round", "needs_review", "reviewed", "first_pass_label", "rechecked", "human_label",
             "adjudicated", "label_before_adjudication", "label",
             "label_source", "note"]
