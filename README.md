@@ -68,7 +68,7 @@ report/                     PDF report
 
 ## Setup
 
-Python 3.11 or newer (developed with Python 3.13 on Linux, CPU only).
+Python 3.12 or newer (developed with Python 3.13 on Linux, CPU only).
 
 ```bash
 git clone https://github.com/joy91269/CultivateIQYummy.git
