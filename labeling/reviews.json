@@ -24,6 +24,11 @@
   "note": "",
   "recheck": false
  },
+ "c_i25va2l_onion": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "c_i2gnfym_onion": {
   "label": "supply",
   "note": "",
@@ -34,8 +39,18 @@
   "note": "",
   "recheck": false
  },
+ "c_i3gm53m_avocado": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
  "c_i3s8j52_onion": {
   "label": "price",
+  "note": "",
+  "recheck": false
+ },
+ "c_i3updkr_cucumber": {
+  "label": "demand",
   "note": "",
   "recheck": false
  },
@@ -43,6 +58,11 @@
   "label": "demand",
   "note": "",
   "recheck": true
+ },
+ "c_i7l4xkm_lettuce": {
+  "label": "other",
+  "note": "",
+  "recheck": false
  },
  "c_i8dkeec_avocado": {
   "label": "demand",
@@ -54,13 +74,33 @@
   "note": "",
   "recheck": true
  },
+ "c_ifnu9pr_cucumber": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "c_imfisr8_cucumber": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "c_invkldd_avocado": {
   "label": "supply",
   "note": "",
   "recheck": false
  },
+ "c_ip3ytpy_avocado": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
+ },
  "c_ip9j2p1_avocado": {
   "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "c_ipixe8n_lettuce": {
+  "label": "price",
   "note": "",
   "recheck": false
  },
@@ -71,6 +111,16 @@
  },
  "c_is4itz2_avocado": {
   "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "c_it1amke_lettuce": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "c_it1x3bf_avocado": {
+  "label": "other",
   "note": "",
   "recheck": false
  },
@@ -94,6 +144,11 @@
   "note": "",
   "recheck": false
  },
+ "c_j943pf7_onion": {
+  "label": "demand",
+  "note": "",
+  "recheck": false
+ },
  "c_jarfxll_onion": {
   "label": "price",
   "note": "",
@@ -109,6 +164,21 @@
   "note": "",
   "recheck": true
  },
+ "c_jn4eoni_avocado": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "c_jqh1glh_onion": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "c_jrbxkex_avocado": {
+  "label": "price",
+  "note": "",
+  "recheck": false
+ },
  "c_jwtc0i9_avocado": {
   "label": "supply",
   "note": "",
@@ -121,6 +191,11 @@
  },
  "c_k0pc9dc_avocado": {
   "label": "price",
+  "note": "",
+  "recheck": false
+ },
+ "c_k12q7xr_avocado": {
+  "label": "demand",
   "note": "",
   "recheck": false
  },
@@ -138,6 +213,11 @@
   "label": "demand",
   "note": "",
   "recheck": true
+ },
+ "c_l71vqiq_onion": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
  },
  "c_l9aq9nv_lettuce": {
   "label": "demand",
@@ -164,6 +244,11 @@
   "note": "",
   "recheck": true
  },
+ "c_lf3h335_avocado": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
  "c_lf8clcs_lettuce": {
   "label": "other",
   "note": "",
@@ -189,6 +274,11 @@
   "note": "",
   "recheck": false
  },
+ "c_lp9mfvk_avocado": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
  "c_lpog46h_onion": {
   "label": "other",
   "note": "",
@@ -203,6 +293,21 @@
   "label": "supply",
   "note": "",
   "recheck": true
+ },
+ "c_lt7afdu_avocado": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "c_lzlx3ih_cucumber": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "c_lzqr9z5_cucumber": {
+  "label": "other",
+  "note": "",
+  "recheck": false
  },
  "c_lzsqcpq_avocado": {
   "label": "supply",
@@ -221,6 +326,11 @@
  },
  "c_m36ozgx_avocado": {
   "label": "other",
+  "note": "",
+  "recheck": false
+ },
+ "p_105kbmp_avocado": {
+  "label": "price",
   "note": "",
   "recheck": false
  },
@@ -369,6 +479,11 @@
   "note": "",
   "recheck": false
  },
+ "p_1c9z8ea_lettuce": {
+  "label": "supply",
+  "note": "",
+  "recheck": false
+ },
  "p_1cg6em9_cucumber": {
   "label": "demand",
   "note": "",
@@ -434,6 +549,11 @@
   "note": "",
   "recheck": false
  },
+ "p_1f6j48x_onion": {
+  "label": "other",
+  "note": "",
+  "recheck": false
+ },
  "p_1gbtrhq_lettuce": {
   "label": "other",
   "note": "",
@@ -476,6 +596,11 @@
  },
  "p_txkgr6_cucumber": {
   "label": "supply",
+  "note": "",
+  "recheck": false
+ },
+ "p_uz0ppt_lettuce": {
+  "label": "other",
   "note": "",
   "recheck": false
  },
