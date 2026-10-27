@@ -20,17 +20,20 @@ compare them with **USDA AMS terminal market wholesale prices**, 2022–2024.
 - **Two documented events were supply shocks, and the market data confirm it.** Prices rose while shipments fell:
   the February 2022 halt of Mexican avocado imports (+15% after seasonal adjustment, shipments −33%) and the 2022
   INSV lettuce shortage (+94%, shipments −13%; a carton of 24 iceberg heads went from a median $30 to $68).
-- **Reddit reacts to supply disruptions and recalls at once.** Avocado supply talk rose 38-fold during the import
-  halt; lettuce supply and price talk crossed their alert level in August 2022 one week after wholesale prices began
-  to rise, but 3½ weeks before the shortage was in the news.
-- **Supply talk is the signal that finds events.** Weeks with a supply-talk spike (z ≥ 3) fall within two weeks of
-  a documented event 35% of the time against 11% by chance (p = 0.003) and cover 7 of the 8 events; spikes in price
-  talk, demand talk, volume or sentiment do no better than chance (`outputs/tables/spike_event_enrichment.csv`).
-- **Two food-safety outbreaks, a recall and a viral recipe trend did not move national wholesale prices** (−7% to
-  +3% after seasonal adjustment). Online they appear as bursts of supply talk (recalls); demand talk barely rose.
-- **Timing:** for the two supply shocks the online signal moved within a week of prices (one calendar week earlier
-  for the avocado halt, announced on a Saturday; one week later for the lettuce shortage). Across all weeks, correlations are weak; lettuce supply talk leads lettuce prices by about
-  two weeks and price talk lags them by two weeks (rotation test p < 0.01).
+- **Supply talk is the signal that finds events.** Weeks with a supply-talk spike (z ≥ 3 against the previous eight
+  weeks) fall within two weeks of a documented event 36% of the time (8 of 22) against 11% by chance (p = 0.002);
+  spikes in price talk, demand talk, volume or sentiment are not clearly above chance
+  (`outputs/tables/spike_event_enrichment.csv`).
+- **Reddit flags supply events; prices show which ones mattered.** Supply talk rose around six of the eight events:
+  both supply shocks (24-fold during the avocado import halt), the avocado inspection pause and three of the four
+  food-safety events, where recalls count as supply talk. Only the two supply shocks moved prices; the food-safety
+  outbreaks, the recall and a viral recipe trend did not move national wholesale prices (−7% to +3% after seasonal
+  adjustment).
+- **Timing:** supply talk about the avocado halt surged the day after its Saturday announcement, and prices rose the
+  following week. Lettuce prices began to rise in mid-August 2022; the rise in lettuce talk later that month was
+  about the Wendy's E. coli outbreak, and most talk about the shortage itself came in mid-November, the week prices
+  peaked. Across all weeks, talk and prices correlate weakly at any lag (|r| ≤ 0.29; 2 of 20 product–series pairs
+  with rotation-test p < 0.05).
 
 Details: report (`report/`), notebook sections 5 and 7–9, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
 `event_price_impact.csv`, `event_price_examples_usd.csv`, `lead_lag_crosscorrelation.csv`, `event_timing.csv`).

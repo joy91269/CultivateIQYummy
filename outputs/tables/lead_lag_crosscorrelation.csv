@@ -1,21 +1,21 @@
 product,signal,r_same_week,best_lag_weeks,r_at_best_lag,outside_simple_band,p_rotation,reading
 avocado,volume,0.184,0,0.184,True,0.325,same week
-avocado,price posts,0.103,1,0.146,False,0.905,signal leads price
-avocado,supply posts,0.21,-5,0.224,True,0.54,signal lags price
-avocado,demand posts,0.203,0,0.203,True,0.183,same week
+avocado,price posts,0.143,1,0.181,True,0.429,signal leads price
+avocado,supply posts,0.191,-6,0.217,True,0.373,signal lags price
+avocado,demand posts,0.231,0,0.231,True,0.04,same week
 avocado,sentiment,0.115,3,0.147,False,0.611,signal leads price
 lettuce,volume,0.104,-3,0.109,False,0.603,signal lags price
-lettuce,price posts,0.19,-2,0.247,True,0.0,signal lags price
-lettuce,supply posts,0.164,2,0.2,True,0.0,signal leads price
-lettuce,demand posts,0.077,3,-0.2,True,0.294,signal leads price
+lettuce,price posts,0.159,-2,0.189,True,0.135,signal lags price
+lettuce,supply posts,0.183,0,0.183,True,0.159,same week
+lettuce,demand posts,0.045,3,-0.146,False,0.325,signal leads price
 lettuce,sentiment,-0.165,3,-0.194,True,0.452,signal leads price
 onion,volume,0.131,2,0.163,True,0.0,signal leads price
-onion,price posts,0.088,-1,0.11,False,0.413,signal lags price
-onion,supply posts,-0.034,8,0.15,False,0.135,signal leads price
-onion,demand posts,0.123,0,0.123,False,0.246,same week
+onion,price posts,0.05,-6,-0.078,False,1.0,signal lags price
+onion,supply posts,0.012,8,0.102,False,0.643,signal leads price
+onion,demand posts,0.131,0,0.131,False,0.246,same week
 onion,sentiment,0.006,7,0.068,False,0.873,signal leads price
 cucumber,volume,-0.126,-4,-0.289,True,0.286,signal lags price
-cucumber,price posts,0.028,7,0.125,False,0.27,signal leads price
-cucumber,supply posts,-0.139,-8,-0.176,True,0.778,signal lags price
-cucumber,demand posts,-0.003,5,-0.153,False,0.944,signal leads price
+cucumber,price posts,-0.008,-4,-0.162,True,0.587,signal lags price
+cucumber,supply posts,-0.136,-8,-0.288,True,0.357,signal lags price
+cucumber,demand posts,-0.051,-5,-0.158,False,0.976,signal lags price
 cucumber,sentiment,0.168,-3,0.26,True,0.23,signal lags price
