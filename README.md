@@ -11,9 +11,26 @@ compare them with **USDA AMS terminal market wholesale prices**, 2022–2024.
 | Period | 1 January 2022 – 31 December 2024 |
 | Online data | Reddit posts and comments from 29 topical subreddits (consumers, grocery retailers, food service, growers, economy) and 9 city subreddits, plus r/news headlines, via the public Arctic Shift archive API: 1.5 M posts scanned, 92,424 texts kept |
 | Market benchmark | USDA AMS Specialty Crops terminal market reports, 10 cities, and AMS daily movement (shipment) reports (MyMarketNews MARS API) |
-| Labels | 794 texts labelled price / supply / demand / other by two AI annotators, with every disagreement and a random check reviewed by a person (`labeling/`) |
-| Classifier | gte-modernbert-base sentence embeddings + logistic regression; macro-F1 0.67, accuracy 0.86 in thread-grouped 5-fold CV (six models compared) |
+| Labels | 2,946 texts labelled price / supply / demand / other, one per Reddit thread (`labeling/`): 1,118 **gold** labels (two Claude annotators, every disagreement and a random check of agreements decided by a person, a blind check by OpenAI Codex and ChatGPT with blind adjudication; used for training and all accuracy figures) and 1,828 **silver** labels (the two Claude annotators agree; training only) |
+| Classifier | gte-modernbert-base sentence embeddings + logistic regression trained on gold + silver labels; macro-F1 0.67 (95% CI 0.63–0.72), accuracy 0.86 on the gold labels in thread-grouped 5-fold CV (keyword rules, zero-shot BART, fine-tuned DistilRoBERTa and three sentence encoders with and without silver labels compared) |
 | Validation events | 8 documented events with dates and news sources (`config/events_reference.csv`) |
+
+## Results at a glance
+
+- **Two documented events were supply shocks, and the market data confirm it.** Prices rose while shipments fell:
+  the February 2022 halt of Mexican avocado imports (+15% after seasonal adjustment, shipments −33%) and the 2022
+  INSV lettuce shortage (+94%, shipments −13%; a carton of 24 iceberg heads went from a median $30 to $68).
+- **Reddit reacts to supply disruptions and recalls at once.** Avocado supply talk rose 38-fold in the week of the
+  import halt; lettuce supply and price talk crossed their alert level in the same week wholesale prices began to rise
+  in August 2022, 3½ weeks before the shortage was in the news.
+- **Food-safety outbreaks and a viral recipe trend did not move national wholesale prices** (−7% to +3% after
+  seasonal adjustment). Online they appear as bursts of supply talk (recalls), while demand talk did not rise.
+- **Timing:** for sudden shocks the online signal moves in the same week as prices (a calendar week earlier when the
+  news breaks at a weekend). Across all weeks, correlations are weak; lettuce supply talk leads lettuce prices by about
+  two weeks and price talk lags them by two weeks (rotation test p < 0.01).
+
+Details: report (`report/`), notebook sections 8–10, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
+`event_price_impact.csv`, `event_price_examples_usd.csv`, `lead_lag_crosscorrelation.csv`, `event_timing.csv`).
 
 ## Repository layout
 
@@ -74,7 +91,7 @@ bash run_all.sh --analysis
 This rebuilds and executes `notebooks/task2_signals_and_prices.ipynb`, which writes every figure to
 `outputs/figures/` and every table to `outputs/tables/`.
 
-**Full path (about 8–10 hours on a 2-core CPU):** re-collects all data and retrains the models.
+**Full path (about 20 hours on a 2-core CPU):** re-collects all data and retrains the models.
 
 ```bash
 bash run_all.sh
@@ -92,7 +109,7 @@ or step by step:
 | 5. AMS prices | `python data_collection/collect_ams.py` | ~10 min | `data/processed/ams_terminal_prices.csv.gz` |
 | 5b. AMS shipments | `python data_collection/collect_ams_movement.py` | ~1 h | `data/processed/ams_shipments_weekly.csv` |
 | 6. Event dataset | `python data_collection/build_event_dataset.py` | ~1 min | `event_dataset.csv`, `summary_table.*`, `filter_log.csv` |
-| 7. Models | `python -m analysis.run_models all` | ~6 h | `outputs/tables/model_cv_*.csv`, `data/processed/classified_observations.csv.gz` |
+| 7. Models | `python -m analysis.run_models all` | ~10 h | `outputs/tables/model_cv_*.csv`, `data/processed/classified_observations.csv.gz` |
 | 8. Notebook | `bash run_all.sh --analysis` | ~5 min | `outputs/` |
 
 Notes
@@ -102,7 +119,9 @@ Notes
   the raw files are not re-downloaded.
 - The labelled sample (`labeling/labels.csv`) is part of the repository; `labeling/make_label_sample.py` shows how it
   was drawn, `labeling/codebook.md` how it was labelled (including the AI annotation and human review procedure),
-  and `labeling/annotations/` holds both AI annotators' labels and reasons.
+  and `labeling/annotations/` holds the labels and reasons of all four AI annotators (two Claude models; OpenAI Codex
+  and ChatGPT, whose task is in `labeling/codex_task/`). `labeling/adjudication.json` holds the blind A/B decisions,
+  and `labeling/build_collab_page.py` / `collect_collab.py` the second human annotator's sample and agreement.
 - Model steps cache their intermediate results in `.cache/` (not committed) and resume after an interruption.
 - If model downloads from Hugging Face fail behind a restrictive proxy, set `HF_HUB_DISABLE_XET=1`.
 
