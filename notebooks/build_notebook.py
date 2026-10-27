@@ -266,21 +266,29 @@ sig = S.add_anomalies(sig)
 sig.to_csv(TAB / "weekly_signals.csv", index=False)
 
 def shade(ax, prod):
-    for e in events_ref[events_ref["product"] == prod].itertuples():
+    prev, level = None, 0
+    for e in events_ref[events_ref["product"] == prod].sort_values("start_date").itertuples():
         ax.axvspan(e.start_date, e.end_date, color="0.9", zorder=0, lw=0)
-        ax.text(e.start_date, ax.get_ylim()[1], f" {e.event_id}", va="top", fontsize=7, color="0.35")
+        level = level + 1 if prev is not None and (e.start_date - prev).days < 45 else 0   # stagger close labels
+        ax.text(e.start_date, 1 - 0.12 * level, f" {e.event_id}", transform=ax.get_xaxis_transform(), va="top",
+                fontsize=7, color="0.35")
+        prev = e.start_date
 
-fig, axes = plt.subplots(4, 1, figsize=(10, 9.5), sharex=True)
-for ax, prod in zip(axes, PRODUCTS):
+fig, axes = plt.subplots(2, 2, figsize=(10, 5.2), sharex=True)
+for ax, prod in zip(axes.flat, PRODUCTS):
     g = sig[sig["product"] == prod].set_index("week_start")
     for lab_ in ["price", "supply", "demand"]:
-        ax.plot(g.index, g[f"n_{lab_}"], color=COLORS[lab_], lw=1.2, label=lab_)
-    ax.set_ylabel(f"{prod}\ntexts per week (expected)")
+        ax.plot(g.index, g[f"n_{lab_}"], color=COLORS[lab_], lw=1.1, label=lab_)
+    ax.set_title(prod, loc="left", fontsize=9, fontweight="bold")
     shade(ax, prod)
-fig.legend(*axes[0].get_legend_handles_labels(), ncol=3, frameon=False, loc="upper center", bbox_to_anchor=(0.5, 0.97))
-axes[-1].xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
-fig.suptitle("Weekly price, supply and demand signals on Reddit (grey: documented events)", y=0.995)
-fig.tight_layout(rect=(0, 0, 1, 0.955)); fig.savefig(FIG / "weekly_signals.png", dpi=200); plt.show()
+for ax in axes[:, 0]:
+    ax.set_ylabel("texts per week")
+for ax in axes[-1]:
+    ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[1, 7]))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
+fig.legend(*axes[0, 0].get_legend_handles_labels(), ncol=3, frameon=False, loc="upper center",
+           bbox_to_anchor=(0.5, 1.0))
+fig.tight_layout(rect=(0, 0, 1, 0.94)); fig.savefig(FIG / "weekly_signals.png", dpi=200); plt.show()
 
 fig, axes = plt.subplots(4, 1, figsize=(10, 7.5), sharex=True)
 for ax, prod in zip(axes, PRODUCTS):
@@ -451,6 +459,25 @@ fig.legend(*axes[0].get_legend_handles_labels(), ncol=2, frameon=False, loc="upp
 axes[-1].xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
 fig.suptitle("Weekly shipments reaching US markets (USDA AMS movement reports)", y=0.995)
 fig.tight_layout(rect=(0, 0, 1, 0.95)); fig.savefig(FIG / "shipments.png", dpi=200); plt.show()
+
+# Report figure: price index (left) and shipments (right) side by side, one row per product
+fig, axes = plt.subplots(4, 2, figsize=(10, 6.4), sharex=True)
+for (axp, axs), prod in zip(axes, PRODUCTS):
+    g = nat[nat["product"] == prod]
+    for mkt, gm in widx[(widx["product"] == prod) & (widx["market"] != "ALL")].groupby("market"):
+        axp.plot(gm["week_start"], gm["index"], color="0.75", lw=0.4, zorder=1)
+    axp.plot(g["week_start"], g["index"], color="#18211d", lw=1.2, zorder=3)
+    gs = ship[ship["product"] == prod]
+    axs.stackplot(gs["week_start"], gs["domestic_lb"] / 1e6, gs["import_lb"] / 1e6, colors=["#7fa98f", "#d2b07a"],
+                  labels=["US shipments", "imports"], lw=0)
+    axp.set_ylabel(prod, fontweight="bold")
+    shade(axp, prod); shade(axs, prod)
+axes[0, 0].set_title("Wholesale price index (black: 10 markets pooled; grey: each market)", fontsize=9, loc="left")
+axes[0, 1].set_title("Shipments, million lb per week (green: US; tan: imports)", fontsize=9, loc="left")
+for ax in axes[-1]:
+    ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[1, 7]))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
+fig.tight_layout(); fig.savefig(FIG / "prices_and_shipments.png", dpi=200); plt.show()
 """)
 
 md(r"""
