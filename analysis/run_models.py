@@ -21,7 +21,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from analysis.classify import (LABELS, embed, embed_lr_fit, finetune_fit, finetune_predict, grouped_folds,
+from analysis.classify import (EMBED_MODELS, LABELS, embed, embed_lr_fit, finetune_fit, finetune_predict, grouped_folds,
                                keyword_predict, metrics, model_input, sentiment_scores, set_threads,
                                zeroshot_predict)
 
@@ -58,17 +58,20 @@ def cached_zeroshot(lab: pd.DataFrame) -> np.ndarray:
     return lab["obs_id"].map(have).to_numpy()
 
 
-def cached_embeddings(lab: pd.DataFrame) -> np.ndarray:
-    path, ids_path = CACHE / "embeddings.npy", CACHE / "embeddings_ids.csv"
+def cached_embeddings(lab: pd.DataFrame, key: str = "embed_lr") -> np.ndarray:
+    """Sentence embeddings of the labelled texts for one of EMBED_MODELS, cached by obs_id."""
+    stem = "embeddings" if key == "embed_lr" else f"embeddings_{key}"
+    path, ids_path = CACHE / f"{stem}.npy", CACHE / f"{stem}_ids.csv"
     CACHE.mkdir(parents=True, exist_ok=True)
     if path.exists():
         X, ids = np.load(path), pd.read_csv(ids_path)["obs_id"].tolist()
     else:
-        X, ids = np.zeros((0, 768)), []
+        X, ids = None, []
     pos = {o: i for i, o in enumerate(ids)}
     todo = lab[~lab["obs_id"].isin(pos)]
     if len(todo):
-        X = np.vstack([X, embed(todo["input"].tolist())])
+        new = embed(todo["input"].tolist(), model_name=EMBED_MODELS[key])
+        X = new if X is None else np.vstack([X, new])
         ids = ids + todo["obs_id"].tolist()
         np.save(path, X)
         pd.DataFrame({"obs_id": ids}).to_csv(ids_path, index=False)
@@ -86,12 +89,13 @@ def evaluate() -> None:
     print("zero-shot ...", flush=True)
     preds["zeroshot"] = cached_zeroshot(lab)
 
-    print("embeddings + logistic regression ...", flush=True)
-    X = cached_embeddings(lab)
-    oof = np.empty(len(lab), dtype=object)
-    for tr, te in folds:
-        oof[te] = embed_lr_fit(X[tr], y[tr]).predict(X[te])
-    preds["embed_lr"] = oof
+    for key, name in EMBED_MODELS.items():
+        print(f"embeddings ({name}) + logistic regression ...", flush=True)
+        X = cached_embeddings(lab, key)
+        oof = np.empty(len(lab), dtype=object)
+        for tr, te in folds:
+            oof[te] = embed_lr_fit(X[tr], y[tr]).predict(X[te])
+        preds[key] = oof
 
     print("fine-tuned DistilRoBERTa ...", flush=True)
     # each fold takes ~25 min on a 2-core CPU, so finished folds are cached; the folder name records the label set
@@ -115,7 +119,7 @@ def evaluate() -> None:
     preds["finetune"] = oof
 
     rows = []
-    for m in ["keyword", "zeroshot", "embed_lr", "finetune"]:
+    for m in ["keyword", "zeroshot", *EMBED_MODELS, "finetune"]:
         r = metrics(y, preds[m].to_numpy(), groups)
         r["model"] = m
         rows.append(r)
@@ -149,7 +153,7 @@ def predict() -> None:
     best = json.loads(FINAL_MODEL_FILE.read_text())["selected_model"]
     ev = pd.read_csv(EVENTS, usecols=["obs_id", "product", "text", "event_types"], low_memory=False)
     inputs = [model_input(p, t) for p, t in zip(ev["product"], ev["text"])]
-    if best in ("finetune", "embed_lr"):
+    if best == "finetune" or best in EMBED_MODELS:
         if best == "finetune":
             model_dir = CACHE / "ft_final"
             from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -162,9 +166,9 @@ def predict() -> None:
                 model.save_pretrained(model_dir)
             score = lambda xs: finetune_predict(tok, model, xs)[1]
         else:
-            clf = embed_lr_fit(cached_embeddings(lab), lab["label"].to_numpy())
+            clf = embed_lr_fit(cached_embeddings(lab, best), lab["label"].to_numpy())
             cols = [list(clf.classes_).index(l) for l in LABELS]
-            score = lambda xs: clf.predict_proba(embed(xs))[:, cols]
+            score = lambda xs: clf.predict_proba(embed(xs, model_name=EMBED_MODELS[best]))[:, cols]
         prob = predict_in_chunks(ev["obs_id"].tolist(), inputs, score, CACHE / f"predict_probs_{best}.csv")
         pred = np.array(LABELS)[prob.argmax(1)]
     elif best == "zeroshot":

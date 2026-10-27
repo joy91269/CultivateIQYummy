@@ -128,7 +128,10 @@ The 95% interval for macro-F1 comes from a cluster bootstrap over threads.
 code(r"""
 cv = pd.read_csv(TAB / "model_cv_metrics.csv", index_col="model")
 names = {"keyword": "Keyword dictionary (Task 1 rules)", "zeroshot": "Zero-shot BART-large-MNLI",
-         "embed_lr": "Sentence embeddings + logistic regression", "finetune": "Fine-tuned DistilRoBERTa"}
+         "embed_lr": "Embeddings (all-mpnet-base-v2) + logistic regression",
+         "embed_lr_bge": "Embeddings (bge-base-en-v1.5) + logistic regression",
+         "embed_lr_gte": "Embeddings (gte-modernbert-base) + logistic regression",
+         "finetune": "Fine-tuned DistilRoBERTa"}
 show = cv.rename(index=names)[["accuracy", "macro_f1", "macro_f1_ci_low", "macro_f1_ci_high", "cohen_kappa",
                               "f1_price", "f1_supply", "f1_demand", "f1_other"]].round(3)
 display(show)

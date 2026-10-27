@@ -4,7 +4,8 @@ Models compared (all evaluated with thread-grouped cross-validation on the manua
 post and the comments under it never sit on both sides of a train/test split):
   1. keyword   - the Task 1 keyword dictionary mapped to the four classes (no training)
   2. zeroshot  - facebook/bart-large-mnli zero-shot NLI classifier (no training)
-  3. embed_lr  - frozen sentence embeddings (sentence-transformers/all-mpnet-base-v2) + logistic regression
+  3. embed_lr* - frozen sentence embeddings + logistic regression, with three embedding models (EMBED_MODELS):
+                 all-mpnet-base-v2 (2021), bge-base-en-v1.5 (2023) and gte-modernbert-base (2025)
   4. finetune  - distilroberta-base fine-tuned end to end on the labelled sample
 
 Each text is shown to the models together with the product it is about ("Product: onion. ..."), because one
@@ -60,12 +61,17 @@ def zeroshot_predict(inputs: list[str], batch_size: int = 8) -> np.ndarray:
 
 
 # ------------------------------------------------------------------------------------------- 3. embeddings
-EMBED_MODEL = "sentence-transformers/all-mpnet-base-v2"
+EMBED_MODELS = {"embed_lr": "sentence-transformers/all-mpnet-base-v2",      # 110 M parameters, 2021
+                "embed_lr_bge": "BAAI/bge-base-en-v1.5",                    # 110 M, 2023
+                "embed_lr_gte": "Alibaba-NLP/gte-modernbert-base"}          # 149 M, ModernBERT encoder, 2025
+EMBED_MODEL = EMBED_MODELS["embed_lr"]
 
 
-def embed(inputs: list[str], batch_size: int = 32) -> np.ndarray:
+def embed(inputs: list[str], batch_size: int = 32, model_name: str = EMBED_MODEL) -> np.ndarray:
+    import torch
     from sentence_transformers import SentenceTransformer
-    model = SentenceTransformer(EMBED_MODEL, device="cpu")
+    # some checkpoints are stored in float16, which is slow and less precise on CPU: always run in float32
+    model = SentenceTransformer(model_name, device="cpu", model_kwargs={"dtype": torch.float32})
     return model.encode(inputs, batch_size=batch_size, show_progress_bar=True, normalize_embeddings=True)
 
 
