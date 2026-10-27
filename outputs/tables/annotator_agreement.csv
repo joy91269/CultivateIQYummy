@@ -1,0 +1,8 @@
+pair,agreement,cohen_kappa,n
+claude_opus vs claude_sonnet,0.9401,0.812,1118
+claude_opus vs codex,0.873,0.6777,1118
+claude_opus vs final,0.9687,0.9063,1118
+claude_sonnet vs codex,0.8694,0.6555,1118
+claude_sonnet vs final,0.9696,0.904,1118
+codex vs final,0.8775,0.6876,1118
+"Fleiss kappa, 3 AI annotators",,0.7081,1118
