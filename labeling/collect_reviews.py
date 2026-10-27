@@ -11,7 +11,10 @@ Output
                                "human review"            a person decided (all disagreements + random agreements)
                                "AI agreement"            both AI annotators agreed and the row was not drawn for review
                                "human review (silver text upgraded to gold)"  a person confirmed or corrected the
-                                                         agreed label of a silver text (round 4)
+                                                         agreed label of a silver text picked to become gold
+                               "AI agreement confirmed by ChatGPT (silver text upgraded to gold)"  a picked silver
+                                                         text no person reviewed, where ChatGPT agrees with both
+                                                         Claude annotators
                                "AI annotator 1 (unreviewed disagreement)"  only if a flagged row was not reviewed
 
 Usage: python labeling/collect_reviews.py
@@ -53,13 +56,25 @@ def main() -> None:
     s.loc[s["adjudicated"], "label_source"] = "human adjudication (cross-family disagreement)"
     if "tier" not in s:
         s["tier"] = "gold"
-    # silver texts picked to become gold (labeling/select_upgrade.py) become gold once a person has decided them
+    # silver texts picked to become gold (labeling/select_upgrade.py). ChatGPT labelled all of them independently
+    # (labeling/crosscheck2/); where its label differed from ours, a person decided blind (adjudication.json above).
+    # A picked text becomes gold when a person decided it, or when ChatGPT agrees with the two Claude annotators.
     if "upgrade" not in s:
         s["upgrade"] = False
     s["upgrade"] = s["upgrade"].fillna(False).astype(bool)
-    up = s["tier"].eq("silver") & s["upgrade"] & s["reviewed"]
-    s.loc[up, "tier"] = "gold"
-    s.loc[up, "label_source"] = "human review (silver text upgraded to gold)"
+    cc = {}
+    for f in sorted((ROOT / "labeling/crosscheck2/chatgpt").glob("output_*.jsonl")):
+        for line in f.read_text().splitlines():
+            if line.strip():
+                r = json.loads(line)
+                cc[r["obs_id"]] = r["label"]
+    s["label_chatgpt_round2"] = s["obs_id"].map(cc)
+    pick = s["tier"].eq("silver") & s["upgrade"]
+    by_person = pick & (s["reviewed"] | s["adjudicated"])
+    confirmed = pick & ~by_person & s["ai_agree"] & s["label_chatgpt_round2"].eq(s["label_ai1"])
+    s.loc[pick & s["reviewed"] & ~s["adjudicated"], "label_source"] = "human review (silver text upgraded to gold)"
+    s.loc[confirmed, "label_source"] = "AI agreement confirmed by ChatGPT (silver text upgraded to gold)"
+    s.loc[by_person | confirmed, "tier"] = "gold"
     # silver rows where the AI annotators disagree are not used at all
     drop = (s["tier"] == "silver") & ~s["reviewed"] & ~s["ai_agree"]
     s.loc[drop, "label"] = pd.NA
@@ -68,7 +83,7 @@ def main() -> None:
         raise SystemExit("unknown label found")
     cols = ["obs_id", "batch", "tier", "upgrade", "product", "record_type", "subreddit", "date", "thread_id", "url", "label_ai1",
             "reason_ai1", "label_ai2", "reason_ai2", "ai_agree", "review_round", "needs_review", "reviewed", "first_pass_label", "rechecked", "human_label",
-            "adjudicated", "label_before_adjudication", "label",
+            "adjudicated", "label_before_adjudication", "label_chatgpt_round2", "label",
             "label_source", "note"]
     s[cols].to_csv(ROOT / "labeling/labels.csv", index=False)
     print(f"{len(s)} rows; AI annotators agree on {s['ai_agree'].mean():.1%}; {s['reviewed'].sum()} reviewed by a person")

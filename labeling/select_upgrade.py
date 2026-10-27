@@ -8,8 +8,8 @@ the same way.
 Selection (seed 47): every unreviewed silver text whose agreed label is price, supply or demand (the rare classes,
 where gold is thinnest), plus a simple random sample of agreed "other" texts, 300 texts in all.
 
-Adds or updates the columns `upgrade` (True for texts to become gold once reviewed) and `review_round` (4 for the
-new picks) in labeling/label_sample.csv.
+Adds or updates the column `upgrade` (True for texts picked to become gold) in labeling/label_sample.csv.
+How a picked text becomes gold is decided in labeling/collect_reviews.py.
 
 Usage: python labeling/select_upgrade.py [--n 300]
 """
@@ -39,7 +39,6 @@ def main(n: int) -> None:
     if "upgrade" not in s:
         s["upgrade"] = False
     s["upgrade"] = s["upgrade"].fillna(False).astype(bool) | s["obs_id"].isin(picks) | (silver & reviewed)
-    s.loc[s["obs_id"].isin(picks), "review_round"] = 4
     s.to_csv(path, index=False)
     print(f"{len(picks)} silver texts picked for review ({len(signal)} price/supply/demand, {len(other)} other); "
           f"{int((silver & reviewed).sum())} already-checked silver texts also marked to become gold")

@@ -8,6 +8,8 @@ per obs_id) and exported back with labeling/collect_reviews.py into labeling/lab
 Usage: python labeling/build_review_page.py   ->  labeling/review_page.html
        python labeling/build_review_page.py --upgrade   (review round 4: only the silver texts picked by
        labeling/select_upgrade.py that no person has seen yet; confirm or correct the agreed label)
+       python labeling/build_review_page.py --crosscheck2   (blind A/B decisions on round-4 texts where ChatGPT's
+       independent label differs from ours; saved to the `adjudication` collection)
 """
 from __future__ import annotations
 
@@ -250,7 +252,7 @@ function render() {
   const ab = it.ab_swap ? [[it.codex_label, it.codex_reason], [it.final_label, it.reason_ai1]]
                         : [[it.final_label, it.reason_ai1], [it.codex_label, it.codex_reason]];
   $("ai").innerHTML = md === "adjudicate"
-    ? `Two annotators disagree. A: <b>${ab[0][0]}</b> (${esc(ab[0][1] || "")}) · B: <b>${ab[1][0]}</b> (${esc(ab[1][1] || "")}). Which is right? A third label is fine too.`
+    ? `Two annotators disagree. A: <b>${ab[0][0]}</b>${ab[0][1] ? " (" + esc(ab[0][1]) + ")" : ""} · B: <b>${ab[1][0]}</b>${ab[1][1] ? " (" + esc(ab[1][1]) + ")" : ""}. Which is right? A third label is fine too.`
     : agree
     ? `Both AI annotators: <b>${it.label_ai1}</b>${it.reason_ai1 ? " · " + esc(it.reason_ai1) : ""}`
     : `AI annotators disagree: <b>${it.label_ai1}</b> (${esc(it.reason_ai1 || "")}) vs <b>${it.label_ai2}</b> (${esc(it.reason_ai2 || "")}). Pick one.`;
@@ -357,7 +359,34 @@ render();
 """
 
 
-def main(upgrade: bool = False) -> None:
+def crosscheck2_items(s: pd.DataFrame) -> pd.DataFrame:
+    """Round-4 texts (silver texts becoming gold) where ChatGPT's independent label (labeling/crosscheck2/) differs
+    from ours: the person's round-4 decision, or the agreed AI label where no person has decided. Shown blind as
+    option A / option B, like the first adjudication."""
+    rev = json.loads((ROOT / "labeling/reviews.json").read_text())
+    cg = {}
+    for f in sorted((ROOT / "labeling/crosscheck2/chatgpt").glob("output_*.jsonl")):
+        for line in f.read_text().splitlines():
+            if line.strip():
+                r = json.loads(line)
+                cg[r["obs_id"]] = (r["label"], r.get("reason", ""))
+    up = s[s["upgrade"].fillna(False).astype(bool) & s["obs_id"].isin(cg)].copy()
+    human = up["obs_id"].map(lambda o: rev.get(o, {}).get("label"))
+    up["final_label"] = human.fillna(up["label_ai1"])
+    up["codex_label"] = up["obs_id"].map(lambda o: cg[o][0])
+    up["codex_reason"] = up["obs_id"].map(lambda o: cg[o][1])
+    up = up[up["final_label"] != up["codex_label"]].sample(frac=1, random_state=61)
+    # no reasons on either side: a person's decision has none, and showing only one side's reason would tilt the choice
+    up["reason_ai1"], up["codex_reason"] = "", ""
+    up["adjudicate"], up["needs_review"], up["recheck"] = True, False, False
+    up["ab_swap"] = [i % 2 == 1 for i in range(len(up))]
+    pd.DataFrame({"obs_id": up["obs_id"], "final_label": up["final_label"], "chatgpt_label": up["codex_label"],
+                  "reviewed_in_round_4": human.reindex(up.index).notna()}).to_csv(
+        ROOT / "labeling/adjudication2_sample.csv", index=False)
+    return up
+
+
+def main(upgrade: bool = False, crosscheck2: bool = False) -> None:
     s = pd.read_csv(ROOT / "labeling/label_sample.csv")
     cols = ["obs_id", "product", "record_type", "subreddit", "date", "url", "text", "label_ai1", "reason_ai1",
             "label_ai2", "reason_ai2", "needs_review", "recheck", "adjudicate", "final_label", "codex_label",
@@ -400,7 +429,10 @@ def main(upgrade: bool = False) -> None:
         s[c] = s[c].fillna("")
     s["needs_review"] = s["needs_review"].astype(bool)
     title = "Produce signal labels"
-    if upgrade:
+    if crosscheck2:
+        s = crosscheck2_items(s)
+        title = "Blind check: which label is right?"
+    elif upgrade:
         # round 4: silver texts to become gold; only those no person has decided yet, in random order
         seen = set(json.loads((ROOT / "labeling/reviews.json").read_text()))
         s = s[s["upgrade"].fillna(False).astype(bool) & ~s["obs_id"].isin(seen)].sample(frac=1, random_state=47)
@@ -417,4 +449,7 @@ def main(upgrade: bool = False) -> None:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--upgrade", action="store_true", help="only the silver texts picked to become gold")
-    main(ap.parse_args().upgrade)
+    ap.add_argument("--crosscheck2", action="store_true",
+                    help="blind A/B decisions where ChatGPT disagrees with our label on the round-4 texts")
+    a = ap.parse_args()
+    main(a.upgrade, a.crosscheck2)
