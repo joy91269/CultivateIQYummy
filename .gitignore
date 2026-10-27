@@ -10,3 +10,8 @@ data/raw/ams/
 data/raw/ams_movement/
 labeling/review_page.html
 labeling/collab_page.html
+
+# report drafts: the team writes the report; build output is not committed until they do
+report/report.md
+report/report.prepared.md
+report/report.pdf

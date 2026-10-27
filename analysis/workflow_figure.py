@@ -1,30 +1,43 @@
 """Draw the data-collection and analysis workflow figure: outputs/figures/data_workflow.png
 
+Drawn at print size (6.5 in wide) so that its text matches the report's figure text.
+
     python -m analysis.workflow_figure
 """
 from pathlib import Path
 
+import matplotlib
+import matplotlib.font_manager
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 ROOT = Path(__file__).resolve().parents[1]
 
-W, H = 3.6, 1.6
-COLS = [0.2, 4.2, 8.2, 12.2]
-ROWS = [6.4, 3.7, 1.0]
+for _f in ["/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-regular.otf",
+           "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-bold.otf"]:
+    if Path(_f).exists():
+        matplotlib.font_manager.fontManager.addfont(_f)
+plt.rcParams.update({"font.family": "sans-serif",
+                     "font.sans-serif": ["TeX Gyre Heros", "Arial", "Helvetica", "DejaVu Sans"]})
+
+FIG_W, FIG_H = 6.5, 2.55          # inches; axes coordinates are inches too
+W, H = 1.5, 0.6                  # box size
+COLS = [0.02, 1.66, 3.30, 4.94]
+ROWS = [1.90, 0.98, 0.06]
+SOURCE, STEP, OUTPUT = "#e8f0f7", "#f1f1ef", "#e7f1e8"
 BOXES = {
     # key: (column, row, title, body, fill)
-    "cfg": (0, 0, "Configuration", "4 products and their regexes,\n29 topical + 9 city subreddits,\nevent keywords, 8 documented events", "#eceeed"),
-    "list": (1, 0, "Arctic Shift: every post", "38 subreddits, 2022-2024:\n1.5 M posts scanned;\nkeep posts naming a product", "#e4eff9"),
-    "trees": (2, 0, "Comment trees", "threads naming a product in the\ntitle with >= 3 comments;\nkeep product comments", "#e4eff9"),
-    "ams": (3, 0, "USDA AMS MARS API", "10 terminal markets: 457 k\nwholesale price lines; movement\nreports: weekly shipments", "#fbf0e1"),
-    "title": (0, 1, "Arctic Shift: title search", "r/news headlines,\none query per product\nword and year", "#e4eff9"),
-    "clean": (1, 1, "Clean", "bots, moderators, NSFW, crossposts,\nself-promotion, link farms,\nshort texts, duplicates", "#eceeed"),
-    "tag": (2, 1, "Task 1 event dataset", "92,424 texts -> 98,006 rows\n(text x product); event types,\ngeography, summary table", "#e6f2ea"),
-    "price": (3, 1, "Prices and quantities", "weekly index (item-series and\nweek fixed effects) and\nweekly national shipments", "#fbf0e1"),
-    "label": (1, 2, "Labelled sample", "1,458 gold labels (people decide\nor confirm) + 1,488 silver;\n4 AI annotators, 2 people", "#f5e6f3"),
-    "model": (2, 2, "Classifiers + sentiment", "keyword, zero-shot, embeddings +\nlogistic regression, DistilRoBERTa;\nthread-grouped 5-fold CV", "#f5e6f3"),
-    "compare": (3, 2, "Task 2 comparison", "weekly signals, unusual weeks,\nlead/lag, price impact,\nsupply shock vs demand shift", "#e6f2ea"),
+    "cfg": (0, 0, "Configuration", "4 products, 38 subreddits,\nevent keywords, 8 events", STEP),
+    "list": (1, 0, "Reddit posts", "Arctic Shift archive, 2022-2024;\nposts naming a product", SOURCE),
+    "trees": (2, 0, "Comment threads", "comments under product\nthreads with 3+ comments", SOURCE),
+    "ams": (3, 0, "USDA AMS reports", "terminal market prices in\n10 cities; movement reports", SOURCE),
+    "title": (0, 1, "r/news headlines", "headline search per\nproduct and year", SOURCE),
+    "clean": (1, 1, "Cleaning", "bots, spam, promotion\nand duplicates removed", STEP),
+    "tag": (2, 1, "Event dataset (Task 1)", "92,424 texts, 98,006 rows\nwith event tags", OUTPUT),
+    "price": (3, 1, "Prices and shipments", "weekly price index and\nweekly shipments", STEP),
+    "label": (1, 2, "Labelled sample", "1,458 texts; 4 AI annotators,\npeople decide disagreements", STEP),
+    "model": (2, 2, "Classifier", "sentence encoder +\nlogistic regression", STEP),
+    "compare": (3, 2, "Comparison (Task 2)", "signals against prices and\nshipments around 8 events", OUTPUT),
 }
 EDGES = [("cfg", "r", "list", "l"), ("list", "r", "trees", "l"), ("cfg", "b", "title", "t"),
          ("list", "b", "clean", "t"), ("title", "r", "clean", "l"), ("trees", "bl", "clean", "tr"),
@@ -41,27 +54,27 @@ def box_xy(key):
 def anchor(key, side):
     x, y = box_xy(key)
     return {"l": (x, y + H / 2), "r": (x + W, y + H / 2), "t": (x + W / 2, y + H), "b": (x + W / 2, y),
-            "bl": (x + 0.35, y), "tr": (x + W - 0.35, y + H)}[side]
+            "bl": (x + 0.2, y), "tr": (x + W - 0.2, y + H)}[side]
 
 
 def main() -> None:
-    fig, ax = plt.subplots(figsize=(13, 6.4))
-    ax.set_xlim(0, 16)
-    ax.set_ylim(0.8, 8.6)
+    fig = plt.figure(figsize=(FIG_W, FIG_H))
+    ax = fig.add_axes((0, 0, 1, 1))
+    ax.set_xlim(0, FIG_W)
+    ax.set_ylim(0, FIG_H)
     ax.axis("off")
     for key, (c, r, title, body, color) in BOXES.items():
         x, y = COLS[c], ROWS[r]
-        ax.add_patch(FancyBboxPatch((x, y), W, H, boxstyle="round,pad=0.02,rounding_size=0.08",
-                                    fc=color, ec="#5d6b64", lw=0.8))
-        ax.text(x + 0.15, y + H - 0.18, title, fontsize=10.5, fontweight="bold", va="top", color="#18211d")
-        ax.text(x + 0.15, y + H - 0.58, body, fontsize=8.5, va="top", color="#2c3632", linespacing=1.35)
+        ax.add_patch(FancyBboxPatch((x, y), W, H, boxstyle="round,pad=0,rounding_size=0.05",
+                                    fc=color, ec="#6b7570", lw=0.6))
+        ax.text(x + 0.08, y + H - 0.09, title, fontsize=7, fontweight="bold", va="top", color="#18211d")
+        ax.text(x + 0.08, y + H - 0.27, body, fontsize=6.2, va="top", color="#2c3632", linespacing=1.3)
     for a, sa, b, sb in EDGES:
-        ax.add_patch(FancyArrowPatch(anchor(a, sa), anchor(b, sb), arrowstyle="-|>", mutation_scale=11, lw=0.9,
-                                     color="#5d6b64", shrinkA=2, shrinkB=2))
-    ax.text(0.2, 8.55, "Data collection and analysis workflow", fontsize=13, fontweight="bold", va="top")
+        ax.add_patch(FancyArrowPatch(anchor(a, sa), anchor(b, sb), arrowstyle="-|>", mutation_scale=7, lw=0.6,
+                                     color="#6b7570", shrinkA=1.5, shrinkB=1.5))
     out = ROOT / "outputs/figures/data_workflow.png"
     out.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out, dpi=200, bbox_inches="tight")
+    fig.savefig(out, dpi=300)
     print("wrote", out)
 
 

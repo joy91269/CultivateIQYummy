@@ -52,6 +52,8 @@ os.chdir(ROOT)
 
 import numpy as np
 import pandas as pd
+import matplotlib
+import matplotlib.font_manager
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
@@ -61,7 +63,16 @@ from analysis.classify import LABELS
 warnings.filterwarnings("ignore")
 pd.set_option("display.width", 180)
 pd.set_option("display.max_colwidth", 110)
-plt.rcParams.update({"figure.dpi": 110, "axes.spines.top": False, "axes.spines.right": False, "font.size": 9})
+plt.rcParams.update({"figure.dpi": 110, "axes.spines.top": False, "axes.spines.right": False,
+                     # report figures are drawn at print size (6.5 in wide) with 8 pt text
+                     "font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8, "legend.fontsize": 7.5,
+                     "xtick.labelsize": 7.5, "ytick.labelsize": 7.5, "axes.linewidth": 0.6,
+                     "font.family": "sans-serif",
+                     "font.sans-serif": ["TeX Gyre Heros", "Arial", "Helvetica", "DejaVu Sans"]})
+for _f in ["/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-regular.otf",
+           "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-bold.otf"]:
+    if Path(_f).exists():
+        matplotlib.font_manager.fontManager.addfont(_f)
 
 FIG, TAB = ROOT / "outputs/figures", ROOT / "outputs/tables"
 FIG.mkdir(parents=True, exist_ok=True)
@@ -270,25 +281,26 @@ def shade(ax, prod):
     for e in events_ref[events_ref["product"] == prod].sort_values("start_date").itertuples():
         ax.axvspan(e.start_date, e.end_date, color="0.9", zorder=0, lw=0)
         level = level + 1 if prev is not None and (e.start_date - prev).days < 45 else 0   # stagger close labels
-        ax.text(e.start_date, 1 - 0.12 * level, f" {e.event_id}", transform=ax.get_xaxis_transform(), va="top",
-                fontsize=7, color="0.35")
+        ax.text(e.start_date, 1 - 0.13 * level, f" {e.event_id}", transform=ax.get_xaxis_transform(), va="top",
+                fontsize=6.5, color="0.35")
         prev = e.start_date
 
-fig, axes = plt.subplots(2, 2, figsize=(10, 5.2), sharex=True)
+fig, axes = plt.subplots(2, 2, figsize=(6.5, 3.9), sharex=True)
 for ax, prod in zip(axes.flat, PRODUCTS):
     g = sig[sig["product"] == prod].set_index("week_start")
     for lab_ in ["price", "supply", "demand"]:
-        ax.plot(g.index, g[f"n_{lab_}"], color=COLORS[lab_], lw=1.1, label=lab_)
-    ax.set_title(prod, loc="left", fontsize=9, fontweight="bold")
+        ax.plot(g.index, g[f"n_{lab_}"], color=COLORS[lab_], lw=0.9, label=lab_)
+    ax.set_title(prod, loc="left", fontweight="bold")
     shade(ax, prod)
 for ax in axes[:, 0]:
     ax.set_ylabel("texts per week")
 for ax in axes[-1]:
-    ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[1, 7]))
-    ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
+    ax.xaxis.set_major_locator(mdates.YearLocator())
+    ax.xaxis.set_minor_locator(mdates.MonthLocator(bymonth=[4, 7, 10]))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
 fig.legend(*axes[0, 0].get_legend_handles_labels(), ncol=3, frameon=False, loc="upper center",
            bbox_to_anchor=(0.5, 1.0))
-fig.tight_layout(rect=(0, 0, 1, 0.94)); fig.savefig(FIG / "weekly_signals.png", dpi=200); plt.show()
+fig.tight_layout(rect=(0, 0, 1, 0.93)); fig.savefig(FIG / "weekly_signals.png", dpi=300); plt.show()
 
 fig, axes = plt.subplots(4, 1, figsize=(10, 7.5), sharex=True)
 for ax, prod in zip(axes, PRODUCTS):
@@ -461,23 +473,25 @@ fig.suptitle("Weekly shipments reaching US markets (USDA AMS movement reports)",
 fig.tight_layout(rect=(0, 0, 1, 0.95)); fig.savefig(FIG / "shipments.png", dpi=200); plt.show()
 
 # Report figure: price index (left) and shipments (right) side by side, one row per product
-fig, axes = plt.subplots(4, 2, figsize=(10, 6.4), sharex=True)
+fig, axes = plt.subplots(4, 2, figsize=(6.5, 5.0), sharex=True)
 for (axp, axs), prod in zip(axes, PRODUCTS):
     g = nat[nat["product"] == prod]
     for mkt, gm in widx[(widx["product"] == prod) & (widx["market"] != "ALL")].groupby("market"):
-        axp.plot(gm["week_start"], gm["index"], color="0.75", lw=0.4, zorder=1)
-    axp.plot(g["week_start"], g["index"], color="#18211d", lw=1.2, zorder=3)
+        axp.plot(gm["week_start"], gm["index"], color="0.75", lw=0.35, zorder=1)
+    axp.plot(g["week_start"], g["index"], color="#18211d", lw=0.9, zorder=3)
     gs = ship[ship["product"] == prod]
     axs.stackplot(gs["week_start"], gs["domestic_lb"] / 1e6, gs["import_lb"] / 1e6, colors=["#7fa98f", "#d2b07a"],
                   labels=["US shipments", "imports"], lw=0)
     axp.set_ylabel(prod, fontweight="bold")
     shade(axp, prod); shade(axs, prod)
-axes[0, 0].set_title("Wholesale price index (black: 10 markets pooled; grey: each market)", fontsize=9, loc="left")
-axes[0, 1].set_title("Shipments, million lb per week (green: US; tan: imports)", fontsize=9, loc="left")
+axes[0, 0].set_title("(a) Wholesale price index", loc="left", fontweight="bold")
+axes[0, 1].set_title("(b) Shipments, million lb per week", loc="left", fontweight="bold")
+fig.legend(*axes[0, 1].get_legend_handles_labels(), loc="lower right", ncol=2, frameon=False)
 for ax in axes[-1]:
-    ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[1, 7]))
-    ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
-fig.tight_layout(); fig.savefig(FIG / "prices_and_shipments.png", dpi=200); plt.show()
+    ax.xaxis.set_major_locator(mdates.YearLocator())
+    ax.xaxis.set_minor_locator(mdates.MonthLocator(bymonth=[4, 7, 10]))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+fig.tight_layout(h_pad=0.6, rect=(0, 0.03, 1, 1)); fig.savefig(FIG / "prices_and_shipments.png", dpi=300); plt.show()
 """)
 
 md(r"""
@@ -523,17 +537,17 @@ xcorr = pd.DataFrame(xc_rows)
 xcorr.to_csv(TAB / "lead_lag_crosscorrelation.csv", index=False)
 display(xcorr)
 
-fig, axes = plt.subplots(1, 4, figsize=(11, 2.8), sharey=True)
+fig, axes = plt.subplots(1, 4, figsize=(6.5, 2.2), sharey=True)
 for ax, prod in zip(axes, PRODUCTS):
     for name, colr in [("volume", "#2f7d4f"), ("supply posts", COLORS["supply"]), ("price posts", COLORS["price"]),
                        ("demand posts", COLORS["demand"])]:
         xc = xc_curves[(prod, name)]
-        ax.plot(xc["lag_weeks"], xc["r"], color=colr, lw=1.2, label=name)
+        ax.plot(xc["lag_weeks"], xc["r"], color=colr, lw=0.9, label=name)
     ax.fill_between(xc["lag_weeks"], -xc["ci95"], xc["ci95"], color="0.9", zorder=0)
-    ax.axvline(0, color="0.5", lw=0.6); ax.set_title(prod); ax.set_xlabel("lag k (weeks, + = signal leads)")
+    ax.axvline(0, color="0.5", lw=0.5); ax.set_title(prod, fontweight="bold"); ax.set_xlabel("lag (weeks)")
 axes[0].set_ylabel("corr(signal$_t$, price$_{t+k}$)")
-fig.legend(*axes[0].get_legend_handles_labels(), ncol=4, frameon=False, loc="upper center", fontsize=8)
-fig.tight_layout(rect=(0, 0, 1, 0.9)); fig.savefig(FIG / "lead_lag.png", dpi=200); plt.show()
+fig.legend(*axes[0].get_legend_handles_labels(), ncol=4, frameon=False, loc="upper center")
+fig.tight_layout(rect=(0, 0, 1, 0.86)); fig.savefig(FIG / "lead_lag.png", dpi=300); plt.show()
 """)
 
 code(r"""

@@ -129,6 +129,8 @@ Notes
   agreement.
 - Model steps cache their intermediate results in `.cache/` (not committed) and resume after an interruption.
 - If model downloads from Hugging Face fail behind a restrictive proxy, set `HF_HUB_DISABLE_XET=1`.
+- `python report/build_report.py report/report.md` typesets the report (Markdown export of the report document)
+  as a PDF with three-line tables and numbered figures; it needs pandoc and XeLaTeX.
 
 ## Data sources and licences
 

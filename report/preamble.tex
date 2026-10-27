@@ -1,0 +1,29 @@
+% Paper-style layout for the report: Times text, Helvetica figure text, three-line tables, numbered captions.
+\usepackage{booktabs,tabularx,array,ragged2e,float}
+\usepackage[font=small,labelfont=bf,labelsep=period,skip=5pt]{caption}
+\captionsetup[table]{position=top}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\large\bfseries}{}{0pt}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\itshape}{}{0pt}{}
+\titlespacing*{\section}{0pt}{14pt plus 4pt minus 2pt}{6pt plus 2pt}
+\titlespacing*{\subsection}{0pt}{10pt plus 3pt minus 2pt}{4pt plus 2pt}
+\makeatletter\def\fps@figure{!htbp}\def\fps@table{!htbp}\makeatother
+\renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}\renewcommand{\floatpagefraction}{0.8}
+\setlength{\textfloatsep}{12pt plus 2pt minus 4pt}
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+\renewcommand{\arraystretch}{1.15}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=4pt,parsep=0pt}
+\usepackage{newunicodechar}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\usepackage{xurl}
+\usepackage{titling}
+\setlength{\droptitle}{-3em}
+\pretitle{\begin{center}\LARGE\bfseries}\posttitle{\par\end{center}\vspace{-0.6em}}
+\preauthor{\begin{center}\normalsize}\postauthor{\par\end{center}\vspace{-1.2em}}
+\predate{\begin{center}\normalsize}\postdate{\par\end{center}\vspace{-0.5em}}
