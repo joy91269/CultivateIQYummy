@@ -83,6 +83,31 @@ def cross_correlation(signal: pd.Series, price: pd.Series, max_lag: int = 8) -> 
     return pd.DataFrame(rows)
 
 
+def best_lag_pvalue(signal: pd.Series, price: pd.Series, max_lag: int = 8, min_shift: int = 13) -> float:
+    """p-value for the largest |corr(signal_t, price_{t+k})| over k = -max_lag..max_lag, from circular shifts.
+
+    The signal is rotated against the price by every offset of at least `min_shift` weeks (a quarter of a year), which
+    breaks any real timing link but keeps both series' autocorrelation and seasonality. The p-value is the share of
+    rotations whose best |r| over all lags is at least the observed one. This accounts for the autocorrelation of
+    trailing z-scores and for picking the best of 2*max_lag+1 lags, which the simple +-1.96/sqrt(n) band does not."""
+    pair = pd.concat([signal, price], axis=1).dropna()
+    x, y = pair.iloc[:, 0].to_numpy(float), pair.iloc[:, 1].to_numpy(float)
+    n = len(x)
+    if n < 4 * min_shift or np.std(x) == 0 or np.std(y) == 0:
+        return np.nan
+
+    def best(xs):
+        rs = []
+        for k in range(-max_lag, max_lag + 1):
+            a, b = (xs[:n - k], y[k:]) if k >= 0 else (xs[-k:], y[:n + k])
+            rs.append(abs(np.corrcoef(a, b)[0, 1]))
+        return np.nanmax(rs)
+
+    obs = best(x)
+    null = np.array([best(np.roll(x, s)) for s in range(min_shift, n - min_shift + 1)])
+    return float((null >= obs).mean())
+
+
 def first_crossing(series: pd.Series, start, end, thr: float = 2.0, direction: str = "abs"):
     s = series[(series.index >= start) & (series.index <= end)].dropna()
     hit = s[s.abs() >= thr] if direction == "abs" else s[s >= thr] if direction == "up" else s[s <= -thr]

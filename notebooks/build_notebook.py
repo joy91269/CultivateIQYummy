@@ -81,40 +81,61 @@ events_ref[["event_id", "product", "event_name", "start_date", "end_date", "hypo
 md(r"""
 ## 1. Labelled sample
 
-The sample was drawn by `labeling/make_label_sample.py`: a stratified batch of posts (product × keyword stratum, one
-text per thread), then keyword-enriched batches of posts and comments so that the rare price, supply and demand
-classes are represented. Two AI annotators labelled every row independently with `labeling/codebook.md` (annotator 2
-never saw annotator 1's labels). A team member then decided every row where they disagreed plus a random sample of
-rows where they agreed (two rounds), and took a second look at every reviewed row where demand was one of the
-choices. `label` is the human decision where a person reviewed the row and the agreed AI label elsewhere; the full
-procedure is at the end of the codebook.
+The sample was drawn by `labeling/make_label_sample.py`, at most one text per Reddit thread: a stratified batch of
+posts, keyword-enriched batches of posts and comments so that the rare price, supply and demand classes are
+represented, and simple random batches that show how common each label really is. Labels come in two tiers:
+
+* **gold** (1,118 texts): two AI annotators (Claude Opus and Claude Sonnet, separate sessions) labelled every row with
+  `labeling/codebook.md`; a team member decided every disagreement and a random sample of agreements, then took a
+  second look at every reviewed row where demand was one of the choices. Two further annotators from another model
+  family (OpenAI Codex and ChatGPT) labelled the same rows blind; where both disagreed with our label, a team member
+  decided again on a blind A/B page. Gold labels are used for training and for every accuracy figure.
+* **silver** (1,828 texts): the two Claude annotators agreed (rows where they disagreed are dropped); a team member
+  checked a random 40. Silver labels are only added to the training folds.
+
+`label` is the human decision where a person decided the row and the agreed AI label elsewhere; the full procedure is
+at the end of the codebook.
 """)
 
 code(r"""
 from sklearn.metrics import cohen_kappa_score
 lab = pd.read_csv("labeling/labels.csv")
 lab = lab[lab["label"].isin(LABELS)]
-print(f"{len(lab)} labelled texts ({(lab.record_type == 'post').sum()} posts, {(lab.record_type == 'comment').sum()} comments)")
-display(pd.crosstab([lab["batch"], lab["product"]], lab["label"], margins=True).reindex(columns=LABELS + ["All"]))
-print(f"AI annotator agreement: {lab['ai_agree'].mean():.1%} of rows, Cohen's kappa "
-      f"{cohen_kappa_score(lab['label_ai1'], lab['label_ai2']):.2f}")
-display(pd.crosstab(lab["label_ai1"], lab["label_ai2"], rownames=["annotator 1"], colnames=["annotator 2"]))
-print(lab["label_source"].value_counts().to_string())
-check = lab[lab["reviewed"] & lab["ai_agree"]]
-if len(check):
-    ok = (check["human_label"] == check["label_ai1"]).mean()
-    print(f"Random check of {len(check)} rows where the AI annotators agreed: the reviewer kept the AI label for {ok:.1%}.")
-re2 = lab[lab["rechecked"]]
-if len(re2):
-    print(f"Second look at demand vs. other: {len(re2)} rows, {(re2['first_pass_label'] != re2['human_label']).sum()} "
-          f"changed:"); display(pd.crosstab(re2["first_pass_label"], re2["human_label"], rownames=["first look"],
-                                            colnames=["second look"]))
-dis = lab[lab["reviewed"] & ~lab["ai_agree"]]
-if len(dis):
-    print(f"Disagreements decided by the reviewer: {len(dis)}; reviewer sided with annotator 1 in "
-          f"{(dis['human_label'] == dis['label_ai1']).mean():.1%}, annotator 2 in "
-          f"{(dis['human_label'] == dis['label_ai2']).mean():.1%}, neither in "
-          f"{((dis['human_label'] != dis['label_ai1']) & (dis['human_label'] != dis['label_ai2'])).mean():.1%}.")
+gold, silver = lab[lab["tier"] == "gold"], lab[lab["tier"] == "silver"]
+print(f"{len(gold)} gold and {len(silver)} silver labels "
+      f"({(lab.record_type == 'post').sum()} posts, {(lab.record_type == 'comment').sum()} comments)")
+display(pd.crosstab([lab["tier"], lab["product"]], lab["label"], margins=True).reindex(columns=LABELS + ["All"]))
+display(pd.crosstab(lab["batch"], lab["tier"]))
+print(f"Gold, Claude annotators 1 and 2: agree on {gold['ai_agree'].mean():.1%} of rows, Cohen's kappa "
+      f"{cohen_kappa_score(gold['label_ai1'], gold['label_ai2']):.2f}")
+display(pd.crosstab(gold["label_ai1"], gold["label_ai2"], rownames=["annotator 1"], colnames=["annotator 2"]))
+print(gold["label_source"].value_counts().to_string())
+check = gold[gold["reviewed"] & gold["ai_agree"]]
+print(f"Random check of {len(check)} gold rows where the Claude annotators agreed: the reviewer kept the AI label "
+      f"for {(check['human_label'] == check['label_ai1']).mean():.1%}.")
+dis = gold[gold["reviewed"] & ~gold["ai_agree"]]
+print(f"Disagreements decided by the reviewer: {len(dis)}; reviewer sided with annotator 1 in "
+      f"{(dis['human_label'] == dis['label_ai1']).sum()}, annotator 2 in "
+      f"{(dis['human_label'] == dis['label_ai2']).sum()}, neither in "
+      f"{((dis['human_label'] != dis['label_ai1']) & (dis['human_label'] != dis['label_ai2'])).sum()}.")
+re2 = gold[gold["rechecked"]]
+print(f"Second look at demand vs. other: {len(re2)} rows, {(re2['first_pass_label'] != re2['human_label']).sum()} changed:")
+display(pd.crosstab(re2["first_pass_label"], re2["human_label"], rownames=["first look"], colnames=["second look"]))
+""")
+
+code(r"""
+# Four annotators from two model families on the gold rows, and the blind A/B adjudication
+display(pd.read_csv(TAB / "annotator_agreement.csv"))
+adj = gold[gold["adjudicated"]]
+print(f"Adjudicated (both OpenAI annotators agree with each other, not with our label): {len(adj)} rows; "
+      f"our label kept in {(adj['label'] == adj['label_before_adjudication']).sum()}, OpenAI label taken in "
+      f"{(adj['label'] != adj['label_before_adjudication']).sum()}.")
+display(pd.crosstab(adj["label_before_adjudication"], adj["label"], rownames=["before"], colnames=["after"]))
+sc = silver[silver["reviewed"]]
+print(f"Silver check: {len(sc)} random silver rows checked, {(sc['label'] != sc['label_ai1']).sum()} changed.")
+if (TAB / "human_agreement.csv").exists():
+    print("Second human annotator, blind, on a sample of rows:")
+    display(pd.read_csv(TAB / "human_agreement.csv"))
 """)
 
 md(r"""
@@ -124,8 +145,9 @@ All models were evaluated with **thread-grouped stratified 5-fold cross-validati
 it never fall on both sides of a train/test split, so near-duplicate context cannot leak into the test fold.
 The 95% interval for macro-F1 comes from a cluster bootstrap over threads. For the embedding models the
 regularisation strength of the logistic regression is chosen inside each training fold (inner 3-fold CV), so the
-reported scores are not tuned on the test folds. The model with the highest macro-F1 is selected; macro-F1 weights
-the four labels equally, which matters because 78% of the labelled texts are *other*.
+reported scores are not tuned on the test folds. Every score is computed on the **gold** labels only; the `+ silver`
+variants add the silver labels to each training fold (never to a test fold). The model with the highest macro-F1 is
+selected; macro-F1 weights the four labels equally, which matters because 80% of the gold texts are *other*.
 """)
 
 code(r"""
@@ -135,6 +157,7 @@ names = {"keyword": "Keyword dictionary (Task 1 rules)", "zeroshot": "Zero-shot 
          "embed_lr_bge": "Embeddings (bge-base-en-v1.5) + logistic regression",
          "embed_lr_gte": "Embeddings (gte-modernbert-base) + logistic regression",
          "finetune": "Fine-tuned DistilRoBERTa"}
+names |= {f"{k}_silver": f"{v} + silver" for k, v in list(names.items()) if k.startswith("embed")}
 show = cv.rename(index=names)[["accuracy", "macro_f1", "macro_f1_ci_low", "macro_f1_ci_high", "cohen_kappa",
                               "f1_price", "f1_supply", "f1_demand", "f1_other"]].round(3)
 display(show)
@@ -226,7 +249,7 @@ sig.to_csv(TAB / "weekly_signals.csv", index=False)
 
 def shade(ax, prod):
     for e in events_ref[events_ref["product"] == prod].itertuples():
-        ax.axvspan(e.start_date, e.end_date, color="0.85", zorder=0)
+        ax.axvspan(e.start_date, e.end_date, color="0.9", zorder=0, lw=0)
         ax.text(e.start_date, ax.get_ylim()[1], f" {e.event_id}", va="top", fontsize=7, color="0.35")
 
 fig, axes = plt.subplots(4, 1, figsize=(10, 9.5), sharex=True)
@@ -234,12 +257,12 @@ for ax, prod in zip(axes, PRODUCTS):
     g = sig[sig["product"] == prod].set_index("week_start")
     for lab_ in ["price", "supply", "demand"]:
         ax.plot(g.index, g[f"n_{lab_}"], color=COLORS[lab_], lw=1.2, label=lab_)
-    ax.set_ylabel(f"{prod}\nposts/comments per week")
+    ax.set_ylabel(f"{prod}\ntexts per week (expected)")
     shade(ax, prod)
-axes[0].legend(ncol=3, frameon=False, loc="upper right")
+fig.legend(*axes[0].get_legend_handles_labels(), ncol=3, frameon=False, loc="upper center", bbox_to_anchor=(0.5, 0.97))
 axes[-1].xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
-fig.suptitle("Weekly price, supply and demand signals on Reddit", y=0.995)
-fig.tight_layout(); fig.savefig(FIG / "weekly_signals.png", dpi=200); plt.show()
+fig.suptitle("Weekly price, supply and demand signals on Reddit (grey: documented events)", y=0.995)
+fig.tight_layout(rect=(0, 0, 1, 0.955)); fig.savefig(FIG / "weekly_signals.png", dpi=200); plt.show()
 
 fig, axes = plt.subplots(4, 1, figsize=(10, 7.5), sharex=True)
 for ax, prod in zip(axes, PRODUCTS):
@@ -340,9 +363,9 @@ print(prices.groupby("product").agg(price_lines=("price", "size"), item_series=(
 fig, axes = plt.subplots(4, 1, figsize=(10, 8.5), sharex=True)
 for ax, prod in zip(axes, PRODUCTS):
     g = nat[nat["product"] == prod]
-    ax.plot(g["week_start"], g["index"], color="#18211d", lw=1.3)
+    ax.plot(g["week_start"], g["index"], color="#18211d", lw=1.3, zorder=3)
     for mkt, gm in widx[(widx["product"] == prod) & (widx["market"] != "ALL")].groupby("market"):
-        ax.plot(gm["week_start"], gm["index"], color="0.7", lw=0.5, zorder=0)
+        ax.plot(gm["week_start"], gm["index"], color="0.68", lw=0.5, zorder=1)
     ax.set_ylabel(f"{prod}\nprice index")
     shade(ax, prod)
 axes[-1].xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
@@ -371,10 +394,10 @@ for ax, prod in zip(axes, PRODUCTS):
                  labels=["US shipments", "imports"], lw=0)
     ax.set_ylabel(f"{prod}\nmillion lb / week")
     shade(ax, prod)
-axes[0].legend(frameon=False, loc="upper left", fontsize=8)
+fig.legend(*axes[0].get_legend_handles_labels(), ncol=2, frameon=False, loc="upper center", bbox_to_anchor=(0.5, 0.965))
 axes[-1].xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
 fig.suptitle("Weekly shipments reaching US markets (USDA AMS movement reports)", y=0.995)
-fig.tight_layout(); fig.savefig(FIG / "shipments.png", dpi=200); plt.show()
+fig.tight_layout(rect=(0, 0, 1, 0.95)); fig.savefig(FIG / "shipments.png", dpi=200); plt.show()
 """)
 
 md(r"""
@@ -383,7 +406,13 @@ md(r"""
 **Series-level.** For each product we correlate a weekly signal (its deviation from the previous 8 weeks, z-score)
 with the price index deviation (also an 8-week trailing z-score) shifted by *k* weeks:
 corr(signal<sub>t</sub>, price<sub>t+k</sub>). *k > 0* means the online signal **leads** the price, *k < 0* that
-it **lags**. Correlations outside ±1.96/√n are marked significant at about 5%.
+it **lags**. The grey band in the figure is ±1.96/√n, the 5% band for one pre-chosen lag between independent series.
+Our series are autocorrelated and we pick the best of 17 lags, so that band is too generous. The test we use is a
+rotation test (`analysis.signals.best_lag_pvalue`): the signal is shifted in time against the price by every offset of
+at least 13 weeks, which keeps each series' autocorrelation and seasonality but breaks any real timing link, and the
+p-value is the share of shifts whose best |r| over all lags is at least as large as the observed one. It is
+approximate: in simulations with unrelated series of the same autocorrelation as ours (lag-1 about 0.2 for the
+signals, 0.8 for the price), it gives p < 0.05 for about 8% of pairs instead of 5%; the simple band flags about 58%.
 
 **Event-level.** For each documented event we find, within a window from 4 weeks before its start to 8 weeks
 after its end, the first week the signal crosses z ≥ 2 and the first week the price index crosses |z| ≥ 2, and
@@ -404,9 +433,10 @@ for prod in PRODUCTS:
             continue
         best = xc.loc[xc["r"].abs().idxmax()]
         r0 = xc.loc[xc["lag_weeks"] == 0, "r"].item()
+        pval = S.best_lag_pvalue(g[col], pz, max_lag=8)
         xc_rows.append({"product": prod, "signal": name, "r_same_week": round(r0, 3),
                         "best_lag_weeks": int(best["lag_weeks"]), "r_at_best_lag": round(best["r"], 3),
-                        "significant": abs(best["r"]) > best["ci95"],
+                        "outside_simple_band": abs(best["r"]) > best["ci95"], "p_rotation": round(pval, 3),
                         "reading": "signal leads price" if best["lag_weeks"] > 0 else
                                    "signal lags price" if best["lag_weeks"] < 0 else "same week"})
 xcorr = pd.DataFrame(xc_rows)
@@ -421,8 +451,9 @@ for ax, prod in zip(axes, PRODUCTS):
         ax.plot(xc["lag_weeks"], xc["r"], color=colr, lw=1.2, label=name)
     ax.fill_between(xc["lag_weeks"], -xc["ci95"], xc["ci95"], color="0.9", zorder=0)
     ax.axvline(0, color="0.5", lw=0.6); ax.set_title(prod); ax.set_xlabel("lag k (weeks, + = signal leads)")
-axes[0].set_ylabel("corr(signal$_t$, price$_{t+k}$)"); axes[-1].legend(frameon=False, fontsize=7)
-fig.tight_layout(); fig.savefig(FIG / "lead_lag.png", dpi=200); plt.show()
+axes[0].set_ylabel("corr(signal$_t$, price$_{t+k}$)")
+fig.legend(*axes[0].get_legend_handles_labels(), ncol=4, frameon=False, loc="upper center", fontsize=8)
+fig.tight_layout(rect=(0, 0, 1, 0.9)); fig.savefig(FIG / "lead_lag.png", dpi=200); plt.show()
 """)
 
 code(r"""
@@ -458,6 +489,10 @@ Change of the pooled price index during the response window relative to its mean
 (`seasonally_adjusted_pct` = event-year change minus the average other-year change, in log points). Other-year
 windows that overlap another documented event of the product are not used as comparisons.
 Per-market ranges show how uniform the move was across the 10 terminal markets.
+
+`overlaps_with` lists other documented events of the same product whose dates fall inside the 8-week baseline or the
+response window. Their effects cannot be separated: in 2022 the Wendy's romaine outbreak (E8) runs into the start of
+the INSV lettuce shortage (E2), and in 2024 the cucumber Salmonella outbreak (E3) runs into the viral salad trend (E4).
 """)
 
 code(r"""
@@ -465,6 +500,11 @@ RESPONSE_WEEKS = 2
 events_ref["response_end"] = events_ref["end_date"] + pd.Timedelta(weeks=RESPONSE_WEEKS)
 def event_windows(prod):   # documented response windows of a product (kept out of seasonal and placebo baselines)
     return [(r.start_date, r.response_end) for r in events_ref.itertuples() if r.product == prod]
+
+def overlapping(e, pre_weeks=8):   # other events of the product dated inside this event's baseline or response window
+    lo, hi = e.start_date - pd.Timedelta(weeks=pre_weeks), e.response_end
+    return ", ".join(r.event_id for r in events_ref.itertuples() if r.product == e.product
+                     and r.event_id != e.event_id and r.start_date <= hi and r.end_date >= lo)
 
 impact = []
 for e in events_ref.itertuples():
@@ -477,10 +517,39 @@ for e in events_ref.itertuples():
     mk = [m for m in mk if pd.notna(m)]
     impact.append({"event_id": e.event_id, "product": e.product, "event": e.event_name,
                    **{k: round(v, 1) if isinstance(v, float) else v for k, v in r.items()},
-                   "market_range_pct": f"{min(mk):.0f} to {max(mk):.0f}" if mk else ""})
+                   "market_range_pct": f"{min(mk):.0f} to {max(mk):.0f}" if mk else "",
+                   "overlaps_with": overlapping(e)})
 impact = pd.DataFrame(impact)
 impact.to_csv(TAB / "event_price_impact.csv", index=False)
 display(impact)
+""")
+
+md(r"""
+**In dollars.** The index is relative. For a concrete reading, the most often reported conventional item of each
+product (for example a carton of 24 film-wrapped iceberg heads) in the 10 markets: median price per package in the
+8 weeks before the event, during the response window, and the highest weekly median. These figures are not
+seasonally adjusted.
+""")
+
+code(r"""
+conv = prices[prices["organic"].astype(str).str.upper() != "Y"].copy()
+conv["report_date"] = pd.to_datetime(conv["report_date"])
+item_cols = ["commodity", "variety", "package", "item_size"]
+dollars = []
+for e in events_ref.itertuples():
+    g = conv[conv["product"] == e.product]
+    top = g.groupby(item_cols, dropna=False).size().idxmax()
+    g = g[(g[item_cols].fillna("") == pd.Series(top, index=item_cols).fillna("")).all(axis=1)]
+    pre = g[(g["report_date"] >= e.start_date - pd.Timedelta(weeks=8)) & (g["report_date"] < e.start_date)]
+    dur = g[(g["report_date"] >= e.start_date) & (g["report_date"] <= e.response_end)]
+    item = " ".join(str(v) for v in top if pd.notna(v) and str(v) not in ("", "NA"))
+    dollars.append({"event_id": e.event_id, "item": item, "median_before_usd": pre["price"].median(),
+                    "median_during_usd": dur["price"].median(),
+                    "highest_weekly_median_usd": dur.groupby("week_start")["price"].median().max(),
+                    "price_lines_before_during": f"{len(pre)} / {len(dur)}"})
+dollars = pd.DataFrame(dollars).round(2)
+dollars.to_csv(TAB / "event_price_examples_usd.csv", index=False)
+display(dollars)
 """)
 
 md(r"""
@@ -561,7 +630,8 @@ for e in events_ref.itertuples():
                     "supply_talk_before_during": f"{pre['supply']:.0f} / {dur['supply']:.0f}",
                     "demand_talk_before_during": f"{pre['demand']:.0f} / {dur['demand']:.0f}",
                     "weeks_before_during": f"{w_pre} / {w_dur}",
-                    "online_reading": online, "readings_agree": agree, "expected": e.hypothesis})
+                    "online_reading": online, "readings_agree": agree, "expected": e.hypothesis,
+                    "overlaps_with": overlapping(e)})
 verdict = pd.DataFrame(verdict)
 verdict.to_csv(TAB / "event_supply_vs_demand.csv", index=False)
 display(verdict)
