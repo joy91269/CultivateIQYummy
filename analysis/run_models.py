@@ -82,7 +82,7 @@ def cached_embeddings(lab: pd.DataFrame, key: str = "embed_lr") -> np.ndarray:
     return X[[pos[o] for o in lab["obs_id"]]]
 
 
-def evaluate() -> None:
+def evaluate(finetune: bool = True) -> None:
     """Every model is evaluated on the gold labels only (grouped 5-fold CV). Silver labels (AI-labelled, AI
     annotators agree, not reviewed) are added to the training folds of the `<model>_silver` variants only."""
     everything = load_labelled()
@@ -124,14 +124,16 @@ def evaluate() -> None:
             for i, l in enumerate(LABELS):
                 preds[f"{key}_silver_p_{l}"] = prob[:, i].round(4)
 
-    print("fine-tuned DistilRoBERTa ...", flush=True)
+    if not finetune:
+        print("fine-tuned DistilRoBERTa skipped (--no-finetune)", flush=True)
+    print("fine-tuned DistilRoBERTa ...", flush=True) if finetune else None
     # each fold takes ~25 min on a 2-core CPU, so finished folds are cached; the folder name records the label set
     # (number of texts and of each label) so that new labels never reuse old folds
     sig = f"n{len(y)}_" + "_".join(f"{l}{(y == l).sum()}" for l in LABELS)
     fold_dir = CACHE / f"ft_cv_{sig}"
     fold_dir.mkdir(parents=True, exist_ok=True)
     oof = np.empty(len(lab), dtype=object)
-    for k, (tr, te) in enumerate(folds):
+    for k, (tr, te) in enumerate(folds if finetune else []):
         path = fold_dir / f"fold{k}.csv"
         if path.exists():
             done = pd.read_csv(path)
@@ -143,11 +145,12 @@ def evaluate() -> None:
         oof[te], _ = finetune_predict(tok, model, lab["input"].iloc[te].tolist())
         pd.DataFrame({"obs_id": lab["obs_id"].iloc[te], "pred": oof[te]}).to_csv(path, index=False)
         print(f"  fold {k + 1}/{len(folds)} done", flush=True)
-    preds["finetune"] = oof
+    if finetune:
+        preds["finetune"] = oof
 
     rows = []
     variants = [m for k in EMBED_MODELS for m in (k, f"{k}_silver") if m in preds]
-    for m in ["keyword", "zeroshot", *variants, "finetune"]:
+    for m in ["keyword", "zeroshot", *variants] + (["finetune"] if finetune else []):
         r = metrics(y, preds[m].to_numpy(), groups)
         r["model"] = m
         rows.append(r)
@@ -306,10 +309,12 @@ def sentiment(chunk: int = 4000) -> None:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("step", choices=["evaluate", "predict", "sentiment", "all"])
+    ap.add_argument("--no-finetune", action="store_true",
+                    help="evaluate: skip the fine-tuned DistilRoBERTa (about 2.5 h on a 2-core CPU)")
     a = ap.parse_args()
     set_threads()
     if a.step in ("evaluate", "all"):
-        evaluate()
+        evaluate(finetune=not a.no_finetune)
     if a.step in ("predict", "all"):
         predict()
     if a.step in ("sentiment", "all"):
