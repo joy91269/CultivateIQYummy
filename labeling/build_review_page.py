@@ -384,10 +384,11 @@ def main(upgrade: bool = False) -> None:
         third, fourth = cx["label"].reindex(gold.index), cg["label"].reindex(gold.index)
         dis = gold.index[(third == fourth) & third.ne(gold["label"])]
         pick = pd.Series(dis)
-        pd.DataFrame({"obs_id": pick, "final_label": gold.loc[pick, "label"].to_numpy(),
-                      "label_source": gold.loc[pick, "label_source"].to_numpy(),
-                      "codex_label": cx.loc[pick, "label"].to_numpy()}).to_csv(ROOT / "labeling/adjudication_sample.csv",
-                                                                             index=False)
+        if not upgrade and not (ROOT / "labeling/adjudication.json").exists():   # keep the sample that was shown
+            pd.DataFrame({"obs_id": pick, "final_label": gold.loc[pick, "label"].to_numpy(),
+                          "label_source": gold.loc[pick, "label_source"].to_numpy(),
+                          "codex_label": cx.loc[pick, "label"].to_numpy()}).to_csv(
+                ROOT / "labeling/adjudication_sample.csv", index=False)
         m = s["obs_id"].isin(set(pick))
         s.loc[m, "adjudicate"] = True
         s.loc[m, "final_label"] = s.loc[m, "obs_id"].map(gold["label"])
