@@ -14,22 +14,22 @@ COLS = [0.2, 4.2, 8.2, 12.2]
 ROWS = [6.4, 3.7, 1.0]
 BOXES = {
     # key: (column, row, title, body, fill)
-    "cfg": (0, 0, "Configuration", "4 products and their regexes,\n30 subreddits, event keyword\ndictionary, 8 documented events", "#eceeed"),
-    "list": (1, 0, "Arctic Shift: every post", "30 subreddits, 2022-2024,\nabout 1 M posts scanned;\nkeep posts naming a product", "#e4eff9"),
+    "cfg": (0, 0, "Configuration", "4 products and their regexes,\n29 topical + 9 city subreddits,\nevent keywords, 8 documented events", "#eceeed"),
+    "list": (1, 0, "Arctic Shift: every post", "38 subreddits, 2022-2024:\n1.5 M posts scanned;\nkeep posts naming a product", "#e4eff9"),
     "trees": (2, 0, "Comment trees", "threads naming a product in the\ntitle with >= 3 comments;\nkeep product comments", "#e4eff9"),
-    "ams": (3, 0, "USDA AMS MARS API", "10 terminal markets, daily\nreports, about 457 k\nwholesale price lines", "#fbf0e1"),
+    "ams": (3, 0, "USDA AMS MARS API", "10 terminal markets: 457 k\nwholesale price lines; movement\nreports: weekly shipments", "#fbf0e1"),
     "title": (0, 1, "Arctic Shift: title search", "r/news headlines,\none query per product\nword and year", "#e4eff9"),
     "clean": (1, 1, "Clean", "bots, moderators, NSFW, crossposts,\nself-promotion, link farms,\nshort texts, duplicates", "#eceeed"),
-    "tag": (2, 1, "Task 1 event dataset", "one row per text x product;\nkeyword event types, geography,\nsummary table", "#e6f2ea"),
-    "price": (3, 1, "Price index", "fixed-composition weekly index\n(item-series and week\nfixed effects)", "#fbf0e1"),
-    "label": (1, 2, "Labelled sample", "stratified, one text per thread;\nAI first pass + human review", "#f5e6f3"),
+    "tag": (2, 1, "Task 1 event dataset", "92,424 texts -> 98,006 rows\n(text x product); event types,\ngeography, summary table", "#e6f2ea"),
+    "price": (3, 1, "Prices and quantities", "weekly index (item-series and\nweek fixed effects) and\nweekly national shipments", "#fbf0e1"),
+    "label": (1, 2, "Labelled sample", "794 texts, one per thread;\n2 AI annotators + human review", "#f5e6f3"),
     "model": (2, 2, "Classifiers + sentiment", "keyword, zero-shot, embeddings,\nfine-tuned DistilRoBERTa;\nthread-grouped 5-fold CV", "#f5e6f3"),
     "compare": (3, 2, "Task 2 comparison", "weekly signals, unusual weeks,\nlead/lag, price impact,\nsupply shock vs demand shift", "#e6f2ea"),
 }
 EDGES = [("cfg", "r", "list", "l"), ("list", "r", "trees", "l"), ("cfg", "b", "title", "t"),
-         ("list", "b", "clean", "t"), ("title", "r", "clean", "l"), ("trees", "b", "clean", "r"),
+         ("list", "b", "clean", "t"), ("title", "r", "clean", "l"), ("trees", "bl", "clean", "tr"),
          ("clean", "r", "tag", "l"), ("ams", "b", "price", "t"), ("tag", "b", "model", "t"),
-         ("tag", "b", "label", "r"), ("label", "r", "model", "l"), ("model", "r", "compare", "l"),
+         ("tag", "bl", "label", "tr"), ("label", "r", "model", "l"), ("model", "r", "compare", "l"),
          ("price", "b", "compare", "t")]
 
 
@@ -40,7 +40,8 @@ def box_xy(key):
 
 def anchor(key, side):
     x, y = box_xy(key)
-    return {"l": (x, y + H / 2), "r": (x + W, y + H / 2), "t": (x + W / 2, y + H), "b": (x + W / 2, y)}[side]
+    return {"l": (x, y + H / 2), "r": (x + W, y + H / 2), "t": (x + W / 2, y + H), "b": (x + W / 2, y),
+            "bl": (x + 0.35, y), "tr": (x + W - 0.35, y + H)}[side]
 
 
 def main() -> None:
