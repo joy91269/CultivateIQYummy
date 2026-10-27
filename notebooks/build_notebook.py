@@ -85,13 +85,20 @@ The sample was drawn by `labeling/make_label_sample.py`, at most one text per Re
 posts, keyword-enriched batches of posts and comments so that the rare price, supply and demand classes are
 represented, and simple random batches that show how common each label really is. Labels come in two tiers:
 
-* **gold** (1,118 texts): two AI annotators (Claude Opus and Claude Sonnet, separate sessions) labelled every row with
-  `labeling/codebook.md`; a team member decided every disagreement and a random sample of agreements, then took a
-  second look at every reviewed row where demand was one of the choices. Two further annotators from another model
-  family (OpenAI Codex and ChatGPT) labelled the same rows blind; where both disagreed with our label, a team member
-  decided again on a blind A/B page. Gold labels are used for training and for every accuracy figure.
-* **silver** (1,828 texts): the two Claude annotators agreed (rows where they disagreed are dropped); a team member
-  checked a random 40. Silver labels are only added to the training folds.
+* **gold**, used for training and for every accuracy figure, in two parts:
+  * 1,118 texts from the first batches: two AI annotators (Claude Opus and Claude Sonnet, separate sessions)
+    labelled every row with `labeling/codebook.md`; a team member decided every disagreement and a random sample of
+    agreements, then took a second look at every reviewed row where demand was one of the choices. Two further
+    annotators from another model family (OpenAI Codex and ChatGPT) labelled the same rows blind; where both
+    disagreed with our label, a team member decided again on a blind A/B page.
+  * 340 texts moved up from silver (`labeling/select_upgrade.py`): every silver text whose agreed label was price,
+    supply or demand, 100 random agreed *other* texts, and the 40 silver texts already checked. A team member
+    confirmed or corrected 202 of them; ChatGPT labelled all 340 blind (`labeling/crosscheck2/`). Where ChatGPT's
+    label differed from ours (27 texts), a team member decided on the blind A/B page; the rest, which no person
+    reviewed, have the label both Claude annotators and ChatGPT agree on.
+* **silver**: the other texts of the silver batch where the two Claude annotators agreed (rows where they disagreed
+  are dropped). After the move all remaining silver labels are *other*. Silver labels are only added to the
+  training folds.
 
 `label` is the human decision where a person decided the row and the agreed AI label elsewhere; the full procedure is
 at the end of the codebook.
@@ -102,18 +109,21 @@ from sklearn.metrics import cohen_kappa_score
 lab = pd.read_csv("labeling/labels.csv")
 lab = lab[lab["label"].isin(LABELS)]
 gold, silver = lab[lab["tier"] == "gold"], lab[lab["tier"] == "silver"]
-print(f"{len(gold)} gold and {len(silver)} silver labels "
+moved = gold["upgrade"].fillna(False).astype(bool)
+first, gold_up = gold[~moved], gold[moved]
+print(f"{len(gold)} gold ({len(first)} from the first batches, {len(gold_up)} moved up from silver) and "
+      f"{len(silver)} silver labels "
       f"({(lab.record_type == 'post').sum()} posts, {(lab.record_type == 'comment').sum()} comments)")
 display(pd.crosstab([lab["tier"], lab["product"]], lab["label"], margins=True).reindex(columns=LABELS + ["All"]))
 display(pd.crosstab(lab["batch"], lab["tier"]))
-print(f"Gold, Claude annotators 1 and 2: agree on {gold['ai_agree'].mean():.1%} of rows, Cohen's kappa "
-      f"{cohen_kappa_score(gold['label_ai1'], gold['label_ai2']):.2f}")
-display(pd.crosstab(gold["label_ai1"], gold["label_ai2"], rownames=["annotator 1"], colnames=["annotator 2"]))
+print(f"First-batch gold, Claude annotators 1 and 2: agree on {first['ai_agree'].mean():.1%} of rows, Cohen's kappa "
+      f"{cohen_kappa_score(first['label_ai1'], first['label_ai2']):.2f}")
+display(pd.crosstab(first["label_ai1"], first["label_ai2"], rownames=["annotator 1"], colnames=["annotator 2"]))
 print(gold["label_source"].value_counts().to_string())
-check = gold[gold["reviewed"] & gold["ai_agree"]]
+check = first[first["reviewed"] & first["ai_agree"]]
 print(f"Random check of {len(check)} gold rows where the Claude annotators agreed: the reviewer kept the AI label "
       f"for {(check['human_label'] == check['label_ai1']).mean():.1%}.")
-dis = gold[gold["reviewed"] & ~gold["ai_agree"]]
+dis = first[first["reviewed"] & ~first["ai_agree"]]
 print(f"Disagreements decided by the reviewer: {len(dis)}; reviewer sided with annotator 1 in "
       f"{(dis['human_label'] == dis['label_ai1']).sum()}, annotator 2 in "
       f"{(dis['human_label'] == dis['label_ai2']).sum()}, neither in "
@@ -126,13 +136,21 @@ display(pd.crosstab(re2["first_pass_label"], re2["human_label"], rownames=["firs
 code(r"""
 # Four annotators from two model families on the gold rows, and the blind A/B adjudication
 display(pd.read_csv(TAB / "annotator_agreement.csv"))
-adj = gold[gold["adjudicated"]]
+adj = first[first["adjudicated"]]
 print(f"Adjudicated (both OpenAI annotators agree with each other, not with our label): {len(adj)} rows; "
       f"our label kept in {(adj['label'] == adj['label_before_adjudication']).sum()}, OpenAI label taken in "
       f"{(adj['label'] != adj['label_before_adjudication']).sum()}.")
 display(pd.crosstab(adj["label_before_adjudication"], adj["label"], rownames=["before"], colnames=["after"]))
-sc = silver[silver["reviewed"]]
-print(f"Silver check: {len(sc)} random silver rows checked, {(sc['label'] != sc['label_ai1']).sum()} changed.")
+# texts moved up from silver: the person's review, ChatGPT's blind label and the blind decisions
+rev_up = gold_up[gold_up["reviewed"]]
+print(f"Moved up from silver: {len(gold_up)} texts; the person reviewed {len(rev_up)} and changed the agreed AI label "
+      f"in {(rev_up['human_label'] != rev_up['label_ai1']).sum()}:")
+display(pd.crosstab(rev_up["label_ai1"], rev_up["human_label"], rownames=["agreed AI label"], colnames=["person"]))
+adj2 = gold_up[gold_up["adjudicated"]]
+print(f"ChatGPT differed from our label on {len(adj2)} of them; blind decision kept ours in "
+      f"{(adj2['label'] == adj2['label_before_adjudication']).sum()}, took ChatGPT's in "
+      f"{(adj2['label'] == adj2['label_chatgpt_round2']).sum()}, chose a third label in "
+      f"{((adj2['label'] != adj2['label_before_adjudication']) & (adj2['label'] != adj2['label_chatgpt_round2'])).sum()}.")
 if (TAB / "human_agreement.csv").exists():
     print("Second human annotator, blind, on a sample of rows:")
     display(pd.read_csv(TAB / "human_agreement.csv"))
@@ -147,7 +165,7 @@ The 95% interval for macro-F1 comes from a cluster bootstrap over threads. For t
 regularisation strength of the logistic regression is chosen inside each training fold (inner 3-fold CV), so the
 reported scores are not tuned on the test folds. Every score is computed on the **gold** labels only; the `+ silver`
 variants add the silver labels to each training fold (never to a test fold). The model with the highest macro-F1 is
-selected; macro-F1 weights the four labels equally, which matters because 80% of the gold texts are *other*.
+selected; macro-F1 weights the four labels equally, which matters because most gold texts are *other*.
 """)
 
 code(r"""

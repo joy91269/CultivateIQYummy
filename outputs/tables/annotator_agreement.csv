@@ -2,11 +2,14 @@ pair,agreement,cohen_kappa,n
 claude_opus vs claude_sonnet,0.9401,0.812,1118
 claude_opus vs codex,0.873,0.6777,1118
 claude_opus vs chatgpt,0.8953,0.7297,1118
-claude_opus vs final,0.9687,0.9063,1118
+claude_opus vs final,0.9526,0.8616,1118
 claude_sonnet vs codex,0.8694,0.6555,1118
 claude_sonnet vs chatgpt,0.881,0.6802,1118
-claude_sonnet vs final,0.9696,0.904,1118
+claude_sonnet vs final,0.9526,0.8544,1118
 codex vs chatgpt,0.9088,0.7912,1118
-codex vs final,0.8775,0.6876,1118
-chatgpt vs final,0.8971,0.7331,1118
+codex vs final,0.8998,0.7493,1118
+chatgpt vs final,0.9195,0.7951,1118
 "Fleiss kappa, 4 AI annotators",,0.723,1118
+"claude (agreed label) vs chatgpt, round 2",0.9676,0.9553,340
+"person vs chatgpt, round 2",0.8861,0.8413,202
+"final vs chatgpt, round 2",0.9559,0.9388,340

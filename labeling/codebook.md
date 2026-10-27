@@ -50,7 +50,8 @@ describes what the text says about the market for *that* product.
    (1 of 12 changed).
 6. **Second look at demand vs. other.** The reviewer asked to revisit the demand/other boundary after the rule for
    product-centred recipes was clarified. Every reviewed text where demand was one of the choices (45) was shown
-   again with a short decision guide; 22 labels changed (21 other → demand, 1 price → demand). The first-pass
+   again with a short decision guide; 21 labels changed (20 other → demand, 1 price → demand). Texts reviewed later
+   (round 3) were decided with the clarified rule. The first-pass
    decisions are kept in `labeling/reviews_first_pass.json` and in the `first_pass_label` column.
 7. **Batch 5 and round 3.** A learning curve showed scores still rising with more labels, and the enriched sample
    over-represents market talk, so 324 more texts were drawn: 160 by simple random sampling (40 per product, no
@@ -63,9 +64,10 @@ describes what the text says about the market for *that* product.
    and changed 3 (92.5% correct). Models are evaluated on gold labels only.
 9. **Annotators from another model family.** OpenAI Codex and ChatGPT labelled all 1,118 gold texts blind
    (`labeling/codex_task/TASK.md`; outputs in `labeling/codex_task/` and `labeling/chatgpt_task/`).
-   `labeling/third_annotator.py` computes agreement. Where Codex and ChatGPT agreed with each other but not with our
-   label (73 texts), the reviewer decided blind between the two labels, shown as option A and B in random order
-   (`labeling/adjudication.json`); the decision replaces the label (47 kept our label, 26 took the other family's).
+   `labeling/third_annotator.py` computes agreement. Codex and ChatGPT agreed with each other but not with our label
+   on 74 texts; for 73 of them the reviewer decided blind between the two labels, shown as option A and B in random
+   order (`labeling/adjudication.json`), and the decision replaces the label (47 kept our label, 26 took the other
+   family's). The 74th was left out of the page and keeps the reviewer's label.
 10. **Second human annotator.** A collaborator labels 80 texts blind on a separate page
     (`labeling/build_collab_page.py`): 40 adjudicated texts, 20 silver texts and 20 earlier reviews, in random order,
     with this codebook in Chinese and English and an AI translation of each text into Chinese as a reading aid (the
@@ -73,5 +75,14 @@ describes what the text says about the market for *that* product.
     (`outputs/tables/human_agreement.csv`); they do not change `labels.csv`. Result: 62.5% agreement, kappa 0.43
     (adjudicated texts 50%, 0.13; earlier reviews 75%, 0.60; silver texts 75%, 0.66); 17 of the 30 disagreements are
     demand vs. other.
-11. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
-   reviewed the row and the agreed AI label elsewhere; `label_source` records which.
+11. **Silver texts moved up to gold.** `labeling/select_upgrade.py` picked 300 silver texts: every silver text whose
+    agreed label was price, supply or demand (200) and 100 random agreed *other* texts; the 40 silver texts checked
+    in step 8 were added (340). The reviewer confirmed or corrected 202 of them on the review page, seeing the agreed
+    AI label (16 changed: 12 demand → other, 2 price → other, 2 supply → other). ChatGPT labelled all 340 blind
+    (`labeling/crosscheck2/`). Where its label differed from ours (27 texts) the reviewer decided blind between the
+    two, as in step 9 (13 kept ours, 12 took ChatGPT's, 2 a third label). The 134 texts no person reviewed, where
+    ChatGPT agrees with both Claude annotators, keep that label. All 340 are gold; the remaining silver labels are
+    all *other*.
+12. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
+   reviewed or adjudicated the row and the agreed AI label elsewhere; `label_source` records which, and `tier`
+   whether the row is gold or silver.

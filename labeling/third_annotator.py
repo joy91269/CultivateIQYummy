@@ -4,6 +4,7 @@ Inputs
     labeling/labels.csv                         final labels (gold tier: rounds 1-3)
     labeling/codex_task/output_*.jsonl          annotator 3: OpenAI Codex, labelled blind with labeling/codex_task/TASK.md
     labeling/chatgpt_task/output_*.jsonl        annotator 4 (optional): ChatGPT, same instructions
+    labeling/crosscheck2/chatgpt/output_*.jsonl round 2: ChatGPT on the 340 silver texts that became gold
 Outputs
     outputs/tables/annotator_agreement.csv      pairwise Cohen's kappa and percent agreement, Fleiss' kappa
     labeling/annotations/annotator3_codex.jsonl (and annotator4_chatgpt.jsonl) copies in the annotations folder
@@ -77,6 +78,25 @@ def main() -> None:
     table = np.stack([np.stack([(raters[r].reindex(ids) == l).to_numpy() for l in LABELS], 1) for r in raters]).sum(0)
     rows.append({"pair": f"Fleiss kappa, {len(raters)} AI annotators", "agreement": np.nan,
                  "cohen_kappa": round(fleiss_kappa(table.astype(float)), 4), "n": len(ids)})
+    # round 2: silver texts picked to become gold (labeling/select_upgrade.py), labelled blind by ChatGPT only
+    # (labeling/crosscheck2/); "agreed" is the label both Claude annotators gave, "person" the round-4 review
+    cc = read_outputs(ROOT / "labeling/crosscheck2/chatgpt")
+    if len(cc):
+        out = ROOT / "labeling/annotations/annotator4_chatgpt_round2.jsonl"
+        with open(out, "w") as f:
+            for p in sorted((ROOT / "labeling/crosscheck2/chatgpt").glob("output_*.jsonl")):
+                f.write(p.read_text())
+        up = lab[lab["upgrade"].fillna(False).astype(bool)].set_index("obs_id") if "upgrade" in lab else lab.iloc[:0]
+        up = up[up.index.isin(cc.index)]
+        rev = json.loads((ROOT / "labeling/reviews.json").read_text())
+        person = pd.Series({o: rev[o]["label"] for o in up.index if o in rev})
+        for name, x in [("claude (agreed label) vs chatgpt, round 2", up["label_ai1"]),
+                        ("person vs chatgpt, round 2", person),
+                        ("final vs chatgpt, round 2", up["label"])]:
+            x = x.dropna()
+            y = cc.reindex(x.index)
+            rows.append({"pair": name, "agreement": round((x == y).mean(), 4),
+                         "cohen_kappa": round(cohen_kappa_score(x, y), 4), "n": len(x)})
     res = pd.DataFrame(rows)
     (ROOT / "outputs/tables").mkdir(parents=True, exist_ok=True)
     res.to_csv(ROOT / "outputs/tables/annotator_agreement.csv", index=False)
