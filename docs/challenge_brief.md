@@ -30,6 +30,24 @@ their licenses.
 
 $500 per team member.
 
+## Submission workspace: CultivateIQ (2026 NAFSI Data Challenge)
+
+Judges use this workspace to evaluate the submission. Teams submit the link to the GitHub repository with their
+work. The README must include complete instructions for running all notebooks and scripts; judges must be able to
+reproduce the work from these instructions alone.
+
+Objectives:
+
+1. Reproducible notebooks and scripts: preprocessing, integration, modeling, evaluation; re-running reproduces the
+   results.
+2. Event dataset: clean, labeled produce posts with keyword dictionary and intermediate outputs.
+3. Data dictionary and provenance: source, access date, license, coverage, update frequency, transformations,
+   limitations.
+4. PDF report: methods, task outputs, challenge-question answers, metrics, figures, limitations, team science
+   statement.
+5. README and requirements: setup instructions and every dependency to reproduce the analysis.
+6. Video: short recorded video explaining the results and their use case.
+
 ## Track 3 module instructions
 
-To be added from the module page.
+To be added from the module page (report length, challenge questions).
