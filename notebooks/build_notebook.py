@@ -285,7 +285,7 @@ def shade(ax, prod):
                 fontsize=6.5, color="0.35")
         prev = e.start_date
 
-fig, axes = plt.subplots(2, 2, figsize=(6.5, 3.9), sharex=True)
+fig, axes = plt.subplots(2, 2, figsize=(6.5, 3.1), sharex=True)
 for ax, prod in zip(axes.flat, PRODUCTS):
     g = sig[sig["product"] == prod].set_index("week_start")
     for lab_ in ["price", "supply", "demand"]:
@@ -473,7 +473,7 @@ fig.suptitle("Weekly shipments reaching US markets (USDA AMS movement reports)",
 fig.tight_layout(rect=(0, 0, 1, 0.95)); fig.savefig(FIG / "shipments.png", dpi=200); plt.show()
 
 # Report figure: price index (left) and shipments (right) side by side, one row per product
-fig, axes = plt.subplots(4, 2, figsize=(6.5, 5.0), sharex=True)
+fig, axes = plt.subplots(4, 2, figsize=(6.5, 3.9), sharex=True)
 for (axp, axs), prod in zip(axes, PRODUCTS):
     g = nat[nat["product"] == prod]
     for mkt, gm in widx[(widx["product"] == prod) & (widx["market"] != "ALL")].groupby("market"):
