@@ -40,9 +40,15 @@ def main() -> None:
     s["label_source"] = "AI agreement"
     s.loc[s["reviewed"], "label_source"] = "human review"
     s.loc[~s["reviewed"] & ~s["ai_agree"], "label_source"] = "AI annotator 1 (unreviewed disagreement)"
-    if (~s["label"].isin(LABELS)).any():
+    if "tier" not in s:
+        s["tier"] = "gold"
+    # silver rows where the AI annotators disagree are not used at all
+    drop = (s["tier"] == "silver") & ~s["reviewed"] & ~s["ai_agree"]
+    s.loc[drop, "label"] = pd.NA
+    s.loc[drop, "label_source"] = "dropped (silver, AI annotators disagree)"
+    if (~s["label"].isin(LABELS) & ~drop).any():
         raise SystemExit("unknown label found")
-    cols = ["obs_id", "batch", "product", "record_type", "subreddit", "date", "thread_id", "url", "label_ai1",
+    cols = ["obs_id", "batch", "tier", "product", "record_type", "subreddit", "date", "thread_id", "url", "label_ai1",
             "reason_ai1", "label_ai2", "reason_ai2", "ai_agree", "review_round", "needs_review", "reviewed", "first_pass_label", "rechecked", "human_label", "label",
             "label_source", "note"]
     s[cols].to_csv(ROOT / "labeling/labels.csv", index=False)

@@ -43,6 +43,9 @@ def load_labelled() -> pd.DataFrame:
     lab = lab.drop(columns=[c for c in ["thread_id", "event_types", "text", "product"] if c in lab]).merge(
         smp, on="obs_id", how="inner")
     lab["input"] = [model_input(p, t) for p, t in zip(lab["product"], lab["text"])]
+    if "tier" not in lab:
+        lab["tier"] = "gold"
+    lab["tier"] = lab["tier"].fillna("gold")
     return lab.reset_index(drop=True)
 
 
@@ -80,7 +83,11 @@ def cached_embeddings(lab: pd.DataFrame, key: str = "embed_lr") -> np.ndarray:
 
 
 def evaluate() -> None:
-    lab = load_labelled()
+    """Every model is evaluated on the gold labels only (grouped 5-fold CV). Silver labels (AI-labelled, AI
+    annotators agree, not reviewed) are added to the training folds of the `<model>_silver` variants only."""
+    everything = load_labelled()
+    silver = everything[everything["tier"] == "silver"].reset_index(drop=True)
+    lab = everything[everything["tier"] == "gold"].reset_index(drop=True)
     y, groups = lab["label"].to_numpy(), lab["thread_id"].astype(str).to_numpy()
     folds = grouped_folds(groups, y)
     preds = pd.DataFrame({"obs_id": lab["obs_id"], "label": y, "thread_id": groups})
@@ -104,6 +111,18 @@ def evaluate() -> None:
         for i, l in enumerate(LABELS):
             preds[f"{key}_p_{l}"] = prob[:, i].round(4)
         print(f"  C chosen in the inner CV of each fold: {chosen}", flush=True)
+        if len(silver):
+            print(f"  ... with {len(silver)} silver labels added to every training fold", flush=True)
+            Xs, ys, gs = cached_embeddings(silver, key), silver["label"].to_numpy(), silver["thread_id"].astype(str).to_numpy()
+            oof = np.empty(len(lab), dtype=object)
+            prob = np.zeros((len(lab), len(LABELS)))
+            for tr, te in folds:
+                clf = embed_lr_fit(np.vstack([X[tr], Xs]), np.r_[y[tr], ys], np.r_[groups[tr], gs])
+                oof[te] = clf.predict(X[te])
+                prob[te] = clf.predict_proba(X[te])[:, [list(clf.classes_).index(l) for l in LABELS]]
+            preds[f"{key}_silver"] = oof
+            for i, l in enumerate(LABELS):
+                preds[f"{key}_silver_p_{l}"] = prob[:, i].round(4)
 
     print("fine-tuned DistilRoBERTa ...", flush=True)
     # each fold takes ~25 min on a 2-core CPU, so finished folds are cached; the folder name records the label set
@@ -127,14 +146,15 @@ def evaluate() -> None:
     preds["finetune"] = oof
 
     rows = []
-    for m in ["keyword", "zeroshot", *EMBED_MODELS, "finetune"]:
+    variants = [m for k in EMBED_MODELS for m in (k, f"{k}_silver") if m in preds]
+    for m in ["keyword", "zeroshot", *variants, "finetune"]:
         r = metrics(y, preds[m].to_numpy(), groups)
         r["model"] = m
         rows.append(r)
     res = pd.DataFrame(rows).set_index("model")
     # calibration of the class probabilities: summed out-of-fold probabilities vs. true counts
     true_n = pd.Series(y).value_counts()
-    for key in EMBED_MODELS:
+    for key in variants:
         for l in LABELS:
             res.loc[key, f"expected_{l}_vs_true"] = f"{preds[f'{key}_p_{l}'].sum():.0f} / {true_n.get(l, 0)}"
     TABLES.mkdir(parents=True, exist_ok=True)
@@ -195,7 +215,8 @@ def predict() -> None:
     best = json.loads(FINAL_MODEL_FILE.read_text())["selected_model"]
     ev = pd.read_csv(EVENTS, usecols=["obs_id", "product", "text", "event_types"], low_memory=False)
     inputs = [model_input(p, t) for p, t in zip(ev["product"], ev["text"])]
-    if best == "finetune" or best in EMBED_MODELS:
+    enc = best.removesuffix("_silver")      # embedding model behind an embed_lr* variant
+    if best == "finetune" or enc in EMBED_MODELS:
         if best == "finetune":
             model_dir = CACHE / "ft_final"
             from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -210,10 +231,12 @@ def predict() -> None:
         if best == "finetune":
             prob = predict_in_chunks(ev["obs_id"].tolist(), inputs, score, CACHE / "predict_probs_finetune.csv")
         else:
-            clf = embed_lr_fit(cached_embeddings(lab, best), lab["label"].to_numpy(),
-                               lab["thread_id"].astype(str).to_numpy())
+            train = lab if best.endswith("_silver") else lab[lab["tier"] == "gold"]
+            clf = embed_lr_fit(cached_embeddings(train, enc), train["label"].to_numpy(),
+                               train["thread_id"].astype(str).to_numpy())
+            lab = train
             print(f"final model: C = {clf.chosen_C_}", flush=True)
-            Xall = embed_all(ev["obs_id"].tolist(), inputs, best)
+            Xall = embed_all(ev["obs_id"].tolist(), inputs, enc)
             prob = clf.predict_proba(Xall)[:, [list(clf.classes_).index(l) for l in LABELS]]
         pred = np.array(LABELS)[prob.argmax(1)]
     elif best == "zeroshot":
@@ -232,7 +255,9 @@ def predict() -> None:
             m = (ev["product"] == prod).to_numpy()
             tr = lab.loc[lab["product"] == prod, "label"].value_counts(normalize=True).reindex(LABELS).fillna(0)
             adj[m], pi = prior_adjust(prob[m], tr.to_numpy().clip(1e-3))
-            rnd = lab[(lab["product"] == prod) & (lab["batch"] == "random")]
+            # simple random samples: batch "random" (gold) and "random6" (silver; rows where the AI annotators
+            # disagreed are dropped from silver, which removes a few borderline texts)
+            rnd = lab[(lab["product"] == prod) & lab["batch"].astype(str).str.startswith("random")]
             for i, l in enumerate(LABELS):
                 k, n = int((rnd["label"] == l).sum()), len(rnd)
                 lo, hi = wilson(k, n)

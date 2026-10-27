@@ -25,6 +25,13 @@ The last two batches (tag 2) were added after the first model comparison showed 
     python labeling/make_label_sample.py --record-type post --quota supply:8,demand:8 --append --seed 29 --tag 3
 The random batch (40 per product, no keyword strata) measures how common each label is in the whole dataset; the
 other two (tag 3) add rare-class examples after a learning curve showed scores still rising with more labels.
+Batch 6 ("silver" labels: AI-labelled, used for training only, see labeling/codebook.md):
+    python labeling/make_label_sample.py --record-type any --random 100 --append --seed 31 --tag 6
+    python labeling/make_label_sample.py --record-type any --random 57 --append --seed 43 --tag 6
+    python labeling/make_label_sample.py --record-type comment --quota price:40,supply:60,demand:60,none:20 --near \
+        --append --seed 37 --tag 6
+    python labeling/make_label_sample.py --record-type post --quota price:40,supply:60,demand:60,none:20 --append \
+        --seed 41 --tag 6
 Output: labeling/label_sample.csv
 """
 from __future__ import annotations
@@ -111,7 +118,7 @@ def main() -> None:
             parts.append(rest.head(args.per_product - min(n_cand, len(cand))))
     batch = pd.concat(parts).sample(frac=1, random_state=args.seed)
     batch["batch"] = ("random" if args.random else f"{args.record_type}s" + ("_enriched" if args.quota else "")
-                      + (f"_{args.subreddit}" if args.subreddit else "") + args.tag)
+                      + (f"_{args.subreddit}" if args.subreddit else "")) + args.tag
     print(batch.groupby(["product", "kw_group"]).size().to_string())
     sample = pd.concat([old, batch[COLS]], ignore_index=True)   # keeps columns added by later steps
     sample.to_csv(OUT, index=False)

@@ -11,7 +11,10 @@ have a needs_review flag keep it (they may already be reviewed); only rows added
     round 1 (first 577 rows): up to 10 random agreements per agreed label
     round 2 (batch 4, 217 rows): up to 3 random agreements per agreed label
 
-Usage: python labeling/merge_annotations.py [--check-per-label N]
+    round 4 (batch 6, 1,883 rows, --silver): "silver" labels for training only. Disagreements are not reviewed
+             but dropped; a person checks a random sample of 10 agreed labels per label to estimate their accuracy.
+
+Usage: python labeling/merge_annotations.py [--check-per-label N] [--silver]
 """
 from __future__ import annotations
 
@@ -37,8 +40,10 @@ def read(prefix: str) -> pd.DataFrame:
     return df.set_index("obs_id")
 
 
-def main(check_per_label: int = 10, seed: int = 2026) -> None:
+def main(check_per_label: int = 10, seed: int = 2026, silver: bool = False) -> None:
     s = pd.read_csv(ROOT / "labeling/label_sample.csv")
+    if "tier" not in s:
+        s["tier"] = pd.NA
     prev = s["needs_review"] if "needs_review" in s else pd.Series(pd.NA, index=s.index)
     new = prev.isna()
     if "review_round" not in s:
@@ -55,8 +60,11 @@ def main(check_per_label: int = 10, seed: int = 2026) -> None:
     check = (s[agree & new].groupby("label_ai1", group_keys=False)
              .apply(lambda g: g.sample(min(check_per_label, len(g)), random_state=seed)).index)
     s["needs_review"] = prev.astype("boolean")
-    s.loc[new, "needs_review"] = ~agree[new]
+    # gold: every disagreement is decided by a person; silver: disagreements are dropped, only the check is reviewed
+    s.loc[new, "needs_review"] = False if silver else ~agree[new]
     s.loc[check, "needs_review"] = True
+    s.loc[new, "tier"] = "silver" if silver else "gold"
+    s["tier"] = s["tier"].fillna("gold")
     s["needs_review"] = s["needs_review"].astype(bool)
     s.to_csv(ROOT / "labeling/label_sample.csv", index=False)
     print(f"{len(s)} rows; agreement {agree.mean():.1%}; new rows: {new.sum()}, agreement {agree[new].mean():.1%}, "
@@ -67,4 +75,6 @@ def main(check_per_label: int = 10, seed: int = 2026) -> None:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--check-per-label", type=int, default=10)
-    main(ap.parse_args().check_per_label)
+    ap.add_argument("--silver", action="store_true", help="new rows are silver labels (training only)")
+    a = ap.parse_args()
+    main(a.check_per_label, silver=a.silver)
