@@ -137,6 +137,45 @@ Notes
 - `python report/build_report.py report/report.md` typesets the report (Markdown export of the report document)
   as a PDF with three-line tables and numbered figures; it needs pandoc and XeLaTeX.
 
+### Reproduce with Kiro on AWS
+
+We reproduced the quick path independently with the Kiro CLI (2.35.0), signed in through the challenge's AWS IAM
+Identity Center account, on an Apple-silicon Mac (macOS, CPU only).
+
+1. Install the Kiro CLI:
+
+   ```bash
+   curl -fsSL https://cli.kiro.dev/install | bash
+   ```
+
+2. Sign in with the start URL from the AWS invitation (region `us-east-1`); the CLI prints a code to enter in the
+   browser:
+
+   ```bash
+   kiro-cli login --license pro --identity-provider <start URL> --region us-east-1 --use-device-flow
+   ```
+
+3. In an empty folder, give Kiro the task and let it run unattended:
+
+   ```bash
+   kiro-cli chat --no-interactive --trust-all-tools "Clone https://github.com/joy91269/CultivateIQYummy and reproduce its results by following the README exactly:
+   1. Create a Python virtual environment and install requirements.txt (Python 3.12 or newer).
+   2. Run \`bash run_all.sh --analysis\`.
+   3. Run \`python scripts/check_reproduction.py\`.
+   Do not change any code or data. When done, report the commands you ran, how long each took, and the full output of the last command."
+   ```
+
+Kiro used Python 3.13.18 and finished in about 2 minutes:
+
+| Step | Time |
+|---|---|
+| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 34 s |
+| `bash run_all.sh --analysis` | 47 s |
+| `python scripts/check_reproduction.py` | under 1 s; 16 of 16 tables reproduce |
+
+An earlier Kiro run found two problems, both fixed in commit `3464586`: the pinned numpy and scipy need Python 3.12
+rather than 3.11, and one example text in `unusual_weeks.csv` depended on whether pyarrow was installed.
+
 ## Data sources and licences
 
 See `docs/data_dictionary.md`. Reddit content is public and was accessed through the Arctic Shift research archive;
