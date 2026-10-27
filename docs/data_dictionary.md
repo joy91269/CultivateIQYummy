@@ -76,7 +76,16 @@ nationally. Line-level data: `data/processed/ams_movement_daily.csv.gz` (`ship_d
 | `data/processed/keyword_dictionary.csv/.json` | Product and market-event keyword dictionary |
 | `data/processed/summary_table.csv/.md` | Observations per product and event type |
 | `data/processed/filter_log.csv` | Records removed by each cleaning rule |
-| `labeling/labels.csv` | Hand-labelled sample (price / supply / demand / other) |
+| `labeling/label_sample.csv` | Texts drawn for labelling, with the batch each came from (`labeling/make_label_sample.py`) |
+| `labeling/labels.csv` | Final labels (price / supply / demand / other). `tier = gold`: 1,118 texts with a human-reviewed label, used for training and for every accuracy figure; `tier = silver`: 1,828 texts where two AI annotators agreed, used for training only (rows where they disagreed have no label). Columns record both AI labels and reasons, review round, first-pass and re-checked human label, adjudication and `label_source` |
+| `labeling/annotations/annotator{1,2}_*.jsonl` | Labels and one-line reasons from the two Claude annotators (Opus, Sonnet), per batch |
+| `labeling/annotations/annotator3_codex.jsonl`, `annotator4_chatgpt.jsonl` | Independent blind labels of the 1,118 gold texts from OpenAI Codex and ChatGPT (`labeling/codex_task/TASK.md`) |
+| `labeling/adjudication.json`, `adjudication_sample.csv` | Blind A/B decisions on the 73 gold texts where Codex and ChatGPT agreed with each other but not with the first label |
+| `labeling/collab_sample.csv`, `collab_translations.jsonl` | 80 texts for the second human annotator and their Chinese translations (reading aid only) |
+| `outputs/tables/annotator_agreement.csv` | Pairwise agreement and Cohen's κ between annotators, Fleiss' κ for all four |
+| `outputs/tables/human_agreement.csv` | Agreement between the two human annotators on the 80-text sample |
+| `outputs/tables/model_cv_metrics.csv`, `model_cv_predictions.csv`, `selected_model.json` | Cross-validated accuracy of every classifier and the one selected |
+| `outputs/tables/label_prevalence.csv` | Label shares per product: labelled sample, model, and random samples with 95% intervals |
 | `data/processed/classified_observations.csv.gz` | Model label, class probabilities and sentiment for every observation |
 | `outputs/tables/*.csv` | Weekly signals, anomalies, price indices, lead/lag and event tables |
 | `config/events_reference.csv` | Documented market events with dates and news sources |

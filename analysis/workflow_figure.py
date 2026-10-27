@@ -22,8 +22,8 @@ BOXES = {
     "clean": (1, 1, "Clean", "bots, moderators, NSFW, crossposts,\nself-promotion, link farms,\nshort texts, duplicates", "#eceeed"),
     "tag": (2, 1, "Task 1 event dataset", "92,424 texts -> 98,006 rows\n(text x product); event types,\ngeography, summary table", "#e6f2ea"),
     "price": (3, 1, "Prices and quantities", "weekly index (item-series and\nweek fixed effects) and\nweekly national shipments", "#fbf0e1"),
-    "label": (1, 2, "Labelled sample", "794 texts, one per thread;\n2 AI annotators + human review", "#f5e6f3"),
-    "model": (2, 2, "Classifiers + sentiment", "keyword, zero-shot, embeddings,\nfine-tuned DistilRoBERTa;\nthread-grouped 5-fold CV", "#f5e6f3"),
+    "label": (1, 2, "Labelled sample", "1,118 human-reviewed labels\n+ 1,828 AI-agreed (training only);\n4 AI annotators, human review", "#f5e6f3"),
+    "model": (2, 2, "Classifiers + sentiment", "keyword, zero-shot, embeddings +\nlogistic regression, DistilRoBERTa;\nthread-grouped 5-fold CV", "#f5e6f3"),
     "compare": (3, 2, "Task 2 comparison", "weekly signals, unusual weeks,\nlead/lag, price impact,\nsupply shock vs demand shift", "#e6f2ea"),
 }
 EDGES = [("cfg", "r", "list", "l"), ("list", "r", "trees", "l"), ("cfg", "b", "title", "t"),
