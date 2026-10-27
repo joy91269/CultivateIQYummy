@@ -96,6 +96,8 @@ bash run_all.sh --analysis
 
 This rebuilds and executes `notebooks/task2_signals_and_prices.ipynb`, which writes every figure to
 `outputs/figures/` and every table to `outputs/tables/`.
+`python scripts/check_reproduction.py` then compares every table in `outputs/tables/` with the committed version
+and reports which ones reproduce.
 
 **Full path (about 20 hours on a 2-core CPU):** re-collects all data and retrains the models.
 
