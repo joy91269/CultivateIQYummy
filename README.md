@@ -23,13 +23,16 @@ compare them with **USDA AMS terminal market wholesale prices**, 2022–2024.
 - **Reddit reacts to supply disruptions and recalls at once.** Avocado supply talk rose 38-fold in the week of the
   import halt; lettuce supply and price talk crossed their alert level in the same week wholesale prices began to rise
   in August 2022, 3½ weeks before the shortage was in the news.
+- **Supply talk is the signal that finds events.** Weeks with a supply-talk spike (z ≥ 3) fall within two weeks of
+  a documented event 35% of the time against 11% by chance (p = 0.003) and cover 7 of the 8 events; spikes in price
+  talk, demand talk, volume or sentiment do no better than chance (`outputs/tables/spike_event_enrichment.csv`).
 - **Food-safety outbreaks and a viral recipe trend did not move national wholesale prices** (−7% to +3% after
   seasonal adjustment). Online they appear as bursts of supply talk (recalls), while demand talk did not rise.
 - **Timing:** for sudden shocks the online signal moves in the same week as prices (a calendar week earlier when the
   news breaks at a weekend). Across all weeks, correlations are weak; lettuce supply talk leads lettuce prices by about
   two weeks and price talk lags them by two weeks (rotation test p < 0.01).
 
-Details: report (`report/`), notebook sections 8–10, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
+Details: report (`report/`), notebook sections 5 and 7–9, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
 `event_price_impact.csv`, `event_price_examples_usd.csv`, `lead_lag_crosscorrelation.csv`, `event_timing.csv`).
 
 ## Repository layout
