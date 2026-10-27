@@ -70,6 +70,8 @@ describes what the text says about the market for *that* product.
     (`labeling/build_collab_page.py`): 40 adjudicated texts, 20 silver texts and 20 earlier reviews, in random order,
     with this codebook in Chinese and English and an AI translation of each text into Chinese as a reading aid (the
     English text is what is labelled). `labeling/collect_collab.py` compares the labels with the first reviewer's
-    (`outputs/tables/human_agreement.csv`); they do not change `labels.csv`.
+    (`outputs/tables/human_agreement.csv`); they do not change `labels.csv`. Result: 62.5% agreement, kappa 0.43
+    (adjudicated texts 50%, 0.13; earlier reviews 75%, 0.60; silver texts 75%, 0.66); 17 of the 30 disagreements are
+    demand vs. other.
 11. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
    reviewed the row and the agreed AI label elsewhere; `label_source` records which.
