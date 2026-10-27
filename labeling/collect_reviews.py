@@ -5,6 +5,7 @@ Input
                                labelled independently without seeing annotator 1) and needs_review
     labeling/reviews.json      export of the review page's store: {"<obs_id>": {"label": ..., "note": ..., "recheck": ...}}
     labeling/reviews_first_pass.json  the same export before the reviewer's second look at demand vs other
+    labeling/adjudication.json  blind decisions on texts where Codex and ChatGPT agreed with each other, not with us
 Output
     labeling/labels.csv        final `label` and where it came from (`label_source`):
                                "human review"            a person decided (all disagreements + random agreements)
@@ -40,6 +41,14 @@ def main() -> None:
     s["label_source"] = "AI agreement"
     s.loc[s["reviewed"], "label_source"] = "human review"
     s.loc[~s["reviewed"] & ~s["ai_agree"], "label_source"] = "AI annotator 1 (unreviewed disagreement)"
+    # blind adjudication of texts where both annotators from the other model family (Codex, ChatGPT) agreed with each
+    # other but not with our label: the person's decision replaces the label (labeling/adjudication.json)
+    adj_path = ROOT / "labeling/adjudication.json"
+    adj = json.loads(adj_path.read_text()) if adj_path.exists() else {}
+    s["adjudicated"] = s["obs_id"].isin(adj)
+    s["label_before_adjudication"] = s["label"].where(s["adjudicated"])
+    s.loc[s["adjudicated"], "label"] = s.loc[s["adjudicated"], "obs_id"].map(lambda o: adj[o]["label"])
+    s.loc[s["adjudicated"], "label_source"] = "human adjudication (cross-family disagreement)"
     if "tier" not in s:
         s["tier"] = "gold"
     # silver rows where the AI annotators disagree are not used at all
@@ -49,7 +58,8 @@ def main() -> None:
     if (~s["label"].isin(LABELS) & ~drop).any():
         raise SystemExit("unknown label found")
     cols = ["obs_id", "batch", "tier", "product", "record_type", "subreddit", "date", "thread_id", "url", "label_ai1",
-            "reason_ai1", "label_ai2", "reason_ai2", "ai_agree", "review_round", "needs_review", "reviewed", "first_pass_label", "rechecked", "human_label", "label",
+            "reason_ai1", "label_ai2", "reason_ai2", "ai_agree", "review_round", "needs_review", "reviewed", "first_pass_label", "rechecked", "human_label",
+            "adjudicated", "label_before_adjudication", "label",
             "label_source", "note"]
     s[cols].to_csv(ROOT / "labeling/labels.csv", index=False)
     print(f"{len(s)} rows; AI annotators agree on {s['ai_agree'].mean():.1%}; {s['reviewed'].sum()} reviewed by a person")
