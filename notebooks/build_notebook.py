@@ -177,13 +177,13 @@ class weights, so its probabilities are calibrated: in cross-validation the summ
 class counts (section 2, `expected_*_vs_true`). Weekly counts are therefore **expected counts**, the sum of the
 class probabilities over that week's texts (probabilistic classify-and-count).
 
-**Correcting for the enriched sample.** Calibration holds for texts like the labelled ones, but the labelled sample
-was enriched with market keywords: 19% of it is price/supply/demand, while a simple random sample of 160 texts
-(batch `random`) finds about 10%. The classifier therefore expects too much market talk in the full dataset. For each
-product we re-estimate the label shares in the full dataset by EM (Saerens et al., 2002) and rescale the
-probabilities accordingly (`analysis.classify.prior_adjust`). The table below compares the estimates with the random
-sample. Week-to-week comparisons (z-scores, rate ratios, correlations) are hardly affected by this correction; the
-overall shares are.
+**Checking the label shares against random samples.** Calibration in cross-validation holds for texts like the
+labelled ones, but most labelled texts were enriched with market keywords. We therefore compare, per product, the
+mean predicted probability over the whole dataset with the share in the simple random samples (batches `random` and
+`random6`, about 190 texts per product, labels from the AI annotators and the reviewer). We also tried an EM
+re-estimation of the label shares (Saerens et al., 2002; `analysis.classify.prior_adjust`); it moved the estimates
+slightly further from the random samples (mean absolute difference 1.9 vs 1.7 percentage points), because the
+training labels already contain about 770 randomly drawn texts. The unadjusted probabilities are used.
 
 Sentiment is `P(positive) − P(negative)` from `cardiffnlp/twitter-roberta-base-sentiment-latest`.
 """)

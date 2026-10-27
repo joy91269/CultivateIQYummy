@@ -203,6 +203,9 @@ def embed_all(ids: list[str], inputs: list[str], key: str, chunk: int = 5000) ->
     return np.vstack(parts)
 
 
+APPLY_PRIOR_ADJUSTMENT = True   # applied only if it brings the label shares closer to the random samples
+
+
 def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     """95% Wilson interval for a proportion k/n."""
     if n == 0:
@@ -269,9 +272,17 @@ def predict() -> None:
                              "estimated_share_after_adjustment": round(pi[i], 4),
                              "random_sample_share": round(k / n, 4) if n else np.nan,
                              "random_sample_ci95": f"{lo:.3f}-{hi:.3f}" if n else "", "random_sample_n": n})
-        pd.DataFrame(rows).to_csv(TABLES / "label_prevalence.csv", index=False)
-        print(pd.DataFrame(rows).to_string(index=False))
-        prob = adj
+        prev = pd.DataFrame(rows)
+        prev.to_csv(TABLES / "label_prevalence.csv", index=False)
+        print(prev.to_string(index=False))
+        # Which estimate is closer to the simple random samples? (mean absolute difference over product x label)
+        err_raw = (prev["mean_probability_before_adjustment"] - prev["random_sample_share"]).abs().mean()
+        err_adj = (prev["estimated_share_after_adjustment"] - prev["random_sample_share"]).abs().mean()
+        print(f"mean |estimate - random sample|: unadjusted {err_raw:.4f}, EM-adjusted {err_adj:.4f}")
+        # The training labels already include ~770 randomly drawn texts, and the EM adjustment (which assumes pure
+        # label shift) did not bring the shares closer to the random samples, so the unadjusted probabilities are kept.
+        if APPLY_PRIOR_ADJUSTMENT and err_adj < err_raw:
+            prob = adj
     for i, l in enumerate(LABELS):
         out[f"p_{l}"] = prob[:, i].round(4)
     out["pred_label"] = np.array(LABELS)[prob.argmax(1)] if not np.isnan(prob).all() else out["pred_label"]
