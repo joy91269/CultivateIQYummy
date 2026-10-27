@@ -78,7 +78,7 @@ def embed(inputs: list[str], batch_size: int = 32, model_name: str = EMBED_MODEL
     return model.encode(inputs, batch_size=batch_size, show_progress_bar=True, normalize_embeddings=True)
 
 
-C_GRID = (0.5, 2.0, 8.0, 32.0)
+C_GRID = (0.5, 2.0, 8.0, 32.0, 128.0, 512.0)   # C hit the top of the first grid (32), so it was extended
 
 
 def embed_lr_fit(X: np.ndarray, y: np.ndarray, groups: np.ndarray):
