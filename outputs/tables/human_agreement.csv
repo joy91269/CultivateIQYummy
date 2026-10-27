@@ -3,3 +3,17 @@ annotator_2,all,80,0.625,0.4254
 annotator_2,adjudicated,40,0.5,0.1266
 annotator_2,earlier review,20,0.75,0.6032
 annotator_2,silver check,20,0.75,0.661
+claude_opus,all,80,0.6625,0.4723
+claude_opus,adjudicated,40,0.525,0.0732
+claude_opus,earlier review,20,0.7,0.5062
+claude_opus,silver check,20,0.9,0.8667
+claude_sonnet,all,80,0.7,0.5202
+claude_sonnet,adjudicated,40,0.55,0.0781
+claude_sonnet,earlier review,20,0.8,0.685
+claude_sonnet,silver check,20,0.9,0.8667
+codex,all,60,0.5667,0.3735
+codex,adjudicated,40,0.45,0.2593
+codex,earlier review,20,0.8,0.6981
+chatgpt,all,60,0.5667,0.3812
+chatgpt,adjudicated,40,0.45,0.2593
+chatgpt,earlier review,20,0.8,0.6863
