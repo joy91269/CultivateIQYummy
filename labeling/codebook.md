@@ -66,7 +66,10 @@ describes what the text says about the market for *that* product.
    `labeling/third_annotator.py` computes agreement. Where Codex and ChatGPT agreed with each other but not with our
    label (73 texts), the reviewer decided blind between the two labels, shown as option A and B in random order
    (`labeling/adjudication.json`); the decision replaces the label (47 kept our label, 26 took the other family's).
-10. **Second human annotator.** A collaborator labels 160 texts blind on a separate page
-    (`labeling/build_collab_page.py`), for human-human agreement.
+10. **Second human annotator.** A collaborator labels 80 texts blind on a separate page
+    (`labeling/build_collab_page.py`): 40 adjudicated texts, 20 silver texts and 20 earlier reviews, in random order,
+    with this codebook in Chinese and English and an AI translation of each text into Chinese as a reading aid (the
+    English text is what is labelled). `labeling/collect_collab.py` compares the labels with the first reviewer's
+    (`outputs/tables/human_agreement.csv`); they do not change `labels.csv`.
 11. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
    reviewed the row and the agreed AI label elsewhere; `label_source` records which.
