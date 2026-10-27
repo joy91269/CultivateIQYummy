@@ -122,7 +122,10 @@ md(r"""
 
 All models were evaluated with **thread-grouped stratified 5-fold cross-validation**: a post and the comments under
 it never fall on both sides of a train/test split, so near-duplicate context cannot leak into the test fold.
-The 95% interval for macro-F1 comes from a cluster bootstrap over threads.
+The 95% interval for macro-F1 comes from a cluster bootstrap over threads. For the embedding models the
+regularisation strength of the logistic regression is chosen inside each training fold (inner 3-fold CV), so the
+reported scores are not tuned on the test folds. The model with the highest macro-F1 is selected; macro-F1 weights
+the four labels equally, which matters because 78% of the labelled texts are *other*.
 """)
 
 code(r"""
@@ -135,6 +138,9 @@ names = {"keyword": "Keyword dictionary (Task 1 rules)", "zeroshot": "Zero-shot 
 show = cv.rename(index=names)[["accuracy", "macro_f1", "macro_f1_ci_low", "macro_f1_ci_high", "cohen_kappa",
                               "f1_price", "f1_supply", "f1_demand", "f1_other"]].round(3)
 display(show)
+calib = [c for c in cv.columns if c.startswith("expected_")]
+print("Calibration: summed out-of-fold probabilities vs. true counts (embedding models)")
+display(cv.loc[cv[calib].notna().all(axis=1), calib].rename(index=names))
 selected = json.load(open(TAB / "selected_model.json"))["selected_model"]
 print("Selected model:", names[selected])
 
@@ -158,18 +164,34 @@ display(oof.merge(lab[["obs_id", "product"]], on="obs_id").assign(ok=lambda d: d
 md(r"""
 ## 3. Classify every observation
 
-The selected model, retrained on the whole labelled sample, classifies every observation of the event dataset.
+The selected model, retrained on the whole labelled sample, gives every observation of the event dataset a
+probability for each label; `pred_label` is the most likely one. Rows of the labelled sample keep their human label.
+
+**Counting signals.** A weekly count of hard labels would be biased: a classifier that misses 40% of demand texts
+undercounts demand every week, and one tuned for recall overcounts it. Our logistic regression is fitted without
+class weights, so its probabilities are calibrated: in cross-validation the summed probabilities match the true
+class counts (section 2, `expected_*_vs_true`). Weekly counts are therefore **expected counts**, the sum of the
+class probabilities over that week's texts (probabilistic classify-and-count).
+
 Sentiment is `P(positive) − P(negative)` from `cardiffnlp/twitter-roberta-base-sentiment-latest`.
 """)
 
 code(r"""
 ev = pd.read_csv("data/processed/event_dataset.csv", low_memory=False, parse_dates=["week_start", "date"])
 cls = pd.read_csv("data/processed/classified_observations.csv.gz")
-obs = ev.merge(cls[["obs_id", "pred_label", "sentiment"] + [f"p_{l}" for l in LABELS]], on="obs_id", how="left")
+obs = ev.merge(cls[["obs_id", "pred_label", "human_label", "sentiment"] + [f"p_{l}" for l in LABELS]],
+               on="obs_id", how="left")
+has_human = obs["human_label"].isin(LABELS)          # labelled sample: the human label replaces the prediction
+obs.loc[has_human, "pred_label"] = obs.loc[has_human, "human_label"]
+for l in LABELS:
+    obs.loc[has_human, f"p_{l}"] = (obs.loc[has_human, "human_label"] == l).astype(float)
+print(f"{has_human.sum()} observations carry their human label")
 print(f"{len(obs):,} observations, {obs['record_id'].nunique():,} Reddit records, {obs['thread_id'].nunique():,} threads")
 dist = pd.crosstab(obs["product"], obs["pred_label"]).reindex(columns=LABELS)
-dist_share = dist.div(dist.sum(1), axis=0).round(3)
-display(pd.concat({"count": dist, "share": dist_share}, axis=1))
+expected = obs.groupby("product")[[f"p_{l}" for l in LABELS]].sum().round(0).astype(int)
+expected.columns = LABELS
+dist_share = expected.div(expected.sum(1), axis=0).round(3)
+display(pd.concat({"most likely label": dist, "expected count": expected, "expected share": dist_share}, axis=1))
 dist.to_csv(TAB / "predicted_label_counts.csv")
 """)
 
@@ -470,7 +492,7 @@ and report its percentile.
 | unusual fall | rose | **supply increase** |
 | no unusual move | any | no clear price effect |
 
-**Online reading.** Weekly counts of texts the classifier labels *supply* and *demand* during the event dates
+**Online reading.** Expected counts of *supply* and *demand* texts (section 3) during the event dates
 (online talk reacts at once, so no response lag) vs. the 8 weeks before, as a rate ratio with a 95% Poisson interval. A kind of talk "rose" when its interval is above 1 and it
 rose more than background (*other*) talk about the product. Supply talk rising (at least as much as demand talk) →
 *supply*; demand talk rising more → *demand*. Note that by our codebook, reports of recalls and products pulled from
@@ -480,7 +502,7 @@ shelves count as supply talk; people avoiding a product count as demand talk.
 code(r"""
 def counts(prod, s0, s1):
     g = obs[(obs["product"] == prod) & (obs["week_start"] >= s0) & (obs["week_start"] <= s1)]
-    return {l: int((g["pred_label"] == l).sum()) for l in LABELS} | {"n": len(g), "sentiment": g["sentiment"].mean()}
+    return {l: float(g[f"p_{l}"].sum()) for l in LABELS} | {"n": len(g), "sentiment": g["sentiment"].mean()}
 
 def wk(d):   # Monday of the week containing d
     d = pd.Timestamp(d); return d - pd.Timedelta(days=d.weekday())
@@ -521,8 +543,8 @@ for e in events_ref.itertuples():
                     "market_reading": market,
                     "supply_talk_rate_ratio": fmt(rr["supply"]), "demand_talk_rate_ratio": fmt(rr["demand"]),
                     "price_talk_rate_ratio": fmt(rr["price"]), "other_talk_rate_ratio": fmt(rr["other"]),
-                    "supply_talk_before_during": f"{pre['supply']} / {dur['supply']}",
-                    "demand_talk_before_during": f"{pre['demand']} / {dur['demand']}",
+                    "supply_talk_before_during": f"{pre['supply']:.0f} / {dur['supply']:.0f}",
+                    "demand_talk_before_during": f"{pre['demand']:.0f} / {dur['demand']:.0f}",
                     "weeks_before_during": f"{w_pre} / {w_dur}",
                     "online_reading": online, "readings_agree": agree, "expected": e.hypothesis})
 verdict = pd.DataFrame(verdict)

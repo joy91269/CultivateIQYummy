@@ -65,19 +65,42 @@ EMBED_MODELS = {"embed_lr": "sentence-transformers/all-mpnet-base-v2",      # 11
                 "embed_lr_bge": "BAAI/bge-base-en-v1.5",                    # 110 M, 2023
                 "embed_lr_gte": "Alibaba-NLP/gte-modernbert-base"}          # 149 M, ModernBERT encoder, 2025
 EMBED_MODEL = EMBED_MODELS["embed_lr"]
+_EMBEDDERS: dict = {}     # loaded embedding models, reused across calls
 
 
 def embed(inputs: list[str], batch_size: int = 32, model_name: str = EMBED_MODEL) -> np.ndarray:
     import torch
     from sentence_transformers import SentenceTransformer
     # some checkpoints are stored in float16, which is slow and less precise on CPU: always run in float32
-    model = SentenceTransformer(model_name, device="cpu", model_kwargs={"dtype": torch.float32})
+    if model_name not in _EMBEDDERS:
+        _EMBEDDERS[model_name] = SentenceTransformer(model_name, device="cpu", model_kwargs={"dtype": torch.float32})
+    model = _EMBEDDERS[model_name]
     return model.encode(inputs, batch_size=batch_size, show_progress_bar=True, normalize_embeddings=True)
 
 
-def embed_lr_fit(X: np.ndarray, y: np.ndarray):
+C_GRID = (0.5, 2.0, 8.0, 32.0)
+
+
+def embed_lr_fit(X: np.ndarray, y: np.ndarray, groups: np.ndarray):
+    """Logistic regression on frozen embeddings. The regularisation strength C is chosen by an inner thread-grouped
+    3-fold CV on the training data only (macro-F1), so the outer CV score is not tuned on its own test folds.
+    No class weights: weighting the rare classes up raises their recall but makes the predicted probabilities
+    overstate them; unweighted probabilities are calibrated, so summing them gives unbiased weekly counts."""
     from sklearn.linear_model import LogisticRegression
-    return LogisticRegression(C=2.0, max_iter=3000, class_weight="balanced", random_state=SEED).fit(X, y)
+    from sklearn.metrics import f1_score
+    from sklearn.model_selection import StratifiedGroupKFold
+    inner = list(StratifiedGroupKFold(n_splits=3, shuffle=True, random_state=SEED).split(X, y, groups))
+    best_c, best_f = C_GRID[0], -1.0
+    for c in C_GRID:
+        pred = np.empty(len(y), dtype=object)
+        for tr, te in inner:
+            pred[te] = LogisticRegression(C=c, max_iter=3000, random_state=SEED).fit(X[tr], y[tr]).predict(X[te])
+        f = f1_score(y, pred, labels=LABELS, average="macro", zero_division=0)
+        if f > best_f:
+            best_c, best_f = c, f
+    clf = LogisticRegression(C=best_c, max_iter=3000, random_state=SEED).fit(X, y)
+    clf.chosen_C_ = best_c
+    return clf
 
 
 # ------------------------------------------------------------------------------------------- 4. fine-tune

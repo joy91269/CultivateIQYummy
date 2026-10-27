@@ -14,8 +14,8 @@ def week_grid(start: str, end: str) -> pd.DatetimeIndex:
 
 
 def weekly_signals(obs: pd.DataFrame, post_counts: pd.DataFrame, start: str, end: str) -> pd.DataFrame:
-    """obs: one row per observation with columns product, week_start, pred_label, sentiment, record_type,
-    collection_method. post_counts: week_start, n_posts (all posts in the listed subreddits)."""
+    """obs: one row per observation with columns product, week_start, p_price/p_supply/p_demand/p_other (class
+    probabilities), sentiment, record_type, collection_method. post_counts: week_start, n_posts (all posts in the listed subreddits)."""
     weeks = week_grid(start, end)
     denom = post_counts.groupby("week_start")["n_posts"].sum().reindex(weeks, fill_value=0)
     rows = []
@@ -29,7 +29,8 @@ def weekly_signals(obs: pd.DataFrame, post_counts: pd.DataFrame, start: str, end
         df["sentiment"] = w["sentiment"].mean().reindex(weeks)
         df["neg_share"] = w["sentiment"].apply(lambda s: (s < -0.25).mean()).reindex(weeks)
         for lab in SIGNALS + ["other"]:
-            df[f"n_{lab}"] = g[g["pred_label"] == lab].groupby("week_start").size().reindex(weeks, fill_value=0)
+            # expected count = sum of the class probabilities (calibrated classifier; see notebook section 3)
+            df[f"n_{lab}"] = w[f"p_{lab}"].sum().reindex(weeks, fill_value=0.0)
             df[f"share_{lab}"] = df[f"n_{lab}"] / df["volume"].replace(0, np.nan)
         df["product"] = prod
         rows.append(df.rename_axis("week_start").reset_index())

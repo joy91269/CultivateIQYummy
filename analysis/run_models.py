@@ -93,9 +93,17 @@ def evaluate() -> None:
         print(f"embeddings ({name}) + logistic regression ...", flush=True)
         X = cached_embeddings(lab, key)
         oof = np.empty(len(lab), dtype=object)
+        prob = np.zeros((len(lab), len(LABELS)))
+        chosen = []
         for tr, te in folds:
-            oof[te] = embed_lr_fit(X[tr], y[tr]).predict(X[te])
+            clf = embed_lr_fit(X[tr], y[tr], groups[tr])
+            oof[te] = clf.predict(X[te])
+            prob[te] = clf.predict_proba(X[te])[:, [list(clf.classes_).index(l) for l in LABELS]]
+            chosen.append(clf.chosen_C_)
         preds[key] = oof
+        for i, l in enumerate(LABELS):
+            preds[f"{key}_p_{l}"] = prob[:, i].round(4)
+        print(f"  C chosen in the inner CV of each fold: {chosen}", flush=True)
 
     print("fine-tuned DistilRoBERTa ...", flush=True)
     # each fold takes ~25 min on a 2-core CPU, so finished folds are cached; the folder name records the label set
@@ -124,6 +132,11 @@ def evaluate() -> None:
         r["model"] = m
         rows.append(r)
     res = pd.DataFrame(rows).set_index("model")
+    # calibration of the class probabilities: summed out-of-fold probabilities vs. true counts
+    true_n = pd.Series(y).value_counts()
+    for key in EMBED_MODELS:
+        for l in LABELS:
+            res.loc[key, f"expected_{l}_vs_true"] = f"{preds[f'{key}_p_{l}'].sum():.0f} / {true_n.get(l, 0)}"
     TABLES.mkdir(parents=True, exist_ok=True)
     res.to_csv(TABLES / "model_cv_metrics.csv")
     preds.to_csv(TABLES / "model_cv_predictions.csv", index=False)
@@ -148,6 +161,25 @@ def predict_in_chunks(ids: list[str], inputs: list[str], score, cache_path, chun
     return have.loc[ids, LABELS].to_numpy(dtype=float)
 
 
+def embed_all(ids: list[str], inputs: list[str], key: str, chunk: int = 5000) -> np.ndarray:
+    """Embeddings of every observation, computed in chunks and cached (.cache/embed_all_<key>/), so an interrupted
+    run resumes and a new classifier on the same embeddings needs no re-embedding."""
+    d = CACHE / f"embed_all_{key}"
+    d.mkdir(parents=True, exist_ok=True)
+    parts = []
+    for k, start in enumerate(range(0, len(ids), chunk)):
+        f, fid = d / f"chunk{k:03d}.npy", d / f"chunk{k:03d}_ids.csv"
+        if f.exists() and pd.read_csv(fid)["obs_id"].tolist() == ids[start:start + chunk]:
+            parts.append(np.load(f))
+            continue
+        X = embed(inputs[start:start + chunk], model_name=EMBED_MODELS[key])
+        np.save(f, X)
+        pd.DataFrame({"obs_id": ids[start:start + chunk]}).to_csv(fid, index=False)
+        parts.append(X)
+        print(f"embedded {min(start + chunk, len(ids))}/{len(ids)}", flush=True)
+    return np.vstack(parts)
+
+
 def predict() -> None:
     lab = load_labelled()
     best = json.loads(FINAL_MODEL_FILE.read_text())["selected_model"]
@@ -165,11 +197,14 @@ def predict() -> None:
                 tok.save_pretrained(model_dir)
                 model.save_pretrained(model_dir)
             score = lambda xs: finetune_predict(tok, model, xs)[1]
+        if best == "finetune":
+            prob = predict_in_chunks(ev["obs_id"].tolist(), inputs, score, CACHE / "predict_probs_finetune.csv")
         else:
-            clf = embed_lr_fit(cached_embeddings(lab, best), lab["label"].to_numpy())
-            cols = [list(clf.classes_).index(l) for l in LABELS]
-            score = lambda xs: clf.predict_proba(embed(xs, model_name=EMBED_MODELS[best]))[:, cols]
-        prob = predict_in_chunks(ev["obs_id"].tolist(), inputs, score, CACHE / f"predict_probs_{best}.csv")
+            clf = embed_lr_fit(cached_embeddings(lab, best), lab["label"].to_numpy(),
+                               lab["thread_id"].astype(str).to_numpy())
+            print(f"final model: C = {clf.chosen_C_}", flush=True)
+            Xall = embed_all(ev["obs_id"].tolist(), inputs, best)
+            prob = clf.predict_proba(Xall)[:, [list(clf.classes_).index(l) for l in LABELS]]
         pred = np.array(LABELS)[prob.argmax(1)]
     elif best == "zeroshot":
         pred, prob = zeroshot_predict(inputs), np.full((len(inputs), len(LABELS)), np.nan)
