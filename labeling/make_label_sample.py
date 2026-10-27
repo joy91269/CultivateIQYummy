@@ -20,6 +20,11 @@ Batches used in this project (see the `batch` column):
         --append --seed 11 --tag 2
     python labeling/make_label_sample.py --record-type post --quota demand:14,supply:6,price:6 --append --seed 13 --tag 2
 The last two batches (tag 2) were added after the first model comparison showed too few demand examples.
+    python labeling/make_label_sample.py --record-type any --random 40 --append --seed 21
+    python labeling/make_label_sample.py --record-type comment --quota supply:10,demand:15 --near --append --seed 23 --tag 3
+    python labeling/make_label_sample.py --record-type post --quota supply:8,demand:8 --append --seed 29 --tag 3
+The random batch (40 per product, no keyword strata) measures how common each label is in the whole dataset; the
+other two (tag 3) add rare-class examples after a learning curve showed scores still rising with more labels.
 Output: labeling/label_sample.csv
 """
 from __future__ import annotations
@@ -61,7 +66,10 @@ def near_group(text: str, product: str, window: int = 80) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--record-type", choices=["post", "comment"], required=True)
+    ap.add_argument("--record-type", choices=["post", "comment", "any"], required=True)
+    ap.add_argument("--random", type=int, default=0,
+                    help="simple random sample of this many observations per product (no keyword strata): "
+                         "measures how common each label really is")
     ap.add_argument("--per-product", type=int, default=0)
     ap.add_argument("--quota", default="", help="e.g. price:15,supply:15,demand:5,none:5 (per product)")
     ap.add_argument("--seed", type=int, default=2026)
@@ -72,7 +80,9 @@ def main() -> None:
                     help="with --quota: a price/supply/demand keyword must occur within 80 characters of the product")
     args = ap.parse_args()
     ev = pd.read_csv(ROOT / "data/processed/event_dataset.csv", low_memory=False)
-    ev = ev[ev["record_type"] == args.record_type].copy()
+    if args.record_type != "any":
+        ev = ev[ev["record_type"] == args.record_type]
+    ev = ev.copy()
     if args.subreddit:
         ev = ev[ev["subreddit"] == args.subreddit]
     old = pd.read_csv(OUT) if args.append and OUT.exists() else pd.DataFrame(columns=COLS)
@@ -88,7 +98,9 @@ def main() -> None:
         ev["kw_group"] = [near_group(t, p) for t, p in zip(ev["text"], ev["product"])]
     parts = []
     for _, g in ev.groupby("product"):
-        if args.quota:
+        if args.random:
+            parts.append(g.head(args.random))     # g is already shuffled: a simple random sample
+        elif args.quota:
             for item in args.quota.split(","):
                 grp, n = item.split(":")
                 parts.append(g[g["kw_group"] == grp].head(int(n)))
@@ -98,8 +110,8 @@ def main() -> None:
             parts.append(cand.head(n_cand))
             parts.append(rest.head(args.per_product - min(n_cand, len(cand))))
     batch = pd.concat(parts).sample(frac=1, random_state=args.seed)
-    batch["batch"] = (f"{args.record_type}s" + ("_enriched" if args.quota else "")
-                      + (f"_{args.subreddit}" if args.subreddit else ""))
+    batch["batch"] = ("random" if args.random else f"{args.record_type}s" + ("_enriched" if args.quota else "")
+                      + (f"_{args.subreddit}" if args.subreddit else "") + args.tag)
     print(batch.groupby(["product", "kw_group"]).size().to_string())
     sample = pd.concat([old, batch[COLS]], ignore_index=True)   # keeps columns added by later steps
     sample.to_csv(OUT, index=False)
