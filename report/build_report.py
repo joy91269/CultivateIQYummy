@@ -28,7 +28,7 @@ FIGURES = [  # (words in the image's alt text, figure file)
     ("lead", "lead_lag.png"),
 ]
 SUBTITLE = "Cultivate IQ \u2013 NAFSI Track 3 (Supply Chain)"
-AUTHOR = "[Team member names]"
+AUTHOR = "Jiuyi Zheng, Gan Xu, Zhiguang Liu"
 DATE = "November 2026"
 
 CAPTION_FIG = re.compile(r"^\*?Figure\s+\d+[.:]\s*(.+?)\*?$")
