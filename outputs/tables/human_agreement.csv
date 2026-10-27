@@ -1,0 +1,5 @@
+annotator,set,n,agreement,cohen_kappa
+annotator_2,all,80,0.625,0.4254
+annotator_2,adjudicated,40,0.5,0.1266
+annotator_2,earlier review,20,0.75,0.6032
+annotator_2,silver check,20,0.75,0.661

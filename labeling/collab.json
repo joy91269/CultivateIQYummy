@@ -1,0 +1,562 @@
+{
+ "annotator_2_p_195oymo_onion": {
+  "at": 1793084584081,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_195oymo_onion"
+ },
+ "annotator_2_c_ixw4nfx_onion": {
+  "at": 1793084165057,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_ixw4nfx_onion"
+ },
+ "annotator_2_p_13vh284_avocado": {
+  "at": 1793084763214,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_13vh284_avocado"
+ },
+ "annotator_2_p_1bwzplr_onion": {
+  "at": 1793084823566,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "p_1bwzplr_onion"
+ },
+ "annotator_2_p_1dum265_avocado": {
+  "at": 1793084157709,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "主要是吐槽饭店",
+  "obs_id": "p_1dum265_avocado"
+ },
+ "annotator_2_c_l3rw0up_avocado": {
+  "at": 1793084946510,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_l3rw0up_avocado"
+ },
+ "annotator_2_p_17pwlb0_avocado": {
+  "at": 1793084928540,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_17pwlb0_avocado"
+ },
+ "annotator_2_c_idop3bm_onion": {
+  "at": 1793084178696,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_idop3bm_onion"
+ },
+ "annotator_2_c_jcvoiko_cucumber": {
+  "at": 1793084306363,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_jcvoiko_cucumber"
+ },
+ "annotator_2_p_1hn3q8r_avocado": {
+  "at": 1793084504960,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "所以你特别关注了chiptle的鳄梨酱？为什么，这条勉强算说它打折吧",
+  "obs_id": "p_1hn3q8r_avocado"
+ },
+ "annotator_2_p_1bbxlou_cucumber": {
+  "at": 1793084658167,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1bbxlou_cucumber"
+ },
+ "annotator_2_c_kxt655e_avocado": {
+  "at": 1793084921661,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_kxt655e_avocado"
+ },
+ "annotator_2_c_k48dfg3_avocado": {
+  "at": 1793084226753,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_k48dfg3_avocado"
+ },
+ "annotator_2_p_1043rcf_avocado": {
+  "at": 1793084580240,
+  "by": "annotator_2",
+  "label": "supply",
+  "note": "",
+  "obs_id": "p_1043rcf_avocado"
+ },
+ "annotator_2_c_m36ozgx_avocado": {
+  "at": 1793083057421,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_m36ozgx_avocado"
+ },
+ "annotator_2_p_16w10ll_lettuce": {
+  "at": 1793084729706,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_16w10ll_lettuce"
+ },
+ "annotator_2_p_1dzmzrj_avocado": {
+  "at": 1793084773354,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1dzmzrj_avocado"
+ },
+ "annotator_2_p_15v9o0f_avocado": {
+  "at": 1793084131441,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "p_15v9o0f_avocado"
+ },
+ "annotator_2_c_irslorf_onion": {
+  "at": 1793084667282,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_irslorf_onion"
+ },
+ "annotator_2_p_s21n9x_onion": {
+  "at": 1793084852939,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_s21n9x_onion"
+ },
+ "annotator_2_p_1788f81_lettuce": {
+  "at": 1793084555548,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1788f81_lettuce"
+ },
+ "annotator_2_p_1efcfkb_cucumber": {
+  "at": 1793084892268,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1efcfkb_cucumber"
+ },
+ "annotator_2_c_lc1p9hz_avocado": {
+  "at": 1793084809830,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_lc1p9hz_avocado"
+ },
+ "annotator_2_c_hy66b6x_avocado": {
+  "at": 1793084108013,
+  "by": "annotator_2",
+  "label": "supply",
+  "note": "",
+  "obs_id": "c_hy66b6x_avocado"
+ },
+ "annotator_2_p_s482pm_cucumber": {
+  "at": 1793084641324,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_s482pm_cucumber"
+ },
+ "annotator_2_p_xjlac4_onion": {
+  "at": 1793084430197,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "p_xjlac4_onion"
+ },
+ "annotator_2_c_kh4n0zz_avocado": {
+  "at": 1793084085597,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_kh4n0zz_avocado"
+ },
+ "annotator_2_p_wfpbug_lettuce": {
+  "at": 1793083098033,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "这条本身没有但是评论或许有",
+  "obs_id": "p_wfpbug_lettuce"
+ },
+ "annotator_2_c_jiqj44i_cucumber": {
+  "at": 1793084885422,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_jiqj44i_cucumber"
+ },
+ "annotator_2_p_195azx0_onion": {
+  "at": 1793084125600,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "p_195azx0_onion"
+ },
+ "annotator_2_c_lhcnvy8_avocado": {
+  "at": 1793084712808,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "c_lhcnvy8_avocado"
+ },
+ "annotator_2_c_hr4xlmz_onion": {
+  "at": 1793084696282,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_hr4xlmz_onion"
+ },
+ "annotator_2_c_ipo5nn8_onion": {
+  "at": 1793084897237,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_ipo5nn8_onion"
+ },
+ "annotator_2_p_18yi5vt_lettuce": {
+  "at": 1793084839825,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "p_18yi5vt_lettuce"
+ },
+ "annotator_2_p_1h4xoe1_onion": {
+  "at": 1793084277867,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "p_1h4xoe1_onion"
+ },
+ "annotator_2_p_1eyo7h7_cucumber": {
+  "at": 1793084784287,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1eyo7h7_cucumber"
+ },
+ "annotator_2_c_jn4eoni_avocado": {
+  "at": 1793084832172,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_jn4eoni_avocado"
+ },
+ "annotator_2_p_105pgxt_lettuce": {
+  "at": 1793084383282,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_105pgxt_lettuce"
+ },
+ "annotator_2_c_jqphxdw_lettuce": {
+  "at": 1793084604828,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_jqphxdw_lettuce"
+ },
+ "annotator_2_p_wnrwaj_avocado": {
+  "at": 1793084694076,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "p_wnrwaj_avocado"
+ },
+ "annotator_2_c_i25va2l_onion": {
+  "at": 1793084901444,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_i25va2l_onion"
+ },
+ "annotator_2_c_hwto7ob_avocado": {
+  "at": 1793084539331,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_hwto7ob_avocado"
+ },
+ "annotator_2_c_jjgypj1_avocado": {
+  "at": 1793084609815,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "c_jjgypj1_avocado"
+ },
+ "annotator_2_p_1d47t6y_onion": {
+  "at": 1793084678715,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "p_1d47t6y_onion"
+ },
+ "annotator_2_c_j61yufc_onion": {
+  "at": 1793084625999,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_j61yufc_onion"
+ },
+ "annotator_2_p_vod7wi_cucumber": {
+  "at": 1793084917212,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_vod7wi_cucumber"
+ },
+ "annotator_2_c_lpog46h_onion": {
+  "at": 1793084196973,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_lpog46h_onion"
+ },
+ "annotator_2_p_uzli2g_avocado": {
+  "at": 1793084708656,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_uzli2g_avocado"
+ },
+ "annotator_2_c_i5ibe0v_cucumber": {
+  "at": 1793084789141,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_i5ibe0v_cucumber"
+ },
+ "annotator_2_c_iip9dmd_avocado": {
+  "at": 1793084189707,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_iip9dmd_avocado"
+ },
+ "annotator_2_c_j3ywv6n_lettuce": {
+  "at": 1793084546502,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_j3ywv6n_lettuce"
+ },
+ "annotator_2_c_jieyfz1_onion": {
+  "at": 1793084596931,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_jieyfz1_onion"
+ },
+ "annotator_2_c_j5cngoy_lettuce": {
+  "at": 1793084628948,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_j5cngoy_lettuce"
+ },
+ "annotator_2_p_105kbmp_avocado": {
+  "at": 1793084233629,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_105kbmp_avocado"
+ },
+ "annotator_2_c_ieg6y23_avocado": {
+  "at": 1793084299733,
+  "by": "annotator_2",
+  "label": "supply",
+  "note": "",
+  "obs_id": "c_ieg6y23_avocado"
+ },
+ "annotator_2_p_1aycpsr_onion": {
+  "at": 1793084636432,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1aycpsr_onion"
+ },
+ "annotator_2_c_i7varnd_lettuce": {
+  "at": 1793084814631,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_i7varnd_lettuce"
+ },
+ "annotator_2_p_1cg6em9_cucumber": {
+  "at": 1793084443187,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1cg6em9_cucumber"
+ },
+ "annotator_2_c_i8dkeec_avocado": {
+  "at": 1793084905443,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_i8dkeec_avocado"
+ },
+ "annotator_2_c_kvgpfg6_onion": {
+  "at": 1793084938357,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_kvgpfg6_onion"
+ },
+ "annotator_2_c_jzh9nvs_onion": {
+  "at": 1793084574730,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_jzh9nvs_onion"
+ },
+ "annotator_2_c_i4k3juv_cucumber": {
+  "at": 1793084857990,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_i4k3juv_cucumber"
+ },
+ "annotator_2_c_j5upat9_onion": {
+  "at": 1793084205381,
+  "by": "annotator_2",
+  "label": "supply",
+  "note": "",
+  "obs_id": "c_j5upat9_onion"
+ },
+ "annotator_2_c_lifevm0_avocado": {
+  "at": 1793084368277,
+  "by": "annotator_2",
+  "label": "supply",
+  "note": "推荐某个店铺的牛油果，算是供给吗？你的供给给的都是负面词条",
+  "obs_id": "c_lifevm0_avocado"
+ },
+ "annotator_2_p_yxpmc5_avocado": {
+  "at": 1793084245920,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_yxpmc5_avocado"
+ },
+ "annotator_2_c_kr7nhwn_cucumber": {
+  "at": 1793084520705,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "c_kr7nhwn_cucumber"
+ },
+ "annotator_2_c_lbusfhf_avocado": {
+  "at": 1793084615786,
+  "by": "annotator_2",
+  "label": "supply",
+  "note": "",
+  "obs_id": "c_lbusfhf_avocado"
+ },
+ "annotator_2_p_11hmeyf_lettuce": {
+  "at": 1793084912239,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "p_11hmeyf_lettuce"
+ },
+ "annotator_2_p_1avazy0_lettuce": {
+  "at": 1793084687312,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1avazy0_lettuce"
+ },
+ "annotator_2_c_iqbya2i_avocado": {
+  "at": 1793084099569,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_iqbya2i_avocado"
+ },
+ "annotator_2_c_lhxnq7z_avocado": {
+  "at": 1793084373402,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "c_lhxnq7z_avocado"
+ },
+ "annotator_2_p_wuyibd_lettuce": {
+  "at": 1793084820031,
+  "by": "annotator_2",
+  "label": "supply",
+  "note": "",
+  "obs_id": "p_wuyibd_lettuce"
+ },
+ "annotator_2_c_hx2fvgw_avocado": {
+  "at": 1793084508747,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_hx2fvgw_avocado"
+ },
+ "annotator_2_c_l378sla_onion": {
+  "at": 1793084871081,
+  "by": "annotator_2",
+  "label": "supply",
+  "note": "",
+  "obs_id": "c_l378sla_onion"
+ },
+ "annotator_2_c_jrfsajm_onion": {
+  "at": 1793084515834,
+  "by": "annotator_2",
+  "label": "price",
+  "note": "",
+  "obs_id": "c_jrfsajm_onion"
+ },
+ "annotator_2_p_13kkro6_avocado": {
+  "at": 1793084834510,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "p_13kkro6_avocado"
+ },
+ "annotator_2_p_sx30tw_avocado": {
+  "at": 1793084864967,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "p_sx30tw_avocado"
+ },
+ "annotator_2_c_m36fp4f_onion": {
+  "at": 1793084214982,
+  "by": "annotator_2",
+  "label": "demand",
+  "note": "",
+  "obs_id": "c_m36fp4f_onion"
+ },
+ "annotator_2_p_1bfif0u_lettuce": {
+  "at": 1793084568410,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "p_1bfif0u_lettuce"
+ },
+ "annotator_2_c_jzrqib4_lettuce": {
+  "at": 1793084249994,
+  "by": "annotator_2",
+  "label": "other",
+  "note": "",
+  "obs_id": "c_jzrqib4_lettuce"
+ }
+}
