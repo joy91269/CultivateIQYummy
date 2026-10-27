@@ -107,6 +107,7 @@ a { color: var(--accent) }
       <select id="filter">
         <option value="todo">To review (not done yet)</option>
         <option value="recheck">Second look: demand or other</option>
+        <option value="adjudicate">Two annotators disagree: which is right?</option>
         <option value="queue">All texts to review</option>
         <option value="all">All texts, including ones not flagged</option>
         <option value="changed">Where my label differs from both AIs</option>
@@ -175,6 +176,7 @@ const LABELS = ["price", "supply", "demand", "other"];
 const PRODUCT_RE = {avocado: /\b(avocados?|guac(amole)?|hass)\b/gi, lettuce: /\b(lettuces?|romaine)\b/gi,
   onion: /\bonions?\b/gi, cucumber: /\b(cucumbers?|cukes?)\b/gi};
 let reviews = {};      // obs_id -> {label, note}
+let adjud = {};        // obs_id -> {label, note}: decisions between our label and the third annotator's
 let order = [];        // indexes into ITEMS for the current filter
 let cur = 0;           // position in order
 let current = null;    // obs_id shown
@@ -188,9 +190,10 @@ function rebuildOrder(keepId) {
   const f = $("filter").value;
   order = ITEMS.map((_, i) => i).filter((i) => {
     const it = ITEMS[i], r = reviews[it.obs_id];
-    if (f === "todo") return pending(it) || it.obs_id === keepId && (it.needs_review || it.recheck);
+    if (f === "todo") return pending(it) || it.obs_id === keepId && (it.needs_review || it.recheck || it.adjudicate);
     if (f === "recheck") return it.recheck;
-    if (f === "queue") return it.needs_review || it.recheck;
+    if (f === "adjudicate") return it.adjudicate;
+    if (f === "queue") return it.needs_review || it.recheck || it.adjudicate;
     if (f === "changed") return r && r.label !== it.label_ai1 && r.label !== it.label_ai2;
     if (f === "all") return true;
     return it.product === f;
@@ -201,11 +204,21 @@ function rebuildOrder(keepId) {
 // a flagged text is pending until reviewed; a text picked for a second look is pending until looked at again
 function pending(it) {
   const r = reviews[it.obs_id];
-  return (it.needs_review && !r) || (it.recheck && !(r && r.recheck));
+  return (it.needs_review && !r) || (it.recheck && !(r && r.recheck)) || (it.adjudicate && !adjud[it.obs_id]);
+}
+
+// which question this text is shown for: an open review comes first, then the second look, then adjudication
+function mode(it) {
+  const r = reviews[it.obs_id];
+  if ($("filter").value === "adjudicate" && it.adjudicate) return "adjudicate";
+  if (it.needs_review && !r) return "review";
+  if (it.recheck && !(r && r.recheck)) return "recheck";
+  if (it.adjudicate && (!adjud[it.obs_id] || !it.needs_review)) return "adjudicate";
+  return "review";
 }
 
 function render() {
-  const queue = ITEMS.filter((it) => it.needs_review || it.recheck);
+  const queue = ITEMS.filter((it) => it.needs_review || it.recheck || it.adjudicate);
   const done = queue.filter((it) => !pending(it)).length;
   $("count").textContent = `${done} / ${queue.length} reviewed`;
   $("meter").style.width = `${(100 * done / Math.max(1, queue.length)).toFixed(1)}%`;
@@ -224,24 +237,32 @@ function render() {
   $("date").textContent = it.date;
   $("pos").textContent = `${cur + 1} of ${order.length}`;
   $("link").href = it.url;
-  $("guide").hidden = !it.recheck;
+  const md = mode(it);
+  const r2 = md === "adjudicate" ? adjud[it.obs_id] : r;
+  $("guide").hidden = md !== "recheck";
   $("text").innerHTML = highlight(it.text, it.product);
   $("text").scrollTop = 0;
-  const agree = it.label_ai1 === it.label_ai2;
-  $("ai").innerHTML = agree
+  const agree = it.label_ai1 === it.label_ai2 && md !== "adjudicate";
+  // adjudication is blind: the two labels are shown as A and B, in an order that varies from text to text
+  const ab = it.ab_swap ? [[it.codex_label, it.codex_reason], [it.final_label, it.reason_ai1]]
+                        : [[it.final_label, it.reason_ai1], [it.codex_label, it.codex_reason]];
+  $("ai").innerHTML = md === "adjudicate"
+    ? `Two annotators disagree. A: <b>${ab[0][0]}</b> (${esc(ab[0][1] || "")}) · B: <b>${ab[1][0]}</b> (${esc(ab[1][1] || "")}). Which is right? A third label is fine too.`
+    : agree
     ? `Both AI annotators: <b>${it.label_ai1}</b>${it.reason_ai1 ? " · " + esc(it.reason_ai1) : ""}`
     : `AI annotators disagree: <b>${it.label_ai1}</b> (${esc(it.reason_ai1 || "")}) vs <b>${it.label_ai2}</b> (${esc(it.reason_ai2 || "")}). Pick one.`;
   $("accept").hidden = !agree;
   for (const l of LABELS) {
     const b = $("b-" + l);
-    b.classList.toggle("on", !!r && r.label === l);
-    b.classList.toggle("proposed", l === it.label_ai1 || l === it.label_ai2);
-    b.setAttribute("aria-pressed", String(!!r && r.label === l));
+    b.classList.toggle("on", !!r2 && r2.label === l);
+    b.classList.toggle("proposed", md === "adjudicate" ? (l === it.final_label || l === it.codex_label)
+                                                        : (l === it.label_ai1 || l === it.label_ai2));
+    b.setAttribute("aria-pressed", String(!!r2 && r2.label === l));
   }
-  $("note").value = r?.note || "";
+  $("note").value = r2?.note || "";
   $("prev").disabled = cur === 0;
   $("next").disabled = cur >= order.length - 1;
-  $("status").textContent = r ? `Saved: ${r.label}` : "";
+  $("status").textContent = r2 ? `Saved: ${r2.label}` : "";
 }
 
 function showNotice(msg) { $("notice").textContent = msg; $("notice").hidden = false; }
@@ -252,11 +273,19 @@ async function choose(label) {
   if (!it) return;
   const body = {label, note: $("note").value.trim(), ai1: it.label_ai1, ai2: it.label_ai2, product: it.product,
     at: Date.now()};
-  if (it.recheck) body.recheck = true;
-  reviews[it.obs_id] = body;
+  const md = mode(it);
+  let coll = "reviews";
+  if (md === "adjudicate") {
+    coll = "adjudication";
+    Object.assign(body, {ours: it.final_label, third: it.codex_label});
+    adjud[it.obs_id] = body;
+  } else {
+    if (md === "recheck" || (it.recheck && reviews[it.obs_id]?.recheck)) body.recheck = true;
+    reviews[it.obs_id] = body;
+  }
   $("status").textContent = "Saving…";
   if (db && canWrite) {
-    try { await db.collection("reviews").doc(it.obs_id).set(body); $("status").textContent = `Saved: ${label}`; }
+    try { await db.collection(coll).doc(it.obs_id).set(body); $("status").textContent = `Saved: ${label}`; }
     catch (e) {
       if (e && e.code === "invalid_argument") { canWrite = false; showNotice("You can view these labels but not change them."); }
       $("status").textContent = "Not saved: " + (e && e.message ? e.message : "the store refused the write");
@@ -313,6 +342,13 @@ render();
     rebuildOrder(current);
     render();
   }, (e) => showNotice("Saved labels could not be loaded (" + (e.code || "error") + "). Reload the page."));
+  db.collection("adjudication").limit(1000).onSnapshot((snap) => {
+    const next = {};
+    for (const d of snap.docs) { const v = d.data(); if (v && v.label) next[d.id] = {label: v.label, note: v.note || ""}; }
+    adjud = next;
+    rebuildOrder(current);
+    render();
+  }, () => {});
 })();
 </script>
 """
@@ -321,15 +357,40 @@ render();
 def main() -> None:
     s = pd.read_csv(ROOT / "labeling/label_sample.csv")
     cols = ["obs_id", "product", "record_type", "subreddit", "date", "url", "text", "label_ai1", "reason_ai1",
-            "label_ai2", "reason_ai2", "needs_review", "recheck"]
+            "label_ai2", "reason_ai2", "needs_review", "recheck", "adjudicate", "final_label", "codex_label",
+            "codex_reason", "ab_swap"]
     # second look at demand vs other: every reviewed text where demand was one of the choices (labels.csv)
     labels_csv = ROOT / "labeling/labels.csv"
     re_ids = set()
     if labels_csv.exists():
         lab = pd.read_csv(labels_csv)
-        rev = lab[lab["reviewed"]]
+        first = json.loads((ROOT / "labeling/reviews_first_pass.json").read_text()) \
+            if (ROOT / "labeling/reviews_first_pass.json").exists() else {}
+        rev = lab[lab["obs_id"].isin(first)]      # texts reviewed before the second look (rounds 1-2)
         re_ids = set(rev.loc[rev[["label_ai1", "label_ai2", "human_label"]].eq("demand").any(axis=1), "obs_id"])
     s["recheck"] = s["obs_id"].isin(re_ids)
+    # adjudication: every gold text where both annotators from the other model family (Codex and ChatGPT) agree
+    # with each other but not with our label; shown blind as option A / option B
+    s["adjudicate"], s["final_label"], s["codex_label"], s["codex_reason"], s["ab_swap"] = False, "", "", "", False
+    codex_path = ROOT / "labeling/annotations/annotator3_codex.jsonl"
+    chatgpt_path = ROOT / "labeling/annotations/annotator4_chatgpt.jsonl"
+    if labels_csv.exists() and codex_path.exists() and chatgpt_path.exists():
+        rd = lambda f: pd.DataFrame([json.loads(l) for l in f.read_text().splitlines() if l.strip()]).set_index("obs_id")
+        cx, cg = rd(codex_path), rd(chatgpt_path)
+        gold = lab[lab["tier"].fillna("gold") == "gold"].set_index("obs_id") if "tier" in lab else lab.set_index("obs_id")
+        third, fourth = cx["label"].reindex(gold.index), cg["label"].reindex(gold.index)
+        dis = gold.index[(third == fourth) & third.ne(gold["label"])]
+        pick = pd.Series(dis)
+        pd.DataFrame({"obs_id": pick, "final_label": gold.loc[pick, "label"].to_numpy(),
+                      "label_source": gold.loc[pick, "label_source"].to_numpy(),
+                      "codex_label": cx.loc[pick, "label"].to_numpy()}).to_csv(ROOT / "labeling/adjudication_sample.csv",
+                                                                             index=False)
+        m = s["obs_id"].isin(set(pick))
+        s.loc[m, "adjudicate"] = True
+        s.loc[m, "final_label"] = s.loc[m, "obs_id"].map(gold["label"])
+        s.loc[m, "codex_label"] = s.loc[m, "obs_id"].map(cx["label"])
+        s.loc[m, "codex_reason"] = s.loc[m, "obs_id"].map(cx["reason"])
+        s.loc[m, "ab_swap"] = (s.index[m].to_series() % 2 == 1).to_numpy()
     s["text"] = s["text"].astype(str).str.slice(0, 2500)
     for c in ["reason_ai1", "reason_ai2"]:
         s[c] = s[c].fillna("")
