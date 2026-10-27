@@ -5,6 +5,17 @@
   "ours": "demand",
   "third": "other"
  },
+ "c_hx2fvgw_avocado": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117011063,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "avocado",
+  "round": 2,
+  "third": "demand"
+ },
  "c_hy66b6x_avocado": {
   "label": "demand",
   "note": "",
@@ -15,6 +26,17 @@
   "label": "other",
   "note": "",
   "ours": "other",
+  "third": "demand"
+ },
+ "c_i1h5gd4_onion": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117376998,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "onion",
+  "round": 2,
   "third": "demand"
  },
  "c_i25va2l_onion": {
@@ -53,6 +75,17 @@
   "ours": "other",
   "third": "demand"
  },
+ "c_i988jua_onion": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117439890,
+  "label": "other",
+  "note": "",
+  "ours": "demand",
+  "product": "onion",
+  "round": 2,
+  "third": "other"
+ },
  "c_ibuyn7u_onion": {
   "label": "other",
   "note": "",
@@ -71,11 +104,44 @@
   "ours": "other",
   "third": "demand"
  },
+ "c_if7ly7p_cucumber": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793116992994,
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "product": "cucumber",
+  "round": 2,
+  "third": "demand"
+ },
+ "c_ig6xp0o_avocado": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117363328,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "avocado",
+  "round": 2,
+  "third": "demand"
+ },
  "c_iip9dmd_avocado": {
   "label": "other",
   "note": "",
   "ours": "other",
   "third": "demand"
+ },
+ "c_ile1o4r_lettuce": {
+  "ai1": "supply",
+  "ai2": "supply",
+  "at": 1793117314127,
+  "label": "price",
+  "note": "",
+  "ours": "supply",
+  "product": "lettuce",
+  "round": 2,
+  "third": "price"
  },
  "c_imfisr8_cucumber": {
   "label": "other",
@@ -94,6 +160,17 @@
   "note": "",
   "ours": "other",
   "third": "demand"
+ },
+ "c_ix2gocg_onion": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117396624,
+  "label": "demand",
+  "note": "",
+  "ours": "demand",
+  "product": "onion",
+  "round": 2,
+  "third": "price"
  },
  "c_ixw4nfx_onion": {
   "label": "other",
@@ -123,6 +200,28 @@
   "label": "demand",
   "note": "",
   "ours": "other",
+  "third": "demand"
+ },
+ "c_jcrhap1_onion": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117335873,
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "product": "onion",
+  "round": 2,
+  "third": "demand"
+ },
+ "c_jg3w2h8_onion": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117430086,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "onion",
+  "round": 2,
   "third": "demand"
  },
  "c_jieyfz1_onion": {
@@ -161,11 +260,33 @@
   "ours": "other",
   "third": "price"
  },
+ "c_jty5jo6_cucumber": {
+  "ai1": "price",
+  "ai2": "price",
+  "at": 1793117445530,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "cucumber",
+  "round": 2,
+  "third": "price"
+ },
  "c_juib1ij_avocado": {
   "label": "other",
   "note": "",
   "ours": "other",
   "third": "supply"
+ },
+ "c_jy1ekpy_lettuce": {
+  "ai1": "other",
+  "ai2": "other",
+  "at": 1793116829592,
+  "label": "price",
+  "note": "",
+  "ours": "other",
+  "product": "lettuce",
+  "round": 2,
+  "third": "demand"
  },
  "c_jzh9nvs_onion": {
   "label": "other",
@@ -215,6 +336,17 @@
   "ours": "other",
   "third": "demand"
  },
+ "c_kduaidl_avocado": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117426047,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "avocado",
+  "round": 2,
+  "third": "demand"
+ },
  "c_kh4n0zz_avocado": {
   "label": "other",
   "note": "",
@@ -239,11 +371,66 @@
   "ours": "demand",
   "third": "other"
  },
+ "c_l378sla_onion": {
+  "ai1": "supply",
+  "ai2": "supply",
+  "at": 1793117417482,
+  "label": "supply",
+  "note": "",
+  "ours": "other",
+  "product": "onion",
+  "round": 2,
+  "third": "supply"
+ },
+ "c_lb6edtd_avocado": {
+  "ai1": "price",
+  "ai2": "price",
+  "at": 1793117354421,
+  "label": "price",
+  "note": "",
+  "ours": "price",
+  "product": "avocado",
+  "round": 2,
+  "third": "other"
+ },
  "c_lc1p9hz_avocado": {
   "label": "supply",
   "note": "",
   "ours": "other",
   "third": "supply"
+ },
+ "c_lcow984_avocado": {
+  "ai1": "supply",
+  "ai2": "supply",
+  "at": 1793117456195,
+  "label": "supply",
+  "note": "",
+  "ours": "supply",
+  "product": "avocado",
+  "round": 2,
+  "third": "other"
+ },
+ "c_lg3kzyt_cucumber": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117001016,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "cucumber",
+  "round": 2,
+  "third": "demand"
+ },
+ "c_lh9xxu9_avocado": {
+  "ai1": "supply",
+  "ai2": "supply",
+  "at": 1793116948583,
+  "label": "other",
+  "note": "",
+  "ours": "supply",
+  "product": "avocado",
+  "round": 2,
+  "third": "other"
  },
  "c_lhxnq7z_avocado": {
   "label": "other",
@@ -255,6 +442,17 @@
   "label": "demand",
   "note": "",
   "ours": "other",
+  "third": "demand"
+ },
+ "c_lnku391_lettuce": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117341786,
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "product": "lettuce",
+  "round": 2,
   "third": "demand"
  },
  "c_loy1p2c_avocado": {
@@ -287,10 +485,43 @@
   "ours": "other",
   "third": "demand"
  },
+ "p_1043rcf_avocado": {
+  "ai1": "supply",
+  "ai2": "supply",
+  "at": 1793116953663,
+  "label": "other",
+  "note": "",
+  "ours": "supply",
+  "product": "avocado",
+  "round": 2,
+  "third": "other"
+ },
  "p_105pgxt_lettuce": {
   "label": "demand",
   "note": "",
   "ours": "other",
+  "third": "demand"
+ },
+ "p_109us74_avocado": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793116836816,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "avocado",
+  "round": 2,
+  "third": "demand"
+ },
+ "p_12k0csf_avocado": {
+  "ai1": "other",
+  "ai2": "other",
+  "at": 1793117035086,
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "product": "avocado",
+  "round": 2,
   "third": "demand"
  },
  "p_13vh284_avocado": {
@@ -341,6 +572,17 @@
   "ours": "demand",
   "third": "other"
  },
+ "p_1b0ek0q_cucumber": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117369312,
+  "label": "other",
+  "note": "",
+  "ours": "other",
+  "product": "cucumber",
+  "round": 2,
+  "third": "demand"
+ },
  "p_1b2ke6w_avocado": {
   "label": "demand",
   "note": "",
@@ -363,6 +605,17 @@
   "label": "demand",
   "note": "",
   "ours": "demand",
+  "third": "price"
+ },
+ "p_1cuo88b_avocado": {
+  "ai1": "price",
+  "ai2": "price",
+  "at": 1793116842035,
+  "label": "price",
+  "note": "",
+  "ours": "other",
+  "product": "avocado",
+  "round": 2,
   "third": "price"
  },
  "p_1d47t6y_onion": {
@@ -389,6 +642,28 @@
   "ours": "demand",
   "third": "other"
  },
+ "p_1ew9wbb_cucumber": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793116939108,
+  "label": "other",
+  "note": "",
+  "ours": "demand",
+  "product": "cucumber",
+  "round": 2,
+  "third": "supply"
+ },
+ "p_1g889b2_avocado": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793117448393,
+  "label": "demand",
+  "note": "",
+  "ours": "other",
+  "product": "avocado",
+  "round": 2,
+  "third": "demand"
+ },
  "p_1h4xoe1_onion": {
   "label": "price",
   "note": "",
@@ -413,6 +688,17 @@
   "ours": "other",
   "third": "price"
  },
+ "p_xcoqjn_avocado": {
+  "ai1": "demand",
+  "ai2": "demand",
+  "at": 1793116957584,
+  "label": "demand",
+  "note": "",
+  "ours": "demand",
+  "product": "avocado",
+  "round": 2,
+  "third": "other"
+ },
  "p_xjlac4_onion": {
   "label": "price",
   "note": "",
@@ -436,5 +722,16 @@
   "note": "",
   "ours": "other",
   "third": "price"
+ },
+ "p_zt4dhc_lettuce": {
+  "ai1": "supply",
+  "ai2": "supply",
+  "at": 1793117409884,
+  "label": "supply",
+  "note": "",
+  "ours": "other",
+  "product": "lettuce",
+  "round": 2,
+  "third": "supply"
  }
 }
