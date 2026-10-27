@@ -1,0 +1,85 @@
+{"obs_id":"p_157vlo2_avocado","label":"price","reason":"Explicit guacamole surcharge contributes to restaurant dissatisfaction."}
+{"obs_id":"p_19anuij_avocado","label":"other","reason":"Guacamole is incidental in a fictional restaurant review."}
+{"obs_id":"p_1788f81_lettuce","label":"supply","reason":"Restaurant frequently marks lettuce unavailable in person."}
+{"obs_id":"p_vwm22s_avocado","label":"supply","reason":"Guacamole pouches have been unavailable for months."}
+{"obs_id":"p_17r56f2_avocado","label":"demand","reason":"Shares an expiring free guacamole reward."}
+{"obs_id":"p_14i8snu_lettuce","label":"other","reason":"Lettuce is incidental in a broader weekly diet plan."}
+{"obs_id":"c_iwwmfpi_lettuce","label":"supply","reason":"Grocery store lacks romaine and iceberg lettuce."}
+{"obs_id":"p_17pwlb0_avocado","label":"other","reason":"Avocado toast mentioned incidentally in bread discussion."}
+{"obs_id":"p_196zor9_lettuce","label":"supply","reason":"Reports rotten lettuce as recurring store produce problem."}
+{"obs_id":"c_kiyuge1_onion","label":"price","reason":"Describes green onions bought and resold at higher prices."}
+{"obs_id":"p_1g889b2_avocado","label":"demand","reason":"Offers an unused free guacamole coupon."}
+{"obs_id":"p_101lijw_cucumber","label":"price","reason":"Compares bulk cucumber pricing with regular grocery stores."}
+{"obs_id":"p_16xw5z7_avocado","label":"price","reason":"Asks whether guacamole incurs a separate charge."}
+{"obs_id":"p_1d8z8yd_cucumber","label":"supply","reason":"Cucumber recall linked to multistate Salmonella outbreak."}
+{"obs_id":"p_1ew9wbb_cucumber","label":"supply","reason":"Discusses cucumber contamination following Salmonella outbreak."}
+{"obs_id":"p_15zct92_avocado","label":"demand","reason":"Seeks ways to consume or preserve over one hundred avocados."}
+{"obs_id":"p_1dvyfyv_avocado","label":"other","reason":"Avocado is one ingredient in Cobb salad."}
+{"obs_id":"c_l0emv0r_onion","label":"demand","reason":"Recommends an onion-rings recipe."}
+{"obs_id":"p_1f8faiw_lettuce","label":"other","reason":"Lettuce is part of routine mixed home-garden planning."}
+{"obs_id":"c_jfp368i_onion","label":"other","reason":"Offers weed identification tips for a home onion bed."}
+{"obs_id":"c_irnmbsw_onion","label":"other","reason":"Describes techniques for planting homegrown onions."}
+{"obs_id":"p_u564cr_cucumber","label":"demand","reason":"Plans a cold soup centered on cucumbers."}
+{"obs_id":"c_lnsso3z_avocado","label":"other","reason":"Discusses how avocado oil behaves during cooking."}
+{"obs_id":"c_l73xu4k_onion","label":"other","reason":"Onion is one minor ingredient in a turkey recipe."}
+{"obs_id":"p_16219m9_avocado","label":"demand","reason":"Free guacamole offer encourages redemption."}
+{"obs_id":"p_1043rcf_avocado","label":"other","reason":"Ambiguous mention of avocados freezing, without general crop context."}
+{"obs_id":"p_1b4twvx_cucumber","label":"demand","reason":"Seeks recipe for marinated cucumber slices."}
+{"obs_id":"p_snuemn_cucumber","label":"other","reason":"Cucumbers are minor ingredients in deviled eggs."}
+{"obs_id":"p_14df8h2_onion","label":"other","reason":"Homegrown onions appear among assorted pickled vegetables."}
+{"obs_id":"p_1265gx6_onion","label":"other","reason":"Onion is a topping in prepared meal name."}
+{"obs_id":"p_1c9ofdq_cucumber","label":"demand","reason":"Recommends a cucumber-focused snack."}
+{"obs_id":"c_ix2gocg_onion","label":"price","reason":"Bought more than five pounds of onions on sale."}
+{"obs_id":"c_lorzslb_onion","label":"other","reason":"Describes seasoning used instead of onion flavor."}
+{"obs_id":"c_i5uee0e_lettuce","label":"price","reason":"Complains about present-day lettuce prices."}
+{"obs_id":"p_1hdoocn_avocado","label":"price","reason":"Compares restaurant prices for guacamole add-ons."}
+{"obs_id":"p_13ibps0_lettuce","label":"other","reason":"Lettuce is one part of mixed egg salad."}
+{"obs_id":"c_jy0f7mq_avocado","label":"price","reason":"Compares premade guacamole affordability per pound."}
+{"obs_id":"c_k1td63w_cucumber","label":"demand","reason":"Shares recipe centered on pickled cucumbers."}
+{"obs_id":"c_kxemf7a_lettuce","label":"price","reason":"Reports wholesale Mexican lettuce case price."}
+{"obs_id":"c_ieg6y23_avocado","label":"demand","reason":"Recommends recipes to use surplus avocados."}
+{"obs_id":"c_jim4pdn_onion","label":"demand","reason":"Discusses favorite French onion soup recipe."}
+{"obs_id":"p_1ccc7jv_avocado","label":"price","reason":"Advertises a two-dollar avocado discount."}
+{"obs_id":"p_up4o4m_lettuce","label":"other","reason":"Lettuce is one element in recurring sandwich."}
+{"obs_id":"p_1cuo88b_avocado","label":"price","reason":"Compares current and past avocado unit prices."}
+{"obs_id":"p_18f6t95_avocado","label":"demand","reason":"Gives away free guacamole code."}
+{"obs_id":"p_1g5zuth_lettuce","label":"other","reason":"Lamb's lettuce appears among several salad ingredients."}
+{"obs_id":"c_kh3w0xk_onion","label":"other","reason":"Comments on onion quantity in a dip recipe."}
+{"obs_id":"c_l00ldto_avocado","label":"demand","reason":"Customers sampled and purchased avocado gelato."}
+{"obs_id":"p_10m92bk_onion","label":"other","reason":"Reviews packaged onion-flavored peanuts."}
+{"obs_id":"p_1b6fowj_lettuce","label":"other","reason":"Complains about salad-kit portion sizes, not lettuce pricing."}
+{"obs_id":"c_i363upz_cucumber","label":"other","reason":"Gives backyard cucumber planting and watering tips."}
+{"obs_id":"c_j2ajvj7_onion","label":"demand","reason":"Recommends green onion kimchi recipe."}
+{"obs_id":"p_1cmu3mb_cucumber","label":"other","reason":"Cucumbers are one crop in homesteading plans."}
+{"obs_id":"c_jv1yxuh_cucumber","label":"other","reason":"Cucumbers appear in list of miscellaneous toppings."}
+{"obs_id":"c_m0yv9vs_avocado","label":"price","reason":"Reports two avocados for one dollar."}
+{"obs_id":"p_1e91vpl_avocado","label":"demand","reason":"Offers free guacamole to others."}
+{"obs_id":"c_ljxp30x_cucumber","label":"supply","reason":"Multiple neighboring gardens report unusually high cucumber yields."}
+{"obs_id":"p_sb5qrd_lettuce","label":"other","reason":"Romaine appears in shrimp meal prep."}
+{"obs_id":"c_ip2odtd_avocado","label":"supply","reason":"Restaurant switched avocado sourcing with poorer fruit quality."}
+{"obs_id":"c_jmbs2h7_avocado","label":"price","reason":"Discusses expensive avocado procurement for restaurant."}
+{"obs_id":"p_1ec718x_cucumber","label":"price","reason":"Complains about four-dollar farmers-market cucumber."}
+{"obs_id":"p_1hbgez9_avocado","label":"demand","reason":"Offers expiring free guacamole voucher."}
+{"obs_id":"c_jsurb3d_cucumber","label":"other","reason":"Describes spacing cucumber plants in home garden."}
+{"obs_id":"c_ihi0wf0_avocado","label":"price","reason":"Compares rising Costco avocado prices with competitors."}
+{"obs_id":"c_lg0n9po_avocado","label":"demand","reason":"Free guacamole promotion was extended, increasing preparation needs."}
+{"obs_id":"p_vevf6t_cucumber","label":"other","reason":"Asks how to transplant home cucumber seedlings."}
+{"obs_id":"p_13ukp4f_cucumber","label":"demand","reason":"Excess cucumbers prompt requests for pickle recipes."}
+{"obs_id":"p_s54wdj_lettuce","label":"price","reason":"Reports inflation affecting romaine and other vegetables."}
+{"obs_id":"p_x3r3z1_lettuce","label":"demand","reason":"Requests lettuce-focused vegan recipes."}
+{"obs_id":"p_v77d2g_cucumber","label":"demand","reason":"Describes a cucumber-cup-centered dish."}
+{"obs_id":"c_jtnn40j_avocado","label":"price","reason":"Discusses guacamole's inclusion in a meal price."}
+{"obs_id":"c_iu2ve92_avocado","label":"price","reason":"Explains high guacamole pricing due to avocado costs."}
+{"obs_id":"p_v7x989_cucumber","label":"other","reason":"Cucumbers mentioned among past home gardening experience."}
+{"obs_id":"p_1clvmvp_cucumber","label":"other","reason":"Cucumber beds incidental to discussion of garden trellis."}
+{"obs_id":"c_l7w47ex_avocado","label":"price","reason":"States queso is cheaper than guacamole."}
+{"obs_id":"p_12378wv_avocado","label":"supply","reason":"Chipotle locations repeatedly run out of guacamole."}
+{"obs_id":"p_x7rmjl_avocado","label":"other","reason":"Avocado oil mentioned in breading technique question."}
+{"obs_id":"p_1blfz67_avocado","label":"demand","reason":"Asks for variations of smashed avocado on toast."}
+{"obs_id":"c_jt7fsyd_cucumber","label":"demand","reason":"Suggests cucumber-centered sandwiches."}
+{"obs_id":"c_ko86zpy_cucumber","label":"supply","reason":"Regional weather and shipping delays affect produce quality."}
+{"obs_id":"c_jty5jo6_cucumber","label":"price","reason":"Notes cucumbers require an additional restaurant charge."}
+{"obs_id":"c_j3g4570_avocado","label":"price","reason":"Says avocados are currently cheap."}
+{"obs_id":"c_k9sjxr6_avocado","label":"demand","reason":"Discusses preparation of avocado-based guacamole."}
+{"obs_id":"c_l5ywtah_onion","label":"demand","reason":"Reports heavy onion consumption and ten-pound purchases."}
+{"obs_id":"p_z7gsz0_lettuce","label":"supply","reason":"Explicitly refers to lettuce shortage."}
