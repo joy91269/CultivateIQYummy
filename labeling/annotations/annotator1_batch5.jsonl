@@ -1,0 +1,324 @@
+{"obs_id": "c_ljgna1f_lettuce", "label": "other", "reason": "lettuce one taco topping"}
+{"obs_id": "c_i86bs5m_lettuce", "label": "other", "reason": "pre-chopped lettuce convenience"}
+{"obs_id": "c_m0qtnnz_lettuce", "label": "other", "reason": "washing lettuce"}
+{"obs_id": "c_iugm6ma_lettuce", "label": "other", "reason": "lettuce storage hygiene"}
+{"obs_id": "p_14w4x5l_lettuce", "label": "other", "reason": "restaurant bowl"}
+{"obs_id": "c_jkewm47_avocado", "label": "other", "reason": "employee comp question"}
+{"obs_id": "p_1ccb6dq_lettuce", "label": "other", "reason": "romaine base of a salad"}
+{"obs_id": "c_iio10pi_avocado", "label": "other", "reason": "growing avocado from seed"}
+{"obs_id": "p_199ew8n_avocado", "label": "other", "reason": "restaurant complaint"}
+{"obs_id": "c_m2xmf9z_avocado", "label": "other", "reason": "guac sticker joke"}
+{"obs_id": "c_imjmafh_avocado", "label": "other", "reason": "sarcasm"}
+{"obs_id": "c_lkjmfoz_onion", "label": "other", "reason": "onion optional ingredient"}
+{"obs_id": "c_juzvss8_avocado", "label": "other", "reason": "guac substitution"}
+{"obs_id": "p_1ehrvtq_cucumber", "label": "other", "reason": "home garden mildew"}
+{"obs_id": "c_lt7afdu_avocado", "label": "other", "reason": "guac recipe tweak"}
+{"obs_id": "c_hx3zf90_onion", "label": "other", "reason": "single bad onion"}
+{"obs_id": "p_1f7rj78_onion", "label": "other", "reason": "home garden onion"}
+{"obs_id": "c_lvdpox8_cucumber", "label": "other", "reason": "not cucumbers"}
+{"obs_id": "c_jh1eiop_lettuce", "label": "other", "reason": "home garden fungus"}
+{"obs_id": "p_14wuib1_avocado", "label": "other", "reason": "avocado oil"}
+{"obs_id": "c_k2gaao8_cucumber", "label": "other", "reason": "home garden pickles"}
+{"obs_id": "c_jrbxkex_avocado", "label": "price", "reason": "restaurant charges $3 for half an avocado"}
+{"obs_id": "c_hr4xlmz_onion", "label": "demand", "reason": "French onion soup, onion-centred"}
+{"obs_id": "c_hymesxa_lettuce", "label": "other", "reason": "lettuce passing alternative"}
+{"obs_id": "p_1fbaw3l_cucumber", "label": "other", "reason": "diet restriction"}
+{"obs_id": "c_igmymmh_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "p_1dum265_avocado", "label": "other", "reason": "restaurant portion complaint"}
+{"obs_id": "c_kjg37mc_onion", "label": "supply", "reason": "no good red onions in stores for years"}
+{"obs_id": "p_17tu7v7_onion", "label": "other", "reason": "green onion garnish"}
+{"obs_id": "c_j55dy3p_cucumber", "label": "other", "reason": "home garden picking"}
+{"obs_id": "p_1df830t_avocado", "label": "other", "reason": "whole meal delivery prices"}
+{"obs_id": "c_i1c5dk2_onion", "label": "other", "reason": "washing onions"}
+{"obs_id": "p_16kqwpl_onion", "label": "other", "reason": "onion powder seasoning"}
+{"obs_id": "p_1bw05k4_avocado", "label": "other", "reason": "quality praise, no market signal"}
+{"obs_id": "c_iq6h4gv_onion", "label": "other", "reason": "home garden onions"}
+{"obs_id": "p_w9guxq_cucumber", "label": "other", "reason": "home garden harvest"}
+{"obs_id": "c_jjevoc3_cucumber", "label": "other", "reason": "cucumber variety for recipe"}
+{"obs_id": "c_l8ve6jy_lettuce", "label": "other", "reason": "romaine for caesar"}
+{"obs_id": "c_il0v9jp_cucumber", "label": "other", "reason": "home garden cucumber"}
+{"obs_id": "c_j71raw3_onion", "label": "other", "reason": "onion scraps for broth"}
+{"obs_id": "c_kyeea6o_avocado", "label": "other", "reason": "restaurant aside"}
+{"obs_id": "c_hupi3op_lettuce", "label": "other", "reason": "meal kit lettuce portion"}
+{"obs_id": "c_kfn6bdi_avocado", "label": "other", "reason": "avocado toast rant"}
+{"obs_id": "p_1axka8t_lettuce", "label": "other", "reason": "lettuce one salad ingredient"}
+{"obs_id": "p_1eys7mv_lettuce", "label": "other", "reason": "lettuce one salad ingredient"}
+{"obs_id": "p_1ctqymg_cucumber", "label": "other", "reason": "home garden mildew"}
+{"obs_id": "c_jmbovqf_cucumber", "label": "other", "reason": "home garden transplant"}
+{"obs_id": "c_j6gz6l6_lettuce", "label": "other", "reason": "home garden lettuce uses"}
+{"obs_id": "c_kqa6kwb_avocado", "label": "other", "reason": "avocado prep technique"}
+{"obs_id": "c_krj9bep_avocado", "label": "other", "reason": "guac and sour cream"}
+{"obs_id": "p_vzbwsr_onion", "label": "other", "reason": "cooking skills"}
+{"obs_id": "c_jzymo0h_onion", "label": "other", "reason": "dried onion flakes for picky eater"}
+{"obs_id": "p_vp9b06_cucumber", "label": "other", "reason": "home garden pests"}
+{"obs_id": "c_kc44w4i_lettuce", "label": "other", "reason": "cutting romaine"}
+{"obs_id": "p_138noc9_lettuce", "label": "other", "reason": "growing lettuce in a bottle"}
+{"obs_id": "c_l3f94uj_cucumber", "label": "other", "reason": "plant identification"}
+{"obs_id": "c_jio4m07_lettuce", "label": "other", "reason": "burger topping preference"}
+{"obs_id": "p_1arrp3s_cucumber", "label": "other", "reason": "cucumber one salad ingredient"}
+{"obs_id": "c_ia80exg_onion", "label": "other", "reason": "cooking technique"}
+{"obs_id": "p_17r2ioi_lettuce", "label": "other", "reason": "WIC eligibility, lettuce passing"}
+{"obs_id": "c_imx7ugq_onion", "label": "other", "reason": "onion powder"}
+{"obs_id": "p_1b56zow_cucumber", "label": "other", "reason": "home garden fertilizing"}
+{"obs_id": "c_jls9p4g_avocado", "label": "demand", "reason": "guacamole recipe centred on avocado"}
+{"obs_id": "c_jzh9nvs_onion", "label": "other", "reason": "too short to tell"}
+{"obs_id": "c_kop5dhy_avocado", "label": "demand", "reason": "guacamole recipe centred on avocado"}
+{"obs_id": "c_j2ejhau_avocado", "label": "other", "reason": "topping preference"}
+{"obs_id": "p_105kbmp_avocado", "label": "other", "reason": "queso pricing, guac passing"}
+{"obs_id": "p_wo9ylq_cucumber", "label": "other", "reason": "indoor seedling pests"}
+{"obs_id": "c_jujbrgx_onion", "label": "other", "reason": "joke"}
+{"obs_id": "c_j5x41x7_avocado", "label": "other", "reason": "avocado oil"}
+{"obs_id": "c_i8b39zs_onion", "label": "other", "reason": "kitchen anecdote"}
+{"obs_id": "c_ieuienj_cucumber", "label": "other", "reason": "cucumber one sandwich ingredient"}
+{"obs_id": "p_1f6j48x_onion", "label": "other", "reason": "onion one ingredient"}
+{"obs_id": "p_1aydvrt_cucumber", "label": "other", "reason": "home garden pests"}
+{"obs_id": "c_j35fxy3_onion", "label": "other", "reason": "caramelizing technique"}
+{"obs_id": "p_s8jnyj_cucumber", "label": "other", "reason": "diet restriction"}
+{"obs_id": "p_1593p4q_cucumber", "label": "other", "reason": "whole dish price abroad"}
+{"obs_id": "p_14ztx3a_lettuce", "label": "other", "reason": "lettuce one burger topping"}
+{"obs_id": "c_k12q7xr_avocado", "label": "demand", "reason": "ways to eat avocado"}
+{"obs_id": "c_l8l7p9a_lettuce", "label": "demand", "reason": "wilted lettuce salad, lettuce-centred dish"}
+{"obs_id": "p_13yycuq_lettuce", "label": "other", "reason": "lettuce one salad ingredient"}
+{"obs_id": "c_lei2oao_avocado", "label": "supply", "reason": "weeks of bad avocados at Costco lately"}
+{"obs_id": "p_1ckdpsq_onion", "label": "other", "reason": "onion-flavored noodles"}
+{"obs_id": "c_ihwrsi3_cucumber", "label": "other", "reason": "plant identification"}
+{"obs_id": "p_1bi01jz_avocado", "label": "other", "reason": "avocado oil spray"}
+{"obs_id": "p_17o8jm3_avocado", "label": "other", "reason": "no content"}
+{"obs_id": "p_1ga3rri_onion", "label": "other", "reason": "leftover storage"}
+{"obs_id": "c_i91ezhg_lettuce", "label": "other", "reason": "meal kit recipe tweak"}
+{"obs_id": "c_i76azse_avocado", "label": "other", "reason": "store choice for quality, no market change"}
+{"obs_id": "p_s01dj6_onion", "label": "other", "reason": "onion one chili ingredient"}
+{"obs_id": "p_1c1vltk_onion", "label": "other", "reason": "onion one salad ingredient"}
+{"obs_id": "c_lrdr6dh_onion", "label": "other", "reason": "onion variety swap"}
+{"obs_id": "p_1ewylvj_cucumber", "label": "other", "reason": "home garden question"}
+{"obs_id": "c_k6wmzek_onion", "label": "supply", "reason": "green onions hard to find at Aldi"}
+{"obs_id": "c_ks38mrv_avocado", "label": "other", "reason": "avocado storage trick"}
+{"obs_id": "c_lgtix8x_cucumber", "label": "other", "reason": "recipe technique question"}
+{"obs_id": "c_ifnu9pr_cucumber", "label": "demand", "reason": "ways to use cucumbers"}
+{"obs_id": "c_kcnb9fu_lettuce", "label": "other", "reason": "home garden varieties"}
+{"obs_id": "c_l4uuo44_onion", "label": "other", "reason": "leave onions out"}
+{"obs_id": "c_jo8sslr_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "c_ipixe8n_lettuce", "label": "price", "reason": "lettuce price has not risen much"}
+{"obs_id": "p_13dfdyf_avocado", "label": "other", "reason": "guac drizzle question"}
+{"obs_id": "p_19eypm0_lettuce", "label": "other", "reason": "store layout anecdote"}
+{"obs_id": "c_l71vqiq_onion", "label": "supply", "reason": "many recently bought onions rotten or mouldy"}
+{"obs_id": "p_1ckc2b7_cucumber", "label": "other", "reason": "home garden transplant"}
+{"obs_id": "p_11th0yi_avocado", "label": "other", "reason": "guac optional side"}
+{"obs_id": "c_lp9mfvk_avocado", "label": "supply", "reason": "avocados picked too early, poor quality"}
+{"obs_id": "p_11srlxd_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "p_155b3ps_cucumber", "label": "other", "reason": "home garden harvest"}
+{"obs_id": "p_vkhhe3_onion", "label": "other", "reason": "onion dip product"}
+{"obs_id": "c_icxb06p_cucumber", "label": "other", "reason": "home garden pests"}
+{"obs_id": "p_wbidf8_lettuce", "label": "other", "reason": "add-on costs, lettuce passing"}
+{"obs_id": "p_v6hm1d_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "c_kqmnv0x_onion", "label": "demand", "reason": "what to do with lots of onions"}
+{"obs_id": "c_hz31iyh_lettuce", "label": "other", "reason": "lettuce storage"}
+{"obs_id": "p_1as4cyk_onion", "label": "other", "reason": "snacking while cooking"}
+{"obs_id": "p_17oj7xy_avocado", "label": "other", "reason": "avocado oil"}
+{"obs_id": "p_17k5tdx_avocado", "label": "other", "reason": "meal prep storage"}
+{"obs_id": "c_k54l1it_lettuce", "label": "other", "reason": "lettuce in fried rice"}
+{"obs_id": "c_l33leij_onion", "label": "other", "reason": "kitchen banter"}
+{"obs_id": "p_1cud2rm_onion", "label": "other", "reason": "cocktail onions one ingredient"}
+{"obs_id": "c_kyu4c2o_avocado", "label": "other", "reason": "growing from seed"}
+{"obs_id": "p_wvyr8e_cucumber", "label": "other", "reason": "cucumber one meal prep component"}
+{"obs_id": "p_1biu11x_onion", "label": "other", "reason": "too much onion in a salad"}
+{"obs_id": "c_kc4vgz2_lettuce", "label": "other", "reason": "washing lettuce safely"}
+{"obs_id": "p_1b0841o_lettuce", "label": "other", "reason": "lettuce one topping"}
+{"obs_id": "c_i9jd84k_cucumber", "label": "other", "reason": "cucumber salad one of several favorite recipes"}
+{"obs_id": "c_kw9uubd_lettuce", "label": "other", "reason": "harvest timing advice"}
+{"obs_id": "c_ig91vi9_cucumber", "label": "other", "reason": "pest damage but no cucumber quality issue"}
+{"obs_id": "p_1gucy39_onion", "label": "other", "reason": "onion one sauce ingredient"}
+{"obs_id": "p_1dfia44_lettuce", "label": "other", "reason": "food safety of a salad"}
+{"obs_id": "c_l8aue69_avocado", "label": "other", "reason": "avocado oil fraud"}
+{"obs_id": "p_1di88e3_lettuce", "label": "other", "reason": "lettuce one salad ingredient"}
+{"obs_id": "p_1hn8xzr_avocado", "label": "other", "reason": "avocado one dish in a menu"}
+{"obs_id": "c_i1zdda7_lettuce", "label": "other", "reason": "salvaging wilted lettuce"}
+{"obs_id": "c_lc042zo_avocado", "label": "other", "reason": "vague restaurant guac quality aside"}
+{"obs_id": "c_ihxnd0j_onion", "label": "other", "reason": "onion-flavored product"}
+{"obs_id": "c_if0vw4n_avocado", "label": "other", "reason": "packaged avocado mash recommendation"}
+{"obs_id": "p_ta00ii_lettuce", "label": "other", "reason": "home garden"}
+{"obs_id": "c_kz6txkz_avocado", "label": "other", "reason": "childhood avocado tree"}
+{"obs_id": "c_jrkw0i8_cucumber", "label": "other", "reason": "plant identification"}
+{"obs_id": "c_jezdmdx_onion", "label": "other", "reason": "onion cutting technique"}
+{"obs_id": "p_v410jf_cucumber", "label": "other", "reason": "home garden planning"}
+{"obs_id": "c_jl7b1yl_avocado", "label": "other", "reason": "avocado browning question"}
+{"obs_id": "c_jieyfz1_onion", "label": "other", "reason": "topping preference"}
+{"obs_id": "p_1dffq1t_lettuce", "label": "other", "reason": "home garden problem"}
+{"obs_id": "p_164gg40_cucumber", "label": "other", "reason": "pickle spiciness question"}
+{"obs_id": "c_m1s6tif_lettuce", "label": "other", "reason": "personal sandwich habit"}
+{"obs_id": "c_jo7ld3j_lettuce", "label": "other", "reason": "lettuce bolting"}
+{"obs_id": "c_j61yufc_onion", "label": "other", "reason": "family anecdote"}
+{"obs_id": "c_khnkbgs_onion", "label": "other", "reason": "onion rings mention"}
+{"obs_id": "c_jrfjbty_cucumber", "label": "other", "reason": "seedling advice"}
+{"obs_id": "c_it1amke_lettuce", "label": "supply", "reason": "restaurant lettuce delivery of very poor quality"}
+{"obs_id": "c_l265y18_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "c_krd9r09_lettuce", "label": "other", "reason": "kitchen joke"}
+{"obs_id": "p_18w7mtz_onion", "label": "other", "reason": "onion one recipe ingredient"}
+{"obs_id": "p_1ci8u72_lettuce", "label": "other", "reason": "shopping etiquette"}
+{"obs_id": "p_15y9ahz_cucumber", "label": "other", "reason": "cucumber one topping"}
+{"obs_id": "p_17pfjl3_avocado", "label": "demand", "reason": "free guacamole promotion"}
+{"obs_id": "c_l6e9gjr_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "c_ikm42ep_cucumber", "label": "other", "reason": "home garden pests"}
+{"obs_id": "c_kbffgod_onion", "label": "other", "reason": "onion prep tips"}
+{"obs_id": "c_jry7zi4_onion", "label": "other", "reason": "home garden onions"}
+{"obs_id": "c_hyqzylw_lettuce", "label": "other", "reason": "lettuce variety advice"}
+{"obs_id": "c_k5dve62_onion", "label": "other", "reason": "home garden onions"}
+{"obs_id": "c_jmx1rxm_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "c_ktiic8j_avocado", "label": "other", "reason": "freezing avocados question"}
+{"obs_id": "c_j5ycqde_lettuce", "label": "other", "reason": "home garden"}
+{"obs_id": "c_in43xbt_avocado", "label": "other", "reason": "restaurant guac comparison"}
+{"obs_id": "c_korhekp_avocado", "label": "other", "reason": "coupon and portion aside"}
+{"obs_id": "c_i7l4xkm_lettuce", "label": "other", "reason": "personal buying habit, no change"}
+{"obs_id": "c_lgtl2f3_avocado", "label": "other", "reason": "avocado oil"}
+{"obs_id": "c_l504ebz_lettuce", "label": "other", "reason": "home garden pests"}
+{"obs_id": "c_jylwn9g_onion", "label": "other", "reason": "using home-grown onions"}
+{"obs_id": "c_i25va2l_onion", "label": "other", "reason": "shallots, not onions"}
+{"obs_id": "c_ibj21b1_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "c_kvywowo_avocado", "label": "other", "reason": "family anecdote"}
+{"obs_id": "c_jqphxdw_lettuce", "label": "other", "reason": "store carries shredded lettuce"}
+{"obs_id": "c_l13a8my_cucumber", "label": "demand", "reason": "relish recipe to use overripe cucumbers"}
+{"obs_id": "c_k4i9484_onion", "label": "other", "reason": "meal kit leftover onion"}
+{"obs_id": "c_jkvgpjn_onion", "label": "other", "reason": "onion cooking styles"}
+{"obs_id": "c_k1fvso2_cucumber", "label": "other", "reason": "home garden pests"}
+{"obs_id": "c_l89mn3b_avocado", "label": "other", "reason": "tree grafting"}
+{"obs_id": "c_jn4eoni_avocado", "label": "demand", "reason": "planning to buy avocados for an avocado salad"}
+{"obs_id": "c_l9k9dsb_lettuce", "label": "demand", "reason": "ways to use up lettuce"}
+{"obs_id": "c_j8mwex2_avocado", "label": "demand", "reason": "ways to eat many avocados"}
+{"obs_id": "c_iqj7s0k_lettuce", "label": "other", "reason": "home garden bolting"}
+{"obs_id": "c_iip9dmd_avocado", "label": "other", "reason": "avocados in Mexico aside"}
+{"obs_id": "c_ju4hrex_onion", "label": "other", "reason": "onion storage"}
+{"obs_id": "c_huunyyy_onion", "label": "other", "reason": "caramelizing technique"}
+{"obs_id": "c_lx5yxfd_onion", "label": "other", "reason": "onion topping of casserole"}
+{"obs_id": "c_jkqxs3t_avocado", "label": "demand", "reason": "guacamole and avocado salsa tips"}
+{"obs_id": "c_j82qoar_avocado", "label": "other", "reason": "ordering question"}
+{"obs_id": "c_jntpbjf_lettuce", "label": "demand", "reason": "braised lettuce dish centred on lettuce"}
+{"obs_id": "c_ij46wej_cucumber", "label": "other", "reason": "home garden disease"}
+{"obs_id": "c_i60y3os_onion", "label": "other", "reason": "growing green onions"}
+{"obs_id": "c_ij2fcst_avocado", "label": "other", "reason": "restaurant hygiene"}
+{"obs_id": "c_j3ywv6n_lettuce", "label": "other", "reason": "home garden lettuce, hyperbole"}
+{"obs_id": "c_l9jaby1_cucumber", "label": "demand", "reason": "smashed cucumber salad, cucumber-centred dish"}
+{"obs_id": "c_i5oepa0_avocado", "label": "other", "reason": "tree from seed"}
+{"obs_id": "c_jwkhgcf_lettuce", "label": "other", "reason": "one-off contamination anecdote"}
+{"obs_id": "c_jov6dq0_onion", "label": "other", "reason": "freezing onions"}
+{"obs_id": "c_l8h0qig_lettuce", "label": "other", "reason": "home garden heat"}
+{"obs_id": "c_i9uszqh_lettuce", "label": "other", "reason": "home garden question"}
+{"obs_id": "c_l1qiyu8_cucumber", "label": "other", "reason": "meta comment on a recipe"}
+{"obs_id": "c_koaugqf_cucumber", "label": "other", "reason": "home garden timing"}
+{"obs_id": "c_ig40ut5_onion", "label": "other", "reason": "onion one salad ingredient"}
+{"obs_id": "c_hym007f_onion", "label": "other", "reason": "cooking technique"}
+{"obs_id": "c_kdj7usp_onion", "label": "other", "reason": "home garden oddity"}
+{"obs_id": "c_lf3h335_avocado", "label": "supply", "reason": "many avocados bad, buys pre-made guac instead"}
+{"obs_id": "c_k2vncpe_avocado", "label": "other", "reason": "thanks for a recipe"}
+{"obs_id": "c_htmivs1_cucumber", "label": "other", "reason": "cucumber sweetness growing tips"}
+{"obs_id": "c_jikaszp_onion", "label": "other", "reason": "cooking without onion"}
+{"obs_id": "c_ktc6i7u_cucumber", "label": "other", "reason": "single delivery quality"}
+{"obs_id": "c_jdp4qbg_avocado", "label": "other", "reason": "avocado passing idea"}
+{"obs_id": "c_lzna0zz_avocado", "label": "other", "reason": "avocado oil mister"}
+{"obs_id": "c_jhwkm08_lettuce", "label": "other", "reason": "home garden"}
+{"obs_id": "c_jpsjry3_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "c_k1cw2p7_cucumber", "label": "other", "reason": "meal planning"}
+{"obs_id": "c_in8e9em_cucumber", "label": "demand", "reason": "baked cucumber recipe centred on cucumber"}
+{"obs_id": "c_it1x3bf_avocado", "label": "demand", "reason": "avocado-centred recipe to try"}
+{"obs_id": "c_kyu5wze_avocado", "label": "other", "reason": "growing avocado tree"}
+{"obs_id": "c_j943pf7_onion", "label": "demand", "reason": "recipe using 4 lb of onions"}
+{"obs_id": "c_lr1anbz_onion", "label": "other", "reason": "caramelizing technique"}
+{"obs_id": "c_ic01a1d_lettuce", "label": "other", "reason": "freezing garden greens"}
+{"obs_id": "c_lzdkik2_lettuce", "label": "other", "reason": "dislikes lettuce, salad without it"}
+{"obs_id": "c_ih8z235_cucumber", "label": "demand", "reason": "many cucumber-centred recipes"}
+{"obs_id": "c_j7xm7g7_avocado", "label": "other", "reason": "avocado ripening tips"}
+{"obs_id": "c_imrnz4w_lettuce", "label": "demand", "reason": "braised lettuce and lettuce soup recipes"}
+{"obs_id": "c_imfisr8_cucumber", "label": "demand", "reason": "recipes for a cucumber variety"}
+{"obs_id": "c_kv8a8t3_avocado", "label": "other", "reason": "restaurant portion complaint"}
+{"obs_id": "c_j73n7n9_onion", "label": "demand", "reason": "French onion soup to use many onions"}
+{"obs_id": "c_jiq8n3j_lettuce", "label": "other", "reason": "home garden"}
+{"obs_id": "c_l3538t9_cucumber", "label": "other", "reason": "home garden frost"}
+{"obs_id": "c_ltpcczx_avocado", "label": "other", "reason": "avocado one salad ingredient"}
+{"obs_id": "c_l5ii0hj_lettuce", "label": "other", "reason": "home garden harvest"}
+{"obs_id": "c_hro4tu3_lettuce", "label": "other", "reason": "restaurant prep rules"}
+{"obs_id": "c_l4vof4h_cucumber", "label": "other", "reason": "cucumber one pickled side among recipes"}
+{"obs_id": "c_lzlx3ih_cucumber", "label": "supply", "reason": "recalled cucumbers"}
+{"obs_id": "c_i3gm53m_avocado", "label": "price", "reason": "good avocados cost a few euros, rarely justified"}
+{"obs_id": "c_llpey97_onion", "label": "other", "reason": "recipes without onion"}
+{"obs_id": "c_kedn8bh_lettuce", "label": "other", "reason": "recipe wording"}
+{"obs_id": "c_i7varnd_lettuce", "label": "other", "reason": "lettuce wrap recipe link"}
+{"obs_id": "c_i6pp4db_onion", "label": "other", "reason": "freezing onions"}
+{"obs_id": "c_jy02h6n_lettuce", "label": "other", "reason": "salad sarcasm"}
+{"obs_id": "c_i3updkr_cucumber", "label": "demand", "reason": "stir-fried cucumber recipe"}
+{"obs_id": "c_iptefpq_avocado", "label": "other", "reason": "frozen avocado product"}
+{"obs_id": "c_jen0ig6_cucumber", "label": "other", "reason": "cucumber variety name"}
+{"obs_id": "c_ip3ytpy_avocado", "label": "demand", "reason": "what to do with bags of avocados"}
+{"obs_id": "c_iu1danw_lettuce", "label": "other", "reason": "home garden harvest"}
+{"obs_id": "c_lzqr9z5_cucumber", "label": "supply", "reason": "how cucumbers carry salmonella, outbreak"}
+{"obs_id": "c_itbjg9l_onion", "label": "other", "reason": "onion one pasta ingredient"}
+{"obs_id": "c_lf9wser_cucumber", "label": "other", "reason": "recipe link, cucumber and tomato salad"}
+{"obs_id": "c_iibdv6q_onion", "label": "other", "reason": "diet restriction"}
+{"obs_id": "c_jqh1glh_onion", "label": "other", "reason": "freezing onions"}
+{"obs_id": "c_jmdyoe5_cucumber", "label": "other", "reason": "home garden planning"}
+{"obs_id": "c_ixajvdr_lettuce", "label": "other", "reason": "home garden"}
+{"obs_id": "c_kq8zolm_lettuce", "label": "other", "reason": "meal prep storage"}
+{"obs_id": "c_limp06z_cucumber", "label": "other", "reason": "cucumber variety"}
+{"obs_id": "c_lvgwium_onion", "label": "other", "reason": "caramelizing technique"}
+{"obs_id": "p_y5w08j_lettuce", "label": "other", "reason": "lettuce one ramen topping"}
+{"obs_id": "p_14lsuug_lettuce", "label": "other", "reason": "home garden surplus"}
+{"obs_id": "p_1cwg73e_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "p_1cku256_avocado", "label": "other", "reason": "ceviche without avocado"}
+{"obs_id": "p_1e9b7lk_cucumber", "label": "demand", "reason": "fermented pickles from mini cucumbers"}
+{"obs_id": "p_1egswnx_avocado", "label": "demand", "reason": "National Avocado Day deals"}
+{"obs_id": "p_1cdm447_lettuce", "label": "other", "reason": "homestead lettuce"}
+{"obs_id": "p_vvbsiu_avocado", "label": "other", "reason": "avocado one salad topping"}
+{"obs_id": "p_1cjec32_onion", "label": "other", "reason": "home garden mildew"}
+{"obs_id": "p_137h3gb_onion", "label": "other", "reason": "garden rotation plan"}
+{"obs_id": "p_1h9ucvk_cucumber", "label": "other", "reason": "cucumber one side-salad ingredient"}
+{"obs_id": "p_1gcm26v_cucumber", "label": "other", "reason": "cucumber one available ingredient"}
+{"obs_id": "p_vgcc3r_avocado", "label": "supply", "reason": "restaurant ran out of guacamole"}
+{"obs_id": "p_1cvfznc_avocado", "label": "other", "reason": "one small farm frost and water problems"}
+{"obs_id": "p_thqnso_onion", "label": "other", "reason": "recipe identification"}
+{"obs_id": "p_1395xg4_onion", "label": "other", "reason": "recipe search, no onion"}
+{"obs_id": "p_13f6lqg_avocado", "label": "other", "reason": "restaurant complaints, guac aside"}
+{"obs_id": "p_154v8xp_avocado", "label": "supply", "reason": "restaurant running out of guac"}
+{"obs_id": "p_s4zbcu_onion", "label": "other", "reason": "onion one stock ingredient"}
+{"obs_id": "p_12wfygb_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "p_1dmjonf_cucumber", "label": "other", "reason": "homestead plan"}
+{"obs_id": "p_1c8t8tg_lettuce", "label": "other", "reason": "home garden failure"}
+{"obs_id": "p_1c9z8ea_lettuce", "label": "supply", "reason": "Costco salad greens wilting days before sell-by"}
+{"obs_id": "p_uz0ppt_lettuce", "label": "other", "reason": "lettuce one salad ingredient"}
+{"obs_id": "p_1dhbuia_lettuce", "label": "other", "reason": "home garden harvest"}
+{"obs_id": "p_1dd59vv_cucumber", "label": "other", "reason": "home garden disease"}
+{"obs_id": "p_1ex1cor_avocado", "label": "other", "reason": "guac cup side"}
+{"obs_id": "p_1g8lurc_cucumber", "label": "other", "reason": "cucumber one soup idea"}
+{"obs_id": "p_1272dnw_onion", "label": "other", "reason": "garden soil question"}
+{"obs_id": "p_16z3v6p_avocado", "label": "other", "reason": "ordering etiquette"}
+{"obs_id": "p_1ghi6j3_onion", "label": "other", "reason": "omelette cheese question"}
+{"obs_id": "p_1bvcp4g_lettuce", "label": "other", "reason": "salad ideas, lettuce generic"}
+{"obs_id": "p_1dfeq8z_onion", "label": "other", "reason": "onion substituted out"}
+{"obs_id": "p_1fydbox_onion", "label": "other", "reason": "beginner gardening"}
+{"obs_id": "p_1evd1ao_onion", "label": "other", "reason": "home garden pests"}
+{"obs_id": "p_1ajmig8_onion", "label": "other", "reason": "chili rescue"}
+{"obs_id": "p_1btbuov_avocado", "label": "other", "reason": "avocado availability only in passing"}
+{"obs_id": "p_17w4v3j_cucumber", "label": "other", "reason": "diet question"}
+{"obs_id": "p_169485l_lettuce", "label": "other", "reason": "home garden transplanting"}
+{"obs_id": "p_w2bn9z_avocado", "label": "other", "reason": "avocado one ice cream ingredient"}
+{"obs_id": "p_111m6hg_avocado", "label": "other", "reason": "pests on avocado houseplants"}
+{"obs_id": "p_13ris8k_lettuce", "label": "other", "reason": "home garden harvest"}
+{"obs_id": "p_1ge3cet_avocado", "label": "other", "reason": "sauce freezing"}
+{"obs_id": "p_wkfe0v_cucumber", "label": "other", "reason": "home garden disease"}
+{"obs_id": "p_1flpj9p_avocado", "label": "other", "reason": "hashbrown recipes, avocado passing"}
+{"obs_id": "p_uhq0st_cucumber", "label": "other", "reason": "beginner gardening"}
+{"obs_id": "p_1g11crk_avocado", "label": "other", "reason": "farm business idea"}
+{"obs_id": "p_1ennv83_cucumber", "label": "other", "reason": "home garden failure"}
+{"obs_id": "p_t588rs_avocado", "label": "other", "reason": "avocado one taco filling"}
+{"obs_id": "p_ts0s8m_onion", "label": "demand", "reason": "craving French onion soup, asking recipes"}
+{"obs_id": "p_14p2o0j_onion", "label": "other", "reason": "deep frying tips"}
+{"obs_id": "p_w9rwgo_cucumber", "label": "other", "reason": "home pickling problem"}
+{"obs_id": "p_uxh611_lettuce", "label": "other", "reason": "basil varieties"}
+{"obs_id": "p_156qkcg_cucumber", "label": "other", "reason": "home garden"}
+{"obs_id": "p_v4vxmu_onion", "label": "other", "reason": "stock scraps"}
+{"obs_id": "p_slcnd2_cucumber", "label": "other", "reason": "cold noodle dish, cucumber topping"}
+{"obs_id": "p_1g6r3tm_onion", "label": "other", "reason": "onion roll"}
+{"obs_id": "p_1aw1gsf_lettuce", "label": "other", "reason": "caesar salad anecdote"}
+{"obs_id": "p_13u6fwt_lettuce", "label": "other", "reason": "home garden shade"}
+{"obs_id": "p_1etsbu9_lettuce", "label": "other", "reason": "meal prep wraps"}
+{"obs_id": "p_16cfrjt_lettuce", "label": "other", "reason": "meal prep wraps"}
+{"obs_id": "p_1e86wud_lettuce", "label": "other", "reason": "copycat bowl, lettuce topping"}
+{"obs_id": "p_vxf0di_onion", "label": "other", "reason": "onion prep for an event"}
+{"obs_id": "p_1es79ip_cucumber", "label": "other", "reason": "garden seed choice"}

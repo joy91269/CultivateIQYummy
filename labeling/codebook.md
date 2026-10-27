@@ -52,5 +52,10 @@ describes what the text says about the market for *that* product.
    product-centred recipes was clarified. Every reviewed text where demand was one of the choices (45) was shown
    again with a short decision guide; 22 labels changed (21 other → demand, 1 price → demand). The first-pass
    decisions are kept in `labeling/reviews_first_pass.json` and in the `first_pass_label` column.
-7. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
+7. **Batch 5 and round 3.** A learning curve showed scores still rising with more labels, and the enriched sample
+   over-represents market talk, so 324 more texts were drawn: 160 by simple random sampling (40 per product, no
+   keyword strata), which measures how common each label really is, and 164 enriched for supply and demand. Both
+   annotators labelled them (96.0% agreement, kappa 0.82); the reviewer decided the 13 disagreements and a random
+   check of 3 agreements per label.
+8. `labeling/collect_reviews.py` writes `labeling/labels.csv`: `label` is the human decision where a person
    reviewed the row and the agreed AI label elsewhere; `label_source` records which.
