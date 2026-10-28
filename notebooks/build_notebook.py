@@ -38,6 +38,7 @@ Steps in this notebook
 10. Unusual weeks without a documented event
 11. Cross-check with Google search interest (US)
 12. Two supply shocks up close (report Figure 1)
+13. Weighting texts by upvotes or comments
 
 The classifier and sentiment step is slow on a CPU (about 3–4 hours on 2 cores), so by default the notebook reads
 the saved outputs of `python -m analysis.run_models all`. Set `RECOMPUTE_MODELS = True` to rerun it here.
@@ -921,6 +922,98 @@ axes[0, 0].set_ylabel("Reddit supply\ntalk, texts/week")
 axes[1, 0].set_ylabel("before the event = 100")
 axes[1, 1].legend(frameon=False, loc="upper left")
 fig.tight_layout(h_pad=0.4, w_pad=1.5); fig.savefig(FIG / "two_supply_shocks.png", dpi=300); plt.show()
+""")
+
+md(r"""
+## 13. Weighting texts by upvotes or comments
+
+So far every text counts once. Here each text's supply probability is multiplied by a weight from its upvotes
+(`score`) or, for posts, its number of comments (`num_comments`; comments themselves get no comment count), and the
+spike test of section 5 (z ≥ 3) is rerun on the weighted supply series. Three checks:
+- **All weeks:** spikes near a documented event, against the base rate.
+- **Time split:** pick the weighting on 2022–2023 (events E1, E8, E2), then test it on 2024 (E3–E7), which played no
+  part in the choice.
+- **Google agreement:** share of Reddit supply spikes with a Google shortage/recall spike within one week (section 11).
+  This check does not use the list of documented events.
+""")
+
+code(r"""
+WEIGHTS = {  # name -> weight per text (score = upvotes, num_comments = comments under a post)
+    "equal (main signal)": lambda u, c: np.ones(len(u)),
+    "upvotes: 1 + log(1 + upvotes)": lambda u, c: 1 + np.log1p(u),
+    "upvotes: x2 if >= 10": lambda u, c: np.where(u >= 10, 2.0, 1.0),
+    "upvotes: x3 if >= 10": lambda u, c: np.where(u >= 10, 3.0, 1.0),
+    "upvotes: raw count": lambda u, c: u.astype(float),
+    "comments: 1 + log(1 + comments)": lambda u, c: 1 + np.log1p(c),
+    "comments: x2 if >= 10": lambda u, c: np.where(c >= 10, 2.0, 1.0),
+    "comments: x3 if >= 10": lambda u, c: np.where(c >= 10, 3.0, 1.0),
+    "both: 1 + log(1 + upvotes + comments)": lambda u, c: 1 + np.log1p(u + c),
+}
+up = obs["score"].clip(lower=0).fillna(0).to_numpy()
+nc = obs["num_comments"].clip(lower=0).fillna(0).to_numpy()
+grid = S.week_grid(START, END)
+
+def weighted_supply_z(w):
+    o = obs.assign(ws=obs["p_supply"] * w)
+    parts = []
+    for prod, g in o.groupby("product"):
+        s = g.groupby("week_start")["ws"].sum().reindex(grid, fill_value=0.0)
+        parts.append(pd.DataFrame({"product": prod, "week_start": grid,
+                                   "z": S.trailing_z(np.log1p(s), 8, min_sd=0.2).to_numpy()}))
+    return pd.concat(parts, ignore_index=True)
+
+def enrichment(d):
+    hit = d[d["z"] >= 3]
+    k, n = int((hit["near_event"] != "").sum()), len(hit)
+    p = binomtest(k, n, (d["near_event"] != "").mean(), alternative="greater").pvalue if n else np.nan
+    found = sorted({e for v in hit["near_event"] if v for e in v.split(", ")})
+    return n, k, round(p, 4), " ".join(found)
+
+def google_agreement(d):
+    d = d.merge(gw[["product", "week_start", "gz_shortage_or_recall"]], on=["product", "week_start"], how="left")
+    rs = d[d["z"] >= 3]
+    hits = 0
+    for prod, w in zip(rs["product"], rs["week_start"]):
+        m = d[(d["product"] == prod) & ((d["week_start"] - w).abs() <= pd.Timedelta(weeks=1))]
+        hits += bool((m["gz_shortage_or_recall"] >= 3).any())
+    return hits
+
+rows, zs = [], {}
+for name, f in WEIGHTS.items():
+    d = weighted_supply_z(f(up, nc)).merge(sw[["product", "week_start", "near_event"]], on=["product", "week_start"])
+    zs[name] = d
+    n, k, p, found = enrichment(d)
+    n1, k1, p1, f1 = enrichment(d[d["week_start"] < "2024-01-01"])
+    n2, k2, p2, f2 = enrichment(d[d["week_start"] >= "2024-01-01"])
+    g = google_agreement(d)
+    rows.append({"weighting": name, "spikes": n, "near_event": k, "share": round(k / n, 2), "p": p, "events_found": found,
+                 "spikes_2022_23": n1, "near_2022_23": k1, "share_2022_23": round(k1 / n1, 2), "p_2022_23": p1,
+                 "spikes_2024": n2, "near_2024": k2, "share_2024": round(k2 / n2, 2), "p_2024": p2,
+                 "events_found_2024": f2, "with_google_spike": g, "share_with_google": round(g / n, 2)})
+wtab = pd.DataFrame(rows)
+wtab.to_csv(TAB / "weighting_robustness.csv", index=False)
+display(wtab)
+
+best = wtab.iloc[1:].sort_values(["share_2022_23", "p_2022_23"], ascending=[False, True]).iloc[0]
+eq = wtab.iloc[0]
+print(f"Chosen on 2022-23: {best['weighting']} ({best['near_2022_23']}/{best['spikes_2022_23']} vs "
+      f"{eq['near_2022_23']}/{eq['spikes_2022_23']} for equal weights). "
+      f"Held-out 2024: {best['near_2024']}/{best['spikes_2024']} vs {eq['near_2024']}/{eq['spikes_2024']}.")
+
+# which spike weeks the chosen weighting removes or adds, with the most supply-like text of the week
+a, b = zs[eq["weighting"]], zs[best["weighting"]]
+A = set(map(tuple, a.loc[a["z"] >= 3, ["product", "week_start"]].to_numpy()))
+B = set(map(tuple, b.loc[b["z"] >= 3, ["product", "week_start"]].to_numpy()))
+diff = []
+for change, keys in [("removed", A - B), ("added", B - A)]:
+    for prod, w in sorted(keys):
+        wk_ = obs[(obs["product"] == prod) & (obs["week_start"] == w)]
+        top = wk_.sort_values("p_supply", ascending=False).iloc[0]
+        diff.append({"change": change, "product": prod, "week_start": pd.Timestamp(w).date(),
+                     "near_event": sw.loc[(sw["product"] == prod) & (sw["week_start"] == w), "near_event"].iloc[0],
+                     "supply_texts": round(wk_["p_supply"].sum(), 1), "top_subreddit": top["subreddit"],
+                     "top_text": re.sub(r"\s+", " ", str(top["text"]))[:120]})
+display(pd.DataFrame(diff))
 """)
 
 nb = nbf.v4.new_notebook()

@@ -42,8 +42,13 @@ interest** in the US.
   of 23 October 2023 for onions, when Gills Onions recalled diced onions over a Salmonella outbreak, an event not in
   our list (`outputs/tables/trends_spike_event_enrichment.csv`, `event_search_peaks.csv`,
   `reddit_google_spike_agreement.csv`).
+- **Comments filter false alarms; upvotes do not help.** Counting posts with at least 10 comments twice removes six
+  supply spikes that lie near no event (mostly a few garden or restaurant complaints that drew no replies) and keeps
+  every event found with equal weights: 8 of 18 spikes lie near an event (44%, p = 0.0004), and more of them coincide
+  with a Google spike. Chosen on 2022–2023, it finds the same 2024 events as equal weights. Weighting by upvotes
+  finds fewer events. The main signal keeps equal weights (`outputs/tables/weighting_robustness.csv`).
 
-Details: report (`report/`), notebook sections 5, 7–9 and 11, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
+Details: report (`report/`), notebook sections 5, 7–9, 11 and 13, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
 `event_price_impact.csv`, `event_price_examples_usd.csv`, `lead_lag_crosscorrelation.csv`, `event_timing.csv`).
 
 ## Repository layout

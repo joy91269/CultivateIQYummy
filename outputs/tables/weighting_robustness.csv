@@ -1,0 +1,10 @@
+weighting,spikes,near_event,share,p,events_found,spikes_2022_23,near_2022_23,share_2022_23,p_2022_23,spikes_2024,near_2024,share_2024,p_2024,events_found_2024,with_google_spike,share_with_google
+equal (main signal),22,8,0.36,0.0019,E1 E2 E3 E5 E6 E7,13,3,0.23,0.0435,9,5,0.56,0.0248,E3 E5 E6 E7,6,0.27
+upvotes: 1 + log(1 + upvotes),14,5,0.36,0.0149,E1 E3 E5 E6 E7,6,1,0.17,0.3211,8,4,0.5,0.0675,E3 E5 E6 E7,5,0.36
+upvotes: x2 if >= 10,20,7,0.35,0.0046,E1 E2 E3 E5 E6 E7,12,3,0.25,0.0351,8,4,0.5,0.0675,E3 E5 E6 E7,7,0.35
+upvotes: x3 if >= 10,18,6,0.33,0.0112,E1 E2 E3 E5 E6 E7,11,2,0.18,0.1478,7,4,0.57,0.0404,E3 E5 E6 E7,6,0.33
+upvotes: raw count,15,5,0.33,0.0203,E1 E3 E5 E6 E7,9,1,0.11,0.4406,6,4,0.67,0.0208,E3 E5 E6 E7,4,0.27
+comments: 1 + log(1 + comments),17,7,0.41,0.0016,E1 E3 E5 E6 E7,8,2,0.25,0.085,9,5,0.56,0.0248,E3 E5 E6 E7,8,0.47
+comments: x2 if >= 10,18,8,0.44,0.0004,E1 E2 E3 E5 E6 E7,9,3,0.33,0.0154,9,5,0.56,0.0248,E3 E5 E6 E7,7,0.39
+comments: x3 if >= 10,17,7,0.41,0.0016,E1 E3 E5 E6 E7,8,2,0.25,0.085,9,5,0.56,0.0248,E3 E5 E6 E7,8,0.47
+both: 1 + log(1 + upvotes + comments),15,5,0.33,0.0203,E1 E3 E5 E6 E7,7,1,0.14,0.3635,8,4,0.5,0.0675,E3 E5 E6 E7,5,0.33
