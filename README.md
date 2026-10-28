@@ -179,9 +179,9 @@ Kiro used Python 3.13.18 and finished in about 2 minutes:
 
 | Step | Time |
 |---|---|
-| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 34 s |
-| `bash run_all.sh --analysis` | 47 s |
-| `python scripts/check_reproduction.py` | under 1 s; 16 of 16 tables reproduce |
+| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 38 s |
+| `bash run_all.sh --analysis` | 48 s |
+| `python scripts/check_reproduction.py` | under 1 s; 19 of 19 tables reproduce |
 
 An earlier Kiro run found two problems, both fixed in commit `3464586`: the pinned numpy and scipy need Python 3.12
 rather than 3.11, and one example text in `unusual_weeks.csv` depended on whether pyarrow was installed.
