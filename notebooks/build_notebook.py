@@ -35,6 +35,9 @@ Steps in this notebook
 7. Timing: does the online signal lead, coincide with, or lag the price move?
 8. Price impact relative to the pre-event baseline
 9. Supply shock or demand shift?
+10. Unusual weeks without a documented event
+11. Cross-check with Google search interest (US)
+12. Two supply shocks up close (report Figure 1)
 
 The classifier and sentiment step is slow on a CPU (about 3–4 hours on 2 cores), so by default the notebook reads
 the saved outputs of `python -m analysis.run_models all`. Set `RECOMPUTE_MODELS = True` to rerun it here.
@@ -69,10 +72,10 @@ plt.rcParams.update({"figure.dpi": 110, "axes.spines.top": False, "axes.spines.r
                      "xtick.labelsize": 7.5, "ytick.labelsize": 7.5, "axes.linewidth": 0.6,
                      "font.family": "sans-serif",
                      "font.sans-serif": ["TeX Gyre Heros", "Arial", "Helvetica", "DejaVu Sans"]})
-for _f in ["/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-regular.otf",
-           "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-bold.otf"]:
-    if Path(_f).exists():
-        matplotlib.font_manager.fontManager.addfont(_f)
+# TeX Gyre Heros, the report's sans font, from a TeX Live (Linux) or Tectonic (macOS) installation if present
+for _f in [*Path("/usr/share/texmf/fonts/opentype/public/tex-gyre").glob("texgyreheros-*.otf"),
+           *Path.home().glob("Library/Caches/TectonicProject.Tectonic/bundles/data/*/texgyreheros-*.otf")]:
+    matplotlib.font_manager.fontManager.addfont(str(_f))
 
 FIG, TAB = ROOT / "outputs/figures", ROOT / "outputs/tables"
 FIG.mkdir(parents=True, exist_ok=True)
@@ -864,6 +867,60 @@ for ax in axes[-1]:
 fig.legend(*axes[0, 0].get_legend_handles_labels(), ncol=3, frameon=False, loc="upper center",
            bbox_to_anchor=(0.5, 1.0))
 fig.tight_layout(rect=(0, 0, 1, 0.93)); fig.savefig(FIG / "google_trends.png", dpi=300); plt.show()
+""")
+
+md(r"""
+## 12. Two supply shocks up close (report Figure 1)
+
+The avocado import halt (E1) and the lettuce shortage (E2): weekly Reddit supply talk (expected counts, section 3)
+above the national price index and weekly shipments, each scaled to 100 over the weeks before the event. The quotes
+are Reddit texts of the event dataset (`event_dataset.csv`), shortened with an ellipsis.
+""")
+
+code(r"""
+STORIES = [  # product, title, weeks shown, end of the baseline, events shaded, quotes (date, text, text position)
+    dict(product="avocado", title="(a) Avocados: a sudden import halt", start="2022-01-03", end="2022-03-28",
+         base_end="2022-02-07", events=["E1"],
+         quotes=[("2022-02-13", "“US suspends Mexican avocado\nimports on eve of Super Bowl”\nr/news, 13 Feb",
+                  ("2022-01-03", 0.97, "left"))]),
+    dict(product="lettuce", title="(b) Lettuce: a slow virus outbreak", start="2022-06-20", end="2022-12-26",
+         base_end="2022-08-15", events=["E2"],
+         quotes=[("2022-08-18", "“a plant disease as well as a\nsoil fungus … affecting romaine”\n18 Aug",
+                  ("2022-06-20", 0.97, "left")),
+                 ("2022-08-23", "Wendy’s E. coli\noutbreak", ("2022-08-29", 0.55, "left")),
+                 ("2022-11-17", "“We can’t even get lettuce\nfrom our supplier”\n17 Nov", ("2022-12-30", 0.97, "right"))]),
+]
+
+fig, axes = plt.subplots(2, 2, figsize=(6.5, 3.5), sharex="col", gridspec_kw={"height_ratios": [1.25, 1]})
+mid = pd.Timedelta(days=3)   # draw each week at its middle
+for c, st in enumerate(STORIES):
+    prod, lo, hi = st["product"], pd.Timestamp(st["start"]), pd.Timestamp(st["end"])
+    base_end = pd.Timestamp(st["base_end"])
+    r = sig[(sig["product"] == prod) & sig["week_start"].between(lo, hi)].set_index("week_start")["n_supply"]
+    p = nat[(nat["product"] == prod) & nat["week_start"].between(lo, hi)].set_index("week_start")["index"]
+    q = ship[(ship["product"] == prod) & ship["week_start"].between(lo, hi)].set_index("week_start")["total_lb"]
+    p, q = 100 * p / p[p.index < base_end].mean(), 100 * q / q[q.index < base_end].mean()
+    at, ab = axes[0, c], axes[1, c]
+    at.bar(r.index + mid, r, width=5.5, color=COLORS["supply"], lw=0)
+    ab.plot(p.index + mid, p, color="#18211d", lw=1.2, label="wholesale price")
+    ab.plot(q.index + mid, q, color="#4f8a64", lw=1.2, label="shipments")
+    ab.axhline(100, color="0.7", lw=0.5, zorder=0)
+    for e in events_ref[events_ref["event_id"].isin(st["events"])].itertuples():
+        for ax in (at, ab):
+            ax.axvspan(e.start_date, e.end_date + pd.Timedelta(days=1), color="0.92", lw=0, zorder=0)
+    at.set_title(st["title"], loc="left", fontweight="bold")
+    at.set_ylim(0, r.max() * 2.0)
+    for d, text, (x, y, ha) in st["quotes"]:
+        w = wk(d)
+        at.annotate(text, xy=(w + mid, r.get(w, 0)), xytext=(pd.Timestamp(x), y * at.get_ylim()[1]), fontsize=6.5,
+                    va="top", ha=ha, color="0.15",
+                    arrowprops=dict(arrowstyle="-", color="0.5", lw=0.5, shrinkA=1, shrinkB=1))
+    ab.xaxis.set_major_locator(mdates.MonthLocator())
+    ab.xaxis.set_major_formatter(mdates.DateFormatter("%b"))
+axes[0, 0].set_ylabel("Reddit supply\ntalk, texts/week")
+axes[1, 0].set_ylabel("before the event = 100")
+axes[1, 1].legend(frameon=False, loc="upper left")
+fig.tight_layout(h_pad=0.4, w_pad=1.5); fig.savefig(FIG / "two_supply_shocks.png", dpi=300); plt.show()
 """)
 
 nb = nbf.v4.new_notebook()

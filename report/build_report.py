@@ -22,6 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HERE = ROOT / "report"
 FIGURES = [  # (words in the image's alt text, figure file)
+    ("shocks", "two_supply_shocks.png"),
     ("workflow", "data_workflow.png"),
     ("shipments", "prices_and_shipments.png"),
     ("signals", "weekly_signals.png"),
