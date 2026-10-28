@@ -154,7 +154,7 @@ Notes
 
 ### Reproduce with Kiro on AWS
 
-We reproduced the quick path independently with the Kiro CLI (2.35.0), signed in through the challenge's AWS IAM
+We reproduced the quick path independently with the Kiro CLI (2.35.1), signed in through the challenge's AWS IAM
 Identity Center account, on an Apple-silicon Mac (macOS, CPU only).
 
 1. Install the Kiro CLI:
@@ -184,9 +184,9 @@ Kiro used Python 3.13.18 and finished in about 2 minutes:
 
 | Step | Time |
 |---|---|
-| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 38 s |
-| `bash run_all.sh --analysis` | 48 s |
-| `python scripts/check_reproduction.py` | under 1 s; 19 of 19 tables reproduce |
+| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 34 s |
+| `bash run_all.sh --analysis` | 47 s |
+| `python scripts/check_reproduction.py` | under 1 s; 20 of 20 tables reproduce |
 
 An earlier Kiro run found two problems, both fixed in commit `3464586`: the pinned numpy and scipy need Python 3.12
 rather than 3.11, and one example text in `unusual_weeks.csv` depended on whether pyarrow was installed.
