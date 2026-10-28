@@ -14,6 +14,7 @@ if [[ "${1:-}" != "--analysis" ]]; then
   python data_collection/collect_reddit.py trees     # comment trees of product posts; ~2 h
   python data_collection/collect_ams.py              # needs MARS_API_KEY in .env; ~10 min
   python data_collection/collect_ams_movement.py     # shipments; same key; ~1 h
+  python data_collection/collect_google_trends.py    # US search interest; ~3 min
   python data_collection/build_event_dataset.py
   # Task 2: models (the hand-reviewed labels are in labeling/labels.csv)
   python -m analysis.run_models all                  # ~10 h on CPU

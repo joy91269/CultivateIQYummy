@@ -2,15 +2,15 @@
 
 ## 1. Sources
 
-| | Reddit (via Arctic Shift) | USDA AMS terminal market prices | USDA AMS movement (shipments) |
-|---|---|---|---|
-| What | Posts and comments that mention avocados, lettuce, onions or cucumbers | Daily wholesale price reports for fresh produce at 10 US terminal markets | Daily pounds shipped from US production districts and imported through ports of entry, by commodity |
-| Access | Arctic Shift archive API, `https://arctic-shift.photon-reddit.com` (no key) | MyMarketNews MARS API, `https://marsapi.ams.usda.gov/services/v1.2/reports` (free API key) | Same API; the "Truck, Air and Boat Daily Movement" report of every Market News office (`config/ams_markets.yaml`) |
-| Access date | 26–27 October 2026 | 26 October 2026 | 26 October 2026 |
-| License / terms | Public Reddit content, archived by the Arctic Shift project for research; use is subject to the Reddit User Agreement and Public Content Policy. We keep only the text needed for the analysis and replace user names by pseudonymous ids. | US Government work, public domain; data from USDA AMS Market News. | Same as prices |
-| Coverage | 1 Jan 2022 – 31 Dec 2024; 29 topical subreddits (consumers, retailers, food service, growers, economy) and 9 city subreddits listed in `config/sources.yaml`, plus title search in r/news | 1 Jan 2022 – 31 Dec 2024; Atlanta, Baltimore, Boston, Chicago, Columbia SC, Detroit, Los Angeles, Miami, New York, Philadelphia | 1 Jan 2022 – 31 Dec 2024; all US shipping districts and ports of entry covered by Market News; some offices stopped reporting during the period |
-| Update frequency | Archive updated continuously (scores settle ~36 h after posting); monthly dumps | Daily (business days) | Daily (business days), late additions flagged |
-| Geography | Mostly unknown; attached when the subreddit is a city or regional grocery chain, or one US state is named in the text | Market city | Shipping district or port of entry, origin country |
+| | Reddit (via Arctic Shift) | USDA AMS terminal market prices | USDA AMS movement (shipments) | Google Trends (search interest) |
+|---|---|---|---|---|
+| What | Posts and comments that mention avocados, lettuce, onions or cucumbers | Daily wholesale price reports for fresh produce at 10 US terminal markets | Daily pounds shipped from US production districts and imported through ports of entry, by commodity | Weekly US search interest for four terms per product: the product name alone and with "price", "shortage" and "recall" (`config/products.yaml`) |
+| Access | Arctic Shift archive API, `https://arctic-shift.photon-reddit.com` (no key) | MyMarketNews MARS API, `https://marsapi.ams.usda.gov/services/v1.2/reports` (free API key) | Same API; the "Truck, Air and Boat Daily Movement" report of every Market News office (`config/ams_markets.yaml`) | Google Trends, `https://trends.google.com`, through the pytrends library (no key; Google offers no public API) |
+| Access date | 26–27 October 2026 | 26 October 2026 | 26 October 2026 | 27 October 2026 |
+| License / terms | Public Reddit content, archived by the Arctic Shift project for research; use is subject to the Reddit User Agreement and Public Content Policy. We keep only the text needed for the analysis and replace user names by pseudonymous ids. | US Government work, public domain; data from USDA AMS Market News. | Same as prices | Google Trends data, used under Google's terms of service with attribution (source: Google Trends) |
+| Coverage | 1 Jan 2022 – 31 Dec 2024; 29 topical subreddits (consumers, retailers, food service, growers, economy) and 9 city subreddits listed in `config/sources.yaml`, plus title search in r/news | 1 Jan 2022 – 31 Dec 2024; Atlanta, Baltimore, Boston, Chicago, Columbia SC, Detroit, Los Angeles, Miami, New York, Philadelphia | 1 Jan 2022 – 31 Dec 2024; all US shipping districts and ports of entry covered by Market News; some offices stopped reporting during the period | 1 Jan 2022 – 31 Dec 2024, 157 weeks, 16 search terms |
+| Update frequency | Archive updated continuously (scores settle ~36 h after posting); monthly dumps | Daily (business days) | Daily (business days), late additions flagged | Continuous; a 3-year request returns one value per week |
+| Geography | Mostly unknown; attached when the subreddit is a city or regional grocery chain, or one US state is named in the text | Market city | Shipping district or port of entry, origin country | United States as a whole |
 
 ## 2. Transformations
 
@@ -31,6 +31,9 @@
 5. **Shipments** (`data_collection/collect_ams_movement.py`): movement lines of all offices are combined, late
    additions are moved to the shipping date they belong to, lines repeated in two offices' reports are kept once,
    and pounds are summed per product and ISO week, split into domestic shipments and imports.
+6. **Search interest** (`data_collection/collect_google_trends.py`): each term is requested on its own, US only,
+   over the study period. Google scales each request to 0–100 (100 = the term's busiest week; 0 = too few searches
+   to report). Google weeks run Sunday to Saturday; each is assigned to the ISO week starting the next Monday.
 
 ## 3. `data/processed/event_dataset.csv`
 
@@ -90,6 +93,8 @@ nationally. Line-level data: `data/processed/ams_movement_daily.csv.gz` (`ship_d
 | `data/processed/classified_observations.csv.gz` | Model label, class probabilities and sentiment for every observation |
 | `outputs/tables/*.csv` | Weekly signals, anomalies, price indices, lead/lag and event tables |
 | `config/events_reference.csv` | Documented market events with dates and news sources |
+| `data/processed/google_trends_weekly.csv` | One row per product, search term and week: `product`, `series` (`total`, `price`, `shortage`, `recall`), `term`, `week_start` (Monday), `google_week_start` (Sunday), `interest` (0–100 within the term), `is_partial` |
+| `data/raw/google_trends/<term>.csv` | Each term as downloaded |
 
 ## 7. Limitations
 
@@ -102,3 +107,6 @@ nationally. Line-level data: `data/processed/ams_movement_daily.csv.gz` (`ship_d
 - AMS terminal prices are wholesale prices for specific packs and grades; retail prices move later and less.
 - Movement reports cover shipments that Market News offices track; small districts, local sales and offices
   that stopped reporting are missing, so shipments are a relative measure of quantity, not a census.
+- Google Trends values are relative within each term and based on a sample of searches, so a new download can
+  differ slightly from the committed one. The shortage and recall terms have too few searches in most weeks and
+  are 0 there; their spikes rest on weeks with unusual search activity.

@@ -11,6 +11,16 @@ study_period:
   start: "2022-01-01"
   end: "2025-01-01"   # exclusive
 
+# Google Trends search interest (data_collection/collect_google_trends.py): the same four search terms for every
+# product, US only, weekly over the study period. {product} is the product id below.
+google_trends:
+  geo: US
+  terms:
+    total: "{product}"
+    price: "{product} price"
+    shortage: "{product} shortage"
+    recall: "{product} recall"
+
 products:
   avocado:
     display: Avocados

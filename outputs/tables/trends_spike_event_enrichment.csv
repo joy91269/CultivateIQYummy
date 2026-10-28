@@ -1,0 +1,16 @@
+search_terms,z_at_least,weeks,near_documented_event,share,p_vs_base_rate,events_found
+total,2,6,2,0.33,0.139,"E1, E5"
+total,3,2,0,0.0,1.0,
+total,4,0,0,,,
+price,2,17,6,0.35,0.0082,"E1, E2, E3, E5, E8"
+price,3,3,2,0.67,0.0349,"E1, E5"
+price,4,2,1,0.5,0.2118,E5
+shortage,2,22,8,0.36,0.0019,"E1, E2, E4, E8"
+shortage,3,11,3,0.27,0.1172,"E1, E2, E4, E8"
+shortage,4,10,3,0.3,0.0927,"E1, E2, E4, E8"
+recall,2,42,13,0.31,0.0005,"E1, E2, E3, E4, E5, E6, E7, E8"
+recall,3,28,9,0.32,0.0026,"E1, E2, E3, E5, E6, E8"
+recall,4,23,7,0.3,0.0108,"E1, E3, E5, E6, E8"
+shortage_or_recall,2,60,19,0.32,0.0,"E1, E2, E3, E4, E5, E6, E7, E8"
+shortage_or_recall,3,36,11,0.31,0.0015,"E1, E2, E3, E4, E5, E6, E8"
+shortage_or_recall,4,30,9,0.3,0.0044,"E1, E2, E3, E4, E5, E6, E8"

@@ -1,0 +1,2513 @@
+product,series,term,week_start,google_week_start,interest,is_partial
+avocado,total,avocado,2022-01-03,2022-01-02,57,False
+avocado,total,avocado,2022-01-10,2022-01-09,59,False
+avocado,total,avocado,2022-01-17,2022-01-16,55,False
+avocado,total,avocado,2022-01-24,2022-01-23,55,False
+avocado,total,avocado,2022-01-31,2022-01-30,57,False
+avocado,total,avocado,2022-02-07,2022-02-06,61,False
+avocado,total,avocado,2022-02-14,2022-02-13,86,False
+avocado,total,avocado,2022-02-21,2022-02-20,66,False
+avocado,total,avocado,2022-02-28,2022-02-27,60,False
+avocado,total,avocado,2022-03-07,2022-03-06,57,False
+avocado,total,avocado,2022-03-14,2022-03-13,55,False
+avocado,total,avocado,2022-03-21,2022-03-20,57,False
+avocado,total,avocado,2022-03-28,2022-03-27,56,False
+avocado,total,avocado,2022-04-04,2022-04-03,59,False
+avocado,total,avocado,2022-04-11,2022-04-10,58,False
+avocado,total,avocado,2022-04-18,2022-04-17,52,False
+avocado,total,avocado,2022-04-25,2022-04-24,55,False
+avocado,total,avocado,2022-05-02,2022-05-01,57,False
+avocado,total,avocado,2022-05-09,2022-05-08,55,False
+avocado,total,avocado,2022-05-16,2022-05-15,53,False
+avocado,total,avocado,2022-05-23,2022-05-22,54,False
+avocado,total,avocado,2022-05-30,2022-05-29,54,False
+avocado,total,avocado,2022-06-06,2022-06-05,56,False
+avocado,total,avocado,2022-06-13,2022-06-12,57,False
+avocado,total,avocado,2022-06-20,2022-06-19,58,False
+avocado,total,avocado,2022-06-27,2022-06-26,59,False
+avocado,total,avocado,2022-07-04,2022-07-03,61,False
+avocado,total,avocado,2022-07-11,2022-07-10,65,False
+avocado,total,avocado,2022-07-18,2022-07-17,61,False
+avocado,total,avocado,2022-07-25,2022-07-24,58,False
+avocado,total,avocado,2022-08-01,2022-07-31,59,False
+avocado,total,avocado,2022-08-08,2022-08-07,57,False
+avocado,total,avocado,2022-08-15,2022-08-14,53,False
+avocado,total,avocado,2022-08-22,2022-08-21,57,False
+avocado,total,avocado,2022-08-29,2022-08-28,55,False
+avocado,total,avocado,2022-09-05,2022-09-04,50,False
+avocado,total,avocado,2022-09-12,2022-09-11,48,False
+avocado,total,avocado,2022-09-19,2022-09-18,47,False
+avocado,total,avocado,2022-09-26,2022-09-25,49,False
+avocado,total,avocado,2022-10-03,2022-10-02,47,False
+avocado,total,avocado,2022-10-10,2022-10-09,46,False
+avocado,total,avocado,2022-10-17,2022-10-16,46,False
+avocado,total,avocado,2022-10-24,2022-10-23,45,False
+avocado,total,avocado,2022-10-31,2022-10-30,41,False
+avocado,total,avocado,2022-11-07,2022-11-06,47,False
+avocado,total,avocado,2022-11-14,2022-11-13,43,False
+avocado,total,avocado,2022-11-21,2022-11-20,41,False
+avocado,total,avocado,2022-11-28,2022-11-27,41,False
+avocado,total,avocado,2022-12-05,2022-12-04,47,False
+avocado,total,avocado,2022-12-12,2022-12-11,48,False
+avocado,total,avocado,2022-12-19,2022-12-18,43,False
+avocado,total,avocado,2022-12-26,2022-12-25,49,False
+avocado,total,avocado,2023-01-02,2023-01-01,58,False
+avocado,total,avocado,2023-01-09,2023-01-08,57,False
+avocado,total,avocado,2023-01-16,2023-01-15,59,False
+avocado,total,avocado,2023-01-23,2023-01-22,56,False
+avocado,total,avocado,2023-01-30,2023-01-29,60,False
+avocado,total,avocado,2023-02-06,2023-02-05,59,False
+avocado,total,avocado,2023-02-13,2023-02-12,58,False
+avocado,total,avocado,2023-02-20,2023-02-19,57,False
+avocado,total,avocado,2023-02-27,2023-02-26,57,False
+avocado,total,avocado,2023-03-06,2023-03-05,56,False
+avocado,total,avocado,2023-03-13,2023-03-12,57,False
+avocado,total,avocado,2023-03-20,2023-03-19,59,False
+avocado,total,avocado,2023-03-27,2023-03-26,57,False
+avocado,total,avocado,2023-04-03,2023-04-02,56,False
+avocado,total,avocado,2023-04-10,2023-04-09,55,False
+avocado,total,avocado,2023-04-17,2023-04-16,59,False
+avocado,total,avocado,2023-04-24,2023-04-23,58,False
+avocado,total,avocado,2023-05-01,2023-04-30,60,False
+avocado,total,avocado,2023-05-08,2023-05-07,58,False
+avocado,total,avocado,2023-05-15,2023-05-14,55,False
+avocado,total,avocado,2023-05-22,2023-05-21,58,False
+avocado,total,avocado,2023-05-29,2023-05-28,56,False
+avocado,total,avocado,2023-06-05,2023-06-04,56,False
+avocado,total,avocado,2023-06-12,2023-06-11,55,False
+avocado,total,avocado,2023-06-19,2023-06-18,53,False
+avocado,total,avocado,2023-06-26,2023-06-25,58,False
+avocado,total,avocado,2023-07-03,2023-07-02,58,False
+avocado,total,avocado,2023-07-10,2023-07-09,52,False
+avocado,total,avocado,2023-07-17,2023-07-16,51,False
+avocado,total,avocado,2023-07-24,2023-07-23,50,False
+avocado,total,avocado,2023-07-31,2023-07-30,51,False
+avocado,total,avocado,2023-08-07,2023-08-06,52,False
+avocado,total,avocado,2023-08-14,2023-08-13,50,False
+avocado,total,avocado,2023-08-21,2023-08-20,50,False
+avocado,total,avocado,2023-08-28,2023-08-27,51,False
+avocado,total,avocado,2023-09-04,2023-09-03,49,False
+avocado,total,avocado,2023-09-11,2023-09-10,44,False
+avocado,total,avocado,2023-09-18,2023-09-17,47,False
+avocado,total,avocado,2023-09-25,2023-09-24,44,False
+avocado,total,avocado,2023-10-02,2023-10-01,44,False
+avocado,total,avocado,2023-10-09,2023-10-08,42,False
+avocado,total,avocado,2023-10-16,2023-10-15,42,False
+avocado,total,avocado,2023-10-23,2023-10-22,42,False
+avocado,total,avocado,2023-10-30,2023-10-29,41,False
+avocado,total,avocado,2023-11-06,2023-11-05,41,False
+avocado,total,avocado,2023-11-13,2023-11-12,41,False
+avocado,total,avocado,2023-11-20,2023-11-19,38,False
+avocado,total,avocado,2023-11-27,2023-11-26,38,False
+avocado,total,avocado,2023-12-04,2023-12-03,41,False
+avocado,total,avocado,2023-12-11,2023-12-10,41,False
+avocado,total,avocado,2023-12-18,2023-12-17,39,False
+avocado,total,avocado,2023-12-25,2023-12-24,43,False
+avocado,total,avocado,2024-01-01,2023-12-31,54,False
+avocado,total,avocado,2024-01-08,2024-01-07,56,False
+avocado,total,avocado,2024-01-15,2024-01-14,55,False
+avocado,total,avocado,2024-01-22,2024-01-21,54,False
+avocado,total,avocado,2024-01-29,2024-01-28,54,False
+avocado,total,avocado,2024-02-05,2024-02-04,53,False
+avocado,total,avocado,2024-02-12,2024-02-11,50,False
+avocado,total,avocado,2024-02-19,2024-02-18,53,False
+avocado,total,avocado,2024-02-26,2024-02-25,55,False
+avocado,total,avocado,2024-03-04,2024-03-03,52,False
+avocado,total,avocado,2024-03-11,2024-03-10,53,False
+avocado,total,avocado,2024-03-18,2024-03-17,52,False
+avocado,total,avocado,2024-03-25,2024-03-24,53,False
+avocado,total,avocado,2024-04-01,2024-03-31,52,False
+avocado,total,avocado,2024-04-08,2024-04-07,53,False
+avocado,total,avocado,2024-04-15,2024-04-14,56,False
+avocado,total,avocado,2024-04-22,2024-04-21,53,False
+avocado,total,avocado,2024-04-29,2024-04-28,55,False
+avocado,total,avocado,2024-05-06,2024-05-05,56,False
+avocado,total,avocado,2024-05-13,2024-05-12,52,False
+avocado,total,avocado,2024-05-20,2024-05-19,57,False
+avocado,total,avocado,2024-05-27,2024-05-26,56,False
+avocado,total,avocado,2024-06-03,2024-06-02,57,False
+avocado,total,avocado,2024-06-10,2024-06-09,55,False
+avocado,total,avocado,2024-06-17,2024-06-16,57,False
+avocado,total,avocado,2024-06-24,2024-06-23,54,False
+avocado,total,avocado,2024-07-01,2024-06-30,56,False
+avocado,total,avocado,2024-07-08,2024-07-07,55,False
+avocado,total,avocado,2024-07-15,2024-07-14,53,False
+avocado,total,avocado,2024-07-22,2024-07-21,52,False
+avocado,total,avocado,2024-07-29,2024-07-28,54,False
+avocado,total,avocado,2024-08-05,2024-08-04,56,False
+avocado,total,avocado,2024-08-12,2024-08-11,52,False
+avocado,total,avocado,2024-08-19,2024-08-18,51,False
+avocado,total,avocado,2024-08-26,2024-08-25,52,False
+avocado,total,avocado,2024-09-02,2024-09-01,76,False
+avocado,total,avocado,2024-09-09,2024-09-08,100,False
+avocado,total,avocado,2024-09-16,2024-09-15,59,False
+avocado,total,avocado,2024-09-23,2024-09-22,48,False
+avocado,total,avocado,2024-09-30,2024-09-29,48,False
+avocado,total,avocado,2024-10-07,2024-10-06,45,False
+avocado,total,avocado,2024-10-14,2024-10-13,43,False
+avocado,total,avocado,2024-10-21,2024-10-20,47,False
+avocado,total,avocado,2024-10-28,2024-10-27,45,False
+avocado,total,avocado,2024-11-04,2024-11-03,41,False
+avocado,total,avocado,2024-11-11,2024-11-10,45,False
+avocado,total,avocado,2024-11-18,2024-11-17,45,False
+avocado,total,avocado,2024-11-25,2024-11-24,41,False
+avocado,total,avocado,2024-12-02,2024-12-01,42,False
+avocado,total,avocado,2024-12-09,2024-12-08,42,False
+avocado,total,avocado,2024-12-16,2024-12-15,42,False
+avocado,total,avocado,2024-12-23,2024-12-22,42,False
+avocado,total,avocado,2024-12-30,2024-12-29,55,False
+avocado,price,avocado price,2022-01-03,2022-01-02,55,False
+avocado,price,avocado price,2022-01-10,2022-01-09,37,False
+avocado,price,avocado price,2022-01-17,2022-01-16,35,False
+avocado,price,avocado price,2022-01-24,2022-01-23,51,False
+avocado,price,avocado price,2022-01-31,2022-01-30,57,False
+avocado,price,avocado price,2022-02-07,2022-02-06,52,False
+avocado,price,avocado price,2022-02-14,2022-02-13,100,False
+avocado,price,avocado price,2022-02-21,2022-02-20,60,False
+avocado,price,avocado price,2022-02-28,2022-02-27,82,False
+avocado,price,avocado price,2022-03-07,2022-03-06,57,False
+avocado,price,avocado price,2022-03-14,2022-03-13,32,False
+avocado,price,avocado price,2022-03-21,2022-03-20,51,False
+avocado,price,avocado price,2022-03-28,2022-03-27,46,False
+avocado,price,avocado price,2022-04-04,2022-04-03,53,False
+avocado,price,avocado price,2022-04-11,2022-04-10,38,False
+avocado,price,avocado price,2022-04-18,2022-04-17,53,False
+avocado,price,avocado price,2022-04-25,2022-04-24,55,False
+avocado,price,avocado price,2022-05-02,2022-05-01,44,False
+avocado,price,avocado price,2022-05-09,2022-05-08,64,False
+avocado,price,avocado price,2022-05-16,2022-05-15,68,False
+avocado,price,avocado price,2022-05-23,2022-05-22,41,False
+avocado,price,avocado price,2022-05-30,2022-05-29,47,False
+avocado,price,avocado price,2022-06-06,2022-06-05,49,False
+avocado,price,avocado price,2022-06-13,2022-06-12,57,False
+avocado,price,avocado price,2022-06-20,2022-06-19,56,False
+avocado,price,avocado price,2022-06-27,2022-06-26,55,False
+avocado,price,avocado price,2022-07-04,2022-07-03,43,False
+avocado,price,avocado price,2022-07-11,2022-07-10,55,False
+avocado,price,avocado price,2022-07-18,2022-07-17,48,False
+avocado,price,avocado price,2022-07-25,2022-07-24,48,False
+avocado,price,avocado price,2022-08-01,2022-07-31,40,False
+avocado,price,avocado price,2022-08-08,2022-08-07,53,False
+avocado,price,avocado price,2022-08-15,2022-08-14,49,False
+avocado,price,avocado price,2022-08-22,2022-08-21,45,False
+avocado,price,avocado price,2022-08-29,2022-08-28,41,False
+avocado,price,avocado price,2022-09-05,2022-09-04,33,False
+avocado,price,avocado price,2022-09-12,2022-09-11,43,False
+avocado,price,avocado price,2022-09-19,2022-09-18,37,False
+avocado,price,avocado price,2022-09-26,2022-09-25,34,False
+avocado,price,avocado price,2022-10-03,2022-10-02,39,False
+avocado,price,avocado price,2022-10-10,2022-10-09,29,False
+avocado,price,avocado price,2022-10-17,2022-10-16,35,False
+avocado,price,avocado price,2022-10-24,2022-10-23,27,False
+avocado,price,avocado price,2022-10-31,2022-10-30,34,False
+avocado,price,avocado price,2022-11-07,2022-11-06,35,False
+avocado,price,avocado price,2022-11-14,2022-11-13,33,False
+avocado,price,avocado price,2022-11-21,2022-11-20,34,False
+avocado,price,avocado price,2022-11-28,2022-11-27,29,False
+avocado,price,avocado price,2022-12-05,2022-12-04,32,False
+avocado,price,avocado price,2022-12-12,2022-12-11,49,False
+avocado,price,avocado price,2022-12-19,2022-12-18,23,False
+avocado,price,avocado price,2022-12-26,2022-12-25,27,False
+avocado,price,avocado price,2023-01-02,2023-01-01,26,False
+avocado,price,avocado price,2023-01-09,2023-01-08,51,False
+avocado,price,avocado price,2023-01-16,2023-01-15,41,False
+avocado,price,avocado price,2023-01-23,2023-01-22,44,False
+avocado,price,avocado price,2023-01-30,2023-01-29,53,False
+avocado,price,avocado price,2023-02-06,2023-02-05,47,False
+avocado,price,avocado price,2023-02-13,2023-02-12,45,False
+avocado,price,avocado price,2023-02-20,2023-02-19,50,False
+avocado,price,avocado price,2023-02-27,2023-02-26,40,False
+avocado,price,avocado price,2023-03-06,2023-03-05,43,False
+avocado,price,avocado price,2023-03-13,2023-03-12,43,False
+avocado,price,avocado price,2023-03-20,2023-03-19,35,False
+avocado,price,avocado price,2023-03-27,2023-03-26,40,False
+avocado,price,avocado price,2023-04-03,2023-04-02,31,False
+avocado,price,avocado price,2023-04-10,2023-04-09,41,False
+avocado,price,avocado price,2023-04-17,2023-04-16,51,False
+avocado,price,avocado price,2023-04-24,2023-04-23,41,False
+avocado,price,avocado price,2023-05-01,2023-04-30,42,False
+avocado,price,avocado price,2023-05-08,2023-05-07,41,False
+avocado,price,avocado price,2023-05-15,2023-05-14,36,False
+avocado,price,avocado price,2023-05-22,2023-05-21,28,False
+avocado,price,avocado price,2023-05-29,2023-05-28,46,False
+avocado,price,avocado price,2023-06-05,2023-06-04,26,False
+avocado,price,avocado price,2023-06-12,2023-06-11,46,False
+avocado,price,avocado price,2023-06-19,2023-06-18,38,False
+avocado,price,avocado price,2023-06-26,2023-06-25,40,False
+avocado,price,avocado price,2023-07-03,2023-07-02,47,False
+avocado,price,avocado price,2023-07-10,2023-07-09,53,False
+avocado,price,avocado price,2023-07-17,2023-07-16,47,False
+avocado,price,avocado price,2023-07-24,2023-07-23,43,False
+avocado,price,avocado price,2023-07-31,2023-07-30,40,False
+avocado,price,avocado price,2023-08-07,2023-08-06,57,False
+avocado,price,avocado price,2023-08-14,2023-08-13,50,False
+avocado,price,avocado price,2023-08-21,2023-08-20,52,False
+avocado,price,avocado price,2023-08-28,2023-08-27,46,False
+avocado,price,avocado price,2023-09-04,2023-09-03,41,False
+avocado,price,avocado price,2023-09-11,2023-09-10,36,False
+avocado,price,avocado price,2023-09-18,2023-09-17,39,False
+avocado,price,avocado price,2023-09-25,2023-09-24,38,False
+avocado,price,avocado price,2023-10-02,2023-10-01,40,False
+avocado,price,avocado price,2023-10-09,2023-10-08,31,False
+avocado,price,avocado price,2023-10-16,2023-10-15,42,False
+avocado,price,avocado price,2023-10-23,2023-10-22,35,False
+avocado,price,avocado price,2023-10-30,2023-10-29,38,False
+avocado,price,avocado price,2023-11-06,2023-11-05,27,False
+avocado,price,avocado price,2023-11-13,2023-11-12,31,False
+avocado,price,avocado price,2023-11-20,2023-11-19,33,False
+avocado,price,avocado price,2023-11-27,2023-11-26,37,False
+avocado,price,avocado price,2023-12-04,2023-12-03,33,False
+avocado,price,avocado price,2023-12-11,2023-12-10,38,False
+avocado,price,avocado price,2023-12-18,2023-12-17,34,False
+avocado,price,avocado price,2023-12-25,2023-12-24,27,False
+avocado,price,avocado price,2024-01-01,2023-12-31,28,False
+avocado,price,avocado price,2024-01-08,2024-01-07,48,False
+avocado,price,avocado price,2024-01-15,2024-01-14,38,False
+avocado,price,avocado price,2024-01-22,2024-01-21,62,False
+avocado,price,avocado price,2024-01-29,2024-01-28,48,False
+avocado,price,avocado price,2024-02-05,2024-02-04,43,False
+avocado,price,avocado price,2024-02-12,2024-02-11,46,False
+avocado,price,avocado price,2024-02-19,2024-02-18,49,False
+avocado,price,avocado price,2024-02-26,2024-02-25,48,False
+avocado,price,avocado price,2024-03-04,2024-03-03,37,False
+avocado,price,avocado price,2024-03-11,2024-03-10,50,False
+avocado,price,avocado price,2024-03-18,2024-03-17,38,False
+avocado,price,avocado price,2024-03-25,2024-03-24,39,False
+avocado,price,avocado price,2024-04-01,2024-03-31,47,False
+avocado,price,avocado price,2024-04-08,2024-04-07,43,False
+avocado,price,avocado price,2024-04-15,2024-04-14,46,False
+avocado,price,avocado price,2024-04-22,2024-04-21,40,False
+avocado,price,avocado price,2024-04-29,2024-04-28,38,False
+avocado,price,avocado price,2024-05-06,2024-05-05,42,False
+avocado,price,avocado price,2024-05-13,2024-05-12,49,False
+avocado,price,avocado price,2024-05-20,2024-05-19,33,False
+avocado,price,avocado price,2024-05-27,2024-05-26,33,False
+avocado,price,avocado price,2024-06-03,2024-06-02,41,False
+avocado,price,avocado price,2024-06-10,2024-06-09,39,False
+avocado,price,avocado price,2024-06-17,2024-06-16,50,False
+avocado,price,avocado price,2024-06-24,2024-06-23,45,False
+avocado,price,avocado price,2024-07-01,2024-06-30,41,False
+avocado,price,avocado price,2024-07-08,2024-07-07,35,False
+avocado,price,avocado price,2024-07-15,2024-07-14,33,False
+avocado,price,avocado price,2024-07-22,2024-07-21,42,False
+avocado,price,avocado price,2024-07-29,2024-07-28,39,False
+avocado,price,avocado price,2024-08-05,2024-08-04,40,False
+avocado,price,avocado price,2024-08-12,2024-08-11,43,False
+avocado,price,avocado price,2024-08-19,2024-08-18,49,False
+avocado,price,avocado price,2024-08-26,2024-08-25,37,False
+avocado,price,avocado price,2024-09-02,2024-09-01,59,False
+avocado,price,avocado price,2024-09-09,2024-09-08,62,False
+avocado,price,avocado price,2024-09-16,2024-09-15,44,False
+avocado,price,avocado price,2024-09-23,2024-09-22,48,False
+avocado,price,avocado price,2024-09-30,2024-09-29,51,False
+avocado,price,avocado price,2024-10-07,2024-10-06,40,False
+avocado,price,avocado price,2024-10-14,2024-10-13,34,False
+avocado,price,avocado price,2024-10-21,2024-10-20,50,False
+avocado,price,avocado price,2024-10-28,2024-10-27,48,False
+avocado,price,avocado price,2024-11-04,2024-11-03,31,False
+avocado,price,avocado price,2024-11-11,2024-11-10,48,False
+avocado,price,avocado price,2024-11-18,2024-11-17,47,False
+avocado,price,avocado price,2024-11-25,2024-11-24,47,False
+avocado,price,avocado price,2024-12-02,2024-12-01,46,False
+avocado,price,avocado price,2024-12-09,2024-12-08,36,False
+avocado,price,avocado price,2024-12-16,2024-12-15,41,False
+avocado,price,avocado price,2024-12-23,2024-12-22,30,False
+avocado,price,avocado price,2024-12-30,2024-12-29,41,False
+avocado,shortage,avocado shortage,2022-01-03,2022-01-02,0,False
+avocado,shortage,avocado shortage,2022-01-10,2022-01-09,0,False
+avocado,shortage,avocado shortage,2022-01-17,2022-01-16,0,False
+avocado,shortage,avocado shortage,2022-01-24,2022-01-23,0,False
+avocado,shortage,avocado shortage,2022-01-31,2022-01-30,0,False
+avocado,shortage,avocado shortage,2022-02-07,2022-02-06,0,False
+avocado,shortage,avocado shortage,2022-02-14,2022-02-13,100,False
+avocado,shortage,avocado shortage,2022-02-21,2022-02-20,46,False
+avocado,shortage,avocado shortage,2022-02-28,2022-02-27,15,False
+avocado,shortage,avocado shortage,2022-03-07,2022-03-06,7,False
+avocado,shortage,avocado shortage,2022-03-14,2022-03-13,6,False
+avocado,shortage,avocado shortage,2022-03-21,2022-03-20,0,False
+avocado,shortage,avocado shortage,2022-03-28,2022-03-27,3,False
+avocado,shortage,avocado shortage,2022-04-04,2022-04-03,0,False
+avocado,shortage,avocado shortage,2022-04-11,2022-04-10,2,False
+avocado,shortage,avocado shortage,2022-04-18,2022-04-17,0,False
+avocado,shortage,avocado shortage,2022-04-25,2022-04-24,0,False
+avocado,shortage,avocado shortage,2022-05-02,2022-05-01,0,False
+avocado,shortage,avocado shortage,2022-05-09,2022-05-08,0,False
+avocado,shortage,avocado shortage,2022-05-16,2022-05-15,3,False
+avocado,shortage,avocado shortage,2022-05-23,2022-05-22,0,False
+avocado,shortage,avocado shortage,2022-05-30,2022-05-29,0,False
+avocado,shortage,avocado shortage,2022-06-06,2022-06-05,0,False
+avocado,shortage,avocado shortage,2022-06-13,2022-06-12,0,False
+avocado,shortage,avocado shortage,2022-06-20,2022-06-19,3,False
+avocado,shortage,avocado shortage,2022-06-27,2022-06-26,0,False
+avocado,shortage,avocado shortage,2022-07-04,2022-07-03,0,False
+avocado,shortage,avocado shortage,2022-07-11,2022-07-10,0,False
+avocado,shortage,avocado shortage,2022-07-18,2022-07-17,0,False
+avocado,shortage,avocado shortage,2022-07-25,2022-07-24,0,False
+avocado,shortage,avocado shortage,2022-08-01,2022-07-31,0,False
+avocado,shortage,avocado shortage,2022-08-08,2022-08-07,0,False
+avocado,shortage,avocado shortage,2022-08-15,2022-08-14,0,False
+avocado,shortage,avocado shortage,2022-08-22,2022-08-21,0,False
+avocado,shortage,avocado shortage,2022-08-29,2022-08-28,0,False
+avocado,shortage,avocado shortage,2022-09-05,2022-09-04,0,False
+avocado,shortage,avocado shortage,2022-09-12,2022-09-11,0,False
+avocado,shortage,avocado shortage,2022-09-19,2022-09-18,0,False
+avocado,shortage,avocado shortage,2022-09-26,2022-09-25,0,False
+avocado,shortage,avocado shortage,2022-10-03,2022-10-02,0,False
+avocado,shortage,avocado shortage,2022-10-10,2022-10-09,0,False
+avocado,shortage,avocado shortage,2022-10-17,2022-10-16,0,False
+avocado,shortage,avocado shortage,2022-10-24,2022-10-23,0,False
+avocado,shortage,avocado shortage,2022-10-31,2022-10-30,0,False
+avocado,shortage,avocado shortage,2022-11-07,2022-11-06,0,False
+avocado,shortage,avocado shortage,2022-11-14,2022-11-13,0,False
+avocado,shortage,avocado shortage,2022-11-21,2022-11-20,0,False
+avocado,shortage,avocado shortage,2022-11-28,2022-11-27,0,False
+avocado,shortage,avocado shortage,2022-12-05,2022-12-04,0,False
+avocado,shortage,avocado shortage,2022-12-12,2022-12-11,0,False
+avocado,shortage,avocado shortage,2022-12-19,2022-12-18,0,False
+avocado,shortage,avocado shortage,2022-12-26,2022-12-25,0,False
+avocado,shortage,avocado shortage,2023-01-02,2023-01-01,0,False
+avocado,shortage,avocado shortage,2023-01-09,2023-01-08,0,False
+avocado,shortage,avocado shortage,2023-01-16,2023-01-15,0,False
+avocado,shortage,avocado shortage,2023-01-23,2023-01-22,0,False
+avocado,shortage,avocado shortage,2023-01-30,2023-01-29,0,False
+avocado,shortage,avocado shortage,2023-02-06,2023-02-05,0,False
+avocado,shortage,avocado shortage,2023-02-13,2023-02-12,0,False
+avocado,shortage,avocado shortage,2023-02-20,2023-02-19,0,False
+avocado,shortage,avocado shortage,2023-02-27,2023-02-26,0,False
+avocado,shortage,avocado shortage,2023-03-06,2023-03-05,0,False
+avocado,shortage,avocado shortage,2023-03-13,2023-03-12,0,False
+avocado,shortage,avocado shortage,2023-03-20,2023-03-19,0,False
+avocado,shortage,avocado shortage,2023-03-27,2023-03-26,0,False
+avocado,shortage,avocado shortage,2023-04-03,2023-04-02,0,False
+avocado,shortage,avocado shortage,2023-04-10,2023-04-09,0,False
+avocado,shortage,avocado shortage,2023-04-17,2023-04-16,0,False
+avocado,shortage,avocado shortage,2023-04-24,2023-04-23,0,False
+avocado,shortage,avocado shortage,2023-05-01,2023-04-30,3,False
+avocado,shortage,avocado shortage,2023-05-08,2023-05-07,0,False
+avocado,shortage,avocado shortage,2023-05-15,2023-05-14,0,False
+avocado,shortage,avocado shortage,2023-05-22,2023-05-21,0,False
+avocado,shortage,avocado shortage,2023-05-29,2023-05-28,0,False
+avocado,shortage,avocado shortage,2023-06-05,2023-06-04,0,False
+avocado,shortage,avocado shortage,2023-06-12,2023-06-11,0,False
+avocado,shortage,avocado shortage,2023-06-19,2023-06-18,0,False
+avocado,shortage,avocado shortage,2023-06-26,2023-06-25,0,False
+avocado,shortage,avocado shortage,2023-07-03,2023-07-02,0,False
+avocado,shortage,avocado shortage,2023-07-10,2023-07-09,0,False
+avocado,shortage,avocado shortage,2023-07-17,2023-07-16,0,False
+avocado,shortage,avocado shortage,2023-07-24,2023-07-23,0,False
+avocado,shortage,avocado shortage,2023-07-31,2023-07-30,0,False
+avocado,shortage,avocado shortage,2023-08-07,2023-08-06,0,False
+avocado,shortage,avocado shortage,2023-08-14,2023-08-13,0,False
+avocado,shortage,avocado shortage,2023-08-21,2023-08-20,0,False
+avocado,shortage,avocado shortage,2023-08-28,2023-08-27,0,False
+avocado,shortage,avocado shortage,2023-09-04,2023-09-03,0,False
+avocado,shortage,avocado shortage,2023-09-11,2023-09-10,0,False
+avocado,shortage,avocado shortage,2023-09-18,2023-09-17,0,False
+avocado,shortage,avocado shortage,2023-09-25,2023-09-24,0,False
+avocado,shortage,avocado shortage,2023-10-02,2023-10-01,0,False
+avocado,shortage,avocado shortage,2023-10-09,2023-10-08,0,False
+avocado,shortage,avocado shortage,2023-10-16,2023-10-15,0,False
+avocado,shortage,avocado shortage,2023-10-23,2023-10-22,0,False
+avocado,shortage,avocado shortage,2023-10-30,2023-10-29,0,False
+avocado,shortage,avocado shortage,2023-11-06,2023-11-05,0,False
+avocado,shortage,avocado shortage,2023-11-13,2023-11-12,0,False
+avocado,shortage,avocado shortage,2023-11-20,2023-11-19,0,False
+avocado,shortage,avocado shortage,2023-11-27,2023-11-26,0,False
+avocado,shortage,avocado shortage,2023-12-04,2023-12-03,0,False
+avocado,shortage,avocado shortage,2023-12-11,2023-12-10,0,False
+avocado,shortage,avocado shortage,2023-12-18,2023-12-17,0,False
+avocado,shortage,avocado shortage,2023-12-25,2023-12-24,0,False
+avocado,shortage,avocado shortage,2024-01-01,2023-12-31,0,False
+avocado,shortage,avocado shortage,2024-01-08,2024-01-07,0,False
+avocado,shortage,avocado shortage,2024-01-15,2024-01-14,0,False
+avocado,shortage,avocado shortage,2024-01-22,2024-01-21,0,False
+avocado,shortage,avocado shortage,2024-01-29,2024-01-28,0,False
+avocado,shortage,avocado shortage,2024-02-05,2024-02-04,0,False
+avocado,shortage,avocado shortage,2024-02-12,2024-02-11,0,False
+avocado,shortage,avocado shortage,2024-02-19,2024-02-18,0,False
+avocado,shortage,avocado shortage,2024-02-26,2024-02-25,0,False
+avocado,shortage,avocado shortage,2024-03-04,2024-03-03,0,False
+avocado,shortage,avocado shortage,2024-03-11,2024-03-10,0,False
+avocado,shortage,avocado shortage,2024-03-18,2024-03-17,0,False
+avocado,shortage,avocado shortage,2024-03-25,2024-03-24,0,False
+avocado,shortage,avocado shortage,2024-04-01,2024-03-31,0,False
+avocado,shortage,avocado shortage,2024-04-08,2024-04-07,0,False
+avocado,shortage,avocado shortage,2024-04-15,2024-04-14,0,False
+avocado,shortage,avocado shortage,2024-04-22,2024-04-21,0,False
+avocado,shortage,avocado shortage,2024-04-29,2024-04-28,0,False
+avocado,shortage,avocado shortage,2024-05-06,2024-05-05,0,False
+avocado,shortage,avocado shortage,2024-05-13,2024-05-12,0,False
+avocado,shortage,avocado shortage,2024-05-20,2024-05-19,0,False
+avocado,shortage,avocado shortage,2024-05-27,2024-05-26,0,False
+avocado,shortage,avocado shortage,2024-06-03,2024-06-02,0,False
+avocado,shortage,avocado shortage,2024-06-10,2024-06-09,0,False
+avocado,shortage,avocado shortage,2024-06-17,2024-06-16,0,False
+avocado,shortage,avocado shortage,2024-06-24,2024-06-23,0,False
+avocado,shortage,avocado shortage,2024-07-01,2024-06-30,0,False
+avocado,shortage,avocado shortage,2024-07-08,2024-07-07,0,False
+avocado,shortage,avocado shortage,2024-07-15,2024-07-14,0,False
+avocado,shortage,avocado shortage,2024-07-22,2024-07-21,0,False
+avocado,shortage,avocado shortage,2024-07-29,2024-07-28,0,False
+avocado,shortage,avocado shortage,2024-08-05,2024-08-04,0,False
+avocado,shortage,avocado shortage,2024-08-12,2024-08-11,0,False
+avocado,shortage,avocado shortage,2024-08-19,2024-08-18,0,False
+avocado,shortage,avocado shortage,2024-08-26,2024-08-25,0,False
+avocado,shortage,avocado shortage,2024-09-02,2024-09-01,0,False
+avocado,shortage,avocado shortage,2024-09-09,2024-09-08,0,False
+avocado,shortage,avocado shortage,2024-09-16,2024-09-15,0,False
+avocado,shortage,avocado shortage,2024-09-23,2024-09-22,0,False
+avocado,shortage,avocado shortage,2024-09-30,2024-09-29,0,False
+avocado,shortage,avocado shortage,2024-10-07,2024-10-06,0,False
+avocado,shortage,avocado shortage,2024-10-14,2024-10-13,0,False
+avocado,shortage,avocado shortage,2024-10-21,2024-10-20,0,False
+avocado,shortage,avocado shortage,2024-10-28,2024-10-27,0,False
+avocado,shortage,avocado shortage,2024-11-04,2024-11-03,0,False
+avocado,shortage,avocado shortage,2024-11-11,2024-11-10,0,False
+avocado,shortage,avocado shortage,2024-11-18,2024-11-17,0,False
+avocado,shortage,avocado shortage,2024-11-25,2024-11-24,0,False
+avocado,shortage,avocado shortage,2024-12-02,2024-12-01,0,False
+avocado,shortage,avocado shortage,2024-12-09,2024-12-08,0,False
+avocado,shortage,avocado shortage,2024-12-16,2024-12-15,0,False
+avocado,shortage,avocado shortage,2024-12-23,2024-12-22,0,False
+avocado,shortage,avocado shortage,2024-12-30,2024-12-29,0,False
+avocado,recall,avocado recall,2022-01-03,2022-01-02,0,False
+avocado,recall,avocado recall,2022-01-10,2022-01-09,0,False
+avocado,recall,avocado recall,2022-01-17,2022-01-16,0,False
+avocado,recall,avocado recall,2022-01-24,2022-01-23,0,False
+avocado,recall,avocado recall,2022-01-31,2022-01-30,0,False
+avocado,recall,avocado recall,2022-02-07,2022-02-06,0,False
+avocado,recall,avocado recall,2022-02-14,2022-02-13,100,False
+avocado,recall,avocado recall,2022-02-21,2022-02-20,47,False
+avocado,recall,avocado recall,2022-02-28,2022-02-27,21,False
+avocado,recall,avocado recall,2022-03-07,2022-03-06,0,False
+avocado,recall,avocado recall,2022-03-14,2022-03-13,0,False
+avocado,recall,avocado recall,2022-03-21,2022-03-20,0,False
+avocado,recall,avocado recall,2022-03-28,2022-03-27,0,False
+avocado,recall,avocado recall,2022-04-04,2022-04-03,0,False
+avocado,recall,avocado recall,2022-04-11,2022-04-10,0,False
+avocado,recall,avocado recall,2022-04-18,2022-04-17,0,False
+avocado,recall,avocado recall,2022-04-25,2022-04-24,21,False
+avocado,recall,avocado recall,2022-05-02,2022-05-01,0,False
+avocado,recall,avocado recall,2022-05-09,2022-05-08,0,False
+avocado,recall,avocado recall,2022-05-16,2022-05-15,0,False
+avocado,recall,avocado recall,2022-05-23,2022-05-22,24,False
+avocado,recall,avocado recall,2022-05-30,2022-05-29,29,False
+avocado,recall,avocado recall,2022-06-06,2022-06-05,0,False
+avocado,recall,avocado recall,2022-06-13,2022-06-12,0,False
+avocado,recall,avocado recall,2022-06-20,2022-06-19,0,False
+avocado,recall,avocado recall,2022-06-27,2022-06-26,0,False
+avocado,recall,avocado recall,2022-07-04,2022-07-03,0,False
+avocado,recall,avocado recall,2022-07-11,2022-07-10,0,False
+avocado,recall,avocado recall,2022-07-18,2022-07-17,0,False
+avocado,recall,avocado recall,2022-07-25,2022-07-24,0,False
+avocado,recall,avocado recall,2022-08-01,2022-07-31,24,False
+avocado,recall,avocado recall,2022-08-08,2022-08-07,0,False
+avocado,recall,avocado recall,2022-08-15,2022-08-14,0,False
+avocado,recall,avocado recall,2022-08-22,2022-08-21,0,False
+avocado,recall,avocado recall,2022-08-29,2022-08-28,0,False
+avocado,recall,avocado recall,2022-09-05,2022-09-04,0,False
+avocado,recall,avocado recall,2022-09-12,2022-09-11,0,False
+avocado,recall,avocado recall,2022-09-19,2022-09-18,0,False
+avocado,recall,avocado recall,2022-09-26,2022-09-25,0,False
+avocado,recall,avocado recall,2022-10-03,2022-10-02,0,False
+avocado,recall,avocado recall,2022-10-10,2022-10-09,0,False
+avocado,recall,avocado recall,2022-10-17,2022-10-16,0,False
+avocado,recall,avocado recall,2022-10-24,2022-10-23,0,False
+avocado,recall,avocado recall,2022-10-31,2022-10-30,0,False
+avocado,recall,avocado recall,2022-11-07,2022-11-06,0,False
+avocado,recall,avocado recall,2022-11-14,2022-11-13,0,False
+avocado,recall,avocado recall,2022-11-21,2022-11-20,0,False
+avocado,recall,avocado recall,2022-11-28,2022-11-27,0,False
+avocado,recall,avocado recall,2022-12-05,2022-12-04,0,False
+avocado,recall,avocado recall,2022-12-12,2022-12-11,0,False
+avocado,recall,avocado recall,2022-12-19,2022-12-18,0,False
+avocado,recall,avocado recall,2022-12-26,2022-12-25,0,False
+avocado,recall,avocado recall,2023-01-02,2023-01-01,0,False
+avocado,recall,avocado recall,2023-01-09,2023-01-08,0,False
+avocado,recall,avocado recall,2023-01-16,2023-01-15,0,False
+avocado,recall,avocado recall,2023-01-23,2023-01-22,0,False
+avocado,recall,avocado recall,2023-01-30,2023-01-29,0,False
+avocado,recall,avocado recall,2023-02-06,2023-02-05,0,False
+avocado,recall,avocado recall,2023-02-13,2023-02-12,0,False
+avocado,recall,avocado recall,2023-02-20,2023-02-19,0,False
+avocado,recall,avocado recall,2023-02-27,2023-02-26,0,False
+avocado,recall,avocado recall,2023-03-06,2023-03-05,0,False
+avocado,recall,avocado recall,2023-03-13,2023-03-12,0,False
+avocado,recall,avocado recall,2023-03-20,2023-03-19,0,False
+avocado,recall,avocado recall,2023-03-27,2023-03-26,0,False
+avocado,recall,avocado recall,2023-04-03,2023-04-02,0,False
+avocado,recall,avocado recall,2023-04-10,2023-04-09,0,False
+avocado,recall,avocado recall,2023-04-17,2023-04-16,0,False
+avocado,recall,avocado recall,2023-04-24,2023-04-23,0,False
+avocado,recall,avocado recall,2023-05-01,2023-04-30,0,False
+avocado,recall,avocado recall,2023-05-08,2023-05-07,0,False
+avocado,recall,avocado recall,2023-05-15,2023-05-14,0,False
+avocado,recall,avocado recall,2023-05-22,2023-05-21,0,False
+avocado,recall,avocado recall,2023-05-29,2023-05-28,0,False
+avocado,recall,avocado recall,2023-06-05,2023-06-04,0,False
+avocado,recall,avocado recall,2023-06-12,2023-06-11,0,False
+avocado,recall,avocado recall,2023-06-19,2023-06-18,33,False
+avocado,recall,avocado recall,2023-06-26,2023-06-25,31,False
+avocado,recall,avocado recall,2023-07-03,2023-07-02,0,False
+avocado,recall,avocado recall,2023-07-10,2023-07-09,0,False
+avocado,recall,avocado recall,2023-07-17,2023-07-16,0,False
+avocado,recall,avocado recall,2023-07-24,2023-07-23,0,False
+avocado,recall,avocado recall,2023-07-31,2023-07-30,0,False
+avocado,recall,avocado recall,2023-08-07,2023-08-06,0,False
+avocado,recall,avocado recall,2023-08-14,2023-08-13,0,False
+avocado,recall,avocado recall,2023-08-21,2023-08-20,0,False
+avocado,recall,avocado recall,2023-08-28,2023-08-27,0,False
+avocado,recall,avocado recall,2023-09-04,2023-09-03,0,False
+avocado,recall,avocado recall,2023-09-11,2023-09-10,0,False
+avocado,recall,avocado recall,2023-09-18,2023-09-17,0,False
+avocado,recall,avocado recall,2023-09-25,2023-09-24,0,False
+avocado,recall,avocado recall,2023-10-02,2023-10-01,0,False
+avocado,recall,avocado recall,2023-10-09,2023-10-08,0,False
+avocado,recall,avocado recall,2023-10-16,2023-10-15,0,False
+avocado,recall,avocado recall,2023-10-23,2023-10-22,0,False
+avocado,recall,avocado recall,2023-10-30,2023-10-29,0,False
+avocado,recall,avocado recall,2023-11-06,2023-11-05,0,False
+avocado,recall,avocado recall,2023-11-13,2023-11-12,0,False
+avocado,recall,avocado recall,2023-11-20,2023-11-19,0,False
+avocado,recall,avocado recall,2023-11-27,2023-11-26,0,False
+avocado,recall,avocado recall,2023-12-04,2023-12-03,0,False
+avocado,recall,avocado recall,2023-12-11,2023-12-10,0,False
+avocado,recall,avocado recall,2023-12-18,2023-12-17,30,False
+avocado,recall,avocado recall,2023-12-25,2023-12-24,0,False
+avocado,recall,avocado recall,2024-01-01,2023-12-31,0,False
+avocado,recall,avocado recall,2024-01-08,2024-01-07,0,False
+avocado,recall,avocado recall,2024-01-15,2024-01-14,0,False
+avocado,recall,avocado recall,2024-01-22,2024-01-21,0,False
+avocado,recall,avocado recall,2024-01-29,2024-01-28,0,False
+avocado,recall,avocado recall,2024-02-05,2024-02-04,34,False
+avocado,recall,avocado recall,2024-02-12,2024-02-11,34,False
+avocado,recall,avocado recall,2024-02-19,2024-02-18,0,False
+avocado,recall,avocado recall,2024-02-26,2024-02-25,0,False
+avocado,recall,avocado recall,2024-03-04,2024-03-03,0,False
+avocado,recall,avocado recall,2024-03-11,2024-03-10,0,False
+avocado,recall,avocado recall,2024-03-18,2024-03-17,0,False
+avocado,recall,avocado recall,2024-03-25,2024-03-24,0,False
+avocado,recall,avocado recall,2024-04-01,2024-03-31,0,False
+avocado,recall,avocado recall,2024-04-08,2024-04-07,0,False
+avocado,recall,avocado recall,2024-04-15,2024-04-14,0,False
+avocado,recall,avocado recall,2024-04-22,2024-04-21,50,False
+avocado,recall,avocado recall,2024-04-29,2024-04-28,0,False
+avocado,recall,avocado recall,2024-05-06,2024-05-05,0,False
+avocado,recall,avocado recall,2024-05-13,2024-05-12,0,False
+avocado,recall,avocado recall,2024-05-20,2024-05-19,0,False
+avocado,recall,avocado recall,2024-05-27,2024-05-26,0,False
+avocado,recall,avocado recall,2024-06-03,2024-06-02,24,False
+avocado,recall,avocado recall,2024-06-10,2024-06-09,0,False
+avocado,recall,avocado recall,2024-06-17,2024-06-16,0,False
+avocado,recall,avocado recall,2024-06-24,2024-06-23,0,False
+avocado,recall,avocado recall,2024-07-01,2024-06-30,43,False
+avocado,recall,avocado recall,2024-07-08,2024-07-07,0,False
+avocado,recall,avocado recall,2024-07-15,2024-07-14,0,False
+avocado,recall,avocado recall,2024-07-22,2024-07-21,30,False
+avocado,recall,avocado recall,2024-07-29,2024-07-28,43,False
+avocado,recall,avocado recall,2024-08-05,2024-08-04,27,False
+avocado,recall,avocado recall,2024-08-12,2024-08-11,0,False
+avocado,recall,avocado recall,2024-08-19,2024-08-18,0,False
+avocado,recall,avocado recall,2024-08-26,2024-08-25,0,False
+avocado,recall,avocado recall,2024-09-02,2024-09-01,24,False
+avocado,recall,avocado recall,2024-09-09,2024-09-08,35,False
+avocado,recall,avocado recall,2024-09-16,2024-09-15,27,False
+avocado,recall,avocado recall,2024-09-23,2024-09-22,0,False
+avocado,recall,avocado recall,2024-09-30,2024-09-29,0,False
+avocado,recall,avocado recall,2024-10-07,2024-10-06,0,False
+avocado,recall,avocado recall,2024-10-14,2024-10-13,0,False
+avocado,recall,avocado recall,2024-10-21,2024-10-20,0,False
+avocado,recall,avocado recall,2024-10-28,2024-10-27,0,False
+avocado,recall,avocado recall,2024-11-04,2024-11-03,0,False
+avocado,recall,avocado recall,2024-11-11,2024-11-10,0,False
+avocado,recall,avocado recall,2024-11-18,2024-11-17,0,False
+avocado,recall,avocado recall,2024-11-25,2024-11-24,0,False
+avocado,recall,avocado recall,2024-12-02,2024-12-01,0,False
+avocado,recall,avocado recall,2024-12-09,2024-12-08,0,False
+avocado,recall,avocado recall,2024-12-16,2024-12-15,0,False
+avocado,recall,avocado recall,2024-12-23,2024-12-22,34,False
+avocado,recall,avocado recall,2024-12-30,2024-12-29,0,False
+lettuce,total,lettuce,2022-01-03,2022-01-02,87,False
+lettuce,total,lettuce,2022-01-10,2022-01-09,89,False
+lettuce,total,lettuce,2022-01-17,2022-01-16,75,False
+lettuce,total,lettuce,2022-01-24,2022-01-23,76,False
+lettuce,total,lettuce,2022-01-31,2022-01-30,74,False
+lettuce,total,lettuce,2022-02-07,2022-02-06,83,False
+lettuce,total,lettuce,2022-02-14,2022-02-13,74,False
+lettuce,total,lettuce,2022-02-21,2022-02-20,77,False
+lettuce,total,lettuce,2022-02-28,2022-02-27,78,False
+lettuce,total,lettuce,2022-03-07,2022-03-06,78,False
+lettuce,total,lettuce,2022-03-14,2022-03-13,83,False
+lettuce,total,lettuce,2022-03-21,2022-03-20,92,False
+lettuce,total,lettuce,2022-03-28,2022-03-27,86,False
+lettuce,total,lettuce,2022-04-04,2022-04-03,90,False
+lettuce,total,lettuce,2022-04-11,2022-04-10,88,False
+lettuce,total,lettuce,2022-04-18,2022-04-17,85,False
+lettuce,total,lettuce,2022-04-25,2022-04-24,84,False
+lettuce,total,lettuce,2022-05-02,2022-05-01,90,False
+lettuce,total,lettuce,2022-05-09,2022-05-08,89,False
+lettuce,total,lettuce,2022-05-16,2022-05-15,94,False
+lettuce,total,lettuce,2022-05-23,2022-05-22,93,False
+lettuce,total,lettuce,2022-05-30,2022-05-29,91,False
+lettuce,total,lettuce,2022-06-06,2022-06-05,100,False
+lettuce,total,lettuce,2022-06-13,2022-06-12,98,False
+lettuce,total,lettuce,2022-06-20,2022-06-19,92,False
+lettuce,total,lettuce,2022-06-27,2022-06-26,90,False
+lettuce,total,lettuce,2022-07-04,2022-07-03,96,False
+lettuce,total,lettuce,2022-07-11,2022-07-10,86,False
+lettuce,total,lettuce,2022-07-18,2022-07-17,83,False
+lettuce,total,lettuce,2022-07-25,2022-07-24,82,False
+lettuce,total,lettuce,2022-08-01,2022-07-31,73,False
+lettuce,total,lettuce,2022-08-08,2022-08-07,78,False
+lettuce,total,lettuce,2022-08-15,2022-08-14,74,False
+lettuce,total,lettuce,2022-08-22,2022-08-21,83,False
+lettuce,total,lettuce,2022-08-29,2022-08-28,72,False
+lettuce,total,lettuce,2022-09-05,2022-09-04,74,False
+lettuce,total,lettuce,2022-09-12,2022-09-11,65,False
+lettuce,total,lettuce,2022-09-19,2022-09-18,64,False
+lettuce,total,lettuce,2022-09-26,2022-09-25,61,False
+lettuce,total,lettuce,2022-10-03,2022-10-02,63,False
+lettuce,total,lettuce,2022-10-10,2022-10-09,61,False
+lettuce,total,lettuce,2022-10-17,2022-10-16,86,False
+lettuce,total,lettuce,2022-10-24,2022-10-23,68,False
+lettuce,total,lettuce,2022-10-31,2022-10-30,62,False
+lettuce,total,lettuce,2022-11-07,2022-11-06,66,False
+lettuce,total,lettuce,2022-11-14,2022-11-13,68,False
+lettuce,total,lettuce,2022-11-21,2022-11-20,60,False
+lettuce,total,lettuce,2022-11-28,2022-11-27,58,False
+lettuce,total,lettuce,2022-12-05,2022-12-04,62,False
+lettuce,total,lettuce,2022-12-12,2022-12-11,60,False
+lettuce,total,lettuce,2022-12-19,2022-12-18,62,False
+lettuce,total,lettuce,2022-12-26,2022-12-25,60,False
+lettuce,total,lettuce,2023-01-02,2023-01-01,76,False
+lettuce,total,lettuce,2023-01-09,2023-01-08,79,False
+lettuce,total,lettuce,2023-01-16,2023-01-15,82,False
+lettuce,total,lettuce,2023-01-23,2023-01-22,79,False
+lettuce,total,lettuce,2023-01-30,2023-01-29,78,False
+lettuce,total,lettuce,2023-02-06,2023-02-05,77,False
+lettuce,total,lettuce,2023-02-13,2023-02-12,73,False
+lettuce,total,lettuce,2023-02-20,2023-02-19,78,False
+lettuce,total,lettuce,2023-02-27,2023-02-26,83,False
+lettuce,total,lettuce,2023-03-06,2023-03-05,83,False
+lettuce,total,lettuce,2023-03-13,2023-03-12,82,False
+lettuce,total,lettuce,2023-03-20,2023-03-19,87,False
+lettuce,total,lettuce,2023-03-27,2023-03-26,86,False
+lettuce,total,lettuce,2023-04-03,2023-04-02,88,False
+lettuce,total,lettuce,2023-04-10,2023-04-09,95,False
+lettuce,total,lettuce,2023-04-17,2023-04-16,93,False
+lettuce,total,lettuce,2023-04-24,2023-04-23,91,False
+lettuce,total,lettuce,2023-05-01,2023-04-30,86,False
+lettuce,total,lettuce,2023-05-08,2023-05-07,90,False
+lettuce,total,lettuce,2023-05-15,2023-05-14,95,False
+lettuce,total,lettuce,2023-05-22,2023-05-21,97,False
+lettuce,total,lettuce,2023-05-29,2023-05-28,97,False
+lettuce,total,lettuce,2023-06-05,2023-06-04,99,False
+lettuce,total,lettuce,2023-06-12,2023-06-11,91,False
+lettuce,total,lettuce,2023-06-19,2023-06-18,93,False
+lettuce,total,lettuce,2023-06-26,2023-06-25,100,False
+lettuce,total,lettuce,2023-07-03,2023-07-02,93,False
+lettuce,total,lettuce,2023-07-10,2023-07-09,86,False
+lettuce,total,lettuce,2023-07-17,2023-07-16,83,False
+lettuce,total,lettuce,2023-07-24,2023-07-23,79,False
+lettuce,total,lettuce,2023-07-31,2023-07-30,74,False
+lettuce,total,lettuce,2023-08-07,2023-08-06,77,False
+lettuce,total,lettuce,2023-08-14,2023-08-13,71,False
+lettuce,total,lettuce,2023-08-21,2023-08-20,70,False
+lettuce,total,lettuce,2023-08-28,2023-08-27,68,False
+lettuce,total,lettuce,2023-09-04,2023-09-03,67,False
+lettuce,total,lettuce,2023-09-11,2023-09-10,67,False
+lettuce,total,lettuce,2023-09-18,2023-09-17,62,False
+lettuce,total,lettuce,2023-09-25,2023-09-24,64,False
+lettuce,total,lettuce,2023-10-02,2023-10-01,65,False
+lettuce,total,lettuce,2023-10-09,2023-10-08,60,False
+lettuce,total,lettuce,2023-10-16,2023-10-15,60,False
+lettuce,total,lettuce,2023-10-23,2023-10-22,60,False
+lettuce,total,lettuce,2023-10-30,2023-10-29,57,False
+lettuce,total,lettuce,2023-11-06,2023-11-05,56,False
+lettuce,total,lettuce,2023-11-13,2023-11-12,59,False
+lettuce,total,lettuce,2023-11-20,2023-11-19,50,False
+lettuce,total,lettuce,2023-11-27,2023-11-26,56,False
+lettuce,total,lettuce,2023-12-04,2023-12-03,57,False
+lettuce,total,lettuce,2023-12-11,2023-12-10,56,False
+lettuce,total,lettuce,2023-12-18,2023-12-17,57,False
+lettuce,total,lettuce,2023-12-25,2023-12-24,59,False
+lettuce,total,lettuce,2024-01-01,2023-12-31,76,False
+lettuce,total,lettuce,2024-01-08,2024-01-07,73,False
+lettuce,total,lettuce,2024-01-15,2024-01-14,69,False
+lettuce,total,lettuce,2024-01-22,2024-01-21,74,False
+lettuce,total,lettuce,2024-01-29,2024-01-28,74,False
+lettuce,total,lettuce,2024-02-05,2024-02-04,77,False
+lettuce,total,lettuce,2024-02-12,2024-02-11,69,False
+lettuce,total,lettuce,2024-02-19,2024-02-18,84,False
+lettuce,total,lettuce,2024-02-26,2024-02-25,79,False
+lettuce,total,lettuce,2024-03-04,2024-03-03,80,False
+lettuce,total,lettuce,2024-03-11,2024-03-10,77,False
+lettuce,total,lettuce,2024-03-18,2024-03-17,81,False
+lettuce,total,lettuce,2024-03-25,2024-03-24,78,False
+lettuce,total,lettuce,2024-04-01,2024-03-31,78,False
+lettuce,total,lettuce,2024-04-08,2024-04-07,80,False
+lettuce,total,lettuce,2024-04-15,2024-04-14,81,False
+lettuce,total,lettuce,2024-04-22,2024-04-21,88,False
+lettuce,total,lettuce,2024-04-29,2024-04-28,87,False
+lettuce,total,lettuce,2024-05-06,2024-05-05,85,False
+lettuce,total,lettuce,2024-05-13,2024-05-12,86,False
+lettuce,total,lettuce,2024-05-20,2024-05-19,87,False
+lettuce,total,lettuce,2024-05-27,2024-05-26,84,False
+lettuce,total,lettuce,2024-06-03,2024-06-02,86,False
+lettuce,total,lettuce,2024-06-10,2024-06-09,89,False
+lettuce,total,lettuce,2024-06-17,2024-06-16,87,False
+lettuce,total,lettuce,2024-06-24,2024-06-23,84,False
+lettuce,total,lettuce,2024-07-01,2024-06-30,83,False
+lettuce,total,lettuce,2024-07-08,2024-07-07,78,False
+lettuce,total,lettuce,2024-07-15,2024-07-14,75,False
+lettuce,total,lettuce,2024-07-22,2024-07-21,73,False
+lettuce,total,lettuce,2024-07-29,2024-07-28,72,False
+lettuce,total,lettuce,2024-08-05,2024-08-04,70,False
+lettuce,total,lettuce,2024-08-12,2024-08-11,68,False
+lettuce,total,lettuce,2024-08-19,2024-08-18,69,False
+lettuce,total,lettuce,2024-08-26,2024-08-25,68,False
+lettuce,total,lettuce,2024-09-02,2024-09-01,66,False
+lettuce,total,lettuce,2024-09-09,2024-09-08,64,False
+lettuce,total,lettuce,2024-09-16,2024-09-15,65,False
+lettuce,total,lettuce,2024-09-23,2024-09-22,63,False
+lettuce,total,lettuce,2024-09-30,2024-09-29,61,False
+lettuce,total,lettuce,2024-10-07,2024-10-06,58,False
+lettuce,total,lettuce,2024-10-14,2024-10-13,56,False
+lettuce,total,lettuce,2024-10-21,2024-10-20,61,False
+lettuce,total,lettuce,2024-10-28,2024-10-27,58,False
+lettuce,total,lettuce,2024-11-04,2024-11-03,54,False
+lettuce,total,lettuce,2024-11-11,2024-11-10,77,False
+lettuce,total,lettuce,2024-11-18,2024-11-17,58,False
+lettuce,total,lettuce,2024-11-25,2024-11-24,50,False
+lettuce,total,lettuce,2024-12-02,2024-12-01,53,False
+lettuce,total,lettuce,2024-12-09,2024-12-08,55,False
+lettuce,total,lettuce,2024-12-16,2024-12-15,60,False
+lettuce,total,lettuce,2024-12-23,2024-12-22,57,False
+lettuce,total,lettuce,2024-12-30,2024-12-29,70,False
+lettuce,price,lettuce price,2022-01-03,2022-01-02,34,False
+lettuce,price,lettuce price,2022-01-10,2022-01-09,43,False
+lettuce,price,lettuce price,2022-01-17,2022-01-16,31,False
+lettuce,price,lettuce price,2022-01-24,2022-01-23,43,False
+lettuce,price,lettuce price,2022-01-31,2022-01-30,46,False
+lettuce,price,lettuce price,2022-02-07,2022-02-06,37,False
+lettuce,price,lettuce price,2022-02-14,2022-02-13,54,False
+lettuce,price,lettuce price,2022-02-21,2022-02-20,51,False
+lettuce,price,lettuce price,2022-02-28,2022-02-27,38,False
+lettuce,price,lettuce price,2022-03-07,2022-03-06,47,False
+lettuce,price,lettuce price,2022-03-14,2022-03-13,46,False
+lettuce,price,lettuce price,2022-03-21,2022-03-20,48,False
+lettuce,price,lettuce price,2022-03-28,2022-03-27,40,False
+lettuce,price,lettuce price,2022-04-04,2022-04-03,42,False
+lettuce,price,lettuce price,2022-04-11,2022-04-10,44,False
+lettuce,price,lettuce price,2022-04-18,2022-04-17,54,False
+lettuce,price,lettuce price,2022-04-25,2022-04-24,47,False
+lettuce,price,lettuce price,2022-05-02,2022-05-01,44,False
+lettuce,price,lettuce price,2022-05-09,2022-05-08,54,False
+lettuce,price,lettuce price,2022-05-16,2022-05-15,25,False
+lettuce,price,lettuce price,2022-05-23,2022-05-22,42,False
+lettuce,price,lettuce price,2022-05-30,2022-05-29,44,False
+lettuce,price,lettuce price,2022-06-06,2022-06-05,62,False
+lettuce,price,lettuce price,2022-06-13,2022-06-12,69,False
+lettuce,price,lettuce price,2022-06-20,2022-06-19,48,False
+lettuce,price,lettuce price,2022-06-27,2022-06-26,30,False
+lettuce,price,lettuce price,2022-07-04,2022-07-03,39,False
+lettuce,price,lettuce price,2022-07-11,2022-07-10,37,False
+lettuce,price,lettuce price,2022-07-18,2022-07-17,38,False
+lettuce,price,lettuce price,2022-07-25,2022-07-24,24,False
+lettuce,price,lettuce price,2022-08-01,2022-07-31,29,False
+lettuce,price,lettuce price,2022-08-08,2022-08-07,26,False
+lettuce,price,lettuce price,2022-08-15,2022-08-14,28,False
+lettuce,price,lettuce price,2022-08-22,2022-08-21,40,False
+lettuce,price,lettuce price,2022-08-29,2022-08-28,49,False
+lettuce,price,lettuce price,2022-09-05,2022-09-04,56,False
+lettuce,price,lettuce price,2022-09-12,2022-09-11,48,False
+lettuce,price,lettuce price,2022-09-19,2022-09-18,57,False
+lettuce,price,lettuce price,2022-09-26,2022-09-25,36,False
+lettuce,price,lettuce price,2022-10-03,2022-10-02,29,False
+lettuce,price,lettuce price,2022-10-10,2022-10-09,58,False
+lettuce,price,lettuce price,2022-10-17,2022-10-16,32,False
+lettuce,price,lettuce price,2022-10-24,2022-10-23,70,False
+lettuce,price,lettuce price,2022-10-31,2022-10-30,85,False
+lettuce,price,lettuce price,2022-11-07,2022-11-06,100,False
+lettuce,price,lettuce price,2022-11-14,2022-11-13,97,False
+lettuce,price,lettuce price,2022-11-21,2022-11-20,86,False
+lettuce,price,lettuce price,2022-11-28,2022-11-27,74,False
+lettuce,price,lettuce price,2022-12-05,2022-12-04,79,False
+lettuce,price,lettuce price,2022-12-12,2022-12-11,50,False
+lettuce,price,lettuce price,2022-12-19,2022-12-18,57,False
+lettuce,price,lettuce price,2022-12-26,2022-12-25,32,False
+lettuce,price,lettuce price,2023-01-02,2023-01-01,56,False
+lettuce,price,lettuce price,2023-01-09,2023-01-08,51,False
+lettuce,price,lettuce price,2023-01-16,2023-01-15,46,False
+lettuce,price,lettuce price,2023-01-23,2023-01-22,58,False
+lettuce,price,lettuce price,2023-01-30,2023-01-29,51,False
+lettuce,price,lettuce price,2023-02-06,2023-02-05,62,False
+lettuce,price,lettuce price,2023-02-13,2023-02-12,40,False
+lettuce,price,lettuce price,2023-02-20,2023-02-19,50,False
+lettuce,price,lettuce price,2023-02-27,2023-02-26,48,False
+lettuce,price,lettuce price,2023-03-06,2023-03-05,45,False
+lettuce,price,lettuce price,2023-03-13,2023-03-12,30,False
+lettuce,price,lettuce price,2023-03-20,2023-03-19,43,False
+lettuce,price,lettuce price,2023-03-27,2023-03-26,36,False
+lettuce,price,lettuce price,2023-04-03,2023-04-02,48,False
+lettuce,price,lettuce price,2023-04-10,2023-04-09,51,False
+lettuce,price,lettuce price,2023-04-17,2023-04-16,46,False
+lettuce,price,lettuce price,2023-04-24,2023-04-23,62,False
+lettuce,price,lettuce price,2023-05-01,2023-04-30,45,False
+lettuce,price,lettuce price,2023-05-08,2023-05-07,54,False
+lettuce,price,lettuce price,2023-05-15,2023-05-14,41,False
+lettuce,price,lettuce price,2023-05-22,2023-05-21,44,False
+lettuce,price,lettuce price,2023-05-29,2023-05-28,40,False
+lettuce,price,lettuce price,2023-06-05,2023-06-04,37,False
+lettuce,price,lettuce price,2023-06-12,2023-06-11,30,False
+lettuce,price,lettuce price,2023-06-19,2023-06-18,37,False
+lettuce,price,lettuce price,2023-06-26,2023-06-25,40,False
+lettuce,price,lettuce price,2023-07-03,2023-07-02,27,False
+lettuce,price,lettuce price,2023-07-10,2023-07-09,29,False
+lettuce,price,lettuce price,2023-07-17,2023-07-16,33,False
+lettuce,price,lettuce price,2023-07-24,2023-07-23,29,False
+lettuce,price,lettuce price,2023-07-31,2023-07-30,24,False
+lettuce,price,lettuce price,2023-08-07,2023-08-06,30,False
+lettuce,price,lettuce price,2023-08-14,2023-08-13,30,False
+lettuce,price,lettuce price,2023-08-21,2023-08-20,34,False
+lettuce,price,lettuce price,2023-08-28,2023-08-27,31,False
+lettuce,price,lettuce price,2023-09-04,2023-09-03,46,False
+lettuce,price,lettuce price,2023-09-11,2023-09-10,53,False
+lettuce,price,lettuce price,2023-09-18,2023-09-17,38,False
+lettuce,price,lettuce price,2023-09-25,2023-09-24,40,False
+lettuce,price,lettuce price,2023-10-02,2023-10-01,40,False
+lettuce,price,lettuce price,2023-10-09,2023-10-08,41,False
+lettuce,price,lettuce price,2023-10-16,2023-10-15,37,False
+lettuce,price,lettuce price,2023-10-23,2023-10-22,53,False
+lettuce,price,lettuce price,2023-10-30,2023-10-29,32,False
+lettuce,price,lettuce price,2023-11-06,2023-11-05,39,False
+lettuce,price,lettuce price,2023-11-13,2023-11-12,34,False
+lettuce,price,lettuce price,2023-11-20,2023-11-19,23,False
+lettuce,price,lettuce price,2023-11-27,2023-11-26,39,False
+lettuce,price,lettuce price,2023-12-04,2023-12-03,22,False
+lettuce,price,lettuce price,2023-12-11,2023-12-10,30,False
+lettuce,price,lettuce price,2023-12-18,2023-12-17,22,False
+lettuce,price,lettuce price,2023-12-25,2023-12-24,22,False
+lettuce,price,lettuce price,2024-01-01,2023-12-31,25,False
+lettuce,price,lettuce price,2024-01-08,2024-01-07,33,False
+lettuce,price,lettuce price,2024-01-15,2024-01-14,39,False
+lettuce,price,lettuce price,2024-01-22,2024-01-21,51,False
+lettuce,price,lettuce price,2024-01-29,2024-01-28,51,False
+lettuce,price,lettuce price,2024-02-05,2024-02-04,57,False
+lettuce,price,lettuce price,2024-02-12,2024-02-11,46,False
+lettuce,price,lettuce price,2024-02-19,2024-02-18,38,False
+lettuce,price,lettuce price,2024-02-26,2024-02-25,50,False
+lettuce,price,lettuce price,2024-03-04,2024-03-03,47,False
+lettuce,price,lettuce price,2024-03-11,2024-03-10,45,False
+lettuce,price,lettuce price,2024-03-18,2024-03-17,41,False
+lettuce,price,lettuce price,2024-03-25,2024-03-24,30,False
+lettuce,price,lettuce price,2024-04-01,2024-03-31,37,False
+lettuce,price,lettuce price,2024-04-08,2024-04-07,45,False
+lettuce,price,lettuce price,2024-04-15,2024-04-14,41,False
+lettuce,price,lettuce price,2024-04-22,2024-04-21,48,False
+lettuce,price,lettuce price,2024-04-29,2024-04-28,49,False
+lettuce,price,lettuce price,2024-05-06,2024-05-05,36,False
+lettuce,price,lettuce price,2024-05-13,2024-05-12,55,False
+lettuce,price,lettuce price,2024-05-20,2024-05-19,37,False
+lettuce,price,lettuce price,2024-05-27,2024-05-26,28,False
+lettuce,price,lettuce price,2024-06-03,2024-06-02,39,False
+lettuce,price,lettuce price,2024-06-10,2024-06-09,38,False
+lettuce,price,lettuce price,2024-06-17,2024-06-16,24,False
+lettuce,price,lettuce price,2024-06-24,2024-06-23,32,False
+lettuce,price,lettuce price,2024-07-01,2024-06-30,22,False
+lettuce,price,lettuce price,2024-07-08,2024-07-07,32,False
+lettuce,price,lettuce price,2024-07-15,2024-07-14,35,False
+lettuce,price,lettuce price,2024-07-22,2024-07-21,30,False
+lettuce,price,lettuce price,2024-07-29,2024-07-28,28,False
+lettuce,price,lettuce price,2024-08-05,2024-08-04,25,False
+lettuce,price,lettuce price,2024-08-12,2024-08-11,27,False
+lettuce,price,lettuce price,2024-08-19,2024-08-18,35,False
+lettuce,price,lettuce price,2024-08-26,2024-08-25,42,False
+lettuce,price,lettuce price,2024-09-02,2024-09-01,23,False
+lettuce,price,lettuce price,2024-09-09,2024-09-08,35,False
+lettuce,price,lettuce price,2024-09-16,2024-09-15,52,False
+lettuce,price,lettuce price,2024-09-23,2024-09-22,43,False
+lettuce,price,lettuce price,2024-09-30,2024-09-29,30,False
+lettuce,price,lettuce price,2024-10-07,2024-10-06,26,False
+lettuce,price,lettuce price,2024-10-14,2024-10-13,42,False
+lettuce,price,lettuce price,2024-10-21,2024-10-20,45,False
+lettuce,price,lettuce price,2024-10-28,2024-10-27,48,False
+lettuce,price,lettuce price,2024-11-04,2024-11-03,45,False
+lettuce,price,lettuce price,2024-11-11,2024-11-10,41,False
+lettuce,price,lettuce price,2024-11-18,2024-11-17,47,False
+lettuce,price,lettuce price,2024-11-25,2024-11-24,25,False
+lettuce,price,lettuce price,2024-12-02,2024-12-01,40,False
+lettuce,price,lettuce price,2024-12-09,2024-12-08,23,False
+lettuce,price,lettuce price,2024-12-16,2024-12-15,51,False
+lettuce,price,lettuce price,2024-12-23,2024-12-22,27,False
+lettuce,price,lettuce price,2024-12-30,2024-12-29,22,False
+lettuce,shortage,lettuce shortage,2022-01-03,2022-01-02,5,False
+lettuce,shortage,lettuce shortage,2022-01-10,2022-01-09,6,False
+lettuce,shortage,lettuce shortage,2022-01-17,2022-01-16,0,False
+lettuce,shortage,lettuce shortage,2022-01-24,2022-01-23,0,False
+lettuce,shortage,lettuce shortage,2022-01-31,2022-01-30,0,False
+lettuce,shortage,lettuce shortage,2022-02-07,2022-02-06,5,False
+lettuce,shortage,lettuce shortage,2022-02-14,2022-02-13,0,False
+lettuce,shortage,lettuce shortage,2022-02-21,2022-02-20,0,False
+lettuce,shortage,lettuce shortage,2022-02-28,2022-02-27,0,False
+lettuce,shortage,lettuce shortage,2022-03-07,2022-03-06,0,False
+lettuce,shortage,lettuce shortage,2022-03-14,2022-03-13,0,False
+lettuce,shortage,lettuce shortage,2022-03-21,2022-03-20,0,False
+lettuce,shortage,lettuce shortage,2022-03-28,2022-03-27,4,False
+lettuce,shortage,lettuce shortage,2022-04-04,2022-04-03,2,False
+lettuce,shortage,lettuce shortage,2022-04-11,2022-04-10,2,False
+lettuce,shortage,lettuce shortage,2022-04-18,2022-04-17,0,False
+lettuce,shortage,lettuce shortage,2022-04-25,2022-04-24,0,False
+lettuce,shortage,lettuce shortage,2022-05-02,2022-05-01,0,False
+lettuce,shortage,lettuce shortage,2022-05-09,2022-05-08,0,False
+lettuce,shortage,lettuce shortage,2022-05-16,2022-05-15,0,False
+lettuce,shortage,lettuce shortage,2022-05-23,2022-05-22,0,False
+lettuce,shortage,lettuce shortage,2022-05-30,2022-05-29,0,False
+lettuce,shortage,lettuce shortage,2022-06-06,2022-06-05,6,False
+lettuce,shortage,lettuce shortage,2022-06-13,2022-06-12,3,False
+lettuce,shortage,lettuce shortage,2022-06-20,2022-06-19,0,False
+lettuce,shortage,lettuce shortage,2022-06-27,2022-06-26,0,False
+lettuce,shortage,lettuce shortage,2022-07-04,2022-07-03,0,False
+lettuce,shortage,lettuce shortage,2022-07-11,2022-07-10,0,False
+lettuce,shortage,lettuce shortage,2022-07-18,2022-07-17,0,False
+lettuce,shortage,lettuce shortage,2022-07-25,2022-07-24,0,False
+lettuce,shortage,lettuce shortage,2022-08-01,2022-07-31,0,False
+lettuce,shortage,lettuce shortage,2022-08-08,2022-08-07,0,False
+lettuce,shortage,lettuce shortage,2022-08-15,2022-08-14,0,False
+lettuce,shortage,lettuce shortage,2022-08-22,2022-08-21,0,False
+lettuce,shortage,lettuce shortage,2022-08-29,2022-08-28,0,False
+lettuce,shortage,lettuce shortage,2022-09-05,2022-09-04,0,False
+lettuce,shortage,lettuce shortage,2022-09-12,2022-09-11,3,False
+lettuce,shortage,lettuce shortage,2022-09-19,2022-09-18,3,False
+lettuce,shortage,lettuce shortage,2022-09-26,2022-09-25,0,False
+lettuce,shortage,lettuce shortage,2022-10-03,2022-10-02,0,False
+lettuce,shortage,lettuce shortage,2022-10-10,2022-10-09,4,False
+lettuce,shortage,lettuce shortage,2022-10-17,2022-10-16,7,False
+lettuce,shortage,lettuce shortage,2022-10-24,2022-10-23,17,False
+lettuce,shortage,lettuce shortage,2022-10-31,2022-10-30,30,False
+lettuce,shortage,lettuce shortage,2022-11-07,2022-11-06,76,False
+lettuce,shortage,lettuce shortage,2022-11-14,2022-11-13,100,False
+lettuce,shortage,lettuce shortage,2022-11-21,2022-11-20,74,False
+lettuce,shortage,lettuce shortage,2022-11-28,2022-11-27,57,False
+lettuce,shortage,lettuce shortage,2022-12-05,2022-12-04,46,False
+lettuce,shortage,lettuce shortage,2022-12-12,2022-12-11,26,False
+lettuce,shortage,lettuce shortage,2022-12-19,2022-12-18,14,False
+lettuce,shortage,lettuce shortage,2022-12-26,2022-12-25,9,False
+lettuce,shortage,lettuce shortage,2023-01-02,2023-01-01,6,False
+lettuce,shortage,lettuce shortage,2023-01-09,2023-01-08,6,False
+lettuce,shortage,lettuce shortage,2023-01-16,2023-01-15,8,False
+lettuce,shortage,lettuce shortage,2023-01-23,2023-01-22,4,False
+lettuce,shortage,lettuce shortage,2023-01-30,2023-01-29,4,False
+lettuce,shortage,lettuce shortage,2023-02-06,2023-02-05,0,False
+lettuce,shortage,lettuce shortage,2023-02-13,2023-02-12,3,False
+lettuce,shortage,lettuce shortage,2023-02-20,2023-02-19,3,False
+lettuce,shortage,lettuce shortage,2023-02-27,2023-02-26,3,False
+lettuce,shortage,lettuce shortage,2023-03-06,2023-03-05,0,False
+lettuce,shortage,lettuce shortage,2023-03-13,2023-03-12,0,False
+lettuce,shortage,lettuce shortage,2023-03-20,2023-03-19,0,False
+lettuce,shortage,lettuce shortage,2023-03-27,2023-03-26,0,False
+lettuce,shortage,lettuce shortage,2023-04-03,2023-04-02,0,False
+lettuce,shortage,lettuce shortage,2023-04-10,2023-04-09,0,False
+lettuce,shortage,lettuce shortage,2023-04-17,2023-04-16,4,False
+lettuce,shortage,lettuce shortage,2023-04-24,2023-04-23,5,False
+lettuce,shortage,lettuce shortage,2023-05-01,2023-04-30,3,False
+lettuce,shortage,lettuce shortage,2023-05-08,2023-05-07,0,False
+lettuce,shortage,lettuce shortage,2023-05-15,2023-05-14,3,False
+lettuce,shortage,lettuce shortage,2023-05-22,2023-05-21,0,False
+lettuce,shortage,lettuce shortage,2023-05-29,2023-05-28,0,False
+lettuce,shortage,lettuce shortage,2023-06-05,2023-06-04,0,False
+lettuce,shortage,lettuce shortage,2023-06-12,2023-06-11,0,False
+lettuce,shortage,lettuce shortage,2023-06-19,2023-06-18,0,False
+lettuce,shortage,lettuce shortage,2023-06-26,2023-06-25,0,False
+lettuce,shortage,lettuce shortage,2023-07-03,2023-07-02,0,False
+lettuce,shortage,lettuce shortage,2023-07-10,2023-07-09,0,False
+lettuce,shortage,lettuce shortage,2023-07-17,2023-07-16,3,False
+lettuce,shortage,lettuce shortage,2023-07-24,2023-07-23,0,False
+lettuce,shortage,lettuce shortage,2023-07-31,2023-07-30,0,False
+lettuce,shortage,lettuce shortage,2023-08-07,2023-08-06,0,False
+lettuce,shortage,lettuce shortage,2023-08-14,2023-08-13,0,False
+lettuce,shortage,lettuce shortage,2023-08-21,2023-08-20,0,False
+lettuce,shortage,lettuce shortage,2023-08-28,2023-08-27,0,False
+lettuce,shortage,lettuce shortage,2023-09-04,2023-09-03,0,False
+lettuce,shortage,lettuce shortage,2023-09-11,2023-09-10,0,False
+lettuce,shortage,lettuce shortage,2023-09-18,2023-09-17,0,False
+lettuce,shortage,lettuce shortage,2023-09-25,2023-09-24,0,False
+lettuce,shortage,lettuce shortage,2023-10-02,2023-10-01,0,False
+lettuce,shortage,lettuce shortage,2023-10-09,2023-10-08,0,False
+lettuce,shortage,lettuce shortage,2023-10-16,2023-10-15,0,False
+lettuce,shortage,lettuce shortage,2023-10-23,2023-10-22,0,False
+lettuce,shortage,lettuce shortage,2023-10-30,2023-10-29,0,False
+lettuce,shortage,lettuce shortage,2023-11-06,2023-11-05,0,False
+lettuce,shortage,lettuce shortage,2023-11-13,2023-11-12,0,False
+lettuce,shortage,lettuce shortage,2023-11-20,2023-11-19,0,False
+lettuce,shortage,lettuce shortage,2023-11-27,2023-11-26,0,False
+lettuce,shortage,lettuce shortage,2023-12-04,2023-12-03,0,False
+lettuce,shortage,lettuce shortage,2023-12-11,2023-12-10,0,False
+lettuce,shortage,lettuce shortage,2023-12-18,2023-12-17,0,False
+lettuce,shortage,lettuce shortage,2023-12-25,2023-12-24,0,False
+lettuce,shortage,lettuce shortage,2024-01-01,2023-12-31,0,False
+lettuce,shortage,lettuce shortage,2024-01-08,2024-01-07,0,False
+lettuce,shortage,lettuce shortage,2024-01-15,2024-01-14,0,False
+lettuce,shortage,lettuce shortage,2024-01-22,2024-01-21,0,False
+lettuce,shortage,lettuce shortage,2024-01-29,2024-01-28,0,False
+lettuce,shortage,lettuce shortage,2024-02-05,2024-02-04,0,False
+lettuce,shortage,lettuce shortage,2024-02-12,2024-02-11,0,False
+lettuce,shortage,lettuce shortage,2024-02-19,2024-02-18,0,False
+lettuce,shortage,lettuce shortage,2024-02-26,2024-02-25,0,False
+lettuce,shortage,lettuce shortage,2024-03-04,2024-03-03,0,False
+lettuce,shortage,lettuce shortage,2024-03-11,2024-03-10,0,False
+lettuce,shortage,lettuce shortage,2024-03-18,2024-03-17,0,False
+lettuce,shortage,lettuce shortage,2024-03-25,2024-03-24,0,False
+lettuce,shortage,lettuce shortage,2024-04-01,2024-03-31,0,False
+lettuce,shortage,lettuce shortage,2024-04-08,2024-04-07,0,False
+lettuce,shortage,lettuce shortage,2024-04-15,2024-04-14,0,False
+lettuce,shortage,lettuce shortage,2024-04-22,2024-04-21,0,False
+lettuce,shortage,lettuce shortage,2024-04-29,2024-04-28,0,False
+lettuce,shortage,lettuce shortage,2024-05-06,2024-05-05,0,False
+lettuce,shortage,lettuce shortage,2024-05-13,2024-05-12,4,False
+lettuce,shortage,lettuce shortage,2024-05-20,2024-05-19,6,False
+lettuce,shortage,lettuce shortage,2024-05-27,2024-05-26,5,False
+lettuce,shortage,lettuce shortage,2024-06-03,2024-06-02,3,False
+lettuce,shortage,lettuce shortage,2024-06-10,2024-06-09,4,False
+lettuce,shortage,lettuce shortage,2024-06-17,2024-06-16,0,False
+lettuce,shortage,lettuce shortage,2024-06-24,2024-06-23,0,False
+lettuce,shortage,lettuce shortage,2024-07-01,2024-06-30,0,False
+lettuce,shortage,lettuce shortage,2024-07-08,2024-07-07,0,False
+lettuce,shortage,lettuce shortage,2024-07-15,2024-07-14,0,False
+lettuce,shortage,lettuce shortage,2024-07-22,2024-07-21,0,False
+lettuce,shortage,lettuce shortage,2024-07-29,2024-07-28,0,False
+lettuce,shortage,lettuce shortage,2024-08-05,2024-08-04,0,False
+lettuce,shortage,lettuce shortage,2024-08-12,2024-08-11,0,False
+lettuce,shortage,lettuce shortage,2024-08-19,2024-08-18,0,False
+lettuce,shortage,lettuce shortage,2024-08-26,2024-08-25,0,False
+lettuce,shortage,lettuce shortage,2024-09-02,2024-09-01,0,False
+lettuce,shortage,lettuce shortage,2024-09-09,2024-09-08,0,False
+lettuce,shortage,lettuce shortage,2024-09-16,2024-09-15,0,False
+lettuce,shortage,lettuce shortage,2024-09-23,2024-09-22,0,False
+lettuce,shortage,lettuce shortage,2024-09-30,2024-09-29,0,False
+lettuce,shortage,lettuce shortage,2024-10-07,2024-10-06,0,False
+lettuce,shortage,lettuce shortage,2024-10-14,2024-10-13,0,False
+lettuce,shortage,lettuce shortage,2024-10-21,2024-10-20,0,False
+lettuce,shortage,lettuce shortage,2024-10-28,2024-10-27,0,False
+lettuce,shortage,lettuce shortage,2024-11-04,2024-11-03,0,False
+lettuce,shortage,lettuce shortage,2024-11-11,2024-11-10,0,False
+lettuce,shortage,lettuce shortage,2024-11-18,2024-11-17,0,False
+lettuce,shortage,lettuce shortage,2024-11-25,2024-11-24,0,False
+lettuce,shortage,lettuce shortage,2024-12-02,2024-12-01,0,False
+lettuce,shortage,lettuce shortage,2024-12-09,2024-12-08,0,False
+lettuce,shortage,lettuce shortage,2024-12-16,2024-12-15,0,False
+lettuce,shortage,lettuce shortage,2024-12-23,2024-12-22,0,False
+lettuce,shortage,lettuce shortage,2024-12-30,2024-12-29,3,False
+lettuce,recall,lettuce recall,2022-01-03,2022-01-02,45,False
+lettuce,recall,lettuce recall,2022-01-10,2022-01-09,60,False
+lettuce,recall,lettuce recall,2022-01-17,2022-01-16,16,False
+lettuce,recall,lettuce recall,2022-01-24,2022-01-23,9,False
+lettuce,recall,lettuce recall,2022-01-31,2022-01-30,20,False
+lettuce,recall,lettuce recall,2022-02-07,2022-02-06,24,False
+lettuce,recall,lettuce recall,2022-02-14,2022-02-13,7,False
+lettuce,recall,lettuce recall,2022-02-21,2022-02-20,7,False
+lettuce,recall,lettuce recall,2022-02-28,2022-02-27,5,False
+lettuce,recall,lettuce recall,2022-03-07,2022-03-06,4,False
+lettuce,recall,lettuce recall,2022-03-14,2022-03-13,4,False
+lettuce,recall,lettuce recall,2022-03-21,2022-03-20,4,False
+lettuce,recall,lettuce recall,2022-03-28,2022-03-27,7,False
+lettuce,recall,lettuce recall,2022-04-04,2022-04-03,7,False
+lettuce,recall,lettuce recall,2022-04-11,2022-04-10,6,False
+lettuce,recall,lettuce recall,2022-04-18,2022-04-17,3,False
+lettuce,recall,lettuce recall,2022-04-25,2022-04-24,3,False
+lettuce,recall,lettuce recall,2022-05-02,2022-05-01,4,False
+lettuce,recall,lettuce recall,2022-05-09,2022-05-08,3,False
+lettuce,recall,lettuce recall,2022-05-16,2022-05-15,4,False
+lettuce,recall,lettuce recall,2022-05-23,2022-05-22,5,False
+lettuce,recall,lettuce recall,2022-05-30,2022-05-29,4,False
+lettuce,recall,lettuce recall,2022-06-06,2022-06-05,3,False
+lettuce,recall,lettuce recall,2022-06-13,2022-06-12,4,False
+lettuce,recall,lettuce recall,2022-06-20,2022-06-19,2,False
+lettuce,recall,lettuce recall,2022-06-27,2022-06-26,4,False
+lettuce,recall,lettuce recall,2022-07-04,2022-07-03,3,False
+lettuce,recall,lettuce recall,2022-07-11,2022-07-10,2,False
+lettuce,recall,lettuce recall,2022-07-18,2022-07-17,3,False
+lettuce,recall,lettuce recall,2022-07-25,2022-07-24,2,False
+lettuce,recall,lettuce recall,2022-08-01,2022-07-31,3,False
+lettuce,recall,lettuce recall,2022-08-08,2022-08-07,2,False
+lettuce,recall,lettuce recall,2022-08-15,2022-08-14,11,False
+lettuce,recall,lettuce recall,2022-08-22,2022-08-21,39,False
+lettuce,recall,lettuce recall,2022-08-29,2022-08-28,13,False
+lettuce,recall,lettuce recall,2022-09-05,2022-09-04,12,False
+lettuce,recall,lettuce recall,2022-09-12,2022-09-11,6,False
+lettuce,recall,lettuce recall,2022-09-19,2022-09-18,5,False
+lettuce,recall,lettuce recall,2022-09-26,2022-09-25,4,False
+lettuce,recall,lettuce recall,2022-10-03,2022-10-02,3,False
+lettuce,recall,lettuce recall,2022-10-10,2022-10-09,2,False
+lettuce,recall,lettuce recall,2022-10-17,2022-10-16,3,False
+lettuce,recall,lettuce recall,2022-10-24,2022-10-23,4,False
+lettuce,recall,lettuce recall,2022-10-31,2022-10-30,6,False
+lettuce,recall,lettuce recall,2022-11-07,2022-11-06,15,False
+lettuce,recall,lettuce recall,2022-11-14,2022-11-13,8,False
+lettuce,recall,lettuce recall,2022-11-21,2022-11-20,6,False
+lettuce,recall,lettuce recall,2022-11-28,2022-11-27,6,False
+lettuce,recall,lettuce recall,2022-12-05,2022-12-04,5,False
+lettuce,recall,lettuce recall,2022-12-12,2022-12-11,4,False
+lettuce,recall,lettuce recall,2022-12-19,2022-12-18,4,False
+lettuce,recall,lettuce recall,2022-12-26,2022-12-25,4,False
+lettuce,recall,lettuce recall,2023-01-02,2023-01-01,2,False
+lettuce,recall,lettuce recall,2023-01-09,2023-01-08,2,False
+lettuce,recall,lettuce recall,2023-01-16,2023-01-15,4,False
+lettuce,recall,lettuce recall,2023-01-23,2023-01-22,2,False
+lettuce,recall,lettuce recall,2023-01-30,2023-01-29,2,False
+lettuce,recall,lettuce recall,2023-02-06,2023-02-05,3,False
+lettuce,recall,lettuce recall,2023-02-13,2023-02-12,2,False
+lettuce,recall,lettuce recall,2023-02-20,2023-02-19,3,False
+lettuce,recall,lettuce recall,2023-02-27,2023-02-26,3,False
+lettuce,recall,lettuce recall,2023-03-06,2023-03-05,2,False
+lettuce,recall,lettuce recall,2023-03-13,2023-03-12,2,False
+lettuce,recall,lettuce recall,2023-03-20,2023-03-19,2,False
+lettuce,recall,lettuce recall,2023-03-27,2023-03-26,2,False
+lettuce,recall,lettuce recall,2023-04-03,2023-04-02,7,False
+lettuce,recall,lettuce recall,2023-04-10,2023-04-09,39,False
+lettuce,recall,lettuce recall,2023-04-17,2023-04-16,7,False
+lettuce,recall,lettuce recall,2023-04-24,2023-04-23,4,False
+lettuce,recall,lettuce recall,2023-05-01,2023-04-30,4,False
+lettuce,recall,lettuce recall,2023-05-08,2023-05-07,3,False
+lettuce,recall,lettuce recall,2023-05-15,2023-05-14,3,False
+lettuce,recall,lettuce recall,2023-05-22,2023-05-21,3,False
+lettuce,recall,lettuce recall,2023-05-29,2023-05-28,2,False
+lettuce,recall,lettuce recall,2023-06-05,2023-06-04,3,False
+lettuce,recall,lettuce recall,2023-06-12,2023-06-11,2,False
+lettuce,recall,lettuce recall,2023-06-19,2023-06-18,2,False
+lettuce,recall,lettuce recall,2023-06-26,2023-06-25,3,False
+lettuce,recall,lettuce recall,2023-07-03,2023-07-02,5,False
+lettuce,recall,lettuce recall,2023-07-10,2023-07-09,4,False
+lettuce,recall,lettuce recall,2023-07-17,2023-07-16,21,False
+lettuce,recall,lettuce recall,2023-07-24,2023-07-23,7,False
+lettuce,recall,lettuce recall,2023-07-31,2023-07-30,7,False
+lettuce,recall,lettuce recall,2023-08-07,2023-08-06,7,False
+lettuce,recall,lettuce recall,2023-08-14,2023-08-13,5,False
+lettuce,recall,lettuce recall,2023-08-21,2023-08-20,9,False
+lettuce,recall,lettuce recall,2023-08-28,2023-08-27,5,False
+lettuce,recall,lettuce recall,2023-09-04,2023-09-03,4,False
+lettuce,recall,lettuce recall,2023-09-11,2023-09-10,3,False
+lettuce,recall,lettuce recall,2023-09-18,2023-09-17,2,False
+lettuce,recall,lettuce recall,2023-09-25,2023-09-24,3,False
+lettuce,recall,lettuce recall,2023-10-02,2023-10-01,3,False
+lettuce,recall,lettuce recall,2023-10-09,2023-10-08,2,False
+lettuce,recall,lettuce recall,2023-10-16,2023-10-15,3,False
+lettuce,recall,lettuce recall,2023-10-23,2023-10-22,3,False
+lettuce,recall,lettuce recall,2023-10-30,2023-10-29,2,False
+lettuce,recall,lettuce recall,2023-11-06,2023-11-05,1,False
+lettuce,recall,lettuce recall,2023-11-13,2023-11-12,2,False
+lettuce,recall,lettuce recall,2023-11-20,2023-11-19,2,False
+lettuce,recall,lettuce recall,2023-11-27,2023-11-26,2,False
+lettuce,recall,lettuce recall,2023-12-04,2023-12-03,2,False
+lettuce,recall,lettuce recall,2023-12-11,2023-12-10,2,False
+lettuce,recall,lettuce recall,2023-12-18,2023-12-17,3,False
+lettuce,recall,lettuce recall,2023-12-25,2023-12-24,2,False
+lettuce,recall,lettuce recall,2024-01-01,2023-12-31,16,False
+lettuce,recall,lettuce recall,2024-01-08,2024-01-07,5,False
+lettuce,recall,lettuce recall,2024-01-15,2024-01-14,4,False
+lettuce,recall,lettuce recall,2024-01-22,2024-01-21,4,False
+lettuce,recall,lettuce recall,2024-01-29,2024-01-28,3,False
+lettuce,recall,lettuce recall,2024-02-05,2024-02-04,3,False
+lettuce,recall,lettuce recall,2024-02-12,2024-02-11,7,False
+lettuce,recall,lettuce recall,2024-02-19,2024-02-18,6,False
+lettuce,recall,lettuce recall,2024-02-26,2024-02-25,3,False
+lettuce,recall,lettuce recall,2024-03-04,2024-03-03,4,False
+lettuce,recall,lettuce recall,2024-03-11,2024-03-10,5,False
+lettuce,recall,lettuce recall,2024-03-18,2024-03-17,3,False
+lettuce,recall,lettuce recall,2024-03-25,2024-03-24,2,False
+lettuce,recall,lettuce recall,2024-04-01,2024-03-31,1,False
+lettuce,recall,lettuce recall,2024-04-08,2024-04-07,2,False
+lettuce,recall,lettuce recall,2024-04-15,2024-04-14,3,False
+lettuce,recall,lettuce recall,2024-04-22,2024-04-21,3,False
+lettuce,recall,lettuce recall,2024-04-29,2024-04-28,2,False
+lettuce,recall,lettuce recall,2024-05-06,2024-05-05,1,False
+lettuce,recall,lettuce recall,2024-05-13,2024-05-12,2,False
+lettuce,recall,lettuce recall,2024-05-20,2024-05-19,0,False
+lettuce,recall,lettuce recall,2024-05-27,2024-05-26,2,False
+lettuce,recall,lettuce recall,2024-06-03,2024-06-02,3,False
+lettuce,recall,lettuce recall,2024-06-10,2024-06-09,3,False
+lettuce,recall,lettuce recall,2024-06-17,2024-06-16,3,False
+lettuce,recall,lettuce recall,2024-06-24,2024-06-23,3,False
+lettuce,recall,lettuce recall,2024-07-01,2024-06-30,2,False
+lettuce,recall,lettuce recall,2024-07-08,2024-07-07,2,False
+lettuce,recall,lettuce recall,2024-07-15,2024-07-14,0,False
+lettuce,recall,lettuce recall,2024-07-22,2024-07-21,4,False
+lettuce,recall,lettuce recall,2024-07-29,2024-07-28,8,False
+lettuce,recall,lettuce recall,2024-08-05,2024-08-04,5,False
+lettuce,recall,lettuce recall,2024-08-12,2024-08-11,7,False
+lettuce,recall,lettuce recall,2024-08-19,2024-08-18,3,False
+lettuce,recall,lettuce recall,2024-08-26,2024-08-25,4,False
+lettuce,recall,lettuce recall,2024-09-02,2024-09-01,3,False
+lettuce,recall,lettuce recall,2024-09-09,2024-09-08,2,False
+lettuce,recall,lettuce recall,2024-09-16,2024-09-15,3,False
+lettuce,recall,lettuce recall,2024-09-23,2024-09-22,2,False
+lettuce,recall,lettuce recall,2024-09-30,2024-09-29,2,False
+lettuce,recall,lettuce recall,2024-10-07,2024-10-06,3,False
+lettuce,recall,lettuce recall,2024-10-14,2024-10-13,5,False
+lettuce,recall,lettuce recall,2024-10-21,2024-10-20,7,False
+lettuce,recall,lettuce recall,2024-10-28,2024-10-27,4,False
+lettuce,recall,lettuce recall,2024-11-04,2024-11-03,2,False
+lettuce,recall,lettuce recall,2024-11-11,2024-11-10,2,False
+lettuce,recall,lettuce recall,2024-11-18,2024-11-17,4,False
+lettuce,recall,lettuce recall,2024-11-25,2024-11-24,3,False
+lettuce,recall,lettuce recall,2024-12-02,2024-12-01,5,False
+lettuce,recall,lettuce recall,2024-12-09,2024-12-08,7,False
+lettuce,recall,lettuce recall,2024-12-16,2024-12-15,4,False
+lettuce,recall,lettuce recall,2024-12-23,2024-12-22,3,False
+lettuce,recall,lettuce recall,2024-12-30,2024-12-29,3,False
+onion,total,onion,2022-01-03,2022-01-02,20,False
+onion,total,onion,2022-01-10,2022-01-09,19,False
+onion,total,onion,2022-01-17,2022-01-16,18,False
+onion,total,onion,2022-01-24,2022-01-23,20,False
+onion,total,onion,2022-01-31,2022-01-30,18,False
+onion,total,onion,2022-02-07,2022-02-06,18,False
+onion,total,onion,2022-02-14,2022-02-13,17,False
+onion,total,onion,2022-02-21,2022-02-20,17,False
+onion,total,onion,2022-02-28,2022-02-27,17,False
+onion,total,onion,2022-03-07,2022-03-06,17,False
+onion,total,onion,2022-03-14,2022-03-13,16,False
+onion,total,onion,2022-03-21,2022-03-20,17,False
+onion,total,onion,2022-03-28,2022-03-27,16,False
+onion,total,onion,2022-04-04,2022-04-03,17,False
+onion,total,onion,2022-04-11,2022-04-10,18,False
+onion,total,onion,2022-04-18,2022-04-17,16,False
+onion,total,onion,2022-04-25,2022-04-24,16,False
+onion,total,onion,2022-05-02,2022-05-01,16,False
+onion,total,onion,2022-05-09,2022-05-08,16,False
+onion,total,onion,2022-05-16,2022-05-15,16,False
+onion,total,onion,2022-05-23,2022-05-22,19,False
+onion,total,onion,2022-05-30,2022-05-29,17,False
+onion,total,onion,2022-06-06,2022-06-05,15,False
+onion,total,onion,2022-06-13,2022-06-12,16,False
+onion,total,onion,2022-06-20,2022-06-19,17,False
+onion,total,onion,2022-06-27,2022-06-26,17,False
+onion,total,onion,2022-07-04,2022-07-03,18,False
+onion,total,onion,2022-07-11,2022-07-10,17,False
+onion,total,onion,2022-07-18,2022-07-17,17,False
+onion,total,onion,2022-07-25,2022-07-24,16,False
+onion,total,onion,2022-08-01,2022-07-31,16,False
+onion,total,onion,2022-08-08,2022-08-07,16,False
+onion,total,onion,2022-08-15,2022-08-14,17,False
+onion,total,onion,2022-08-22,2022-08-21,16,False
+onion,total,onion,2022-08-29,2022-08-28,16,False
+onion,total,onion,2022-09-05,2022-09-04,17,False
+onion,total,onion,2022-09-12,2022-09-11,17,False
+onion,total,onion,2022-09-19,2022-09-18,17,False
+onion,total,onion,2022-09-26,2022-09-25,17,False
+onion,total,onion,2022-10-03,2022-10-02,18,False
+onion,total,onion,2022-10-10,2022-10-09,18,False
+onion,total,onion,2022-10-17,2022-10-16,18,False
+onion,total,onion,2022-10-24,2022-10-23,17,False
+onion,total,onion,2022-10-31,2022-10-30,18,False
+onion,total,onion,2022-11-07,2022-11-06,19,False
+onion,total,onion,2022-11-14,2022-11-13,23,False
+onion,total,onion,2022-11-21,2022-11-20,42,False
+onion,total,onion,2022-11-28,2022-11-27,29,False
+onion,total,onion,2022-12-05,2022-12-04,22,False
+onion,total,onion,2022-12-12,2022-12-11,24,False
+onion,total,onion,2022-12-19,2022-12-18,51,False
+onion,total,onion,2022-12-26,2022-12-25,100,False
+onion,total,onion,2023-01-02,2023-01-01,50,False
+onion,total,onion,2023-01-09,2023-01-08,31,False
+onion,total,onion,2023-01-16,2023-01-15,29,False
+onion,total,onion,2023-01-23,2023-01-22,24,False
+onion,total,onion,2023-01-30,2023-01-29,24,False
+onion,total,onion,2023-02-06,2023-02-05,22,False
+onion,total,onion,2023-02-13,2023-02-12,21,False
+onion,total,onion,2023-02-20,2023-02-19,20,False
+onion,total,onion,2023-02-27,2023-02-26,21,False
+onion,total,onion,2023-03-06,2023-03-05,19,False
+onion,total,onion,2023-03-13,2023-03-12,21,False
+onion,total,onion,2023-03-20,2023-03-19,19,False
+onion,total,onion,2023-03-27,2023-03-26,20,False
+onion,total,onion,2023-04-03,2023-04-02,20,False
+onion,total,onion,2023-04-10,2023-04-09,18,False
+onion,total,onion,2023-04-17,2023-04-16,19,False
+onion,total,onion,2023-04-24,2023-04-23,18,False
+onion,total,onion,2023-05-01,2023-04-30,18,False
+onion,total,onion,2023-05-08,2023-05-07,18,False
+onion,total,onion,2023-05-15,2023-05-14,17,False
+onion,total,onion,2023-05-22,2023-05-21,18,False
+onion,total,onion,2023-05-29,2023-05-28,18,False
+onion,total,onion,2023-06-05,2023-06-04,17,False
+onion,total,onion,2023-06-12,2023-06-11,18,False
+onion,total,onion,2023-06-19,2023-06-18,17,False
+onion,total,onion,2023-06-26,2023-06-25,18,False
+onion,total,onion,2023-07-03,2023-07-02,19,False
+onion,total,onion,2023-07-10,2023-07-09,17,False
+onion,total,onion,2023-07-17,2023-07-16,16,False
+onion,total,onion,2023-07-24,2023-07-23,17,False
+onion,total,onion,2023-07-31,2023-07-30,17,False
+onion,total,onion,2023-08-07,2023-08-06,17,False
+onion,total,onion,2023-08-14,2023-08-13,16,False
+onion,total,onion,2023-08-21,2023-08-20,17,False
+onion,total,onion,2023-08-28,2023-08-27,16,False
+onion,total,onion,2023-09-04,2023-09-03,17,False
+onion,total,onion,2023-09-11,2023-09-10,17,False
+onion,total,onion,2023-09-18,2023-09-17,17,False
+onion,total,onion,2023-09-25,2023-09-24,18,False
+onion,total,onion,2023-10-02,2023-10-01,17,False
+onion,total,onion,2023-10-09,2023-10-08,18,False
+onion,total,onion,2023-10-16,2023-10-15,18,False
+onion,total,onion,2023-10-23,2023-10-22,18,False
+onion,total,onion,2023-10-30,2023-10-29,18,False
+onion,total,onion,2023-11-06,2023-11-05,18,False
+onion,total,onion,2023-11-13,2023-11-12,18,False
+onion,total,onion,2023-11-20,2023-11-19,22,False
+onion,total,onion,2023-11-27,2023-11-26,17,False
+onion,total,onion,2023-12-04,2023-12-03,18,False
+onion,total,onion,2023-12-11,2023-12-10,18,False
+onion,total,onion,2023-12-18,2023-12-17,20,False
+onion,total,onion,2023-12-25,2023-12-24,21,False
+onion,total,onion,2024-01-01,2023-12-31,21,False
+onion,total,onion,2024-01-08,2024-01-07,21,False
+onion,total,onion,2024-01-15,2024-01-14,20,False
+onion,total,onion,2024-01-22,2024-01-21,20,False
+onion,total,onion,2024-01-29,2024-01-28,19,False
+onion,total,onion,2024-02-05,2024-02-04,19,False
+onion,total,onion,2024-02-12,2024-02-11,19,False
+onion,total,onion,2024-02-19,2024-02-18,19,False
+onion,total,onion,2024-02-26,2024-02-25,18,False
+onion,total,onion,2024-03-04,2024-03-03,18,False
+onion,total,onion,2024-03-11,2024-03-10,18,False
+onion,total,onion,2024-03-18,2024-03-17,18,False
+onion,total,onion,2024-03-25,2024-03-24,18,False
+onion,total,onion,2024-04-01,2024-03-31,17,False
+onion,total,onion,2024-04-08,2024-04-07,17,False
+onion,total,onion,2024-04-15,2024-04-14,17,False
+onion,total,onion,2024-04-22,2024-04-21,19,False
+onion,total,onion,2024-04-29,2024-04-28,17,False
+onion,total,onion,2024-05-06,2024-05-05,18,False
+onion,total,onion,2024-05-13,2024-05-12,17,False
+onion,total,onion,2024-05-20,2024-05-19,17,False
+onion,total,onion,2024-05-27,2024-05-26,18,False
+onion,total,onion,2024-06-03,2024-06-02,17,False
+onion,total,onion,2024-06-10,2024-06-09,17,False
+onion,total,onion,2024-06-17,2024-06-16,17,False
+onion,total,onion,2024-06-24,2024-06-23,17,False
+onion,total,onion,2024-07-01,2024-06-30,19,False
+onion,total,onion,2024-07-08,2024-07-07,16,False
+onion,total,onion,2024-07-15,2024-07-14,16,False
+onion,total,onion,2024-07-22,2024-07-21,18,False
+onion,total,onion,2024-07-29,2024-07-28,17,False
+onion,total,onion,2024-08-05,2024-08-04,16,False
+onion,total,onion,2024-08-12,2024-08-11,16,False
+onion,total,onion,2024-08-19,2024-08-18,17,False
+onion,total,onion,2024-08-26,2024-08-25,16,False
+onion,total,onion,2024-09-02,2024-09-01,17,False
+onion,total,onion,2024-09-09,2024-09-08,17,False
+onion,total,onion,2024-09-16,2024-09-15,16,False
+onion,total,onion,2024-09-23,2024-09-22,17,False
+onion,total,onion,2024-09-30,2024-09-29,17,False
+onion,total,onion,2024-10-07,2024-10-06,17,False
+onion,total,onion,2024-10-14,2024-10-13,18,False
+onion,total,onion,2024-10-21,2024-10-20,19,False
+onion,total,onion,2024-10-28,2024-10-27,19,False
+onion,total,onion,2024-11-04,2024-11-03,17,False
+onion,total,onion,2024-11-11,2024-11-10,28,False
+onion,total,onion,2024-11-18,2024-11-17,22,False
+onion,total,onion,2024-11-25,2024-11-24,26,False
+onion,total,onion,2024-12-02,2024-12-01,18,False
+onion,total,onion,2024-12-09,2024-12-08,18,False
+onion,total,onion,2024-12-16,2024-12-15,21,False
+onion,total,onion,2024-12-23,2024-12-22,22,False
+onion,total,onion,2024-12-30,2024-12-29,24,False
+onion,price,onion price,2022-01-03,2022-01-02,28,False
+onion,price,onion price,2022-01-10,2022-01-09,34,False
+onion,price,onion price,2022-01-17,2022-01-16,26,False
+onion,price,onion price,2022-01-24,2022-01-23,36,False
+onion,price,onion price,2022-01-31,2022-01-30,18,False
+onion,price,onion price,2022-02-07,2022-02-06,24,False
+onion,price,onion price,2022-02-14,2022-02-13,19,False
+onion,price,onion price,2022-02-21,2022-02-20,25,False
+onion,price,onion price,2022-02-28,2022-02-27,30,False
+onion,price,onion price,2022-03-07,2022-03-06,32,False
+onion,price,onion price,2022-03-14,2022-03-13,41,False
+onion,price,onion price,2022-03-21,2022-03-20,34,False
+onion,price,onion price,2022-03-28,2022-03-27,29,False
+onion,price,onion price,2022-04-04,2022-04-03,33,False
+onion,price,onion price,2022-04-11,2022-04-10,30,False
+onion,price,onion price,2022-04-18,2022-04-17,28,False
+onion,price,onion price,2022-04-25,2022-04-24,33,False
+onion,price,onion price,2022-05-02,2022-05-01,30,False
+onion,price,onion price,2022-05-09,2022-05-08,22,False
+onion,price,onion price,2022-05-16,2022-05-15,29,False
+onion,price,onion price,2022-05-23,2022-05-22,33,False
+onion,price,onion price,2022-05-30,2022-05-29,30,False
+onion,price,onion price,2022-06-06,2022-06-05,25,False
+onion,price,onion price,2022-06-13,2022-06-12,27,False
+onion,price,onion price,2022-06-20,2022-06-19,26,False
+onion,price,onion price,2022-06-27,2022-06-26,34,False
+onion,price,onion price,2022-07-04,2022-07-03,33,False
+onion,price,onion price,2022-07-11,2022-07-10,26,False
+onion,price,onion price,2022-07-18,2022-07-17,31,False
+onion,price,onion price,2022-07-25,2022-07-24,32,False
+onion,price,onion price,2022-08-01,2022-07-31,24,False
+onion,price,onion price,2022-08-08,2022-08-07,23,False
+onion,price,onion price,2022-08-15,2022-08-14,24,False
+onion,price,onion price,2022-08-22,2022-08-21,35,False
+onion,price,onion price,2022-08-29,2022-08-28,18,False
+onion,price,onion price,2022-09-05,2022-09-04,27,False
+onion,price,onion price,2022-09-12,2022-09-11,31,False
+onion,price,onion price,2022-09-19,2022-09-18,27,False
+onion,price,onion price,2022-09-26,2022-09-25,28,False
+onion,price,onion price,2022-10-03,2022-10-02,25,False
+onion,price,onion price,2022-10-10,2022-10-09,29,False
+onion,price,onion price,2022-10-17,2022-10-16,26,False
+onion,price,onion price,2022-10-24,2022-10-23,37,False
+onion,price,onion price,2022-10-31,2022-10-30,32,False
+onion,price,onion price,2022-11-07,2022-11-06,32,False
+onion,price,onion price,2022-11-14,2022-11-13,35,False
+onion,price,onion price,2022-11-21,2022-11-20,47,False
+onion,price,onion price,2022-11-28,2022-11-27,36,False
+onion,price,onion price,2022-12-05,2022-12-04,26,False
+onion,price,onion price,2022-12-12,2022-12-11,32,False
+onion,price,onion price,2022-12-19,2022-12-18,50,False
+onion,price,onion price,2022-12-26,2022-12-25,100,False
+onion,price,onion price,2023-01-02,2023-01-01,57,False
+onion,price,onion price,2023-01-09,2023-01-08,47,False
+onion,price,onion price,2023-01-16,2023-01-15,38,False
+onion,price,onion price,2023-01-23,2023-01-22,41,False
+onion,price,onion price,2023-01-30,2023-01-29,38,False
+onion,price,onion price,2023-02-06,2023-02-05,28,False
+onion,price,onion price,2023-02-13,2023-02-12,33,False
+onion,price,onion price,2023-02-20,2023-02-19,33,False
+onion,price,onion price,2023-02-27,2023-02-26,32,False
+onion,price,onion price,2023-03-06,2023-03-05,31,False
+onion,price,onion price,2023-03-13,2023-03-12,30,False
+onion,price,onion price,2023-03-20,2023-03-19,27,False
+onion,price,onion price,2023-03-27,2023-03-26,27,False
+onion,price,onion price,2023-04-03,2023-04-02,35,False
+onion,price,onion price,2023-04-10,2023-04-09,30,False
+onion,price,onion price,2023-04-17,2023-04-16,26,False
+onion,price,onion price,2023-04-24,2023-04-23,34,False
+onion,price,onion price,2023-05-01,2023-04-30,34,False
+onion,price,onion price,2023-05-08,2023-05-07,28,False
+onion,price,onion price,2023-05-15,2023-05-14,33,False
+onion,price,onion price,2023-05-22,2023-05-21,27,False
+onion,price,onion price,2023-05-29,2023-05-28,31,False
+onion,price,onion price,2023-06-05,2023-06-04,32,False
+onion,price,onion price,2023-06-12,2023-06-11,24,False
+onion,price,onion price,2023-06-19,2023-06-18,26,False
+onion,price,onion price,2023-06-26,2023-06-25,22,False
+onion,price,onion price,2023-07-03,2023-07-02,25,False
+onion,price,onion price,2023-07-10,2023-07-09,26,False
+onion,price,onion price,2023-07-17,2023-07-16,22,False
+onion,price,onion price,2023-07-24,2023-07-23,30,False
+onion,price,onion price,2023-07-31,2023-07-30,26,False
+onion,price,onion price,2023-08-07,2023-08-06,22,False
+onion,price,onion price,2023-08-14,2023-08-13,25,False
+onion,price,onion price,2023-08-21,2023-08-20,21,False
+onion,price,onion price,2023-08-28,2023-08-27,35,False
+onion,price,onion price,2023-09-04,2023-09-03,31,False
+onion,price,onion price,2023-09-11,2023-09-10,34,False
+onion,price,onion price,2023-09-18,2023-09-17,30,False
+onion,price,onion price,2023-09-25,2023-09-24,34,False
+onion,price,onion price,2023-10-02,2023-10-01,22,False
+onion,price,onion price,2023-10-09,2023-10-08,30,False
+onion,price,onion price,2023-10-16,2023-10-15,30,False
+onion,price,onion price,2023-10-23,2023-10-22,29,False
+onion,price,onion price,2023-10-30,2023-10-29,28,False
+onion,price,onion price,2023-11-06,2023-11-05,31,False
+onion,price,onion price,2023-11-13,2023-11-12,31,False
+onion,price,onion price,2023-11-20,2023-11-19,24,False
+onion,price,onion price,2023-11-27,2023-11-26,29,False
+onion,price,onion price,2023-12-04,2023-12-03,22,False
+onion,price,onion price,2023-12-11,2023-12-10,31,False
+onion,price,onion price,2023-12-18,2023-12-17,27,False
+onion,price,onion price,2023-12-25,2023-12-24,24,False
+onion,price,onion price,2024-01-01,2023-12-31,32,False
+onion,price,onion price,2024-01-08,2024-01-07,27,False
+onion,price,onion price,2024-01-15,2024-01-14,28,False
+onion,price,onion price,2024-01-22,2024-01-21,36,False
+onion,price,onion price,2024-01-29,2024-01-28,25,False
+onion,price,onion price,2024-02-05,2024-02-04,24,False
+onion,price,onion price,2024-02-12,2024-02-11,30,False
+onion,price,onion price,2024-02-19,2024-02-18,30,False
+onion,price,onion price,2024-02-26,2024-02-25,32,False
+onion,price,onion price,2024-03-04,2024-03-03,33,False
+onion,price,onion price,2024-03-11,2024-03-10,27,False
+onion,price,onion price,2024-03-18,2024-03-17,35,False
+onion,price,onion price,2024-03-25,2024-03-24,34,False
+onion,price,onion price,2024-04-01,2024-03-31,25,False
+onion,price,onion price,2024-04-08,2024-04-07,29,False
+onion,price,onion price,2024-04-15,2024-04-14,26,False
+onion,price,onion price,2024-04-22,2024-04-21,27,False
+onion,price,onion price,2024-04-29,2024-04-28,31,False
+onion,price,onion price,2024-05-06,2024-05-05,27,False
+onion,price,onion price,2024-05-13,2024-05-12,20,False
+onion,price,onion price,2024-05-20,2024-05-19,11,False
+onion,price,onion price,2024-05-27,2024-05-26,24,False
+onion,price,onion price,2024-06-03,2024-06-02,29,False
+onion,price,onion price,2024-06-10,2024-06-09,34,False
+onion,price,onion price,2024-06-17,2024-06-16,28,False
+onion,price,onion price,2024-06-24,2024-06-23,28,False
+onion,price,onion price,2024-07-01,2024-06-30,25,False
+onion,price,onion price,2024-07-08,2024-07-07,24,False
+onion,price,onion price,2024-07-15,2024-07-14,31,False
+onion,price,onion price,2024-07-22,2024-07-21,27,False
+onion,price,onion price,2024-07-29,2024-07-28,19,False
+onion,price,onion price,2024-08-05,2024-08-04,27,False
+onion,price,onion price,2024-08-12,2024-08-11,26,False
+onion,price,onion price,2024-08-19,2024-08-18,35,False
+onion,price,onion price,2024-08-26,2024-08-25,26,False
+onion,price,onion price,2024-09-02,2024-09-01,26,False
+onion,price,onion price,2024-09-09,2024-09-08,33,False
+onion,price,onion price,2024-09-16,2024-09-15,30,False
+onion,price,onion price,2024-09-23,2024-09-22,28,False
+onion,price,onion price,2024-09-30,2024-09-29,29,False
+onion,price,onion price,2024-10-07,2024-10-06,32,False
+onion,price,onion price,2024-10-14,2024-10-13,32,False
+onion,price,onion price,2024-10-21,2024-10-20,34,False
+onion,price,onion price,2024-10-28,2024-10-27,28,False
+onion,price,onion price,2024-11-04,2024-11-03,25,False
+onion,price,onion price,2024-11-11,2024-11-10,71,False
+onion,price,onion price,2024-11-18,2024-11-17,52,False
+onion,price,onion price,2024-11-25,2024-11-24,42,False
+onion,price,onion price,2024-12-02,2024-12-01,30,False
+onion,price,onion price,2024-12-09,2024-12-08,38,False
+onion,price,onion price,2024-12-16,2024-12-15,38,False
+onion,price,onion price,2024-12-23,2024-12-22,31,False
+onion,price,onion price,2024-12-30,2024-12-29,27,False
+onion,shortage,onion shortage,2022-01-03,2022-01-02,0,False
+onion,shortage,onion shortage,2022-01-10,2022-01-09,0,False
+onion,shortage,onion shortage,2022-01-17,2022-01-16,0,False
+onion,shortage,onion shortage,2022-01-24,2022-01-23,40,False
+onion,shortage,onion shortage,2022-01-31,2022-01-30,0,False
+onion,shortage,onion shortage,2022-02-07,2022-02-06,0,False
+onion,shortage,onion shortage,2022-02-14,2022-02-13,0,False
+onion,shortage,onion shortage,2022-02-21,2022-02-20,0,False
+onion,shortage,onion shortage,2022-02-28,2022-02-27,0,False
+onion,shortage,onion shortage,2022-03-07,2022-03-06,0,False
+onion,shortage,onion shortage,2022-03-14,2022-03-13,0,False
+onion,shortage,onion shortage,2022-03-21,2022-03-20,31,False
+onion,shortage,onion shortage,2022-03-28,2022-03-27,0,False
+onion,shortage,onion shortage,2022-04-04,2022-04-03,0,False
+onion,shortage,onion shortage,2022-04-11,2022-04-10,0,False
+onion,shortage,onion shortage,2022-04-18,2022-04-17,0,False
+onion,shortage,onion shortage,2022-04-25,2022-04-24,0,False
+onion,shortage,onion shortage,2022-05-02,2022-05-01,0,False
+onion,shortage,onion shortage,2022-05-09,2022-05-08,0,False
+onion,shortage,onion shortage,2022-05-16,2022-05-15,0,False
+onion,shortage,onion shortage,2022-05-23,2022-05-22,39,False
+onion,shortage,onion shortage,2022-05-30,2022-05-29,0,False
+onion,shortage,onion shortage,2022-06-06,2022-06-05,32,False
+onion,shortage,onion shortage,2022-06-13,2022-06-12,0,False
+onion,shortage,onion shortage,2022-06-20,2022-06-19,0,False
+onion,shortage,onion shortage,2022-06-27,2022-06-26,31,False
+onion,shortage,onion shortage,2022-07-04,2022-07-03,32,False
+onion,shortage,onion shortage,2022-07-11,2022-07-10,0,False
+onion,shortage,onion shortage,2022-07-18,2022-07-17,0,False
+onion,shortage,onion shortage,2022-07-25,2022-07-24,0,False
+onion,shortage,onion shortage,2022-08-01,2022-07-31,0,False
+onion,shortage,onion shortage,2022-08-08,2022-08-07,0,False
+onion,shortage,onion shortage,2022-08-15,2022-08-14,36,False
+onion,shortage,onion shortage,2022-08-22,2022-08-21,0,False
+onion,shortage,onion shortage,2022-08-29,2022-08-28,32,False
+onion,shortage,onion shortage,2022-09-05,2022-09-04,0,False
+onion,shortage,onion shortage,2022-09-12,2022-09-11,0,False
+onion,shortage,onion shortage,2022-09-19,2022-09-18,36,False
+onion,shortage,onion shortage,2022-09-26,2022-09-25,29,False
+onion,shortage,onion shortage,2022-10-03,2022-10-02,0,False
+onion,shortage,onion shortage,2022-10-10,2022-10-09,0,False
+onion,shortage,onion shortage,2022-10-17,2022-10-16,0,False
+onion,shortage,onion shortage,2022-10-24,2022-10-23,35,False
+onion,shortage,onion shortage,2022-10-31,2022-10-30,0,False
+onion,shortage,onion shortage,2022-11-07,2022-11-06,0,False
+onion,shortage,onion shortage,2022-11-14,2022-11-13,0,False
+onion,shortage,onion shortage,2022-11-21,2022-11-20,56,False
+onion,shortage,onion shortage,2022-11-28,2022-11-27,0,False
+onion,shortage,onion shortage,2022-12-05,2022-12-04,0,False
+onion,shortage,onion shortage,2022-12-12,2022-12-11,0,False
+onion,shortage,onion shortage,2022-12-19,2022-12-18,0,False
+onion,shortage,onion shortage,2022-12-26,2022-12-25,0,False
+onion,shortage,onion shortage,2023-01-02,2023-01-01,41,False
+onion,shortage,onion shortage,2023-01-09,2023-01-08,60,False
+onion,shortage,onion shortage,2023-01-16,2023-01-15,58,False
+onion,shortage,onion shortage,2023-01-23,2023-01-22,33,False
+onion,shortage,onion shortage,2023-01-30,2023-01-29,0,False
+onion,shortage,onion shortage,2023-02-06,2023-02-05,0,False
+onion,shortage,onion shortage,2023-02-13,2023-02-12,0,False
+onion,shortage,onion shortage,2023-02-20,2023-02-19,34,False
+onion,shortage,onion shortage,2023-02-27,2023-02-26,100,False
+onion,shortage,onion shortage,2023-03-06,2023-03-05,0,False
+onion,shortage,onion shortage,2023-03-13,2023-03-12,0,False
+onion,shortage,onion shortage,2023-03-20,2023-03-19,0,False
+onion,shortage,onion shortage,2023-03-27,2023-03-26,0,False
+onion,shortage,onion shortage,2023-04-03,2023-04-02,0,False
+onion,shortage,onion shortage,2023-04-10,2023-04-09,0,False
+onion,shortage,onion shortage,2023-04-17,2023-04-16,0,False
+onion,shortage,onion shortage,2023-04-24,2023-04-23,0,False
+onion,shortage,onion shortage,2023-05-01,2023-04-30,0,False
+onion,shortage,onion shortage,2023-05-08,2023-05-07,0,False
+onion,shortage,onion shortage,2023-05-15,2023-05-14,0,False
+onion,shortage,onion shortage,2023-05-22,2023-05-21,0,False
+onion,shortage,onion shortage,2023-05-29,2023-05-28,0,False
+onion,shortage,onion shortage,2023-06-05,2023-06-04,0,False
+onion,shortage,onion shortage,2023-06-12,2023-06-11,0,False
+onion,shortage,onion shortage,2023-06-19,2023-06-18,0,False
+onion,shortage,onion shortage,2023-06-26,2023-06-25,0,False
+onion,shortage,onion shortage,2023-07-03,2023-07-02,0,False
+onion,shortage,onion shortage,2023-07-10,2023-07-09,0,False
+onion,shortage,onion shortage,2023-07-17,2023-07-16,0,False
+onion,shortage,onion shortage,2023-07-24,2023-07-23,0,False
+onion,shortage,onion shortage,2023-07-31,2023-07-30,0,False
+onion,shortage,onion shortage,2023-08-07,2023-08-06,0,False
+onion,shortage,onion shortage,2023-08-14,2023-08-13,0,False
+onion,shortage,onion shortage,2023-08-21,2023-08-20,0,False
+onion,shortage,onion shortage,2023-08-28,2023-08-27,35,False
+onion,shortage,onion shortage,2023-09-04,2023-09-03,0,False
+onion,shortage,onion shortage,2023-09-11,2023-09-10,0,False
+onion,shortage,onion shortage,2023-09-18,2023-09-17,0,False
+onion,shortage,onion shortage,2023-09-25,2023-09-24,0,False
+onion,shortage,onion shortage,2023-10-02,2023-10-01,0,False
+onion,shortage,onion shortage,2023-10-09,2023-10-08,0,False
+onion,shortage,onion shortage,2023-10-16,2023-10-15,0,False
+onion,shortage,onion shortage,2023-10-23,2023-10-22,0,False
+onion,shortage,onion shortage,2023-10-30,2023-10-29,0,False
+onion,shortage,onion shortage,2023-11-06,2023-11-05,0,False
+onion,shortage,onion shortage,2023-11-13,2023-11-12,0,False
+onion,shortage,onion shortage,2023-11-20,2023-11-19,0,False
+onion,shortage,onion shortage,2023-11-27,2023-11-26,0,False
+onion,shortage,onion shortage,2023-12-04,2023-12-03,0,False
+onion,shortage,onion shortage,2023-12-11,2023-12-10,0,False
+onion,shortage,onion shortage,2023-12-18,2023-12-17,0,False
+onion,shortage,onion shortage,2023-12-25,2023-12-24,0,False
+onion,shortage,onion shortage,2024-01-01,2023-12-31,0,False
+onion,shortage,onion shortage,2024-01-08,2024-01-07,0,False
+onion,shortage,onion shortage,2024-01-15,2024-01-14,0,False
+onion,shortage,onion shortage,2024-01-22,2024-01-21,0,False
+onion,shortage,onion shortage,2024-01-29,2024-01-28,0,False
+onion,shortage,onion shortage,2024-02-05,2024-02-04,0,False
+onion,shortage,onion shortage,2024-02-12,2024-02-11,0,False
+onion,shortage,onion shortage,2024-02-19,2024-02-18,0,False
+onion,shortage,onion shortage,2024-02-26,2024-02-25,0,False
+onion,shortage,onion shortage,2024-03-04,2024-03-03,0,False
+onion,shortage,onion shortage,2024-03-11,2024-03-10,0,False
+onion,shortage,onion shortage,2024-03-18,2024-03-17,0,False
+onion,shortage,onion shortage,2024-03-25,2024-03-24,0,False
+onion,shortage,onion shortage,2024-04-01,2024-03-31,0,False
+onion,shortage,onion shortage,2024-04-08,2024-04-07,37,False
+onion,shortage,onion shortage,2024-04-15,2024-04-14,0,False
+onion,shortage,onion shortage,2024-04-22,2024-04-21,0,False
+onion,shortage,onion shortage,2024-04-29,2024-04-28,0,False
+onion,shortage,onion shortage,2024-05-06,2024-05-05,0,False
+onion,shortage,onion shortage,2024-05-13,2024-05-12,0,False
+onion,shortage,onion shortage,2024-05-20,2024-05-19,0,False
+onion,shortage,onion shortage,2024-05-27,2024-05-26,0,False
+onion,shortage,onion shortage,2024-06-03,2024-06-02,0,False
+onion,shortage,onion shortage,2024-06-10,2024-06-09,0,False
+onion,shortage,onion shortage,2024-06-17,2024-06-16,0,False
+onion,shortage,onion shortage,2024-06-24,2024-06-23,0,False
+onion,shortage,onion shortage,2024-07-01,2024-06-30,0,False
+onion,shortage,onion shortage,2024-07-08,2024-07-07,0,False
+onion,shortage,onion shortage,2024-07-15,2024-07-14,0,False
+onion,shortage,onion shortage,2024-07-22,2024-07-21,0,False
+onion,shortage,onion shortage,2024-07-29,2024-07-28,0,False
+onion,shortage,onion shortage,2024-08-05,2024-08-04,0,False
+onion,shortage,onion shortage,2024-08-12,2024-08-11,0,False
+onion,shortage,onion shortage,2024-08-19,2024-08-18,0,False
+onion,shortage,onion shortage,2024-08-26,2024-08-25,0,False
+onion,shortage,onion shortage,2024-09-02,2024-09-01,0,False
+onion,shortage,onion shortage,2024-09-09,2024-09-08,0,False
+onion,shortage,onion shortage,2024-09-16,2024-09-15,0,False
+onion,shortage,onion shortage,2024-09-23,2024-09-22,0,False
+onion,shortage,onion shortage,2024-09-30,2024-09-29,0,False
+onion,shortage,onion shortage,2024-10-07,2024-10-06,0,False
+onion,shortage,onion shortage,2024-10-14,2024-10-13,0,False
+onion,shortage,onion shortage,2024-10-21,2024-10-20,0,False
+onion,shortage,onion shortage,2024-10-28,2024-10-27,0,False
+onion,shortage,onion shortage,2024-11-04,2024-11-03,0,False
+onion,shortage,onion shortage,2024-11-11,2024-11-10,0,False
+onion,shortage,onion shortage,2024-11-18,2024-11-17,0,False
+onion,shortage,onion shortage,2024-11-25,2024-11-24,0,False
+onion,shortage,onion shortage,2024-12-02,2024-12-01,0,False
+onion,shortage,onion shortage,2024-12-09,2024-12-08,0,False
+onion,shortage,onion shortage,2024-12-16,2024-12-15,0,False
+onion,shortage,onion shortage,2024-12-23,2024-12-22,0,False
+onion,shortage,onion shortage,2024-12-30,2024-12-29,0,False
+onion,recall,onion recall,2022-01-03,2022-01-02,6,False
+onion,recall,onion recall,2022-01-10,2022-01-09,4,False
+onion,recall,onion recall,2022-01-17,2022-01-16,4,False
+onion,recall,onion recall,2022-01-24,2022-01-23,3,False
+onion,recall,onion recall,2022-01-31,2022-01-30,0,False
+onion,recall,onion recall,2022-02-07,2022-02-06,0,False
+onion,recall,onion recall,2022-02-14,2022-02-13,2,False
+onion,recall,onion recall,2022-02-21,2022-02-20,0,False
+onion,recall,onion recall,2022-02-28,2022-02-27,0,False
+onion,recall,onion recall,2022-03-07,2022-03-06,0,False
+onion,recall,onion recall,2022-03-14,2022-03-13,0,False
+onion,recall,onion recall,2022-03-21,2022-03-20,0,False
+onion,recall,onion recall,2022-03-28,2022-03-27,0,False
+onion,recall,onion recall,2022-04-04,2022-04-03,0,False
+onion,recall,onion recall,2022-04-11,2022-04-10,0,False
+onion,recall,onion recall,2022-04-18,2022-04-17,0,False
+onion,recall,onion recall,2022-04-25,2022-04-24,0,False
+onion,recall,onion recall,2022-05-02,2022-05-01,0,False
+onion,recall,onion recall,2022-05-09,2022-05-08,0,False
+onion,recall,onion recall,2022-05-16,2022-05-15,0,False
+onion,recall,onion recall,2022-05-23,2022-05-22,3,False
+onion,recall,onion recall,2022-05-30,2022-05-29,0,False
+onion,recall,onion recall,2022-06-06,2022-06-05,0,False
+onion,recall,onion recall,2022-06-13,2022-06-12,0,False
+onion,recall,onion recall,2022-06-20,2022-06-19,0,False
+onion,recall,onion recall,2022-06-27,2022-06-26,23,False
+onion,recall,onion recall,2022-07-04,2022-07-03,100,False
+onion,recall,onion recall,2022-07-11,2022-07-10,8,False
+onion,recall,onion recall,2022-07-18,2022-07-17,3,False
+onion,recall,onion recall,2022-07-25,2022-07-24,2,False
+onion,recall,onion recall,2022-08-01,2022-07-31,2,False
+onion,recall,onion recall,2022-08-08,2022-08-07,0,False
+onion,recall,onion recall,2022-08-15,2022-08-14,0,False
+onion,recall,onion recall,2022-08-22,2022-08-21,0,False
+onion,recall,onion recall,2022-08-29,2022-08-28,0,False
+onion,recall,onion recall,2022-09-05,2022-09-04,2,False
+onion,recall,onion recall,2022-09-12,2022-09-11,0,False
+onion,recall,onion recall,2022-09-19,2022-09-18,0,False
+onion,recall,onion recall,2022-09-26,2022-09-25,3,False
+onion,recall,onion recall,2022-10-03,2022-10-02,0,False
+onion,recall,onion recall,2022-10-10,2022-10-09,0,False
+onion,recall,onion recall,2022-10-17,2022-10-16,0,False
+onion,recall,onion recall,2022-10-24,2022-10-23,0,False
+onion,recall,onion recall,2022-10-31,2022-10-30,0,False
+onion,recall,onion recall,2022-11-07,2022-11-06,0,False
+onion,recall,onion recall,2022-11-14,2022-11-13,0,False
+onion,recall,onion recall,2022-11-21,2022-11-20,0,False
+onion,recall,onion recall,2022-11-28,2022-11-27,0,False
+onion,recall,onion recall,2022-12-05,2022-12-04,0,False
+onion,recall,onion recall,2022-12-12,2022-12-11,0,False
+onion,recall,onion recall,2022-12-19,2022-12-18,0,False
+onion,recall,onion recall,2022-12-26,2022-12-25,0,False
+onion,recall,onion recall,2023-01-02,2023-01-01,0,False
+onion,recall,onion recall,2023-01-09,2023-01-08,0,False
+onion,recall,onion recall,2023-01-16,2023-01-15,0,False
+onion,recall,onion recall,2023-01-23,2023-01-22,0,False
+onion,recall,onion recall,2023-01-30,2023-01-29,0,False
+onion,recall,onion recall,2023-02-06,2023-02-05,0,False
+onion,recall,onion recall,2023-02-13,2023-02-12,0,False
+onion,recall,onion recall,2023-02-20,2023-02-19,0,False
+onion,recall,onion recall,2023-02-27,2023-02-26,0,False
+onion,recall,onion recall,2023-03-06,2023-03-05,0,False
+onion,recall,onion recall,2023-03-13,2023-03-12,0,False
+onion,recall,onion recall,2023-03-20,2023-03-19,0,False
+onion,recall,onion recall,2023-03-27,2023-03-26,2,False
+onion,recall,onion recall,2023-04-03,2023-04-02,0,False
+onion,recall,onion recall,2023-04-10,2023-04-09,0,False
+onion,recall,onion recall,2023-04-17,2023-04-16,0,False
+onion,recall,onion recall,2023-04-24,2023-04-23,0,False
+onion,recall,onion recall,2023-05-01,2023-04-30,0,False
+onion,recall,onion recall,2023-05-08,2023-05-07,0,False
+onion,recall,onion recall,2023-05-15,2023-05-14,0,False
+onion,recall,onion recall,2023-05-22,2023-05-21,0,False
+onion,recall,onion recall,2023-05-29,2023-05-28,0,False
+onion,recall,onion recall,2023-06-05,2023-06-04,0,False
+onion,recall,onion recall,2023-06-12,2023-06-11,0,False
+onion,recall,onion recall,2023-06-19,2023-06-18,0,False
+onion,recall,onion recall,2023-06-26,2023-06-25,0,False
+onion,recall,onion recall,2023-07-03,2023-07-02,0,False
+onion,recall,onion recall,2023-07-10,2023-07-09,0,False
+onion,recall,onion recall,2023-07-17,2023-07-16,0,False
+onion,recall,onion recall,2023-07-24,2023-07-23,0,False
+onion,recall,onion recall,2023-07-31,2023-07-30,0,False
+onion,recall,onion recall,2023-08-07,2023-08-06,0,False
+onion,recall,onion recall,2023-08-14,2023-08-13,0,False
+onion,recall,onion recall,2023-08-21,2023-08-20,0,False
+onion,recall,onion recall,2023-08-28,2023-08-27,0,False
+onion,recall,onion recall,2023-09-04,2023-09-03,0,False
+onion,recall,onion recall,2023-09-11,2023-09-10,3,False
+onion,recall,onion recall,2023-09-18,2023-09-17,0,False
+onion,recall,onion recall,2023-09-25,2023-09-24,2,False
+onion,recall,onion recall,2023-10-02,2023-10-01,6,False
+onion,recall,onion recall,2023-10-09,2023-10-08,3,False
+onion,recall,onion recall,2023-10-16,2023-10-15,2,False
+onion,recall,onion recall,2023-10-23,2023-10-22,27,False
+onion,recall,onion recall,2023-10-30,2023-10-29,18,False
+onion,recall,onion recall,2023-11-06,2023-11-05,2,False
+onion,recall,onion recall,2023-11-13,2023-11-12,0,False
+onion,recall,onion recall,2023-11-20,2023-11-19,2,False
+onion,recall,onion recall,2023-11-27,2023-11-26,0,False
+onion,recall,onion recall,2023-12-04,2023-12-03,0,False
+onion,recall,onion recall,2023-12-11,2023-12-10,0,False
+onion,recall,onion recall,2023-12-18,2023-12-17,0,False
+onion,recall,onion recall,2023-12-25,2023-12-24,0,False
+onion,recall,onion recall,2024-01-01,2023-12-31,0,False
+onion,recall,onion recall,2024-01-08,2024-01-07,0,False
+onion,recall,onion recall,2024-01-15,2024-01-14,0,False
+onion,recall,onion recall,2024-01-22,2024-01-21,0,False
+onion,recall,onion recall,2024-01-29,2024-01-28,0,False
+onion,recall,onion recall,2024-02-05,2024-02-04,0,False
+onion,recall,onion recall,2024-02-12,2024-02-11,0,False
+onion,recall,onion recall,2024-02-19,2024-02-18,0,False
+onion,recall,onion recall,2024-02-26,2024-02-25,2,False
+onion,recall,onion recall,2024-03-04,2024-03-03,0,False
+onion,recall,onion recall,2024-03-11,2024-03-10,0,False
+onion,recall,onion recall,2024-03-18,2024-03-17,0,False
+onion,recall,onion recall,2024-03-25,2024-03-24,0,False
+onion,recall,onion recall,2024-04-01,2024-03-31,0,False
+onion,recall,onion recall,2024-04-08,2024-04-07,0,False
+onion,recall,onion recall,2024-04-15,2024-04-14,0,False
+onion,recall,onion recall,2024-04-22,2024-04-21,0,False
+onion,recall,onion recall,2024-04-29,2024-04-28,0,False
+onion,recall,onion recall,2024-05-06,2024-05-05,2,False
+onion,recall,onion recall,2024-05-13,2024-05-12,0,False
+onion,recall,onion recall,2024-05-20,2024-05-19,0,False
+onion,recall,onion recall,2024-05-27,2024-05-26,0,False
+onion,recall,onion recall,2024-06-03,2024-06-02,0,False
+onion,recall,onion recall,2024-06-10,2024-06-09,0,False
+onion,recall,onion recall,2024-06-17,2024-06-16,0,False
+onion,recall,onion recall,2024-06-24,2024-06-23,0,False
+onion,recall,onion recall,2024-07-01,2024-06-30,0,False
+onion,recall,onion recall,2024-07-08,2024-07-07,0,False
+onion,recall,onion recall,2024-07-15,2024-07-14,0,False
+onion,recall,onion recall,2024-07-22,2024-07-21,0,False
+onion,recall,onion recall,2024-07-29,2024-07-28,2,False
+onion,recall,onion recall,2024-08-05,2024-08-04,0,False
+onion,recall,onion recall,2024-08-12,2024-08-11,0,False
+onion,recall,onion recall,2024-08-19,2024-08-18,0,False
+onion,recall,onion recall,2024-08-26,2024-08-25,0,False
+onion,recall,onion recall,2024-09-02,2024-09-01,0,False
+onion,recall,onion recall,2024-09-09,2024-09-08,0,False
+onion,recall,onion recall,2024-09-16,2024-09-15,0,False
+onion,recall,onion recall,2024-09-23,2024-09-22,0,False
+onion,recall,onion recall,2024-09-30,2024-09-29,0,False
+onion,recall,onion recall,2024-10-07,2024-10-06,0,False
+onion,recall,onion recall,2024-10-14,2024-10-13,0,False
+onion,recall,onion recall,2024-10-21,2024-10-20,84,False
+onion,recall,onion recall,2024-10-28,2024-10-27,56,False
+onion,recall,onion recall,2024-11-04,2024-11-03,15,False
+onion,recall,onion recall,2024-11-11,2024-11-10,7,False
+onion,recall,onion recall,2024-11-18,2024-11-17,8,False
+onion,recall,onion recall,2024-11-25,2024-11-24,8,False
+onion,recall,onion recall,2024-12-02,2024-12-01,3,False
+onion,recall,onion recall,2024-12-09,2024-12-08,4,False
+onion,recall,onion recall,2024-12-16,2024-12-15,0,False
+onion,recall,onion recall,2024-12-23,2024-12-22,0,False
+onion,recall,onion recall,2024-12-30,2024-12-29,4,False
+cucumber,total,cucumber,2022-01-03,2022-01-02,39,False
+cucumber,total,cucumber,2022-01-10,2022-01-09,40,False
+cucumber,total,cucumber,2022-01-17,2022-01-16,36,False
+cucumber,total,cucumber,2022-01-24,2022-01-23,36,False
+cucumber,total,cucumber,2022-01-31,2022-01-30,39,False
+cucumber,total,cucumber,2022-02-07,2022-02-06,44,False
+cucumber,total,cucumber,2022-02-14,2022-02-13,40,False
+cucumber,total,cucumber,2022-02-21,2022-02-20,43,False
+cucumber,total,cucumber,2022-02-28,2022-02-27,42,False
+cucumber,total,cucumber,2022-03-07,2022-03-06,44,False
+cucumber,total,cucumber,2022-03-14,2022-03-13,46,False
+cucumber,total,cucumber,2022-03-21,2022-03-20,49,False
+cucumber,total,cucumber,2022-03-28,2022-03-27,51,False
+cucumber,total,cucumber,2022-04-04,2022-04-03,50,False
+cucumber,total,cucumber,2022-04-11,2022-04-10,55,False
+cucumber,total,cucumber,2022-04-18,2022-04-17,53,False
+cucumber,total,cucumber,2022-04-25,2022-04-24,60,False
+cucumber,total,cucumber,2022-05-02,2022-05-01,61,False
+cucumber,total,cucumber,2022-05-09,2022-05-08,68,False
+cucumber,total,cucumber,2022-05-16,2022-05-15,81,False
+cucumber,total,cucumber,2022-05-23,2022-05-22,75,False
+cucumber,total,cucumber,2022-05-30,2022-05-29,79,False
+cucumber,total,cucumber,2022-06-06,2022-06-05,81,False
+cucumber,total,cucumber,2022-06-13,2022-06-12,83,False
+cucumber,total,cucumber,2022-06-20,2022-06-19,84,False
+cucumber,total,cucumber,2022-06-27,2022-06-26,90,False
+cucumber,total,cucumber,2022-07-04,2022-07-03,94,False
+cucumber,total,cucumber,2022-07-11,2022-07-10,91,False
+cucumber,total,cucumber,2022-07-18,2022-07-17,97,False
+cucumber,total,cucumber,2022-07-25,2022-07-24,96,False
+cucumber,total,cucumber,2022-08-01,2022-07-31,93,False
+cucumber,total,cucumber,2022-08-08,2022-08-07,84,False
+cucumber,total,cucumber,2022-08-15,2022-08-14,79,False
+cucumber,total,cucumber,2022-08-22,2022-08-21,72,False
+cucumber,total,cucumber,2022-08-29,2022-08-28,66,False
+cucumber,total,cucumber,2022-09-05,2022-09-04,62,False
+cucumber,total,cucumber,2022-09-12,2022-09-11,51,False
+cucumber,total,cucumber,2022-09-19,2022-09-18,50,False
+cucumber,total,cucumber,2022-09-26,2022-09-25,44,False
+cucumber,total,cucumber,2022-10-03,2022-10-02,41,False
+cucumber,total,cucumber,2022-10-10,2022-10-09,38,False
+cucumber,total,cucumber,2022-10-17,2022-10-16,36,False
+cucumber,total,cucumber,2022-10-24,2022-10-23,35,False
+cucumber,total,cucumber,2022-10-31,2022-10-30,35,False
+cucumber,total,cucumber,2022-11-07,2022-11-06,33,False
+cucumber,total,cucumber,2022-11-14,2022-11-13,33,False
+cucumber,total,cucumber,2022-11-21,2022-11-20,32,False
+cucumber,total,cucumber,2022-11-28,2022-11-27,29,False
+cucumber,total,cucumber,2022-12-05,2022-12-04,31,False
+cucumber,total,cucumber,2022-12-12,2022-12-11,32,False
+cucumber,total,cucumber,2022-12-19,2022-12-18,34,False
+cucumber,total,cucumber,2022-12-26,2022-12-25,37,False
+cucumber,total,cucumber,2023-01-02,2023-01-01,40,False
+cucumber,total,cucumber,2023-01-09,2023-01-08,41,False
+cucumber,total,cucumber,2023-01-16,2023-01-15,43,False
+cucumber,total,cucumber,2023-01-23,2023-01-22,43,False
+cucumber,total,cucumber,2023-01-30,2023-01-29,41,False
+cucumber,total,cucumber,2023-02-06,2023-02-05,43,False
+cucumber,total,cucumber,2023-02-13,2023-02-12,41,False
+cucumber,total,cucumber,2023-02-20,2023-02-19,44,False
+cucumber,total,cucumber,2023-02-27,2023-02-26,44,False
+cucumber,total,cucumber,2023-03-06,2023-03-05,44,False
+cucumber,total,cucumber,2023-03-13,2023-03-12,49,False
+cucumber,total,cucumber,2023-03-20,2023-03-19,51,False
+cucumber,total,cucumber,2023-03-27,2023-03-26,52,False
+cucumber,total,cucumber,2023-04-03,2023-04-02,54,False
+cucumber,total,cucumber,2023-04-10,2023-04-09,54,False
+cucumber,total,cucumber,2023-04-17,2023-04-16,58,False
+cucumber,total,cucumber,2023-04-24,2023-04-23,60,False
+cucumber,total,cucumber,2023-05-01,2023-04-30,59,False
+cucumber,total,cucumber,2023-05-08,2023-05-07,64,False
+cucumber,total,cucumber,2023-05-15,2023-05-14,71,False
+cucumber,total,cucumber,2023-05-22,2023-05-21,77,False
+cucumber,total,cucumber,2023-05-29,2023-05-28,81,False
+cucumber,total,cucumber,2023-06-05,2023-06-04,74,False
+cucumber,total,cucumber,2023-06-12,2023-06-11,75,False
+cucumber,total,cucumber,2023-06-19,2023-06-18,79,False
+cucumber,total,cucumber,2023-06-26,2023-06-25,84,False
+cucumber,total,cucumber,2023-07-03,2023-07-02,98,False
+cucumber,total,cucumber,2023-07-10,2023-07-09,90,False
+cucumber,total,cucumber,2023-07-17,2023-07-16,89,False
+cucumber,total,cucumber,2023-07-24,2023-07-23,97,False
+cucumber,total,cucumber,2023-07-31,2023-07-30,88,False
+cucumber,total,cucumber,2023-08-07,2023-08-06,82,False
+cucumber,total,cucumber,2023-08-14,2023-08-13,73,False
+cucumber,total,cucumber,2023-08-21,2023-08-20,71,False
+cucumber,total,cucumber,2023-08-28,2023-08-27,64,False
+cucumber,total,cucumber,2023-09-04,2023-09-03,58,False
+cucumber,total,cucumber,2023-09-11,2023-09-10,58,False
+cucumber,total,cucumber,2023-09-18,2023-09-17,46,False
+cucumber,total,cucumber,2023-09-25,2023-09-24,39,False
+cucumber,total,cucumber,2023-10-02,2023-10-01,39,False
+cucumber,total,cucumber,2023-10-09,2023-10-08,40,False
+cucumber,total,cucumber,2023-10-16,2023-10-15,36,False
+cucumber,total,cucumber,2023-10-23,2023-10-22,33,False
+cucumber,total,cucumber,2023-10-30,2023-10-29,33,False
+cucumber,total,cucumber,2023-11-06,2023-11-05,33,False
+cucumber,total,cucumber,2023-11-13,2023-11-12,35,False
+cucumber,total,cucumber,2023-11-20,2023-11-19,33,False
+cucumber,total,cucumber,2023-11-27,2023-11-26,32,False
+cucumber,total,cucumber,2023-12-04,2023-12-03,33,False
+cucumber,total,cucumber,2023-12-11,2023-12-10,33,False
+cucumber,total,cucumber,2023-12-18,2023-12-17,33,False
+cucumber,total,cucumber,2023-12-25,2023-12-24,34,False
+cucumber,total,cucumber,2024-01-01,2023-12-31,42,False
+cucumber,total,cucumber,2024-01-08,2024-01-07,40,False
+cucumber,total,cucumber,2024-01-15,2024-01-14,40,False
+cucumber,total,cucumber,2024-01-22,2024-01-21,41,False
+cucumber,total,cucumber,2024-01-29,2024-01-28,40,False
+cucumber,total,cucumber,2024-02-05,2024-02-04,42,False
+cucumber,total,cucumber,2024-02-12,2024-02-11,37,False
+cucumber,total,cucumber,2024-02-19,2024-02-18,44,False
+cucumber,total,cucumber,2024-02-26,2024-02-25,45,False
+cucumber,total,cucumber,2024-03-04,2024-03-03,45,False
+cucumber,total,cucumber,2024-03-11,2024-03-10,47,False
+cucumber,total,cucumber,2024-03-18,2024-03-17,48,False
+cucumber,total,cucumber,2024-03-25,2024-03-24,49,False
+cucumber,total,cucumber,2024-04-01,2024-03-31,52,False
+cucumber,total,cucumber,2024-04-08,2024-04-07,53,False
+cucumber,total,cucumber,2024-04-15,2024-04-14,57,False
+cucumber,total,cucumber,2024-04-22,2024-04-21,57,False
+cucumber,total,cucumber,2024-04-29,2024-04-28,60,False
+cucumber,total,cucumber,2024-05-06,2024-05-05,63,False
+cucumber,total,cucumber,2024-05-13,2024-05-12,65,False
+cucumber,total,cucumber,2024-05-20,2024-05-19,72,False
+cucumber,total,cucumber,2024-05-27,2024-05-26,75,False
+cucumber,total,cucumber,2024-06-03,2024-06-02,92,False
+cucumber,total,cucumber,2024-06-10,2024-06-09,81,False
+cucumber,total,cucumber,2024-06-17,2024-06-16,85,False
+cucumber,total,cucumber,2024-06-24,2024-06-23,81,False
+cucumber,total,cucumber,2024-07-01,2024-06-30,89,False
+cucumber,total,cucumber,2024-07-08,2024-07-07,83,False
+cucumber,total,cucumber,2024-07-15,2024-07-14,85,False
+cucumber,total,cucumber,2024-07-22,2024-07-21,87,False
+cucumber,total,cucumber,2024-07-29,2024-07-28,85,False
+cucumber,total,cucumber,2024-08-05,2024-08-04,89,False
+cucumber,total,cucumber,2024-08-12,2024-08-11,100,False
+cucumber,total,cucumber,2024-08-19,2024-08-18,95,False
+cucumber,total,cucumber,2024-08-26,2024-08-25,85,False
+cucumber,total,cucumber,2024-09-02,2024-09-01,76,False
+cucumber,total,cucumber,2024-09-09,2024-09-08,67,False
+cucumber,total,cucumber,2024-09-16,2024-09-15,58,False
+cucumber,total,cucumber,2024-09-23,2024-09-22,48,False
+cucumber,total,cucumber,2024-09-30,2024-09-29,48,False
+cucumber,total,cucumber,2024-10-07,2024-10-06,45,False
+cucumber,total,cucumber,2024-10-14,2024-10-13,43,False
+cucumber,total,cucumber,2024-10-21,2024-10-20,43,False
+cucumber,total,cucumber,2024-10-28,2024-10-27,42,False
+cucumber,total,cucumber,2024-11-04,2024-11-03,37,False
+cucumber,total,cucumber,2024-11-11,2024-11-10,41,False
+cucumber,total,cucumber,2024-11-18,2024-11-17,41,False
+cucumber,total,cucumber,2024-11-25,2024-11-24,43,False
+cucumber,total,cucumber,2024-12-02,2024-12-01,48,False
+cucumber,total,cucumber,2024-12-09,2024-12-08,38,False
+cucumber,total,cucumber,2024-12-16,2024-12-15,37,False
+cucumber,total,cucumber,2024-12-23,2024-12-22,39,False
+cucumber,total,cucumber,2024-12-30,2024-12-29,49,False
+cucumber,price,cucumber price,2022-01-03,2022-01-02,0,False
+cucumber,price,cucumber price,2022-01-10,2022-01-09,49,False
+cucumber,price,cucumber price,2022-01-17,2022-01-16,33,False
+cucumber,price,cucumber price,2022-01-24,2022-01-23,52,False
+cucumber,price,cucumber price,2022-01-31,2022-01-30,46,False
+cucumber,price,cucumber price,2022-02-07,2022-02-06,0,False
+cucumber,price,cucumber price,2022-02-14,2022-02-13,58,False
+cucumber,price,cucumber price,2022-02-21,2022-02-20,0,False
+cucumber,price,cucumber price,2022-02-28,2022-02-27,0,False
+cucumber,price,cucumber price,2022-03-07,2022-03-06,76,False
+cucumber,price,cucumber price,2022-03-14,2022-03-13,39,False
+cucumber,price,cucumber price,2022-03-21,2022-03-20,74,False
+cucumber,price,cucumber price,2022-03-28,2022-03-27,52,False
+cucumber,price,cucumber price,2022-04-04,2022-04-03,46,False
+cucumber,price,cucumber price,2022-04-11,2022-04-10,54,False
+cucumber,price,cucumber price,2022-04-18,2022-04-17,57,False
+cucumber,price,cucumber price,2022-04-25,2022-04-24,74,False
+cucumber,price,cucumber price,2022-05-02,2022-05-01,51,False
+cucumber,price,cucumber price,2022-05-09,2022-05-08,70,False
+cucumber,price,cucumber price,2022-05-16,2022-05-15,60,False
+cucumber,price,cucumber price,2022-05-23,2022-05-22,78,False
+cucumber,price,cucumber price,2022-05-30,2022-05-29,76,False
+cucumber,price,cucumber price,2022-06-06,2022-06-05,54,False
+cucumber,price,cucumber price,2022-06-13,2022-06-12,43,False
+cucumber,price,cucumber price,2022-06-20,2022-06-19,66,False
+cucumber,price,cucumber price,2022-06-27,2022-06-26,73,False
+cucumber,price,cucumber price,2022-07-04,2022-07-03,56,False
+cucumber,price,cucumber price,2022-07-11,2022-07-10,53,False
+cucumber,price,cucumber price,2022-07-18,2022-07-17,74,False
+cucumber,price,cucumber price,2022-07-25,2022-07-24,59,False
+cucumber,price,cucumber price,2022-08-01,2022-07-31,53,False
+cucumber,price,cucumber price,2022-08-08,2022-08-07,56,False
+cucumber,price,cucumber price,2022-08-15,2022-08-14,75,False
+cucumber,price,cucumber price,2022-08-22,2022-08-21,38,False
+cucumber,price,cucumber price,2022-08-29,2022-08-28,55,False
+cucumber,price,cucumber price,2022-09-05,2022-09-04,51,False
+cucumber,price,cucumber price,2022-09-12,2022-09-11,42,False
+cucumber,price,cucumber price,2022-09-19,2022-09-18,39,False
+cucumber,price,cucumber price,2022-09-26,2022-09-25,40,False
+cucumber,price,cucumber price,2022-10-03,2022-10-02,0,False
+cucumber,price,cucumber price,2022-10-10,2022-10-09,33,False
+cucumber,price,cucumber price,2022-10-17,2022-10-16,47,False
+cucumber,price,cucumber price,2022-10-24,2022-10-23,36,False
+cucumber,price,cucumber price,2022-10-31,2022-10-30,46,False
+cucumber,price,cucumber price,2022-11-07,2022-11-06,44,False
+cucumber,price,cucumber price,2022-11-14,2022-11-13,0,False
+cucumber,price,cucumber price,2022-11-21,2022-11-20,41,False
+cucumber,price,cucumber price,2022-11-28,2022-11-27,0,False
+cucumber,price,cucumber price,2022-12-05,2022-12-04,31,False
+cucumber,price,cucumber price,2022-12-12,2022-12-11,39,False
+cucumber,price,cucumber price,2022-12-19,2022-12-18,0,False
+cucumber,price,cucumber price,2022-12-26,2022-12-25,40,False
+cucumber,price,cucumber price,2023-01-02,2023-01-01,42,False
+cucumber,price,cucumber price,2023-01-09,2023-01-08,65,False
+cucumber,price,cucumber price,2023-01-16,2023-01-15,37,False
+cucumber,price,cucumber price,2023-01-23,2023-01-22,52,False
+cucumber,price,cucumber price,2023-01-30,2023-01-29,50,False
+cucumber,price,cucumber price,2023-02-06,2023-02-05,57,False
+cucumber,price,cucumber price,2023-02-13,2023-02-12,55,False
+cucumber,price,cucumber price,2023-02-20,2023-02-19,40,False
+cucumber,price,cucumber price,2023-02-27,2023-02-26,51,False
+cucumber,price,cucumber price,2023-03-06,2023-03-05,51,False
+cucumber,price,cucumber price,2023-03-13,2023-03-12,51,False
+cucumber,price,cucumber price,2023-03-20,2023-03-19,40,False
+cucumber,price,cucumber price,2023-03-27,2023-03-26,41,False
+cucumber,price,cucumber price,2023-04-03,2023-04-02,46,False
+cucumber,price,cucumber price,2023-04-10,2023-04-09,49,False
+cucumber,price,cucumber price,2023-04-17,2023-04-16,54,False
+cucumber,price,cucumber price,2023-04-24,2023-04-23,65,False
+cucumber,price,cucumber price,2023-05-01,2023-04-30,36,False
+cucumber,price,cucumber price,2023-05-08,2023-05-07,57,False
+cucumber,price,cucumber price,2023-05-15,2023-05-14,50,False
+cucumber,price,cucumber price,2023-05-22,2023-05-21,49,False
+cucumber,price,cucumber price,2023-05-29,2023-05-28,38,False
+cucumber,price,cucumber price,2023-06-05,2023-06-04,56,False
+cucumber,price,cucumber price,2023-06-12,2023-06-11,56,False
+cucumber,price,cucumber price,2023-06-19,2023-06-18,77,False
+cucumber,price,cucumber price,2023-06-26,2023-06-25,57,False
+cucumber,price,cucumber price,2023-07-03,2023-07-02,62,False
+cucumber,price,cucumber price,2023-07-10,2023-07-09,65,False
+cucumber,price,cucumber price,2023-07-17,2023-07-16,58,False
+cucumber,price,cucumber price,2023-07-24,2023-07-23,70,False
+cucumber,price,cucumber price,2023-07-31,2023-07-30,32,False
+cucumber,price,cucumber price,2023-08-07,2023-08-06,65,False
+cucumber,price,cucumber price,2023-08-14,2023-08-13,70,False
+cucumber,price,cucumber price,2023-08-21,2023-08-20,46,False
+cucumber,price,cucumber price,2023-08-28,2023-08-27,50,False
+cucumber,price,cucumber price,2023-09-04,2023-09-03,0,False
+cucumber,price,cucumber price,2023-09-11,2023-09-10,55,False
+cucumber,price,cucumber price,2023-09-18,2023-09-17,42,False
+cucumber,price,cucumber price,2023-09-25,2023-09-24,33,False
+cucumber,price,cucumber price,2023-10-02,2023-10-01,37,False
+cucumber,price,cucumber price,2023-10-09,2023-10-08,0,False
+cucumber,price,cucumber price,2023-10-16,2023-10-15,0,False
+cucumber,price,cucumber price,2023-10-23,2023-10-22,31,False
+cucumber,price,cucumber price,2023-10-30,2023-10-29,43,False
+cucumber,price,cucumber price,2023-11-06,2023-11-05,29,False
+cucumber,price,cucumber price,2023-11-13,2023-11-12,39,False
+cucumber,price,cucumber price,2023-11-20,2023-11-19,31,False
+cucumber,price,cucumber price,2023-11-27,2023-11-26,0,False
+cucumber,price,cucumber price,2023-12-04,2023-12-03,55,False
+cucumber,price,cucumber price,2023-12-11,2023-12-10,0,False
+cucumber,price,cucumber price,2023-12-18,2023-12-17,42,False
+cucumber,price,cucumber price,2023-12-25,2023-12-24,35,False
+cucumber,price,cucumber price,2024-01-01,2023-12-31,0,False
+cucumber,price,cucumber price,2024-01-08,2024-01-07,0,False
+cucumber,price,cucumber price,2024-01-15,2024-01-14,31,False
+cucumber,price,cucumber price,2024-01-22,2024-01-21,53,False
+cucumber,price,cucumber price,2024-01-29,2024-01-28,30,False
+cucumber,price,cucumber price,2024-02-05,2024-02-04,40,False
+cucumber,price,cucumber price,2024-02-12,2024-02-11,0,False
+cucumber,price,cucumber price,2024-02-19,2024-02-18,39,False
+cucumber,price,cucumber price,2024-02-26,2024-02-25,37,False
+cucumber,price,cucumber price,2024-03-04,2024-03-03,44,False
+cucumber,price,cucumber price,2024-03-11,2024-03-10,46,False
+cucumber,price,cucumber price,2024-03-18,2024-03-17,35,False
+cucumber,price,cucumber price,2024-03-25,2024-03-24,46,False
+cucumber,price,cucumber price,2024-04-01,2024-03-31,42,False
+cucumber,price,cucumber price,2024-04-08,2024-04-07,51,False
+cucumber,price,cucumber price,2024-04-15,2024-04-14,53,False
+cucumber,price,cucumber price,2024-04-22,2024-04-21,42,False
+cucumber,price,cucumber price,2024-04-29,2024-04-28,69,False
+cucumber,price,cucumber price,2024-05-06,2024-05-05,49,False
+cucumber,price,cucumber price,2024-05-13,2024-05-12,54,False
+cucumber,price,cucumber price,2024-05-20,2024-05-19,85,False
+cucumber,price,cucumber price,2024-05-27,2024-05-26,46,False
+cucumber,price,cucumber price,2024-06-03,2024-06-02,96,False
+cucumber,price,cucumber price,2024-06-10,2024-06-09,74,False
+cucumber,price,cucumber price,2024-06-17,2024-06-16,52,False
+cucumber,price,cucumber price,2024-06-24,2024-06-23,59,False
+cucumber,price,cucumber price,2024-07-01,2024-06-30,67,False
+cucumber,price,cucumber price,2024-07-08,2024-07-07,56,False
+cucumber,price,cucumber price,2024-07-15,2024-07-14,100,False
+cucumber,price,cucumber price,2024-07-22,2024-07-21,56,False
+cucumber,price,cucumber price,2024-07-29,2024-07-28,53,False
+cucumber,price,cucumber price,2024-08-05,2024-08-04,78,False
+cucumber,price,cucumber price,2024-08-12,2024-08-11,72,False
+cucumber,price,cucumber price,2024-08-19,2024-08-18,60,False
+cucumber,price,cucumber price,2024-08-26,2024-08-25,38,False
+cucumber,price,cucumber price,2024-09-02,2024-09-01,41,False
+cucumber,price,cucumber price,2024-09-09,2024-09-08,53,False
+cucumber,price,cucumber price,2024-09-16,2024-09-15,44,False
+cucumber,price,cucumber price,2024-09-23,2024-09-22,55,False
+cucumber,price,cucumber price,2024-09-30,2024-09-29,53,False
+cucumber,price,cucumber price,2024-10-07,2024-10-06,40,False
+cucumber,price,cucumber price,2024-10-14,2024-10-13,60,False
+cucumber,price,cucumber price,2024-10-21,2024-10-20,56,False
+cucumber,price,cucumber price,2024-10-28,2024-10-27,56,False
+cucumber,price,cucumber price,2024-11-04,2024-11-03,59,False
+cucumber,price,cucumber price,2024-11-11,2024-11-10,31,False
+cucumber,price,cucumber price,2024-11-18,2024-11-17,39,False
+cucumber,price,cucumber price,2024-11-25,2024-11-24,0,False
+cucumber,price,cucumber price,2024-12-02,2024-12-01,45,False
+cucumber,price,cucumber price,2024-12-09,2024-12-08,0,False
+cucumber,price,cucumber price,2024-12-16,2024-12-15,40,False
+cucumber,price,cucumber price,2024-12-23,2024-12-22,0,False
+cucumber,price,cucumber price,2024-12-30,2024-12-29,54,False
+cucumber,shortage,cucumber shortage,2022-01-03,2022-01-02,0,False
+cucumber,shortage,cucumber shortage,2022-01-10,2022-01-09,0,False
+cucumber,shortage,cucumber shortage,2022-01-17,2022-01-16,0,False
+cucumber,shortage,cucumber shortage,2022-01-24,2022-01-23,0,False
+cucumber,shortage,cucumber shortage,2022-01-31,2022-01-30,0,False
+cucumber,shortage,cucumber shortage,2022-02-07,2022-02-06,0,False
+cucumber,shortage,cucumber shortage,2022-02-14,2022-02-13,0,False
+cucumber,shortage,cucumber shortage,2022-02-21,2022-02-20,0,False
+cucumber,shortage,cucumber shortage,2022-02-28,2022-02-27,0,False
+cucumber,shortage,cucumber shortage,2022-03-07,2022-03-06,0,False
+cucumber,shortage,cucumber shortage,2022-03-14,2022-03-13,0,False
+cucumber,shortage,cucumber shortage,2022-03-21,2022-03-20,0,False
+cucumber,shortage,cucumber shortage,2022-03-28,2022-03-27,0,False
+cucumber,shortage,cucumber shortage,2022-04-04,2022-04-03,0,False
+cucumber,shortage,cucumber shortage,2022-04-11,2022-04-10,0,False
+cucumber,shortage,cucumber shortage,2022-04-18,2022-04-17,0,False
+cucumber,shortage,cucumber shortage,2022-04-25,2022-04-24,0,False
+cucumber,shortage,cucumber shortage,2022-05-02,2022-05-01,0,False
+cucumber,shortage,cucumber shortage,2022-05-09,2022-05-08,0,False
+cucumber,shortage,cucumber shortage,2022-05-16,2022-05-15,0,False
+cucumber,shortage,cucumber shortage,2022-05-23,2022-05-22,0,False
+cucumber,shortage,cucumber shortage,2022-05-30,2022-05-29,0,False
+cucumber,shortage,cucumber shortage,2022-06-06,2022-06-05,0,False
+cucumber,shortage,cucumber shortage,2022-06-13,2022-06-12,0,False
+cucumber,shortage,cucumber shortage,2022-06-20,2022-06-19,0,False
+cucumber,shortage,cucumber shortage,2022-06-27,2022-06-26,0,False
+cucumber,shortage,cucumber shortage,2022-07-04,2022-07-03,0,False
+cucumber,shortage,cucumber shortage,2022-07-11,2022-07-10,0,False
+cucumber,shortage,cucumber shortage,2022-07-18,2022-07-17,0,False
+cucumber,shortage,cucumber shortage,2022-07-25,2022-07-24,0,False
+cucumber,shortage,cucumber shortage,2022-08-01,2022-07-31,0,False
+cucumber,shortage,cucumber shortage,2022-08-08,2022-08-07,0,False
+cucumber,shortage,cucumber shortage,2022-08-15,2022-08-14,0,False
+cucumber,shortage,cucumber shortage,2022-08-22,2022-08-21,0,False
+cucumber,shortage,cucumber shortage,2022-08-29,2022-08-28,0,False
+cucumber,shortage,cucumber shortage,2022-09-05,2022-09-04,0,False
+cucumber,shortage,cucumber shortage,2022-09-12,2022-09-11,0,False
+cucumber,shortage,cucumber shortage,2022-09-19,2022-09-18,0,False
+cucumber,shortage,cucumber shortage,2022-09-26,2022-09-25,0,False
+cucumber,shortage,cucumber shortage,2022-10-03,2022-10-02,0,False
+cucumber,shortage,cucumber shortage,2022-10-10,2022-10-09,0,False
+cucumber,shortage,cucumber shortage,2022-10-17,2022-10-16,0,False
+cucumber,shortage,cucumber shortage,2022-10-24,2022-10-23,0,False
+cucumber,shortage,cucumber shortage,2022-10-31,2022-10-30,0,False
+cucumber,shortage,cucumber shortage,2022-11-07,2022-11-06,0,False
+cucumber,shortage,cucumber shortage,2022-11-14,2022-11-13,0,False
+cucumber,shortage,cucumber shortage,2022-11-21,2022-11-20,0,False
+cucumber,shortage,cucumber shortage,2022-11-28,2022-11-27,0,False
+cucumber,shortage,cucumber shortage,2022-12-05,2022-12-04,0,False
+cucumber,shortage,cucumber shortage,2022-12-12,2022-12-11,0,False
+cucumber,shortage,cucumber shortage,2022-12-19,2022-12-18,0,False
+cucumber,shortage,cucumber shortage,2022-12-26,2022-12-25,0,False
+cucumber,shortage,cucumber shortage,2023-01-02,2023-01-01,0,False
+cucumber,shortage,cucumber shortage,2023-01-09,2023-01-08,0,False
+cucumber,shortage,cucumber shortage,2023-01-16,2023-01-15,0,False
+cucumber,shortage,cucumber shortage,2023-01-23,2023-01-22,0,False
+cucumber,shortage,cucumber shortage,2023-01-30,2023-01-29,0,False
+cucumber,shortage,cucumber shortage,2023-02-06,2023-02-05,0,False
+cucumber,shortage,cucumber shortage,2023-02-13,2023-02-12,0,False
+cucumber,shortage,cucumber shortage,2023-02-20,2023-02-19,0,False
+cucumber,shortage,cucumber shortage,2023-02-27,2023-02-26,0,False
+cucumber,shortage,cucumber shortage,2023-03-06,2023-03-05,0,False
+cucumber,shortage,cucumber shortage,2023-03-13,2023-03-12,0,False
+cucumber,shortage,cucumber shortage,2023-03-20,2023-03-19,0,False
+cucumber,shortage,cucumber shortage,2023-03-27,2023-03-26,0,False
+cucumber,shortage,cucumber shortage,2023-04-03,2023-04-02,0,False
+cucumber,shortage,cucumber shortage,2023-04-10,2023-04-09,0,False
+cucumber,shortage,cucumber shortage,2023-04-17,2023-04-16,0,False
+cucumber,shortage,cucumber shortage,2023-04-24,2023-04-23,0,False
+cucumber,shortage,cucumber shortage,2023-05-01,2023-04-30,0,False
+cucumber,shortage,cucumber shortage,2023-05-08,2023-05-07,0,False
+cucumber,shortage,cucumber shortage,2023-05-15,2023-05-14,0,False
+cucumber,shortage,cucumber shortage,2023-05-22,2023-05-21,0,False
+cucumber,shortage,cucumber shortage,2023-05-29,2023-05-28,0,False
+cucumber,shortage,cucumber shortage,2023-06-05,2023-06-04,0,False
+cucumber,shortage,cucumber shortage,2023-06-12,2023-06-11,0,False
+cucumber,shortage,cucumber shortage,2023-06-19,2023-06-18,0,False
+cucumber,shortage,cucumber shortage,2023-06-26,2023-06-25,0,False
+cucumber,shortage,cucumber shortage,2023-07-03,2023-07-02,0,False
+cucumber,shortage,cucumber shortage,2023-07-10,2023-07-09,0,False
+cucumber,shortage,cucumber shortage,2023-07-17,2023-07-16,0,False
+cucumber,shortage,cucumber shortage,2023-07-24,2023-07-23,0,False
+cucumber,shortage,cucumber shortage,2023-07-31,2023-07-30,0,False
+cucumber,shortage,cucumber shortage,2023-08-07,2023-08-06,0,False
+cucumber,shortage,cucumber shortage,2023-08-14,2023-08-13,0,False
+cucumber,shortage,cucumber shortage,2023-08-21,2023-08-20,0,False
+cucumber,shortage,cucumber shortage,2023-08-28,2023-08-27,0,False
+cucumber,shortage,cucumber shortage,2023-09-04,2023-09-03,0,False
+cucumber,shortage,cucumber shortage,2023-09-11,2023-09-10,0,False
+cucumber,shortage,cucumber shortage,2023-09-18,2023-09-17,0,False
+cucumber,shortage,cucumber shortage,2023-09-25,2023-09-24,0,False
+cucumber,shortage,cucumber shortage,2023-10-02,2023-10-01,0,False
+cucumber,shortage,cucumber shortage,2023-10-09,2023-10-08,0,False
+cucumber,shortage,cucumber shortage,2023-10-16,2023-10-15,0,False
+cucumber,shortage,cucumber shortage,2023-10-23,2023-10-22,0,False
+cucumber,shortage,cucumber shortage,2023-10-30,2023-10-29,0,False
+cucumber,shortage,cucumber shortage,2023-11-06,2023-11-05,0,False
+cucumber,shortage,cucumber shortage,2023-11-13,2023-11-12,0,False
+cucumber,shortage,cucumber shortage,2023-11-20,2023-11-19,0,False
+cucumber,shortage,cucumber shortage,2023-11-27,2023-11-26,0,False
+cucumber,shortage,cucumber shortage,2023-12-04,2023-12-03,0,False
+cucumber,shortage,cucumber shortage,2023-12-11,2023-12-10,0,False
+cucumber,shortage,cucumber shortage,2023-12-18,2023-12-17,0,False
+cucumber,shortage,cucumber shortage,2023-12-25,2023-12-24,0,False
+cucumber,shortage,cucumber shortage,2024-01-01,2023-12-31,0,False
+cucumber,shortage,cucumber shortage,2024-01-08,2024-01-07,0,False
+cucumber,shortage,cucumber shortage,2024-01-15,2024-01-14,0,False
+cucumber,shortage,cucumber shortage,2024-01-22,2024-01-21,0,False
+cucumber,shortage,cucumber shortage,2024-01-29,2024-01-28,0,False
+cucumber,shortage,cucumber shortage,2024-02-05,2024-02-04,0,False
+cucumber,shortage,cucumber shortage,2024-02-12,2024-02-11,0,False
+cucumber,shortage,cucumber shortage,2024-02-19,2024-02-18,0,False
+cucumber,shortage,cucumber shortage,2024-02-26,2024-02-25,0,False
+cucumber,shortage,cucumber shortage,2024-03-04,2024-03-03,0,False
+cucumber,shortage,cucumber shortage,2024-03-11,2024-03-10,0,False
+cucumber,shortage,cucumber shortage,2024-03-18,2024-03-17,0,False
+cucumber,shortage,cucumber shortage,2024-03-25,2024-03-24,0,False
+cucumber,shortage,cucumber shortage,2024-04-01,2024-03-31,0,False
+cucumber,shortage,cucumber shortage,2024-04-08,2024-04-07,0,False
+cucumber,shortage,cucumber shortage,2024-04-15,2024-04-14,0,False
+cucumber,shortage,cucumber shortage,2024-04-22,2024-04-21,0,False
+cucumber,shortage,cucumber shortage,2024-04-29,2024-04-28,0,False
+cucumber,shortage,cucumber shortage,2024-05-06,2024-05-05,0,False
+cucumber,shortage,cucumber shortage,2024-05-13,2024-05-12,0,False
+cucumber,shortage,cucumber shortage,2024-05-20,2024-05-19,0,False
+cucumber,shortage,cucumber shortage,2024-05-27,2024-05-26,0,False
+cucumber,shortage,cucumber shortage,2024-06-03,2024-06-02,0,False
+cucumber,shortage,cucumber shortage,2024-06-10,2024-06-09,0,False
+cucumber,shortage,cucumber shortage,2024-06-17,2024-06-16,0,False
+cucumber,shortage,cucumber shortage,2024-06-24,2024-06-23,0,False
+cucumber,shortage,cucumber shortage,2024-07-01,2024-06-30,0,False
+cucumber,shortage,cucumber shortage,2024-07-08,2024-07-07,0,False
+cucumber,shortage,cucumber shortage,2024-07-15,2024-07-14,0,False
+cucumber,shortage,cucumber shortage,2024-07-22,2024-07-21,0,False
+cucumber,shortage,cucumber shortage,2024-07-29,2024-07-28,0,False
+cucumber,shortage,cucumber shortage,2024-08-05,2024-08-04,0,False
+cucumber,shortage,cucumber shortage,2024-08-12,2024-08-11,0,False
+cucumber,shortage,cucumber shortage,2024-08-19,2024-08-18,0,False
+cucumber,shortage,cucumber shortage,2024-08-26,2024-08-25,100,False
+cucumber,shortage,cucumber shortage,2024-09-02,2024-09-01,37,False
+cucumber,shortage,cucumber shortage,2024-09-09,2024-09-08,36,False
+cucumber,shortage,cucumber shortage,2024-09-16,2024-09-15,0,False
+cucumber,shortage,cucumber shortage,2024-09-23,2024-09-22,0,False
+cucumber,shortage,cucumber shortage,2024-09-30,2024-09-29,0,False
+cucumber,shortage,cucumber shortage,2024-10-07,2024-10-06,0,False
+cucumber,shortage,cucumber shortage,2024-10-14,2024-10-13,0,False
+cucumber,shortage,cucumber shortage,2024-10-21,2024-10-20,0,False
+cucumber,shortage,cucumber shortage,2024-10-28,2024-10-27,0,False
+cucumber,shortage,cucumber shortage,2024-11-04,2024-11-03,0,False
+cucumber,shortage,cucumber shortage,2024-11-11,2024-11-10,0,False
+cucumber,shortage,cucumber shortage,2024-11-18,2024-11-17,0,False
+cucumber,shortage,cucumber shortage,2024-11-25,2024-11-24,0,False
+cucumber,shortage,cucumber shortage,2024-12-02,2024-12-01,0,False
+cucumber,shortage,cucumber shortage,2024-12-09,2024-12-08,0,False
+cucumber,shortage,cucumber shortage,2024-12-16,2024-12-15,0,False
+cucumber,shortage,cucumber shortage,2024-12-23,2024-12-22,0,False
+cucumber,shortage,cucumber shortage,2024-12-30,2024-12-29,0,False
+cucumber,recall,cucumber recall,2022-01-03,2022-01-02,0,False
+cucumber,recall,cucumber recall,2022-01-10,2022-01-09,0,False
+cucumber,recall,cucumber recall,2022-01-17,2022-01-16,0,False
+cucumber,recall,cucumber recall,2022-01-24,2022-01-23,0,False
+cucumber,recall,cucumber recall,2022-01-31,2022-01-30,0,False
+cucumber,recall,cucumber recall,2022-02-07,2022-02-06,0,False
+cucumber,recall,cucumber recall,2022-02-14,2022-02-13,0,False
+cucumber,recall,cucumber recall,2022-02-21,2022-02-20,0,False
+cucumber,recall,cucumber recall,2022-02-28,2022-02-27,0,False
+cucumber,recall,cucumber recall,2022-03-07,2022-03-06,0,False
+cucumber,recall,cucumber recall,2022-03-14,2022-03-13,0,False
+cucumber,recall,cucumber recall,2022-03-21,2022-03-20,0,False
+cucumber,recall,cucumber recall,2022-03-28,2022-03-27,0,False
+cucumber,recall,cucumber recall,2022-04-04,2022-04-03,0,False
+cucumber,recall,cucumber recall,2022-04-11,2022-04-10,0,False
+cucumber,recall,cucumber recall,2022-04-18,2022-04-17,0,False
+cucumber,recall,cucumber recall,2022-04-25,2022-04-24,0,False
+cucumber,recall,cucumber recall,2022-05-02,2022-05-01,0,False
+cucumber,recall,cucumber recall,2022-05-09,2022-05-08,0,False
+cucumber,recall,cucumber recall,2022-05-16,2022-05-15,0,False
+cucumber,recall,cucumber recall,2022-05-23,2022-05-22,0,False
+cucumber,recall,cucumber recall,2022-05-30,2022-05-29,0,False
+cucumber,recall,cucumber recall,2022-06-06,2022-06-05,0,False
+cucumber,recall,cucumber recall,2022-06-13,2022-06-12,0,False
+cucumber,recall,cucumber recall,2022-06-20,2022-06-19,0,False
+cucumber,recall,cucumber recall,2022-06-27,2022-06-26,0,False
+cucumber,recall,cucumber recall,2022-07-04,2022-07-03,0,False
+cucumber,recall,cucumber recall,2022-07-11,2022-07-10,0,False
+cucumber,recall,cucumber recall,2022-07-18,2022-07-17,0,False
+cucumber,recall,cucumber recall,2022-07-25,2022-07-24,0,False
+cucumber,recall,cucumber recall,2022-08-01,2022-07-31,0,False
+cucumber,recall,cucumber recall,2022-08-08,2022-08-07,0,False
+cucumber,recall,cucumber recall,2022-08-15,2022-08-14,0,False
+cucumber,recall,cucumber recall,2022-08-22,2022-08-21,0,False
+cucumber,recall,cucumber recall,2022-08-29,2022-08-28,0,False
+cucumber,recall,cucumber recall,2022-09-05,2022-09-04,0,False
+cucumber,recall,cucumber recall,2022-09-12,2022-09-11,0,False
+cucumber,recall,cucumber recall,2022-09-19,2022-09-18,0,False
+cucumber,recall,cucumber recall,2022-09-26,2022-09-25,0,False
+cucumber,recall,cucumber recall,2022-10-03,2022-10-02,0,False
+cucumber,recall,cucumber recall,2022-10-10,2022-10-09,0,False
+cucumber,recall,cucumber recall,2022-10-17,2022-10-16,0,False
+cucumber,recall,cucumber recall,2022-10-24,2022-10-23,0,False
+cucumber,recall,cucumber recall,2022-10-31,2022-10-30,0,False
+cucumber,recall,cucumber recall,2022-11-07,2022-11-06,0,False
+cucumber,recall,cucumber recall,2022-11-14,2022-11-13,0,False
+cucumber,recall,cucumber recall,2022-11-21,2022-11-20,0,False
+cucumber,recall,cucumber recall,2022-11-28,2022-11-27,0,False
+cucumber,recall,cucumber recall,2022-12-05,2022-12-04,0,False
+cucumber,recall,cucumber recall,2022-12-12,2022-12-11,0,False
+cucumber,recall,cucumber recall,2022-12-19,2022-12-18,0,False
+cucumber,recall,cucumber recall,2022-12-26,2022-12-25,0,False
+cucumber,recall,cucumber recall,2023-01-02,2023-01-01,0,False
+cucumber,recall,cucumber recall,2023-01-09,2023-01-08,0,False
+cucumber,recall,cucumber recall,2023-01-16,2023-01-15,0,False
+cucumber,recall,cucumber recall,2023-01-23,2023-01-22,0,False
+cucumber,recall,cucumber recall,2023-01-30,2023-01-29,0,False
+cucumber,recall,cucumber recall,2023-02-06,2023-02-05,0,False
+cucumber,recall,cucumber recall,2023-02-13,2023-02-12,0,False
+cucumber,recall,cucumber recall,2023-02-20,2023-02-19,0,False
+cucumber,recall,cucumber recall,2023-02-27,2023-02-26,0,False
+cucumber,recall,cucumber recall,2023-03-06,2023-03-05,0,False
+cucumber,recall,cucumber recall,2023-03-13,2023-03-12,0,False
+cucumber,recall,cucumber recall,2023-03-20,2023-03-19,0,False
+cucumber,recall,cucumber recall,2023-03-27,2023-03-26,0,False
+cucumber,recall,cucumber recall,2023-04-03,2023-04-02,0,False
+cucumber,recall,cucumber recall,2023-04-10,2023-04-09,0,False
+cucumber,recall,cucumber recall,2023-04-17,2023-04-16,0,False
+cucumber,recall,cucumber recall,2023-04-24,2023-04-23,0,False
+cucumber,recall,cucumber recall,2023-05-01,2023-04-30,0,False
+cucumber,recall,cucumber recall,2023-05-08,2023-05-07,0,False
+cucumber,recall,cucumber recall,2023-05-15,2023-05-14,0,False
+cucumber,recall,cucumber recall,2023-05-22,2023-05-21,0,False
+cucumber,recall,cucumber recall,2023-05-29,2023-05-28,0,False
+cucumber,recall,cucumber recall,2023-06-05,2023-06-04,0,False
+cucumber,recall,cucumber recall,2023-06-12,2023-06-11,0,False
+cucumber,recall,cucumber recall,2023-06-19,2023-06-18,0,False
+cucumber,recall,cucumber recall,2023-06-26,2023-06-25,0,False
+cucumber,recall,cucumber recall,2023-07-03,2023-07-02,1,False
+cucumber,recall,cucumber recall,2023-07-10,2023-07-09,0,False
+cucumber,recall,cucumber recall,2023-07-17,2023-07-16,0,False
+cucumber,recall,cucumber recall,2023-07-24,2023-07-23,0,False
+cucumber,recall,cucumber recall,2023-07-31,2023-07-30,0,False
+cucumber,recall,cucumber recall,2023-08-07,2023-08-06,0,False
+cucumber,recall,cucumber recall,2023-08-14,2023-08-13,0,False
+cucumber,recall,cucumber recall,2023-08-21,2023-08-20,0,False
+cucumber,recall,cucumber recall,2023-08-28,2023-08-27,0,False
+cucumber,recall,cucumber recall,2023-09-04,2023-09-03,0,False
+cucumber,recall,cucumber recall,2023-09-11,2023-09-10,0,False
+cucumber,recall,cucumber recall,2023-09-18,2023-09-17,0,False
+cucumber,recall,cucumber recall,2023-09-25,2023-09-24,0,False
+cucumber,recall,cucumber recall,2023-10-02,2023-10-01,0,False
+cucumber,recall,cucumber recall,2023-10-09,2023-10-08,0,False
+cucumber,recall,cucumber recall,2023-10-16,2023-10-15,0,False
+cucumber,recall,cucumber recall,2023-10-23,2023-10-22,0,False
+cucumber,recall,cucumber recall,2023-10-30,2023-10-29,0,False
+cucumber,recall,cucumber recall,2023-11-06,2023-11-05,0,False
+cucumber,recall,cucumber recall,2023-11-13,2023-11-12,0,False
+cucumber,recall,cucumber recall,2023-11-20,2023-11-19,0,False
+cucumber,recall,cucumber recall,2023-11-27,2023-11-26,0,False
+cucumber,recall,cucumber recall,2023-12-04,2023-12-03,0,False
+cucumber,recall,cucumber recall,2023-12-11,2023-12-10,0,False
+cucumber,recall,cucumber recall,2023-12-18,2023-12-17,0,False
+cucumber,recall,cucumber recall,2023-12-25,2023-12-24,0,False
+cucumber,recall,cucumber recall,2024-01-01,2023-12-31,0,False
+cucumber,recall,cucumber recall,2024-01-08,2024-01-07,0,False
+cucumber,recall,cucumber recall,2024-01-15,2024-01-14,0,False
+cucumber,recall,cucumber recall,2024-01-22,2024-01-21,0,False
+cucumber,recall,cucumber recall,2024-01-29,2024-01-28,0,False
+cucumber,recall,cucumber recall,2024-02-05,2024-02-04,0,False
+cucumber,recall,cucumber recall,2024-02-12,2024-02-11,0,False
+cucumber,recall,cucumber recall,2024-02-19,2024-02-18,0,False
+cucumber,recall,cucumber recall,2024-02-26,2024-02-25,0,False
+cucumber,recall,cucumber recall,2024-03-04,2024-03-03,0,False
+cucumber,recall,cucumber recall,2024-03-11,2024-03-10,0,False
+cucumber,recall,cucumber recall,2024-03-18,2024-03-17,0,False
+cucumber,recall,cucumber recall,2024-03-25,2024-03-24,0,False
+cucumber,recall,cucumber recall,2024-04-01,2024-03-31,0,False
+cucumber,recall,cucumber recall,2024-04-08,2024-04-07,0,False
+cucumber,recall,cucumber recall,2024-04-15,2024-04-14,0,False
+cucumber,recall,cucumber recall,2024-04-22,2024-04-21,0,False
+cucumber,recall,cucumber recall,2024-04-29,2024-04-28,0,False
+cucumber,recall,cucumber recall,2024-05-06,2024-05-05,0,False
+cucumber,recall,cucumber recall,2024-05-13,2024-05-12,0,False
+cucumber,recall,cucumber recall,2024-05-20,2024-05-19,0,False
+cucumber,recall,cucumber recall,2024-05-27,2024-05-26,2,False
+cucumber,recall,cucumber recall,2024-06-03,2024-06-02,100,False
+cucumber,recall,cucumber recall,2024-06-10,2024-06-09,19,False
+cucumber,recall,cucumber recall,2024-06-17,2024-06-16,28,False
+cucumber,recall,cucumber recall,2024-06-24,2024-06-23,7,False
+cucumber,recall,cucumber recall,2024-07-01,2024-06-30,3,False
+cucumber,recall,cucumber recall,2024-07-08,2024-07-07,2,False
+cucumber,recall,cucumber recall,2024-07-15,2024-07-14,3,False
+cucumber,recall,cucumber recall,2024-07-22,2024-07-21,6,False
+cucumber,recall,cucumber recall,2024-07-29,2024-07-28,4,False
+cucumber,recall,cucumber recall,2024-08-05,2024-08-04,2,False
+cucumber,recall,cucumber recall,2024-08-12,2024-08-11,27,False
+cucumber,recall,cucumber recall,2024-08-19,2024-08-18,33,False
+cucumber,recall,cucumber recall,2024-08-26,2024-08-25,11,False
+cucumber,recall,cucumber recall,2024-09-02,2024-09-01,5,False
+cucumber,recall,cucumber recall,2024-09-09,2024-09-08,4,False
+cucumber,recall,cucumber recall,2024-09-16,2024-09-15,2,False
+cucumber,recall,cucumber recall,2024-09-23,2024-09-22,1,False
+cucumber,recall,cucumber recall,2024-09-30,2024-09-29,0,False
+cucumber,recall,cucumber recall,2024-10-07,2024-10-06,1,False
+cucumber,recall,cucumber recall,2024-10-14,2024-10-13,0,False
+cucumber,recall,cucumber recall,2024-10-21,2024-10-20,1,False
+cucumber,recall,cucumber recall,2024-10-28,2024-10-27,1,False
+cucumber,recall,cucumber recall,2024-11-04,2024-11-03,1,False
+cucumber,recall,cucumber recall,2024-11-11,2024-11-10,0,False
+cucumber,recall,cucumber recall,2024-11-18,2024-11-17,1,False
+cucumber,recall,cucumber recall,2024-11-25,2024-11-24,37,False
+cucumber,recall,cucumber recall,2024-12-02,2024-12-01,85,False
+cucumber,recall,cucumber recall,2024-12-09,2024-12-08,14,False
+cucumber,recall,cucumber recall,2024-12-16,2024-12-15,6,False
+cucumber,recall,cucumber recall,2024-12-23,2024-12-22,5,False
+cucumber,recall,cucumber recall,2024-12-30,2024-12-29,4,False

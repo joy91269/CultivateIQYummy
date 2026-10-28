@@ -3,7 +3,8 @@
 Submission for the **Cultivate IQ – NAFSI Track 3 (Supply Chain)** student data challenge (fall 2026).
 
 We turn Reddit discussion about four fresh produce products into weekly **price, supply and demand signals** and
-compare them with **USDA AMS terminal market wholesale prices**, 2022–2024.
+compare them with **USDA AMS terminal market wholesale prices**, 2022–2024, and check them against **Google search
+interest** in the US.
 
 | | |
 |---|---|
@@ -11,6 +12,7 @@ compare them with **USDA AMS terminal market wholesale prices**, 2022–2024.
 | Period | 1 January 2022 – 31 December 2024 |
 | Online data | Reddit posts and comments from 29 topical subreddits (consumers, grocery retailers, food service, growers, economy) and 9 city subreddits, plus r/news headlines, via the public Arctic Shift archive API: 1.5 M posts scanned, 92,424 texts kept |
 | Market benchmark | USDA AMS Specialty Crops terminal market reports, 10 cities, and AMS daily movement (shipment) reports (MyMarketNews MARS API) |
+| Search benchmark | Google Trends weekly US search interest for each product alone and with "price", "shortage" and "recall" (16 terms) |
 | Labels | 2,946 texts labelled price / supply / demand / other, one per Reddit thread (`labeling/`): 1,458 **gold** labels (two Claude annotators; every disagreement and a check of agreements decided by a person; a blind check by OpenAI Codex and ChatGPT with blind adjudication; 340 of them moved up from silver after a person or ChatGPT confirmed them; used for training and all accuracy figures) and 1,488 **silver** labels (the two Claude annotators agree; not used by the final model) |
 | Classifier | all-mpnet-base-v2 sentence embeddings + logistic regression trained on the gold labels; macro-F1 0.72 (95% CI 0.69–0.75), accuracy 0.82 in thread-grouped 5-fold CV (keyword rules, zero-shot BART, fine-tuned DistilRoBERTa and three sentence encoders with and without silver labels compared) |
 | Validation events | 8 documented events with dates and news sources (`config/events_reference.csv`) |
@@ -34,8 +36,14 @@ compare them with **USDA AMS terminal market wholesale prices**, 2022–2024.
   about the Wendy's E. coli outbreak, and most talk about the shortage itself came in mid-November, the week prices
   peaked. Across all weeks, talk and prices correlate weakly at any lag (|r| ≤ 0.29; 2 of 20 product–series pairs
   with rotation-test p < 0.05).
+- **Google searches show the same events.** Spikes in US searches for a product's shortage or recall fall near a
+  documented event 31% of the time (11 of 36) against 11% by chance (p = 0.0015), and cover seven of the eight
+  events. In six events, Reddit supply talk and these searches peaked in the same week. Both also spiked in the week
+  of 23 October 2023 for onions, when Gills Onions recalled diced onions over a Salmonella outbreak, an event not in
+  our list (`outputs/tables/trends_spike_event_enrichment.csv`, `event_search_peaks.csv`,
+  `reddit_google_spike_agreement.csv`).
 
-Details: report (`report/`), notebook sections 5 and 7–9, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
+Details: report (`report/`), notebook sections 5, 7–9 and 11, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
 `event_price_impact.csv`, `event_price_examples_usd.csv`, `lead_lag_crosscorrelation.csv`, `event_timing.csv`).
 
 ## Repository layout
@@ -44,6 +52,7 @@ Details: report (`report/`), notebook sections 5 and 7–9, tables in `outputs/t
 config/                     products, keyword dictionary, subreddits, AMS reports, documented events
 data_collection/            Task 1: dataset generation code (collect, clean, tag, summarise)
 data/raw/reddit/            raw Reddit snapshot (gzipped JSON Lines) and weekly post counts
+data/raw/google_trends/     Google Trends downloads, one file per search term
 data/processed/             event dataset, keyword dictionary, summary table, AMS prices, model outputs
 labeling/                   codebook, sample and review scripts, AI annotations, hand-reviewed labels
 analysis/                   Task 2: classifiers, price index, signals, timing (imported by the notebook)
@@ -116,6 +125,7 @@ or step by step:
 | 4. Comment trees | `python data_collection/collect_reddit.py trees` | ~2 h | `data/raw/reddit/comments/` |
 | 5. AMS prices | `python data_collection/collect_ams.py` | ~10 min | `data/processed/ams_terminal_prices.csv.gz` |
 | 5b. AMS shipments | `python data_collection/collect_ams_movement.py` | ~1 h | `data/processed/ams_shipments_weekly.csv` |
+| 5c. Google Trends | `python data_collection/collect_google_trends.py` | ~3 min | `data/processed/google_trends_weekly.csv` |
 | 6. Event dataset | `python data_collection/build_event_dataset.py` | ~1 min | `event_dataset.csv`, `summary_table.*`, `filter_log.csv` |
 | 7. Models | `python -m analysis.run_models all` | ~10 h | `outputs/tables/model_cv_*.csv`, `data/processed/classified_observations.csv.gz` |
 | 8. Notebook | `bash run_all.sh --analysis` | ~5 min | `outputs/` |
@@ -180,3 +190,4 @@ rather than 3.11, and one example text in `unusual_weeks.csv` depended on whethe
 
 See `docs/data_dictionary.md`. Reddit content is public and was accessed through the Arctic Shift research archive;
 user names are replaced by pseudonymous ids. USDA AMS Market News data are US Government works in the public domain.
+Search interest data: source Google Trends (https://trends.google.com).

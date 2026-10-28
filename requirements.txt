@@ -1,6 +1,7 @@
 # Python >= 3.12 (developed and tested with Python 3.13 on Linux, CPU only)
 requests==2.34.2
 PyYAML==6.0.3
+pytrends==4.9.2
 numpy==2.5.3
 pandas==3.0.5
 scipy==1.18.1

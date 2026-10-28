@@ -752,6 +752,120 @@ cand.to_csv(TAB / "undocumented_unusual_weeks.csv", index=False)
 display(cand[["product", "week_start", "volume", "unusual_series", "distinctive_words", "price_move_within_4wk", "top_text"]])
 """)
 
+md(r"""
+## 11. Cross-check with Google search interest (US)
+
+Google Trends gives weekly US search interest for four terms per product: the product name alone and with "price",
+"shortage" and "recall" (`data_collection/collect_google_trends.py`). Google scales each term to 0-100, so each week
+is compared only with the previous 8 weeks of the same term, as for the Reddit series (log scale, same floor).
+Searches are a second, independent public signal: if Reddit spikes mark real events, search spikes should fall near
+the same events. Shortage and recall searches together correspond to Reddit's supply label (recalls are supply).
+""")
+
+code(r"""
+gt = pd.read_csv("data/processed/google_trends_weekly.csv", parse_dates=["week_start"])
+gt = gt.sort_values(["product", "series", "week_start"])
+gt["z"] = gt.groupby(["product", "series"])["interest"].transform(
+    lambda s: S.trailing_z(np.log1p(s), 8, min_sd=0.2))
+gw = gt.pivot_table(index=["product", "week_start"], columns="series", values="z").add_prefix("gz_").reset_index()
+gw["gz_shortage_or_recall"] = gw[["gz_shortage", "gz_recall"]].max(axis=1)
+sg = sw.merge(gw, on=["product", "week_start"], how="left")   # same whole weeks and base rate as section 5
+
+rows = []
+for name in ["total", "price", "shortage", "recall", "shortage_or_recall"]:
+    for thr in (2, 3, 4):
+        hit = sg[sg[f"gz_{name}"] >= thr]
+        k = int((hit["near_event"] != "").sum())
+        found = sorted({e for v in hit["near_event"] if v for e in v.split(", ")})
+        rows.append({"search_terms": name, "z_at_least": thr, "weeks": len(hit), "near_documented_event": k,
+                     "share": round(k / len(hit), 2) if len(hit) else np.nan,
+                     "p_vs_base_rate": round(binomtest(k, len(hit), base, alternative="greater").pvalue, 4)
+                     if len(hit) else np.nan,
+                     "events_found": ", ".join(found)})
+trend_spikes = pd.DataFrame(rows)
+trend_spikes.to_csv(TAB / "trends_spike_event_enrichment.csv", index=False)
+print(f"base rate {base:.1%} of {len(sg)} product-weeks, as in section 5")
+display(trend_spikes)
+""")
+
+md(r"""
+**Do the two sources spike in the same weeks?** Every week in which Reddit supply talk or Google shortage/recall
+searches reach z ≥ 3, and whether the other source does too within one week.
+""")
+
+code(r"""
+def spikes_within(prod, week, col, weeks=1, thr=3):
+    m = sg[(sg["product"] == prod) & ((sg["week_start"] - week).abs() <= pd.Timedelta(weeks=weeks))]
+    return bool((m[col] >= thr).any())
+
+agree = sg[(sg["z_n_supply"] >= 3) | (sg["gz_shortage_or_recall"] >= 3)].copy()
+agree["reddit_supply_spike"] = agree["z_n_supply"] >= 3
+agree["google_spike"] = agree["gz_shortage_or_recall"] >= 3
+agree["reddit_within_1wk"] = [spikes_within(p, w, "z_n_supply") for p, w in zip(agree["product"], agree["week_start"])]
+agree["google_within_1wk"] = [spikes_within(p, w, "gz_shortage_or_recall")
+                              for p, w in zip(agree["product"], agree["week_start"])]
+agree["z_reddit_supply"] = agree["z_n_supply"].round(2)
+agree["z_google_shortage_or_recall"] = agree["gz_shortage_or_recall"].round(2)
+agree = agree[["product", "week_start", "near_event", "z_reddit_supply", "z_google_shortage_or_recall",
+               "reddit_supply_spike", "google_spike", "reddit_within_1wk", "google_within_1wk"]]
+agree = agree.sort_values(["product", "week_start"])
+agree.to_csv(TAB / "reddit_google_spike_agreement.csv", index=False, date_format="%Y-%m-%d")
+r_, g_ = agree[agree["reddit_supply_spike"]], agree[agree["google_spike"]]
+print(f"{len(r_)} Reddit supply spikes, {int(r_['google_within_1wk'].sum())} with a Google spike within a week; "
+      f"{len(g_)} Google shortage/recall spikes, {int(g_['reddit_within_1wk'].sum())} with a Reddit spike within a week")
+display(agree[agree["reddit_supply_spike"] & agree["google_within_1wk"]])
+""")
+
+md(r"""
+**When does each source peak around each event?** Within each event's window (±2 weeks), the week with the most
+Reddit supply texts and the week with the highest search interest for each term.
+""")
+
+code(r"""
+rows = []
+for e in events_ref.sort_values("start_date").itertuples():
+    lo, hi = e.start_date - pd.Timedelta(weeks=2), e.end_date + pd.Timedelta(weeks=2)
+    r = sig[(sig["product"] == e.product) & sig["week_start"].between(lo, hi)]
+    g = gt[(gt["product"] == e.product) & gt["week_start"].between(lo, hi)]
+    row = {"event_id": e.event_id, "product": e.product, "event_name": e.event_name,
+           "reddit_supply_peak": r.loc[r["n_supply"].idxmax(), "week_start"].date()}
+    for s_ in ["shortage", "recall", "price"]:
+        gs = g[g["series"] == s_]
+        row[f"google_{s_}_peak"] = gs.loc[gs["interest"].idxmax(), "week_start"].date() if gs["interest"].max() > 0 else ""
+    gaps = [abs((pd.Timestamp(row[f"google_{s_}_peak"]) - pd.Timestamp(row["reddit_supply_peak"])).days) // 7
+            for s_ in ["shortage", "recall"] if row[f"google_{s_}_peak"] != ""]
+    row["weeks_from_reddit_peak_to_nearest_google_shortage_or_recall_peak"] = min(gaps) if gaps else np.nan
+    w = sg[(sg["product"] == e.product) & sg["week_start"].between(lo, hi)]
+    row["google_shortage_or_recall_spike"] = bool((w["gz_shortage_or_recall"] >= 3).any())
+    row["reddit_supply_spike"] = bool((w["z_n_supply"] >= 3).any())
+    rows.append(row)
+peaks = pd.DataFrame(rows)
+peaks.to_csv(TAB / "event_search_peaks.csv", index=False)
+display(peaks)
+""")
+
+code(r"""
+fig, axes = plt.subplots(2, 2, figsize=(6.5, 3.1), sharex=True)
+for ax, prod in zip(axes.flat, PRODUCTS):
+    r = sig[sig["product"] == prod].set_index("week_start")["n_supply"]
+    ax.fill_between(r.index, 100 * r / r.max(), color=COLORS["supply"], alpha=0.3, lw=0, label="Reddit supply talk")
+    for s_, col in [("shortage", "0.1"), ("recall", "#c0392b")]:
+        g = gt[(gt["product"] == prod) & (gt["series"] == s_)].set_index("week_start")["interest"]
+        ax.plot(g.index, g, color=col, lw=0.8, label=f"Google searches: {s_}")
+    ax.set_ylim(0, 105)
+    ax.set_title(prod, loc="left", fontweight="bold")
+    shade(ax, prod)
+for ax in axes[:, 0]:
+    ax.set_ylabel("% of peak week")
+for ax in axes[-1]:
+    ax.xaxis.set_major_locator(mdates.YearLocator())
+    ax.xaxis.set_minor_locator(mdates.MonthLocator(bymonth=[4, 7, 10]))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+fig.legend(*axes[0, 0].get_legend_handles_labels(), ncol=3, frameon=False, loc="upper center",
+           bbox_to_anchor=(0.5, 1.0))
+fig.tight_layout(rect=(0, 0, 1, 0.93)); fig.savefig(FIG / "google_trends.png", dpi=300); plt.show()
+""")
+
 nb = nbf.v4.new_notebook()
 nb["cells"] = [nbf.v4.new_markdown_cell(s) if kind == "md" else nbf.v4.new_code_cell(s) for kind, s in CELLS]
 nb["metadata"]["kernelspec"] = {"name": "python3", "display_name": "Python 3", "language": "python"}
