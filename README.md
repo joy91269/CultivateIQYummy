@@ -185,13 +185,13 @@ Identity Center account, on an Apple-silicon Mac (macOS, CPU only).
    Do not change any code or data. When done, report the commands you ran, how long each took, and the full output of the last command."
    ```
 
-Kiro used Python 3.13.18 and finished in about 2 minutes:
+Kiro used Python 3.13.18 and finished in about 10 minutes:
 
 | Step | Time |
 |---|---|
-| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 34 s |
-| `bash run_all.sh --analysis` | 47 s |
-| `python scripts/check_reproduction.py` | under 1 s; 20 of 20 tables reproduce |
+| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 35 s |
+| `bash run_all.sh --analysis` (the forecast check takes most of it) | 8 min 25 s |
+| `python scripts/check_reproduction.py` | under 1 s; 23 of 23 tables reproduce |
 
 An earlier Kiro run found two problems, both fixed in commit `3464586`: the pinned numpy and scipy need Python 3.12
 rather than 3.11, and one example text in `unusual_weeks.csv` depended on whether pyarrow was installed.
