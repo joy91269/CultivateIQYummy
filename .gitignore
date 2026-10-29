@@ -15,3 +15,7 @@ labeling/collab_page.html
 report/report.md
 report/report.prepared.md
 report/report.pdf
+
+# forecast check: period copies and raw API responses are rebuilt by the scripts
+forecast_check/periods/
+forecast_check/data/raw_extra/

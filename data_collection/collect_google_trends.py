@@ -42,6 +42,8 @@ def fetch(py: TrendReq, term: str, timeframe: str, geo: str, tries: int = 6) -> 
             return df.reset_index().rename(columns={"date": "google_week_start", term: "interest",
                                                     "isPartial": "is_partial"})
         except Exception as e:  # pytrends raises its own errors for HTTP 429 and others
+            if "no data returned" in str(e) and attempt >= 1:
+                break  # search volume too low for Google to report
             wait = 60 * (attempt + 1)
             print(f"  {term}: {type(e).__name__}: {e}; retrying in {wait} s")
             time.sleep(wait)
@@ -64,7 +66,11 @@ def main() -> None:
             path = OUT / f"{term.replace(' ', '_')}.csv"
             if not path.exists():
                 print(f"downloading '{term}' ({gt['geo']}, {timeframe})")
-                fetch(py, term, timeframe, gt["geo"]).to_csv(path, index=False)
+                try:
+                    fetch(py, term, timeframe, gt["geo"]).to_csv(path, index=False)
+                except SystemExit as e:
+                    print(f"  skipped: {e}")
+                    continue
                 time.sleep(PAUSE_S)
             df = pd.read_csv(path, parse_dates=["google_week_start"])
             df.insert(0, "term", term)

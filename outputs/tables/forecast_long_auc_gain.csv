@@ -1,0 +1,17 @@
+features,model,AUC_gain,ci_low,ci_high,share_of_draws_no_gain
++shipments,logistic,-0.008215,-0.035105,0.019771,0.714
++shipments,boosting,0.000974,-0.040234,0.038326,0.467
++Reddit,logistic,-0.001002,-0.02176,0.020576,0.542
++Reddit,boosting,0.007359,-0.022241,0.042103,0.295
++Google,logistic,-0.005525,-0.015383,0.003689,0.89
++Google,boosting,0.013567,-0.017179,0.047899,0.203
++news,logistic,-0.008518,-0.029096,0.011157,0.777
++news,boosting,-0.009089,-0.045848,0.034862,0.644
++FDA recalls,logistic,-0.003145,-0.010423,0.002785,0.824
++FDA recalls,boosting,0.000358,-0.001148,0.00246,0.378
++Wikipedia,logistic,-0.004214,-0.011168,0.001399,0.915
++Wikipedia,boosting,-0.013491,-0.027138,0.001593,0.958
++all online,logistic,-0.02414,-0.05326,0.001682,0.97
++all online,boosting,-0.002817,-0.043923,0.046131,0.519
+everything,logistic,-0.027965,-0.064912,0.008861,0.939
+everything,boosting,-0.003279,-0.051191,0.047828,0.528

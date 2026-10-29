@@ -133,7 +133,11 @@ def collect_trees(session: requests.Session, cfg: dict, matcher: ProductMatcher,
             continue
         log(f"trees r/{sub}: {len(posts)} posts to fetch")
         for i, p in enumerate(posts):
-            payload = http_get_json(session, base, {"link_id": f"t3_{p['id']}", "limit": 9999})
+            try:
+                payload = http_get_json(session, base, {"link_id": f"t3_{p['id']}", "limit": 9999})
+            except RuntimeError as e:  # a few threads always return a server error: skip them
+                log(f"  skipped t3_{p['id']}: {e}")
+                continue
             rows = []
             for c, depth in flatten_tree(payload.get("data") or []):
                 prods = matcher.match(c.get("body"))

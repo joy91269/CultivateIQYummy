@@ -1,0 +1,55 @@
+horizon_weeks,features,model,n_test,R2_vs_no_change,direction_accuracy,p_better_than_price_only
+1,price only,ridge,1196,0.333112,0.626254,
+1,price only,boosting,1196,0.282406,0.663043,
+1,price only,forest,1196,0.319937,0.673077,
+1,+shipments,ridge,1196,0.332519,0.632943,0.532
+1,+shipments,boosting,1196,0.286609,0.668896,0.3365
+1,+shipments,forest,1196,0.318644,0.673077,0.5565
+1,+Reddit,ridge,1196,0.313923,0.620401,0.997
+1,+Reddit,boosting,1196,0.290639,0.650502,0.2505
+1,+Reddit,forest,1196,0.31228,0.661371,0.9475
+1,+Google,ridge,1196,0.328625,0.632107,0.7765
+1,+Google,boosting,1196,0.27988,0.657191,0.5955
+1,+Google,forest,1196,0.3195,0.677258,0.5175
+1,+news,ridge,1196,0.323828,0.622074,0.977
+1,+news,boosting,1196,0.289703,0.653846,0.291
+1,+news,forest,1196,0.320892,0.656355,0.4405
+1,+FDA recalls,ridge,1196,0.332355,0.630435,0.7395
+1,+FDA recalls,boosting,1196,0.282379,0.66388,0.5705
+1,+FDA recalls,forest,1196,0.324912,0.671405,0.0745
+1,+Wikipedia,ridge,1196,0.330025,0.630435,0.7875
+1,+Wikipedia,boosting,1196,0.280274,0.655518,0.6675
+1,+Wikipedia,forest,1196,0.317683,0.668896,0.812
+1,+all online,ridge,1196,0.293816,0.608696,1.0
+1,+all online,boosting,1196,0.282644,0.656355,0.5065
+1,+all online,forest,1196,0.308864,0.662207,0.9255
+1,everything,ridge,1196,0.297305,0.631271,1.0
+1,everything,boosting,1196,0.293745,0.645485,0.163
+1,everything,forest,1196,0.312953,0.675585,0.7965
+4,price only,ridge,1184,0.10249,0.550676,
+4,price only,boosting,1184,0.225498,0.629223,
+4,price only,forest,1184,0.199503,0.626689,
+4,+shipments,ridge,1184,0.103482,0.561655,0.435
+4,+shipments,boosting,1184,0.177362,0.619088,0.985
+4,+shipments,forest,1184,0.178555,0.617399,0.911
+4,+Reddit,ridge,1184,0.089696,0.557432,0.886
+4,+Reddit,boosting,1184,0.201304,0.611486,0.899
+4,+Reddit,forest,1184,0.190584,0.617399,0.79
+4,+Google,ridge,1184,0.100059,0.5625,0.6315
+4,+Google,boosting,1184,0.172192,0.619932,0.9965
+4,+Google,forest,1184,0.175572,0.613176,0.95
+4,+news,ridge,1184,0.094099,0.553209,0.8645
+4,+news,boosting,1184,0.215713,0.610642,0.7845
+4,+news,forest,1184,0.19367,0.61402,0.803
+4,+FDA recalls,ridge,1184,0.100953,0.555743,0.6225
+4,+FDA recalls,boosting,1184,0.220784,0.630068,0.775
+4,+FDA recalls,forest,1184,0.200166,0.621622,0.385
+4,+Wikipedia,ridge,1184,0.081753,0.559966,0.921
+4,+Wikipedia,boosting,1184,0.221791,0.621622,0.6765
+4,+Wikipedia,forest,1184,0.196266,0.627534,0.715
+4,+all online,ridge,1184,0.065413,0.583615,0.992
+4,+all online,boosting,1184,0.171603,0.613176,0.9815
+4,+all online,forest,1184,0.175025,0.619932,0.953
+4,everything,ridge,1184,0.069733,0.580236,0.9845
+4,everything,boosting,1184,0.152426,0.596284,0.9875
+4,everything,forest,1184,0.180216,0.61402,0.8875

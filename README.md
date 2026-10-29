@@ -47,6 +47,9 @@ interest** in the US.
   every event found with equal weights: 8 of 18 spikes lie near an event (44%, p = 0.0004), and more of them coincide
   with a Google spike. Chosen on 2022–2023, it finds the same 2024 events as equal weights. Weighting by upvotes
   finds fewer events. The main signal keeps equal weights (`outputs/tables/weighting_robustness.csv`).
+- **Online signals do not forecast national wholesale prices.** Over 2019–2026, adding Reddit, Google Trends, news
+  coverage, FDA recalls or Wikipedia pageviews to price history improves neither forecasts 1 and 4 weeks ahead nor
+  the warning of big price moves (`forecast_check/`, `outputs/tables/forecast_long_*.csv`).
 
 Details: report (`report/`), notebook sections 5, 7–9, 11 and 13, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
 `event_price_impact.csv`, `event_price_examples_usd.csv`, `lead_lag_crosscorrelation.csv`, `event_timing.csv`).
@@ -63,6 +66,7 @@ labeling/                   codebook, sample and review scripts, AI annotations,
 analysis/                   Task 2: classifiers, price index, signals, timing (imported by the notebook)
 notebooks/                  task2_signals_and_prices.ipynb (Task 2 analysis) and its builder script
 outputs/figures, tables/    figures and tables used in the report
+forecast_check/             forecast check, 2019–2026: do online signals help forecast prices? (its own README)
 docs/data_dictionary.md     data dictionary and provenance (source, access date, license, coverage, ...)
 report/                     PDF report
 ```
@@ -101,7 +105,7 @@ MARS_API_KEY=your-key
 
 ## Reproduce the results
 
-**Quick path (about 5 minutes):** all collected data and model outputs are committed, so the analysis can be rerun
+**Quick path (about 10 minutes):** all collected data and model outputs are committed, so the analysis can be rerun
 directly:
 
 ```bash
@@ -109,7 +113,8 @@ bash run_all.sh --analysis
 ```
 
 This rebuilds and executes `notebooks/task2_signals_and_prices.ipynb`, which writes every figure to
-`outputs/figures/` and every table to `outputs/tables/`.
+`outputs/figures/` and every table to `outputs/tables/`, and reruns the forecast check
+(`forecast_check/predict_long.py`, about 8 minutes).
 `python scripts/check_reproduction.py` then compares every table in `outputs/tables/` with the committed version
 and reports which ones reproduce.
 
@@ -133,7 +138,7 @@ or step by step:
 | 5c. Google Trends | `python data_collection/collect_google_trends.py` | ~3 min | `data/processed/google_trends_weekly.csv` |
 | 6. Event dataset | `python data_collection/build_event_dataset.py` | ~1 min | `event_dataset.csv`, `summary_table.*`, `filter_log.csv` |
 | 7. Models | `python -m analysis.run_models all` | ~10 h | `outputs/tables/model_cv_*.csv`, `data/processed/classified_observations.csv.gz` |
-| 8. Notebook | `bash run_all.sh --analysis` | ~5 min | `outputs/` |
+| 8. Notebook and forecast check | `bash run_all.sh --analysis` | ~10 min | `outputs/` |
 
 Notes
 - Collection steps are resumable: rerunning a command continues where it stopped.
@@ -196,3 +201,5 @@ rather than 3.11, and one example text in `unusual_weeks.csv` depended on whethe
 See `docs/data_dictionary.md`. Reddit content is public and was accessed through the Arctic Shift research archive;
 user names are replaced by pseudonymous ids. USDA AMS Market News data are US Government works in the public domain.
 Search interest data: source Google Trends (https://trends.google.com).
+Forecast check only: news coverage from the GDELT Project (https://www.gdeltproject.org), food recalls from openFDA
+(public domain) and Wikipedia pageviews from the Wikimedia Foundation (CC0).

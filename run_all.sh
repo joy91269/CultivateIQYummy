@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Full reproduction, from raw data to the notebook. Run from the repository root.
 #   bash run_all.sh            everything (about 20 hours on a 2-core CPU, mostly downloads and model inference)
-#   bash run_all.sh --analysis only the analysis on the committed data (about 5 minutes)
+#   bash run_all.sh --analysis only the analysis on the committed data (about 10 minutes)
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -23,4 +23,6 @@ fi
 python notebooks/build_notebook.py
 jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=1800 \
   notebooks/task2_signals_and_prices.ipynb
+# forecast check, 2019-2026, on the committed weekly panel (forecast_check/README.md)
+python forecast_check/predict_long.py
 echo "Done. Figures in outputs/figures, tables in outputs/tables."

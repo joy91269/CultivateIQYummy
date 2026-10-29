@@ -110,3 +110,27 @@ nationally. Line-level data: `data/processed/ams_movement_daily.csv.gz` (`ship_d
 - Google Trends values are relative within each term and based on a sample of searches, so a new download can
   differ slightly from the committed one. The shortage and recall terms have too few searches in most weeks and
   are 0 there; their spikes rest on weeks with unusual search activity.
+
+## 8. Forecast check, 2019–2026 (`forecast_check/`)
+
+The forecast check asks whether online signals help forecast national wholesale prices. It extends the main
+pipeline to 1 January 2019 – 30 September 2026 and adds three sources.
+
+| | GDELT DOC 2.0 (news) | openFDA food enforcement (recalls) | Wikipedia pageviews |
+|---|---|---|---|
+| What | Daily number of US English-language online news articles that name the product, alone and with shortage, recall or price words; their share of all US articles; average tone | Number of food recalls whose product description or reason names the product, by recall start date | Daily views of the English Wikipedia article on each product (users only) |
+| Access | `https://api.gdeltproject.org/api/v2/doc/doc` (no key) | `https://api.fda.gov/food/enforcement.json` (no key) | `https://wikimedia.org/api/rest_v1/metrics/pageviews` (no key) |
+| Access date | 28 October 2026 | 28 October 2026 | 28 October 2026 |
+| License / terms | Free and open for any use with citation of the GDELT Project | Public domain (CC0), US FDA | CC0, Wikimedia Foundation |
+| Coverage | 1 Jan 2019 – 30 Sep 2026, daily, 16 queries (`forecast_check/collect_extra.py`) | Same period | Same period |
+
+Reddit, AMS prices, AMS shipments and Google Trends for 2019–2021 and January 2025 – September 2026 were collected
+on 28 October 2026 with the main pipeline, unchanged except for the study period (`forecast_check/build_period.sh`).
+New texts were classified with the model trained on the 2022–2024 labels; no new labels were made. Google Trends
+values are scaled within each download, so the forecast check standardises them within each period.
+
+| File | Content |
+|---|---|
+| `forecast_check/data/extra_daily.csv` | One row per source, product, topic, measure and day: `source` (`gdelt`, `fda`, `wikipedia`), `product`, `topic`, `resolution`, `measure` (`TimelineVolRaw` = article count with `norm` = all US articles that day; `TimelineTone`; `recalls`; `views`), `date`, `value`, `norm` |
+| `forecast_check/data/panel_long.csv` | One row per product and week, 2019-01 to 2026-09: national log price index, shipments, the Reddit weekly signals of the main analysis, Google Trends (`g_segment` = download period), GDELT (`news_v_*`, `news_share_*`, `news_tone_*`), `fda_recalls`, `wiki_views` |
+| `outputs/tables/forecast_long_*.csv` | Forecast check results (`forecast_check/predict_long.py`) |
