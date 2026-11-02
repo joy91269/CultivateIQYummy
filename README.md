@@ -50,6 +50,7 @@ All results cover January 2019 – September 2026 and the 33 documented events.
   price moves (`forecast_check/`, `outputs/tables/forecast_long_*.csv`).
 
 Final submission report: **[`YummyReport.pdf`](YummyReport.pdf)** (LaTeX source: [`report/YummyReport.tex`](report/YummyReport.tex)).
+Video: **[`video/CultivateIQ_video.mp4`](video/CultivateIQ_video.mp4)** (about 8 minutes: approach, results and who would use the findings).
 
 Details: report (`report/`), notebook sections 5, 7–9, 11 and 13, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
 `event_price_impact.csv`, `event_price_examples_usd.csv`, `lead_lag_crosscorrelation.csv`, `event_timing.csv`).
@@ -72,6 +73,7 @@ forecast_check/             forecast check (do online signals help forecast pric
                             the 2019–2021 and 2025–2026 periods (its own README)
 docs/data_dictionary.md     data dictionary and provenance (source, access date, license, coverage, ...)
 YummyReport.pdf              final submission report
+video/CultivateIQ_video.mp4  recorded video
 report/YummyReport.tex       reproducible LaTeX report source (figures from outputs/figures/)
 ```
 
@@ -86,7 +88,8 @@ report/YummyReport.tex       reproducible LaTeX report source (figures from outp
 | Task 2 notebook | `notebooks/task2_signals_and_prices.ipynb` |
 | Environment | `requirements.txt` |
 | Data dictionary and provenance | `docs/data_dictionary.md` |
-| Report | `report/` |
+| Report | `YummyReport.pdf` (source in `report/`) |
+| Video | `video/CultivateIQ_video.mp4` |
 
 ## Setup
 
