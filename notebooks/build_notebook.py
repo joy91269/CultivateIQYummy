@@ -410,8 +410,8 @@ display(unusual.sort_values("max_abs_z", ascending=False).head(25)[
 
 md(r"""
 **Which spikes point to real events?** Many weeks are unusual in some series (five series, two directions), so a
-single unusual week means little. About 12% of product-weeks lie within two weeks of a documented event; if a kind
-of spike carried no information, about 12% of its weeks would too. For each series and threshold we count the
+single unusual week means little. About 20.8% of product-weeks lie within two weeks of a documented event; if a kind
+of spike carried no information, about 20.8% of its weeks would too. For each series and threshold we count the
 weeks at or above it (|z| for sentiment), how many lie near a documented event, and test that share against the
 base rate (one-sided binomial test).
 """)

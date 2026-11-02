@@ -13,7 +13,7 @@ compare them with **USDA AMS terminal market wholesale prices and shipments**, J
 | Online data | Reddit posts and comments from 29 topical subreddits (consumers, grocery retailers, food service, growers, economy) and 9 city subreddits, plus r/news headlines, via the public Arctic Shift archive API: 225,926 texts kept, 92,424 of them in 2022–2024 |
 | Market benchmark | USDA AMS Specialty Crops terminal market reports, 10 cities, and AMS daily movement (shipment) reports (MyMarketNews MARS API) |
 | Search benchmark | Google Trends weekly US search interest for each product alone and with "price", "shortage" and "recall" (16 terms) |
-| Labels | 2,946 texts from 2022–2024 labelled price / supply / demand / other, one per Reddit thread (`labeling/`): 1,458 **gold** labels (two Claude annotators; every disagreement and a check of agreements decided by a person; a blind check by OpenAI Codex and ChatGPT with blind adjudication; 340 of them moved up from silver after a person or ChatGPT confirmed them; used for training and all accuracy figures) and 1,488 **silver** labels (the two Claude annotators agree; not used by the final model) |
+| Labels | 2,946 texts from 2022–2024 labelled price / supply / demand / other, one per Reddit thread (`labeling/`): 1,458 **gold reference** labels (388 with documented team review/adjudication; the other 1,070 from AI agreement or ChatGPT confirmation; 1,118 independently checked by Codex and ChatGPT; used for training and accuracy figures) and 1,488 **silver** labels (the two Claude annotators agree; not used by the final model) |
 | Classifier | all-mpnet-base-v2 sentence embeddings + logistic regression trained on the gold labels and applied to every year; macro-F1 0.72 (95% CI 0.69–0.75), accuracy 0.82 in thread-grouped 5-fold CV (keyword rules, zero-shot BART, fine-tuned DistilRoBERTa and three sentence encoders with and without silver labels compared) |
 | Validation events | 33 documented events with dates and sources (`config/events_reference.csv`): every CDC multistate outbreak linked to one of the products, supply disruptions reported in trade press (import halts, border actions, tariffs, crop disease and weather), and national demand shocks (COVID-19 closures, a viral recipe) |
 
@@ -45,9 +45,11 @@ All results cover January 2019 – September 2026 and the 33 documented events.
   mostly in the same week (`lead_lag_crosscorrelation.csv`, `event_timing.csv`).
 - **Weighting texts by upvotes or comments finds no more events than counting each text once**
   (`weighting_robustness.csv`).
-- **Online signals do not forecast national wholesale prices.** Adding Reddit, Google Trends, news coverage, FDA
+- **Online signals did not improve forecasts in our tests.** Adding Reddit, Google Trends, news coverage, FDA
   recalls or Wikipedia pageviews to price history improves neither forecasts 1 and 4 weeks ahead nor the warning of big
   price moves (`forecast_check/`, `outputs/tables/forecast_long_*.csv`).
+
+Final submission report: **[`YummyReport.pdf`](YummyReport.pdf)** (LaTeX source: [`report/YummyReport.tex`](report/YummyReport.tex)).
 
 Details: report (`report/`), notebook sections 5, 7–9, 11 and 13, tables in `outputs/tables/` (`event_supply_vs_demand.csv`,
 `event_price_impact.csv`, `event_price_examples_usd.csv`, `lead_lag_crosscorrelation.csv`, `event_timing.csv`).
@@ -69,7 +71,8 @@ outputs/figures, tables/    figures and tables used in the report
 forecast_check/             forecast check (do online signals help forecast prices?) and the scripts that collect
                             the 2019–2021 and 2025–2026 periods (its own README)
 docs/data_dictionary.md     data dictionary and provenance (source, access date, license, coverage, ...)
-report/                     PDF report
+YummyReport.pdf              final submission report
+report/YummyReport.tex       reproducible LaTeX report source (figures from outputs/figures/)
 ```
 
 ## Deliverables

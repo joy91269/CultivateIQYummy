@@ -133,7 +133,7 @@ def main() -> None:
     ax.add_patch(FancyArrowPatch((cx, 1.07), (cx, 0.87), arrowstyle="-|>", mutation_scale=7, lw=0.7, color=MUTED))
     for dx in (-0.17, 0.17):
         person(ax, cx + dx, 0.55, 0.36)
-    note(ax, cx, 0.5, "team members decide\nevery disagreement", size=6.3, color=PERSON)
+    note(ax, cx, 0.5, "team members review\nselected labels", size=6.3, color=PERSON)
     note(ax, cx, 0.2, "1,458 labelled texts", size=6.3, color=INK, weight="bold")
 
     # 3 Classify
