@@ -154,7 +154,7 @@ def main() -> None:
     ax.text(cx - 0.3, 1.71, "supply talk", fontsize=5.6, color=SUPPLY, ha="center", va="bottom")
     ax.text(cx + 0.2, 1.71, "price", fontsize=5.6, color=MARKET, ha="center", va="bottom")
     note(ax, cx, 1.18, "weekly signals against prices\nand shipments, 33 events", color=INK)
-    for k, q in enumerate(["Supply shock or demand shift?", "Lead or lag?", "How large a price impact?"]):
+    for k, q in enumerate(["Supply shock or demand shift", "Lead or lag", "Size of the price impact"]):
         note(ax, x0 + 0.12, 0.8 - k * 0.19, "• " + q, size=6.3, color=INK, ha="left")
 
     for k in range(3):
