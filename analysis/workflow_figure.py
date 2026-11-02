@@ -118,7 +118,7 @@ def main() -> None:
     x0 = panel(ax, 0, "Collect")
     cx = x0 + PANEL_W / 2
     bubbles(ax, cx, 1.47, 0.42)
-    note(ax, cx, 1.42, "Reddit posts and comments:\n92,424 texts after cleaning", color=INK)
+    note(ax, cx, 1.42, "Reddit posts and comments,\n2019-2026: 225,926 texts\nafter cleaning", color=INK)
     price_chart(ax, cx, 0.5, 0.42)
     note(ax, cx, 0.44, "USDA wholesale prices and\nshipments, 10 markets", color=INK)
 
@@ -153,7 +153,7 @@ def main() -> None:
     signal_chart(ax, cx, 1.25, 0.6)
     ax.text(cx - 0.3, 1.71, "supply talk", fontsize=5.6, color=SUPPLY, ha="center", va="bottom")
     ax.text(cx + 0.2, 1.71, "price", fontsize=5.6, color=MARKET, ha="center", va="bottom")
-    note(ax, cx, 1.18, "weekly signals against prices\nand shipments, 8 events", color=INK)
+    note(ax, cx, 1.18, "weekly signals against prices\nand shipments, 33 events", color=INK)
     for k, q in enumerate(["Supply shock or demand shift?", "Lead or lag?", "How large a price impact?"]):
         note(ax, x0 + 0.12, 0.8 - k * 0.19, "• " + q, size=6.3, color=INK, ha="left")
 
