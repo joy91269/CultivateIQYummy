@@ -192,12 +192,12 @@ Identity Center account, on an Apple-silicon Mac (macOS, CPU only).
    Do not change any code or data. When done, report the commands you ran, how long each took, and the full output of the last command."
    ```
 
-Kiro used Python 3.13.18 and finished in about 10 minutes:
+Kiro reproduced commit `a0d2dc8` (the 2019–2026 analysis) with Python 3.13.18 in about 11 minutes:
 
 | Step | Time |
 |---|---|
-| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 35 s |
-| `bash run_all.sh --analysis` (the forecast check takes most of it) | 8 min 25 s |
+| `pip install -r requirements.txt` (pip cache already filled by an earlier run) | 36 s |
+| `bash run_all.sh --analysis` (the forecast check takes most of it) | 9 min 27 s |
 | `python scripts/check_reproduction.py` | under 1 s; 23 of 23 tables reproduce |
 
 An earlier Kiro run found two problems, both fixed in commit `3464586`: the pinned numpy and scipy need Python 3.12
