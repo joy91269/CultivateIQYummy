@@ -1,9 +1,34 @@
 event_id,product,event,mean_change_pct,peak_change_pct,same_window_other_years_pct,seasonally_adjusted_pct,n_comparison_years,market_range_pct,overlaps_with
-E1,avocado,US suspends Mexican avocado imports,17.1,22.8,1.5,15.4,2,12 to 33,
-E2,lettuce,INSV lettuce shortage in California,99.4,199.6,2.9,93.9,2,75 to 118,E8
-E3,cucumber,Salmonella outbreak linked to cucumbers,2.7,7.7,6.0,-3.1,2,-9 to 9,E4
-E4,cucumber,Viral cucumber salad trend,20.6,54.2,16.7,3.4,2,-2 to 30,E3
-E5,onion,McDonald's E. coli outbreak traced to slivered onions,-3.6,-4.7,-6.5,3.2,2,-8 to 1,
-E6,cucumber,SunFed cucumber recall (Salmonella Typhimurium),-12.7,-18.7,-6.3,-6.8,2,-25 to 22,
-E7,avocado,USDA pauses avocado inspections in Michoacan,25.4,29.9,19.3,5.1,2,5 to 45,
-E8,lettuce,Wendy's romaine E. coli outbreak,36.6,50.1,-8.1,48.7,2,27 to 48,E2
+E1,avocado,US-Mexico border closure threat,70.2,76.9,21.7,39.8,1,48 to 91,
+E2,lettuce,E. coli O157:H7 outbreak linked to Salinas romaine,-16.6,-32.6,,,0,-25 to -11,
+E3,avocado,COVID-19 restaurant closures and panic buying,5.1,18.4,31.9,-20.3,1,-3 to 18,
+E4,cucumber,COVID-19 restaurant closures and panic buying,-26.2,-38.4,-12.7,-15.4,3,-40 to -9,
+E5,lettuce,COVID-19 restaurant closures and panic buying,7.6,24.3,6.4,1.2,3,-5 to 17,
+E6,onion,COVID-19 restaurant closures and panic buying,1.7,4.3,12.9,-10.0,2,-4 to 11,
+E7,onion,Salmonella Newport outbreak linked to red onions (Thomson International),1.4,6.0,-11.2,14.2,2,-3 to 10,
+E8,lettuce,INSV and soil-disease lettuce shortage in Salinas,47.2,76.1,,,0,36 to 57,
+E9,onion,Pacific Northwest heat wave cuts onion crop,24.0,49.6,-12.1,41.1,1,9 to 42,E11
+E10,lettuce,Fall 2021 lettuce shortage at Salinas-Yuma transition,28.7,79.8,-0.8,29.7,1,18 to 36,
+E11,onion,Salmonella Oranienburg outbreak linked to onions from Chihuahua (ProSource),9.4,18.3,-10.2,21.8,2,1 to 18,E9
+E12,avocado,US suspends Mexican avocado imports,19.9,25.8,10.7,8.2,4,12 to 37,
+E13,avocado,Texas enhanced border truck inspections,14.8,21.0,12.0,2.5,3,9 to 19,E12
+E14,lettuce,Wendy's romaine E. coli outbreak,54.0,144.8,-9.0,69.3,2,41 to 67,E15
+E15,lettuce,INSV lettuce shortage in California,100.4,202.5,-9.3,120.8,1,74 to 120,E14
+E16,cucumber,Winter 2022-23 cucumber shortage,22.8,44.2,23.7,-0.8,3,-2 to 34,
+E17,lettuce,Spring 2023 lettuce shortage after Salinas flooding,27.5,62.4,-0.6,28.2,3,12 to 40,
+E18,onion,Salmonella Thompson outbreak linked to Gills Onions diced onions,-1.6,9.7,-6.9,5.6,2,-5 to 1,
+E19,cucumber,Salmonella outbreak linked to cucumbers,10.6,40.4,9.7,0.8,2,-2 to 19,E21
+E20,avocado,USDA pauses avocado inspections in Michoacan,24.4,29.0,14.1,9.1,3,8 to 45,
+E21,cucumber,Viral cucumber salad trend,20.8,52.6,12.1,7.7,3,5 to 30,E19
+E22,onion,McDonald's E. coli outbreak traced to slivered onions,-3.6,-4.4,-6.9,3.5,2,-8 to 4,
+E23,lettuce,Fall 2024 lettuce shortage at Salinas-desert transition,43.9,72.7,3.7,38.7,1,36 to 55,
+E24,cucumber,SunFed cucumber recall (Salmonella Typhimurium),-16.9,-23.2,10.3,-24.6,2,-33 to 7,
+E25,avocado,25% US tariff on Mexican imports,1.3,1.4,7.7,-5.9,3,-10 to 20,
+E26,cucumber,25% US tariff on Mexican and Canadian imports,5.2,5.4,-11.6,19.1,1,-8 to 14,E24
+E27,lettuce,25% US tariff on Mexican and Canadian imports,7.6,14.4,11.1,-3.2,3,-2 to 26,
+E28,onion,25% US tariff on Mexican and Canadian imports,-9.6,-12.1,-0.6,-9.0,3,-15 to -3,
+E29,cucumber,Salmonella Montevideo outbreak linked to Bedner Growers cucumbers,-2.9,9.5,4.8,-7.4,1,-16 to 5,
+E30,lettuce,Fall 2025 Salinas lettuce shortage,72.8,104.0,-5.6,82.9,1,53 to 98,
+E31,cucumber,Florida freeze cucumber shortage,26.8,48.8,-7.4,36.9,1,-2 to 41,
+E32,lettuce,Cyclospora outbreak linked to Taylor Farms de Mexico iceberg lettuce,-41.6,-48.6,-13.9,-32.2,2,-48 to -27,
+E33,avocado,US suspends avocado inspections in Michoacan,-10.6,-14.3,-12.2,1.8,1,-20 to -1,

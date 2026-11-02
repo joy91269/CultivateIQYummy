@@ -8,7 +8,7 @@
 | Access | Arctic Shift archive API, `https://arctic-shift.photon-reddit.com` (no key) | MyMarketNews MARS API, `https://marsapi.ams.usda.gov/services/v1.2/reports` (free API key) | Same API; the "Truck, Air and Boat Daily Movement" report of every Market News office (`config/ams_markets.yaml`) | Google Trends, `https://trends.google.com`, through the pytrends library (no key; Google offers no public API) |
 | Access date | 26–27 October 2026 | 26 October 2026 | 26 October 2026 | 27 October 2026 |
 | License / terms | Public Reddit content, archived by the Arctic Shift project for research; use is subject to the Reddit User Agreement and Public Content Policy. We keep only the text needed for the analysis and replace user names by pseudonymous ids. | US Government work, public domain; data from USDA AMS Market News. | Same as prices | Google Trends data, used under Google's terms of service with attribution (source: Google Trends) |
-| Coverage | 1 Jan 2022 – 31 Dec 2024; 29 topical subreddits (consumers, retailers, food service, growers, economy) and 9 city subreddits listed in `config/sources.yaml`, plus title search in r/news | 1 Jan 2022 – 31 Dec 2024; Atlanta, Baltimore, Boston, Chicago, Columbia SC, Detroit, Los Angeles, Miami, New York, Philadelphia | 1 Jan 2022 – 31 Dec 2024; all US shipping districts and ports of entry covered by Market News; some offices stopped reporting during the period | 1 Jan 2022 – 31 Dec 2024, 157 weeks, 16 search terms |
+| Coverage | 1 Jan 2019 – 30 Sep 2026 in three collection periods (see below); 29 topical subreddits (consumers, retailers, food service, growers, economy) and 9 city subreddits listed in `config/sources.yaml`, plus title search in r/news | 1 Jan 2019 – 30 Sep 2026; Atlanta, Baltimore, Boston, Chicago, Columbia SC, Detroit, Los Angeles, Miami, New York, Philadelphia | 1 Jan 2019 – 30 Sep 2026; all US shipping districts and ports of entry covered by Market News; some offices stopped reporting during the period | 1 Jan 2019 – 30 Sep 2026, 16 search terms, downloaded per collection period |
 | Update frequency | Archive updated continuously (scores settle ~36 h after posting); monthly dumps | Daily (business days) | Daily (business days), late additions flagged | Continuous; a 3-year request returns one value per week |
 | Geography | Mostly unknown; attached when the subreddit is a city or regional grocery chain, or one US state is named in the text | Market city | Shipping district or port of entry, origin country | United States as a whole |
 
@@ -92,7 +92,7 @@ nationally. Line-level data: `data/processed/ams_movement_daily.csv.gz` (`ship_d
 | `outputs/tables/label_prevalence.csv` | Label shares per product: labelled sample, model, and random samples with 95% intervals |
 | `data/processed/classified_observations.csv.gz` | Model label, class probabilities and sentiment for every observation |
 | `outputs/tables/*.csv` | Weekly signals, anomalies, price indices, lead/lag and event tables |
-| `config/events_reference.csv` | Documented market events with dates and news sources |
+| `config/events_reference.csv` | 33 documented market events, 2019–2026, with dates and sources. Chosen from CDC, FDA, USDA and trade-press reports before the analysis, by fixed rules: every CDC multistate outbreak whose identified source is one of the products (from the day the food was named or recalled to the day CDC declared the outbreak over, at most 10 weeks); supply disruptions widely reported in trade press (import halts, border actions, tariffs actually imposed, crop disease and weather); national demand shocks (COVID-19 closures, March–April 2020; a viral recipe trend). The fall 2026 Salinas lettuce shortage is left out because it runs past the end of the data. |
 | `data/processed/google_trends_weekly.csv` | One row per product, search term and week: `product`, `series` (`total`, `price`, `shortage`, `recall`), `term`, `week_start` (Monday), `google_week_start` (Sunday), `interest` (0–100 within the term), `is_partial` |
 | `data/raw/google_trends/<term>.csv` | Each term as downloaded |
 
@@ -126,8 +126,10 @@ pipeline to 1 January 2019 – 30 September 2026 and adds three sources.
 
 Reddit, AMS prices, AMS shipments and Google Trends for 2019–2021 and January 2025 – September 2026 were collected
 on 28 October 2026 with the main pipeline, unchanged except for the study period (`forecast_check/build_period.sh`).
-New texts were classified with the model trained on the 2022–2024 labels; no new labels were made. Google Trends
-values are scaled within each download, so the forecast check standardises them within each period.
+New texts were classified with the model trained on the 2022–2024 labels; no new labels were made. Their processed
+files sit in `data/processed_2019_2021/` and `data/processed_2025_2026/` (same names as `data/processed/`, the event
+dataset gzipped); the notebook and the forecast check read all three periods. Google Trends values are scaled within
+each download, so both standardise them within each period.
 
 | File | Content |
 |---|---|

@@ -1,9 +1,34 @@
 event_id,product,event_name,reddit_supply_peak,google_shortage_peak,google_recall_peak,google_price_peak,weeks_from_reddit_peak_to_nearest_google_shortage_or_recall_peak,google_shortage_or_recall_spike,reddit_supply_spike
-E1,avocado,US suspends Mexican avocado imports,2022-02-14,2022-02-14,2022-02-14,2022-02-14,0,True,True
-E8,lettuce,Wendy's romaine E. coli outbreak,2022-08-22,2022-09-12,2022-08-22,2022-09-19,0,True,False
-E2,lettuce,INSV lettuce shortage in California,2022-11-14,2022-11-14,2022-11-07,2022-11-07,0,True,True
-E3,cucumber,Salmonella outbreak linked to cucumbers,2024-06-03,,2024-06-03,2024-07-15,0,True,True
-E7,avocado,USDA pauses avocado inspections in Michoacan,2024-07-01,,2024-07-01,2024-06-17,0,False,True
-E4,cucumber,Viral cucumber salad trend,2024-07-01,2024-08-26,2024-08-19,2024-07-15,7,True,False
-E5,onion,McDonald's E. coli outbreak traced to slivered onions,2024-10-21,,2024-10-21,2024-11-11,0,True,True
-E6,cucumber,SunFed cucumber recall (Salmonella Typhimurium),2024-11-25,,2024-12-02,2024-12-30,1,True,True
+E1,avocado,US-Mexico border closure threat,2019-03-25,2019-04-01,2019-03-25,2019-04-01,0.0,True,True
+E2,lettuce,E. coli O157:H7 outbreak linked to Salinas romaine,2019-11-18,,2019-11-25,2019-11-25,1.0,False,False
+E3,avocado,COVID-19 restaurant closures and panic buying,2020-04-27,,,2020-03-09,,False,False
+E4,cucumber,COVID-19 restaurant closures and panic buying,2020-05-04,,,2020-05-04,,False,False
+E5,lettuce,COVID-19 restaurant closures and panic buying,2020-05-11,2020-03-30,2020-03-02,2020-05-11,6.0,True,True
+E6,onion,COVID-19 restaurant closures and panic buying,2020-03-09,2020-04-13,,2020-04-27,5.0,True,True
+E7,onion,Salmonella Newport outbreak linked to red onions (Thomson International),2020-08-03,2020-08-03,2020-08-03,2020-08-03,0.0,True,True
+E8,lettuce,INSV and soil-disease lettuce shortage in Salinas,2020-11-09,2020-10-26,2020-11-09,2020-09-07,0.0,True,True
+E9,onion,Pacific Northwest heat wave cuts onion crop,2021-10-18,2021-08-16,2021-10-18,2022-03-14,0.0,True,True
+E10,lettuce,Fall 2021 lettuce shortage at Salinas-Yuma transition,2021-10-25,2021-11-15,2021-12-20,2021-11-01,3.0,True,False
+E11,onion,Salmonella Oranienburg outbreak linked to onions from Chihuahua (ProSource),2021-10-18,2021-12-06,2021-10-18,2022-01-10,0.0,True,True
+E12,avocado,US suspends Mexican avocado imports,2022-02-14,2022-02-14,2022-02-14,2022-02-14,0.0,True,True
+E13,avocado,Texas enhanced border truck inspections,2022-04-18,2022-03-28,2022-04-25,2022-04-25,1.0,False,False
+E14,lettuce,Wendy's romaine E. coli outbreak,2022-10-10,2022-10-17,2022-08-22,2022-10-10,1.0,True,True
+E15,lettuce,INSV lettuce shortage in California,2022-11-14,2022-11-14,2022-11-07,2022-11-07,0.0,True,True
+E16,cucumber,Winter 2022-23 cucumber shortage,2022-12-12,,,2023-01-09,,False,False
+E17,lettuce,Spring 2023 lettuce shortage after Salinas flooding,2023-05-01,2023-04-24,2023-04-10,2023-04-24,1.0,True,True
+E18,onion,Salmonella Thompson outbreak linked to Gills Onions diced onions,2023-10-23,,2023-10-23,2023-11-06,0.0,True,True
+E19,cucumber,Salmonella outbreak linked to cucumbers,2024-06-03,2024-08-26,2024-06-03,2024-07-15,0.0,True,True
+E20,avocado,USDA pauses avocado inspections in Michoacan,2024-07-01,,2024-07-01,2024-06-17,0.0,False,True
+E21,cucumber,Viral cucumber salad trend,2024-07-01,2024-08-26,2024-08-19,2024-07-15,7.0,True,False
+E22,onion,McDonald's E. coli outbreak traced to slivered onions,2024-10-21,,2024-10-21,2024-11-11,0.0,True,True
+E23,lettuce,Fall 2024 lettuce shortage at Salinas-desert transition,2024-12-02,,2024-10-21,2024-12-16,6.0,False,True
+E24,cucumber,SunFed cucumber recall (Salmonella Typhimurium),2024-11-25,,2024-12-02,2024-12-30,1.0,True,True
+E25,avocado,25% US tariff on Mexican imports,2025-03-17,,,2025-03-03,,False,False
+E26,cucumber,25% US tariff on Mexican and Canadian imports,2025-03-10,,2025-03-10,2025-03-17,0.0,False,True
+E27,lettuce,25% US tariff on Mexican and Canadian imports,2025-03-10,,2025-02-24,2025-02-24,2.0,False,False
+E28,onion,25% US tariff on Mexican and Canadian imports,2025-02-24,,2025-03-03,2025-03-03,1.0,False,False
+E29,cucumber,Salmonella Montevideo outbreak linked to Bedner Growers cucumbers,2025-05-19,,2025-05-19,2025-07-14,0.0,True,True
+E30,lettuce,Fall 2025 Salinas lettuce shortage,2025-10-06,2025-11-03,2025-09-29,2025-11-10,1.0,True,False
+E31,cucumber,Florida freeze cucumber shortage,2026-05-11,,2026-05-04,2026-04-20,1.0,True,False
+E32,lettuce,Cyclospora outbreak linked to Taylor Farms de Mexico iceberg lettuce,2026-07-13,2026-07-20,2026-07-20,2026-07-20,1.0,True,True
+E33,avocado,US suspends avocado inspections in Michoacan,2026-07-27,,2026-08-10,2026-08-10,2.0,False,False

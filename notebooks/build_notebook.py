@@ -21,9 +21,10 @@ def code(s: str) -> None:
 md(r"""
 # Task 2 — Classify market signals and compare them with USDA AMS prices
 
-**Products:** avocados, lettuce (iceberg/romaine), onions, cucumbers · **Period:** 2022-01-01 to 2024-12-31
-**Inputs:** `data/processed/event_dataset.csv` (Task 1), `labeling/labels.csv` (hand-reviewed sample),
-`data/processed/ams_terminal_prices.csv.gz` (USDA AMS terminal markets).
+**Products:** avocados, lettuce (iceberg/romaine), onions, cucumbers · **Period:** 2019-01-01 to 2026-09-30
+**Inputs:** the event dataset of Task 1 and the USDA AMS and Google Trends data in three collection periods,
+`data/processed_2019_2021/`, `data/processed/` (2022–2024) and `data/processed_2025_2026/`, all built by the same
+pipeline; `labeling/labels.csv` (hand-reviewed sample, 2022–2024).
 
 Steps in this notebook
 1. Labelled sample and agreement between the AI first pass and the human review
@@ -81,7 +82,18 @@ for _f in [*Path("/usr/share/texmf/fonts/opentype/public/tex-gyre").glob("texgyr
 FIG, TAB = ROOT / "outputs/figures", ROOT / "outputs/tables"
 FIG.mkdir(parents=True, exist_ok=True)
 TAB.mkdir(parents=True, exist_ok=True)
-START, END = "2022-01-01", "2025-01-01"
+START, END = "2019-01-01", "2026-10-01"
+WHOLE_WEEKS = ("2019-01-07", "2026-09-21")   # first and last Monday whose week lies inside the study period
+# three collection periods built by the same pipeline (forecast_check/build_period.sh for the outer two)
+PERIODS = [Path("data/processed_2019_2021"), Path("data/processed"), Path("data/processed_2025_2026")]
+
+def read_periods(name, **kw):
+    # one processed file over the three collection periods; `period` is 0, 1, 2
+    frames = []
+    for i, d in enumerate(PERIODS):
+        f = d / name if (d / name).exists() else d / (name + ".gz")
+        frames.append(pd.read_csv(f, low_memory=False, **kw).assign(period=i))
+    return pd.concat(frames, ignore_index=True)
 PRODUCTS = ["avocado", "lettuce", "onion", "cucumber"]
 COLORS = {"price": "#b4690e", "supply": "#1f6fb2", "demand": "#9a3d8f", "other": "#9aa3a0"}
 RECOMPUTE_MODELS = False
@@ -245,8 +257,8 @@ Sentiment is `P(positive) − P(negative)` from `cardiffnlp/twitter-roberta-base
 """)
 
 code(r"""
-ev = pd.read_csv("data/processed/event_dataset.csv", low_memory=False, parse_dates=["week_start", "date"])
-cls = pd.read_csv("data/processed/classified_observations.csv.gz")
+ev = read_periods("event_dataset.csv", parse_dates=["week_start", "date"]).drop_duplicates("obs_id")
+cls = read_periods("classified_observations.csv.gz").drop(columns="period").drop_duplicates("obs_id")
 obs = ev.merge(cls[["obs_id", "pred_label", "human_label", "sentiment"] + [f"p_{l}" for l in LABELS]],
                on="obs_id", how="left")
 has_human = obs["human_label"].isin(LABELS)          # labelled sample: the human label replaces the prediction
@@ -275,15 +287,17 @@ price / supply / demand observations. Grey bands are the documented events in `c
 """)
 
 code(r"""
-post_counts = pd.read_csv("data/processed/weekly_post_counts.csv", parse_dates=["week_start"])
+post_counts = read_periods("weekly_post_counts.csv", parse_dates=["week_start"])
 sig = S.weekly_signals(obs, post_counts, START, END)
 sig = S.add_anomalies(sig)
 sig.to_csv(TAB / "weekly_signals.csv", index=False)
 
-def shade(ax, prod):
+def shade(ax, prod, label=False):
     prev, level = None, 0
     for e in events_ref[events_ref["product"] == prod].sort_values("start_date").itertuples():
         ax.axvspan(e.start_date, e.end_date, color="0.9", zorder=0, lw=0)
+        if not label:   # eight-year panels: bands only, the ids would overlap
+            continue
         level = level + 1 if prev is not None and (e.start_date - prev).days < 45 else 0   # stagger close labels
         ax.text(e.start_date, 1 - 0.13 * level, f" {e.event_id}", transform=ax.get_xaxis_transform(), va="top",
                 fontsize=6.5, color="0.35")
@@ -292,8 +306,16 @@ def shade(ax, prod):
 fig, axes = plt.subplots(2, 2, figsize=(6.5, 3.1), sharex=True)
 for ax, prod in zip(axes.flat, PRODUCTS):
     g = sig[sig["product"] == prod].set_index("week_start")
+    vals = g[["n_price", "n_supply", "n_demand"]]
+    p997, mx = np.nanpercentile(vals.to_numpy(), 99.7), np.nanmax(vals.to_numpy())
+    cap = 1.5 * p997 if mx > 3 * p997 else mx   # one outbreak week would flatten the rest of the panel
     for lab_ in ["price", "supply", "demand"]:
-        ax.plot(g.index, g[f"n_{lab_}"], color=COLORS[lab_], lw=0.9, label=lab_)
+        ax.plot(g.index, g[f"n_{lab_}"].clip(upper=cap), color=COLORS[lab_], lw=0.6, label=lab_)
+    if mx > cap:
+        w = vals.max(axis=1).idxmax()
+        ax.annotate(f"peak {mx:.0f}", (w, cap), xytext=(-3, -1), textcoords="offset points", fontsize=6.5,
+                    ha="right", va="top", color="0.3")
+    ax.set_ylim(0, cap * 1.05)
     ax.set_title(prod, loc="left", fontweight="bold")
     shade(ax, prod)
 for ax in axes[:, 0]:
@@ -396,7 +418,7 @@ base rate (one-sided binomial test).
 
 code(r"""
 from scipy.stats import binomtest
-sw = sig[(sig["week_start"] >= "2022-01-03") & (sig["week_start"] <= "2024-12-23")].copy()   # whole weeks only
+sw = sig[sig["week_start"].between(*WHOLE_WEEKS)].copy()   # whole weeks only
 def near_event(prod, w):
     m = events_ref[(events_ref["product"] == prod) & (events_ref["start_date"] - pd.Timedelta(weeks=2) <= w)
                    & (events_ref["end_date"] + pd.Timedelta(weeks=2) >= w)]
@@ -424,13 +446,13 @@ display(spikes)
 md(r"""
 ## 6. USDA AMS terminal market prices
 
-`analysis/prices.py` turns ~457,000 reported price lines into a fixed-composition weekly price index per product
-(two-way fixed effects: item series × week; an item series is one market × commodity × variety × package × size ×
-origin × organic combination). Index mean over 2022–2024 ≈ 100.
+`analysis/prices.py` turns the reported price lines of all three periods into one fixed-composition weekly price
+index per product (two-way fixed effects: item series × week; an item series is one market × commodity × variety ×
+package × size × origin × organic combination). Index mean over 2019–2026 ≈ 100.
 """)
 
 code(r"""
-prices = P.load_prices("data/processed/ams_terminal_prices.csv.gz")
+prices = pd.concat([P.load_prices(d / "ams_terminal_prices.csv.gz") for d in PERIODS], ignore_index=True).drop_duplicates()
 widx = S.price_anomalies(P.weekly_indices(prices))
 widx.to_csv(TAB / "price_index_weekly.csv", index=False)
 nat = widx[widx["market"] == "ALL"]
@@ -457,12 +479,17 @@ give the pounds of each commodity shipped from US production districts and impor
 """)
 
 code(r"""
-ship = pd.read_csv("data/processed/ams_shipments_weekly.csv", parse_dates=["week_start"])
-ship = ship[(ship["week_start"] >= "2022-01-03") & (ship["week_start"] <= "2024-12-23")]   # whole weeks only
+# weekly sums from the daily lines, so that weeks spanning two collection periods are complete
+mv = read_periods("ams_movement_daily.csv.gz", parse_dates=["ship_date"]).drop(columns="period").drop_duplicates()
+mv["week_start"] = mv["ship_date"] - pd.to_timedelta(mv["ship_date"].dt.weekday, unit="D")
+ship = (mv.pivot_table(index=["product", "week_start"], columns="import", values="pounds", aggfunc="sum", fill_value=0)
+          .rename(columns={False: "domestic_lb", True: "import_lb"}).reset_index())
+ship["total_lb"] = ship["domestic_lb"] + ship["import_lb"]
+ship = ship[ship["week_start"].between(*WHOLE_WEEKS)]   # whole weeks only
 ship["log_lb"] = np.log(ship["total_lb"].where(ship["total_lb"] > 0))
 ship_log = {p: g.set_index("week_start")["log_lb"] for p, g in ship.groupby("product")}
 print(ship.groupby("product")[["domestic_lb", "import_lb"]].sum().div(1e9).round(2).rename(
-    columns=lambda c: c.replace("_lb", " (billion lb, 2022-2024)")))
+    columns=lambda c: c.replace("_lb", " (billion lb, 2019-2026)")))
 
 fig, axes = plt.subplots(4, 1, figsize=(10, 7.5), sharex=True)
 for ax, prod in zip(axes, PRODUCTS):
@@ -589,8 +616,8 @@ windows that overlap another documented event of the product are not used as com
 Per-market ranges show how uniform the move was across the 10 terminal markets.
 
 `overlaps_with` lists other documented events of the same product whose dates fall inside the 8-week baseline or the
-response window. Their effects cannot be separated: in 2022 the Wendy's romaine outbreak (E8) runs into the start of
-the INSV lettuce shortage (E2), and in 2024 the cucumber Salmonella outbreak (E3) runs into the viral salad trend (E4).
+response window. Their effects cannot be separated: in 2022 the Wendy's romaine outbreak (E14) runs into the start of
+the INSV lettuce shortage (E15), and in 2024 the cucumber Salmonella outbreak (E19) runs into the viral salad trend (E21).
 """)
 
 code(r"""
@@ -660,7 +687,7 @@ We first read each event from the market data alone, then ask whether the online
 **Market reading.** For the price index and for weekly national shipments we take the seasonally adjusted change
 over the response window (section 8: mean during the window vs. the 8 weeks before, minus the same calendar change
 in the other years). To judge whether a change is large we compare it with the same statistic for every other window
-of the same length in 2022–2024 that does not overlap a documented event of the product (a placebo distribution),
+of the same length in 2019–2026 that does not overlap a documented event of the product (a placebo distribution),
 and report its percentile.
 
 * Price: percentile ≥ 90 = unusual rise, ≤ 10 = unusual fall.
@@ -690,6 +717,7 @@ def wk(d):   # Monday of the week containing d
     d = pd.Timestamp(d); return d - pd.Timedelta(days=d.weekday())
 
 fmt = lambda t: f"{t[0]:.2f} ({t[1]:.2f}-{t[2]:.2f})"
+rnd = lambda x, d=None: (round(x, d) if d else round(x)) if pd.notna(x) else np.nan   # NaN: no usable comparison year
 verdict = []
 for e in events_ref.itertuples():
     s0, s1 = wk(e.start_date), wk(e.end_date)
@@ -706,6 +734,8 @@ for e in events_ref.itertuples():
     market = ("supply shock" if p_up and q_dir == "fell" else "demand increase" if p_up else
               "supply increase" if p_down and q_dir == "rose" else "demand decrease" if p_down else
               "no clear price effect")
+    if pd.isna(p_pct) or pd.isna(q_pct):
+        market = "no comparison year"
     # online reading
     pre = counts(e.product, s0 - pd.Timedelta(weeks=w_pre), s0 - pd.Timedelta(days=1))
     dur = counts(e.product, s0, s1)
@@ -719,8 +749,8 @@ for e in events_ref.itertuples():
     imp = impact.set_index("event_id").loc[e.event_id]
     verdict.append({"event_id": e.event_id, "product": e.product, "event": e.event_name,
                     "price_change_pct": imp["mean_change_pct"], "price_seasonally_adjusted_pct": imp[sa],
-                    "price_percentile": round(p_pct), "shipments_change_pct": round(q["mean_change_pct"], 1),
-                    "shipments_seasonally_adjusted_pct": round(q[sa], 1), "shipments_percentile": round(q_pct),
+                    "price_percentile": rnd(p_pct), "shipments_change_pct": rnd(q["mean_change_pct"], 1),
+                    "shipments_seasonally_adjusted_pct": rnd(q[sa], 1), "shipments_percentile": rnd(q_pct),
                     "shipments": q_dir,
                     "market_reading": market,
                     "supply_talk_rate_ratio": fmt(rr["supply"]), "demand_talk_rate_ratio": fmt(rr["demand"]),
@@ -767,9 +797,11 @@ the same events. Shortage and recall searches together correspond to Reddit's su
 """)
 
 code(r"""
-gt = pd.read_csv("data/processed/google_trends_weekly.csv", parse_dates=["week_start"])
+# Google scales each download window on its own: z-scores within each collection period
+gt = read_periods("google_trends_weekly.csv", parse_dates=["week_start"])
+gt = gt.sort_values("period").drop_duplicates(["product", "series", "week_start"], keep="last")
 gt = gt.sort_values(["product", "series", "week_start"])
-gt["z"] = gt.groupby(["product", "series"])["interest"].transform(
+gt["z"] = gt.groupby(["product", "series", "period"])["interest"].transform(
     lambda s: S.trailing_z(np.log1p(s), 8, min_sd=0.2))
 gw = gt.pivot_table(index=["product", "week_start"], columns="series", values="z").add_prefix("gz_").reset_index()
 gw["gz_shortage_or_recall"] = gw[["gz_shortage", "gz_recall"]].max(axis=1)
@@ -873,7 +905,7 @@ fig.tight_layout(rect=(0, 0, 1, 0.93)); fig.savefig(FIG / "google_trends.png", d
 md(r"""
 ## 12. Two supply shocks up close (report Figure 1)
 
-The avocado import halt (E1) and the lettuce shortage (E2): weekly Reddit supply talk (expected counts, section 3)
+The avocado import halt (E12) and the lettuce shortage (E15): weekly Reddit supply talk (expected counts, section 3)
 above the national price index and weekly shipments, each scaled to 100 over the weeks before the event. The quotes
 are Reddit texts of the event dataset (`event_dataset.csv`), shortened with an ellipsis.
 """)
@@ -881,11 +913,11 @@ are Reddit texts of the event dataset (`event_dataset.csv`), shortened with an e
 code(r"""
 STORIES = [  # product, title, weeks shown, end of the baseline, events shaded, quotes (date, text, text position)
     dict(product="avocado", title="(a) Avocados: a sudden import halt", start="2022-01-03", end="2022-03-28",
-         base_end="2022-02-07", events=["E1"],
+         base_end="2022-02-07", events=["E12"],
          quotes=[("2022-02-13", "“US suspends Mexican avocado\nimports on eve of Super Bowl”\nr/news, 13 Feb",
                   ("2022-01-03", 0.97, "left"))]),
     dict(product="lettuce", title="(b) Lettuce: a slow virus outbreak", start="2022-06-20", end="2022-12-26",
-         base_end="2022-08-15", events=["E2"],
+         base_end="2022-08-15", events=["E15"],
          quotes=[("2022-08-18", "“a plant disease as well as a\nsoil fungus … affecting romaine”\n18 Aug",
                   ("2022-06-20", 0.97, "left")),
                  ("2022-08-23", "Wendy’s E. coli\noutbreak", ("2022-08-29", 0.55, "left")),
@@ -931,8 +963,7 @@ So far every text counts once. Here each text's supply probability is multiplied
 (`score`) or, for posts, its number of comments (`num_comments`; comments themselves get no comment count), and the
 spike test of section 5 (z ≥ 3) is rerun on the weighted supply series. Three checks:
 - **All weeks:** spikes near a documented event, against the base rate.
-- **Time split:** pick the weighting on 2022–2023 (events E1, E8, E2), then test it on 2024 (E3–E7), which played no
-  part in the choice.
+- **Time split:** pick the weighting on 2019–2022, then test it on 2023–2026, which played no part in the choice.
 - **Google agreement:** share of Reddit supply spikes with a Google shortage/recall spike within one week (section 11).
   This check does not use the list of documented events.
 """)
@@ -952,6 +983,7 @@ WEIGHTS = {  # name -> weight per text (score = upvotes, num_comments = comments
 up = obs["score"].clip(lower=0).fillna(0).to_numpy()
 nc = obs["num_comments"].clip(lower=0).fillna(0).to_numpy()
 grid = S.week_grid(START, END)
+SPLIT = "2023-01-01"   # choose the weighting on 2019-2022, test it on 2023-2026
 
 def weighted_supply_z(w):
     o = obs.assign(ws=obs["p_supply"] * w)
@@ -983,22 +1015,23 @@ for name, f in WEIGHTS.items():
     d = weighted_supply_z(f(up, nc)).merge(sw[["product", "week_start", "near_event"]], on=["product", "week_start"])
     zs[name] = d
     n, k, p, found = enrichment(d)
-    n1, k1, p1, f1 = enrichment(d[d["week_start"] < "2024-01-01"])
-    n2, k2, p2, f2 = enrichment(d[d["week_start"] >= "2024-01-01"])
+    n1, k1, p1, f1 = enrichment(d[d["week_start"] < SPLIT])
+    n2, k2, p2, f2 = enrichment(d[d["week_start"] >= SPLIT])
     g = google_agreement(d)
     rows.append({"weighting": name, "spikes": n, "near_event": k, "share": round(k / n, 2), "p": p, "events_found": found,
-                 "spikes_2022_23": n1, "near_2022_23": k1, "share_2022_23": round(k1 / n1, 2), "p_2022_23": p1,
-                 "spikes_2024": n2, "near_2024": k2, "share_2024": round(k2 / n2, 2), "p_2024": p2,
-                 "events_found_2024": f2, "with_google_spike": g, "share_with_google": round(g / n, 2)})
+                 "spikes_2019_22": n1, "near_2019_22": k1, "share_2019_22": round(k1 / n1, 2) if n1 else np.nan,
+                 "p_2019_22": p1, "spikes_2023_26": n2, "near_2023_26": k2,
+                 "share_2023_26": round(k2 / n2, 2) if n2 else np.nan, "p_2023_26": p2, "events_found_2023_26": f2, "with_google_spike": g, "share_with_google": round(g / n, 2)})
 wtab = pd.DataFrame(rows)
 wtab.to_csv(TAB / "weighting_robustness.csv", index=False)
 display(wtab)
 
-best = wtab.iloc[1:].sort_values(["share_2022_23", "p_2022_23"], ascending=[False, True]).iloc[0]
+best = wtab.iloc[1:].sort_values(["share_2019_22", "p_2019_22"], ascending=[False, True]).iloc[0]
 eq = wtab.iloc[0]
-print(f"Chosen on 2022-23: {best['weighting']} ({best['near_2022_23']}/{best['spikes_2022_23']} vs "
-      f"{eq['near_2022_23']}/{eq['spikes_2022_23']} for equal weights). "
-      f"Held-out 2024: {best['near_2024']}/{best['spikes_2024']} vs {eq['near_2024']}/{eq['spikes_2024']}.")
+print(f"Chosen on 2019-22: {best['weighting']} ({best['near_2019_22']}/{best['spikes_2019_22']} vs "
+      f"{eq['near_2019_22']}/{eq['spikes_2019_22']} for equal weights). "
+      f"Held-out 2023-26: {best['near_2023_26']}/{best['spikes_2023_26']} vs "
+      f"{eq['near_2023_26']}/{eq['spikes_2023_26']}.")
 
 # which spike weeks the chosen weighting removes or adds, with the most supply-like text of the week
 a, b = zs[eq["weighting"]], zs[best["weighting"]]

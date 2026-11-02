@@ -1,9 +1,34 @@
 event_id,item,median_before_usd,median_during_usd,highest_weekly_median_usd,price_lines_before_during
-E1,Avocados HASS cartons 2 layer 48s,59.0,72.0,77.5,515 / 227
-E2,"Lettuce, Iceberg cartons 24s film wrapped",30.0,68.0,96.0,834 / 1891
-E3,Cucumbers 1 1/9 bushel cartons medium,22.0,20.0,22.0,548 / 995
-E4,Cucumbers 1 1/9 bushel cartons medium,20.0,22.0,32.0,602 / 1185
-E5,"Onions, Dry YELLOW 50 lb sacks jumbo",19.0,18.0,19.0,1374 / 1300
-E6,Cucumbers 1 1/9 bushel cartons medium,23.5,22.0,25.0,531 / 253
-E7,Avocados HASS cartons 2 layer 48s,55.0,71.0,76.5,638 / 357
-E8,"Lettuce, Iceberg cartons 24s film wrapped",26.0,37.0,39.5,869 / 634
+E1,Avocados HASS cartons 2 layer 48s,30.0,60.0,63.0,639 / 241
+E2,"Lettuce, Iceberg cartons 24s film wrapped",25.0,25.5,37.0,810 / 918
+E3,Avocados HASS cartons 2 layer 48s,47.12,49.62,59.0,814 / 863
+E4,Cucumbers 1 1/9 bushel cartons medium,28.25,19.0,38.0,960 / 1259
+E5,"Lettuce, Iceberg cartons 24s film wrapped",17.5,19.0,25.0,725 / 951
+E6,"Onions, Dry YELLOW 50 lb sacks jumbo",15.62,14.0,15.0,1356 / 1703
+E7,"Onions, Dry YELLOW 50 lb sacks jumbo",16.5,16.5,18.5,1382 / 2008
+E8,"Lettuce, Iceberg cartons 24s film wrapped",21.0,33.0,45.0,897 / 1519
+E9,"Onions, Dry YELLOW 50 lb sacks jumbo",18.5,25.0,32.0,1492 / 6545
+E10,"Lettuce, Iceberg cartons 24s film wrapped",28.0,34.0,62.25,792 / 1030
+E11,"Onions, Dry YELLOW 50 lb sacks jumbo",21.0,25.0,27.0,1649 / 2316
+E12,Avocados HASS cartons 2 layer 48s,58.5,72.0,77.5,668 / 227
+E13,Avocados HASS cartons 2 layer 48s,67.5,81.5,88.0,612 / 224
+E14,"Lettuce, Iceberg cartons 24s film wrapped",26.0,39.0,72.0,869 / 902
+E15,"Lettuce, Iceberg cartons 24s film wrapped",30.0,68.0,96.0,834 / 1891
+E16,Cucumbers 1 1/9 bushel cartons medium,25.5,29.0,37.0,860 / 1005
+E17,"Lettuce, Iceberg cartons 24s film wrapped",23.0,31.5,41.0,883 / 1249
+E18,"Onions, Dry YELLOW 50 lb sacks jumbo",19.0,17.5,23.0,1382 / 1247
+E19,Cucumbers 1 1/9 bushel cartons medium,21.25,20.0,31.0,504 / 1204
+E20,Avocados HASS cartons 2 layer 48s,55.0,71.0,76.5,638 / 357
+E21,Cucumbers 1 1/9 bushel cartons medium,20.0,22.0,32.0,600 / 1178
+E22,"Onions, Dry YELLOW 50 lb sacks jumbo",19.0,18.0,19.0,1374 / 1300
+E23,"Lettuce, Iceberg cartons 24s film wrapped",22.5,36.25,51.0,630 / 631
+E24,Cucumbers 1 1/9 bushel cartons medium,23.5,21.0,25.0,530 / 407
+E25,Avocados HASS cartons 2 layer 48s,79.5,80.0,80.5,586 / 204
+E26,Cucumbers 1 1/9 bushel cartons medium,21.0,25.0,27.5,461 / 136
+E27,"Lettuce, Iceberg cartons 24s film wrapped",21.5,21.0,25.5,573 / 213
+E28,"Onions, Dry YELLOW 50 lb sacks jumbo",18.5,16.5,17.0,1249 / 413
+E29,Cucumbers 1 1/9 bushel cartons medium,29.0,24.0,25.0,481 / 377
+E30,"Lettuce, Iceberg cartons 24s film wrapped",29.5,50.0,62.5,596 / 864
+E31,Cucumbers 1 1/9 bushel cartons medium,26.0,38.5,57.0,489 / 883
+E32,"Lettuce, Iceberg cartons 24s film wrapped",47.5,28.75,43.5,708 / 972
+E33,Avocados HASS cartons 2 layer 48s,49.0,47.5,51.0,431 / 229

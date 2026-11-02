@@ -1,11 +1,11 @@
 """Join the three collection periods into one weekly panel, 2019-01 to 2026-09.
 
-    python forecast_check/merge_long.py [EARLY_DIR] [LATE_DIR]
+    python forecast_check/merge_long.py
 
-EARLY_DIR and LATE_DIR are the copies made by build_period.sh (default forecast_check/periods/2019-2021 and
-forecast_check/periods/2025-2026); 2022-2024 comes from this repository. Writes forecast_check/data/panel_long.csv:
+Reads the processed data of the three collection periods, data/processed_2019_2021/, data/processed/ and
+data/processed_2025_2026/ (the outer two built with build_period.sh). Writes forecast_check/data/panel_long.csv:
 one row per product x week with the national price index, shipments, Reddit, Google Trends, GDELT news,
-FDA recalls and Wikipedia pageviews. The panel is committed, so predict_long.py runs without the period copies.
+FDA recalls and Wikipedia pageviews.
 """
 import sys
 from pathlib import Path
@@ -18,9 +18,7 @@ sys.path.insert(0, str(ROOT))
 from analysis import prices as P, signals as S  # noqa: E402
 
 HERE = ROOT / "forecast_check"
-EARLY = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "periods/2019-2021"
-LATE = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE / "periods/2025-2026"
-PARTS = [EARLY, ROOT, LATE]
+PARTS = [ROOT / "data/processed_2019_2021", ROOT / "data/processed", ROOT / "data/processed_2025_2026"]
 START, END = "2019-01-01", "2026-10-01"
 LABELS = ["price", "supply", "demand", "other"]
 
@@ -28,7 +26,7 @@ LABELS = ["price", "supply", "demand", "other"]
 def cat(name, **kw):
     frames = []
     for i, d in enumerate(PARTS):
-        f = d / "data/processed" / name
+        f = d / name if (d / name).exists() else d / (name + ".gz")
         if not f.exists():
             raise SystemExit(f"missing: {f}")
         frames.append(pd.read_csv(f, low_memory=False, **kw).assign(segment=i))
@@ -36,7 +34,7 @@ def cat(name, **kw):
 
 
 # prices: one fixed-effects index over the whole period
-prices = pd.concat([P.load_prices(d / "data/processed/ams_terminal_prices.csv.gz") for d in PARTS],
+prices = pd.concat([P.load_prices(d / "ams_terminal_prices.csv.gz") for d in PARTS],
                    ignore_index=True).drop_duplicates()
 idx = S.price_anomalies(P.weekly_indices(prices))
 nat = idx[idx.market == "ALL"][["product", "week_start", "log_index", "n_series"]]
